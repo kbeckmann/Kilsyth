@@ -1,0 +1,3 @@
+(fp_lib_table
+  (lib (name lfe5bg381)(type KiCad)(uri ${KIPRJMOD}/footprints/lattice/lfe5bg381.pretty)(options "")(descr ""))
+)
