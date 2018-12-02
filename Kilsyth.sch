@@ -4188,4 +4188,10 @@ Wire Bus Line
 	21650 6500 21650 9100
 Wire Bus Line
 	18050 6500 18050 9100
+Text Notes 8800 4600 0    50   ~ 0
+Optional
+Text Notes 2950 17950 0    50   ~ 0
+Optional
+Text Notes 18800 1950 0    50   ~ 0
+TODO: 10n + 100n
 $EndSCHEMATC

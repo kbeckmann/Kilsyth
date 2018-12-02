@@ -3737,7 +3737,7 @@ F 3 "" H 6650 13050 50  0001 C CNN
 	1    6650 13050
 	1    0    0    -1  
 $EndComp
-Text Notes 23650 2450 0    50   ~ 0
+Text Notes 23150 2250 0    50   ~ 0
 Design goals:\n\n- High speed transfers with the FT600. Should reach 190MB/s theoretically with 16 bit @ 100MHz.\n\n- Should work with any variant of LFE5U, i.e. 12F, 25F, 45F, 85F.\n\n- Low cost BOM. Ideally <$25 for everything.\n\n- Loads bitstream from flash\n\n- JTAG should work\n\n- Bootloader on flash that allows programming the rest of the flash over the FT600. Is 128Mbit enough?\n   This should allow people to use the board without any extra hardware, as long as the bootloader is flashed.\n\n- Even lower cost alternative:\n   * FPGA should work even if the FT600 is unpopulated\n   * Oscillator instead of XTAL on the FT600\n   * Micro-USB. Will only be used for power then I guess. Cheap and everyone has a cable. Might even work with the FT600.
 Wire Notes Line
 	500  10050 23000 10050
@@ -3753,7 +3753,7 @@ Text Notes 5200 10500 0    197  ~ 0
 JTAG and Flash
 Wire Notes Line
 	7750 15800 550  15800
-Text Notes 18500 800  0    197  ~ 0
+Text Notes 16050 850  0    197  ~ 0
 FPGA Power
 $Comp
 L power:GND #PWR0119
@@ -4188,4 +4188,10 @@ Wire Bus Line
 	21650 6500 21650 9100
 Wire Bus Line
 	18050 6500 18050 9100
+Text Notes 8800 4600 0    50   ~ 0
+Optional
+Text Notes 2950 17950 0    50   ~ 0
+Optional
+Text Notes 18800 1950 0    50   ~ 0
+TODO: 10n + 100n
 $EndSCHEMATC
