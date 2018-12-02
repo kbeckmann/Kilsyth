@@ -1,4 +1,5 @@
 (sym_lib_table
   (lib (name lfe5bg381)(type Legacy)(uri ${KIPRJMOD}/lfe5bg381.lib)(options "")(descr ""))
   (lib (name TPS65261)(type Legacy)(uri /home/konrad/dev/Kilsyth/TPS65261.lib)(options "")(descr ""))
+  (lib (name FT600Q)(type Legacy)(uri /home/konrad/dev/Kilsyth/FT600Q.lib)(options "")(descr ""))
 )

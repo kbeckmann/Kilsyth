@@ -1,3 +1,6 @@
 (fp_lib_table
   (lib (name lfe5bg381)(type KiCad)(uri ${KIPRJMOD}/footprints/lattice/lfe5bg381.pretty)(options "")(descr ""))
+  (lib (name JAE-USB-C)(type KiCad)(uri ${KIPRJMOD}/footprints/tinyfpga/JAE-USB-C.pretty)(options "")(descr ""))
+  (lib (name SOA008-150mil)(type KiCad)(uri ${KIPRJMOD}/footprints/flash/SOA008-150mil.pretty)(options "")(descr ""))
+  (lib (name PUSB3FR4Z)(type KiCad)(uri ${KIPRJMOD}/footprints/tinyfpga/PUSB3FR4Z.pretty)(options "")(descr ""))
 )
