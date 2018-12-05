@@ -2604,10 +2604,6 @@ Text Label 9900 7100 0    50   ~ 0
 USB_DP
 Text Label 9900 6900 0    50   ~ 0
 USB_DM
-Wire Wire Line
-	9900 7100 10250 7100
-Wire Wire Line
-	10250 6900 9900 6900
 $Comp
 L Device:C_Small C30
 U 1 1 5FB46719
@@ -2644,44 +2640,6 @@ F 6 "https://www.aliexpress.com/item/100pcs-USB-3-1-Type-C-Connectors-24-Pin-Rec
 	1    9300 7400
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	9900 7000 10250 7000
-Wire Wire Line
-	10250 7000 10250 6900
-Wire Wire Line
-	9900 7200 10250 7200
-Wire Wire Line
-	10250 7200 10250 7100
-Wire Wire Line
-	9900 7400 10050 7400
-Wire Wire Line
-	9900 7500 10150 7500
-Wire Wire Line
-	9900 8000 10050 8000
-Wire Wire Line
-	10050 8000 10050 7400
-Wire Wire Line
-	9900 8100 10150 8100
-Wire Wire Line
-	10150 8100 10150 7500
-Wire Wire Line
-	9900 7800 10450 7800
-Wire Wire Line
-	9900 7700 10350 7700
-Wire Wire Line
-	10350 7700 10350 8300
-Wire Wire Line
-	9900 8300 10350 8300
-Connection ~ 10350 7700
-Wire Wire Line
-	10350 7700 10650 7700
-Wire Wire Line
-	10450 8400 10450 7800
-Wire Wire Line
-	9900 8400 10450 8400
-Connection ~ 10450 7800
-Wire Wire Line
-	10450 7800 10650 7800
 Text Label 15250 8400 2    50   ~ 0
 FT_DP
 Text Label 15250 8500 2    50   ~ 0
@@ -2689,12 +2647,12 @@ FT_DM
 $Comp
 L Device:R_Small R31
 U 1 1 60A0C848
-P 14300 8300
-F 0 "R31" V 14250 8450 50  0000 C CNN
-F 1 "1.6K" V 14350 8450 50  0000 C CNN
-F 2 "Resistor_SMD:R_0603_1608Metric" H 14300 8300 50  0001 C CNN
-F 3 "~" H 14300 8300 50  0001 C CNN
-	1    14300 8300
+P 13700 8300
+F 0 "R31" V 13650 8150 50  0000 C CNN
+F 1 "1.6K" V 13750 8150 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" H 13700 8300 50  0001 C CNN
+F 3 "~" H 13700 8300 50  0001 C CNN
+	1    13700 8300
 	0    1    1    0   
 $EndComp
 $Comp
@@ -2716,32 +2674,20 @@ Text Label 15250 8800 2    50   ~ 0
 FT_RIDN
 Text Label 15250 8900 2    50   ~ 0
 FT_RIDP
-Wire Wire Line
-	15250 8400 14850 8400
-Wire Wire Line
-	15250 8500 14850 8500
-Wire Wire Line
-	15250 8600 14850 8600
-Wire Wire Line
-	15250 8700 14850 8700
-Wire Wire Line
-	15250 8800 14850 8800
-Wire Wire Line
-	15250 8900 14850 8900
 Entry Wire Line
-	14750 8500 14850 8400
+	14450 8500 14550 8400
 Entry Wire Line
-	14750 8600 14850 8500
+	14450 8600 14550 8500
 Entry Wire Line
-	14750 8700 14850 8600
+	14450 8700 14550 8600
 Entry Wire Line
-	14750 8800 14850 8700
+	14450 8800 14550 8700
 Entry Wire Line
-	14750 8900 14850 8800
+	14450 8900 14550 8800
 Entry Wire Line
-	14750 9000 14850 8900
+	14450 9000 14550 8900
 Entry Bus Bus
-	14650 9200 14750 9100
+	14350 9200 14450 9100
 Entry Bus Bus
 	18050 9100 18150 9200
 Entry Bus Bus
@@ -2793,64 +2739,41 @@ F 3 "~" H 10300 6600 50  0001 C CNN
 	1    10300 6600
 	0    1    1    0   
 $EndComp
-$Comp
-L Device:R R26
-U 1 1 628DF1F6
-P 10300 6700
-F 0 "R26" V 10260 6850 50  0000 L CNN
-F 1 "5K1" V 10300 6700 50  0000 C CNN
-F 2 "Resistor_SMD:R_0603_1608Metric" V 10230 6700 50  0001 C CNN
-F 3 "~" H 10300 6700 50  0001 C CNN
-	1    10300 6700
-	0    1    1    0   
-$EndComp
 Wire Wire Line
 	9900 6600 10150 6600
-Wire Wire Line
-	9900 6700 10150 6700
 $Comp
 L power:GND #PWR036
 U 1 1 629BFDB7
-P 10750 6700
-F 0 "#PWR036" H 10750 6450 50  0001 C CNN
-F 1 "GND" V 10755 6572 50  0000 R CNN
-F 2 "" H 10750 6700 50  0001 C CNN
-F 3 "" H 10750 6700 50  0001 C CNN
-	1    10750 6700
+P 10750 6600
+F 0 "#PWR036" H 10750 6350 50  0001 C CNN
+F 1 "GND" V 10755 6472 50  0000 R CNN
+F 2 "" H 10750 6600 50  0001 C CNN
+F 3 "" H 10750 6600 50  0001 C CNN
+	1    10750 6600
 	0    -1   -1   0   
 $EndComp
 $Comp
 L Device:R R27
 U 1 1 62DC8F14
-P 10750 6900
-F 0 "R27" V 10710 7050 50  0000 L CNN
-F 1 "0R" V 10750 6900 50  0000 C CNN
-F 2 "Resistor_SMD:R_0603_1608Metric" V 10680 6900 50  0001 C CNN
-F 3 "~" H 10750 6900 50  0001 C CNN
-	1    10750 6900
+P 10600 6900
+F 0 "R27" V 10560 7050 50  0000 L CNN
+F 1 "0R" V 10600 6900 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 10530 6900 50  0001 C CNN
+F 3 "~" H 10600 6900 50  0001 C CNN
+	1    10600 6900
 	0    1    1    0   
 $EndComp
 $Comp
 L Device:R R28
 U 1 1 62DC9048
-P 10750 7100
-F 0 "R28" V 10710 7250 50  0000 L CNN
-F 1 "0R" V 10750 7100 50  0000 C CNN
-F 2 "Resistor_SMD:R_0603_1608Metric" V 10680 7100 50  0001 C CNN
-F 3 "~" H 10750 7100 50  0001 C CNN
-	1    10750 7100
+P 10600 7100
+F 0 "R28" V 10560 7250 50  0000 L CNN
+F 1 "0R" V 10600 7100 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 10530 7100 50  0001 C CNN
+F 3 "~" H 10600 7100 50  0001 C CNN
+	1    10600 7100
 	0    1    1    0   
 $EndComp
-Wire Wire Line
-	10250 6900 10600 6900
-Connection ~ 10250 6900
-Wire Wire Line
-	10250 7100 10600 7100
-Connection ~ 10250 7100
-Wire Wire Line
-	11750 7100 12600 7100
-Wire Wire Line
-	12600 7000 11750 7000
 Wire Wire Line
 	11150 6300 11150 6400
 Wire Wire Line
@@ -2904,22 +2827,8 @@ F 3 "~" H 10750 8600 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	9900 8600 10600 8600
-Wire Wire Line
-	9900 8700 10600 8700
-$Comp
-L Device:R R30
-U 1 1 63586946
-P 10750 8700
-F 0 "R30" V 10710 8850 50  0000 L CNN
-F 1 "0R" V 10750 8700 50  0000 C CNN
-F 2 "Resistor_SMD:R_0603_1608Metric" V 10680 8700 50  0001 C CNN
-F 3 "~" H 10750 8700 50  0001 C CNN
-	1    10750 8700
-	0    1    1    0   
-$EndComp
 NoConn ~ 10900 8600
-NoConn ~ 10900 8700
-Text Notes 10200 8950 0    50   ~ 0
+Text Notes 10000 8850 0    50   ~ 0
 No idea if these are needed\nso let's have 0R so we can patch it later.
 $Comp
 L Device:R R33
@@ -2985,9 +2894,9 @@ Wire Wire Line
 Wire Wire Line
 	14200 7750 15150 7750
 Wire Wire Line
-	13500 8300 14200 8300
+	13500 8300 13600 8300
 Wire Wire Line
-	14400 8300 15250 8300
+	13800 8300 15250 8300
 $Comp
 L Device:C_Small C34
 U 1 1 64B366EF
@@ -3081,52 +2990,6 @@ Wire Wire Line
 	1550 10650 2000 10650
 Wire Wire Line
 	1550 10750 2000 10750
-Wire Wire Line
-	10450 6700 10650 6700
-Wire Wire Line
-	10450 6600 10650 6600
-Wire Wire Line
-	10650 6600 10650 6700
-Connection ~ 10650 6700
-Wire Wire Line
-	10650 6700 10750 6700
-$Comp
-L Device:R_Small R23
-U 1 1 65A571CB
-P 9000 9400
-F 0 "R23" H 9059 9446 50  0000 L CNN
-F 1 "1M" H 9059 9355 50  0000 L CNN
-F 2 "Resistor_SMD:R_0603_1608Metric" H 9000 9400 50  0001 C CNN
-F 3 "~" H 9000 9400 50  0001 C CNN
-	1    9000 9400
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	9000 9000 9000 9200
-$Comp
-L Device:C_Small C28
-U 1 1 65CB0356
-P 8800 9400
-F 0 "C28" H 8600 9450 50  0000 L CNN
-F 1 "100n" H 8550 9350 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0603_1608Metric" H 8800 9400 50  0001 C CNN
-F 3 "~" H 8800 9400 50  0001 C CNN
-	1    8800 9400
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	9000 9200 8800 9200
-Wire Wire Line
-	8800 9200 8800 9300
-Connection ~ 9000 9200
-Wire Wire Line
-	9000 9200 9000 9300
-Wire Wire Line
-	8800 9500 8800 9600
-Wire Wire Line
-	8800 9600 9000 9600
-Wire Wire Line
-	9000 9600 9000 9500
 $Comp
 L power:GND #PWR032
 U 1 1 65DA3A3E
@@ -3139,48 +3002,6 @@ F 3 "" H 9300 9750 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Device:R_Small R24
-U 1 1 65E205FE
-P 9250 5400
-F 0 "R24" H 9400 5450 50  0000 L CNN
-F 1 "1M" H 9400 5350 50  0000 L CNN
-F 2 "Resistor_SMD:R_0603_1608Metric" H 9250 5400 50  0001 C CNN
-F 3 "~" H 9250 5400 50  0001 C CNN
-	1    9250 5400
-	1    0    0    -1  
-$EndComp
-$Comp
-L Device:C_Small C29
-U 1 1 65E20605
-P 9050 5400
-F 0 "C29" H 8850 5450 50  0000 L CNN
-F 1 "100n" H 8800 5350 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0603_1608Metric" H 9050 5400 50  0001 C CNN
-F 3 "~" H 9050 5400 50  0001 C CNN
-	1    9050 5400
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	9050 5200 9050 5300
-Wire Wire Line
-	9050 5500 9050 5600
-Wire Wire Line
-	9050 5600 9250 5600
-Wire Wire Line
-	9250 5600 9250 5500
-Connection ~ 9250 5600
-Wire Wire Line
-	9250 5000 9250 5200
-Wire Wire Line
-	9050 5200 9250 5200
-Connection ~ 9250 5200
-Wire Wire Line
-	9250 5200 9250 5300
-Wire Wire Line
-	9350 5000 9350 5600
-Wire Wire Line
-	9350 5600 9250 5600
-$Comp
 L power:GND #PWR033
 U 1 1 6610E99F
 P 9350 5700
@@ -3191,9 +3012,6 @@ F 3 "" H 9350 5700 50  0001 C CNN
 	1    9350 5700
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	9350 5700 9350 5600
-Connection ~ 9350 5600
 Text GLabel 15050 7500 0    50   Input ~ 0
 FT_GPIO0
 Text GLabel 15050 7600 0    50   Input ~ 0
@@ -3435,14 +3253,6 @@ Wire Wire Line
 Connection ~ 15500 5850
 Wire Wire Line
 	15500 5850 15500 5750
-Wire Wire Line
-	9300 9000 9300 9600
-Wire Wire Line
-	9000 9600 9300 9600
-Connection ~ 9000 9600
-Connection ~ 9300 9600
-Wire Wire Line
-	9300 9600 9300 9750
 $Comp
 L Device:C_Small C37
 U 1 1 680C9C2F
@@ -6534,12 +6344,6 @@ Wire Wire Line
 	11850 7600 11750 7600
 Connection ~ 11750 7600
 Wire Wire Line
-	11250 7500 10150 7500
-Connection ~ 10150 7500
-Wire Wire Line
-	11250 7400 10050 7400
-Connection ~ 10050 7400
-Wire Wire Line
 	11250 7400 11750 7400
 Connection ~ 11250 7400
 Connection ~ 11750 7400
@@ -6558,30 +6362,22 @@ Connection ~ 11750 7800
 $Comp
 L Connector_Generic:Conn_02x05_Counter_Clockwise J6
 U 1 1 853B1268
-P 11450 6900
-F 0 "J6" H 11500 7317 50  0000 C CNN
-F 1 "PUSB3FR4Z" H 11500 7226 50  0000 C CNN
-F 2 "PUSB3FR4Z:PUSB3FR4Z" H 11450 6900 50  0001 C CNN
-F 3 "https://assets.nexperia.com/documents/data-sheet/PUSB3FR4.pdf" H 11450 6900 50  0001 C CNN
-F 4 "771-PUSB3FR4Z" H 11450 6900 50  0001 C CNN "Mouser"
-F 5 "https://www.mouser.se/ProductDetail/Nexperia/PUSB3FR4Z?qs=%2fha2pyFaduhn499zgQoOXJJ4u03mTqalcRAyfHmXf7lokB2ME1eSHw%3d%3d" H 11450 6900 50  0001 C CNN "Mouser2"
-	1    11450 6900
-	1    0    0    -1  
+P 11550 6900
+F 0 "J6" H 11600 6475 50  0000 C CNN
+F 1 "PUSB3FR4Z" H 11600 6566 50  0000 C CNN
+F 2 "PUSB3FR4Z:PUSB3FR4Z" H 11550 6900 50  0001 C CNN
+F 3 "https://assets.nexperia.com/documents/data-sheet/PUSB3FR4.pdf" H 11550 6900 50  0001 C CNN
+F 4 "771-PUSB3FR4Z" H 11550 6900 50  0001 C CNN "Mouser"
+F 5 "https://www.mouser.se/ProductDetail/Nexperia/PUSB3FR4Z?qs=%2fha2pyFaduhn499zgQoOXJJ4u03mTqalcRAyfHmXf7lokB2ME1eSHw%3d%3d" H 11550 6900 50  0001 C CNN "Mouser2"
+	1    11550 6900
+	-1   0    0    1   
 $EndComp
 Wire Wire Line
-	10900 7100 11250 7100
-Wire Wire Line
-	10900 6900 11100 6900
-Wire Wire Line
 	11100 6900 11100 7000
-Wire Wire Line
-	11100 7000 11250 7000
 NoConn ~ 11750 6700
 NoConn ~ 11750 6800
 NoConn ~ 11250 6700
 NoConn ~ 11250 6800
-Wire Wire Line
-	11250 6900 11750 6900
 $Comp
 L power:GND #PWR041
 U 1 1 863CE108
@@ -6593,19 +6389,6 @@ F 3 "" H 11850 6900 50  0001 C CNN
 	1    11850 6900
 	0    -1   -1   0   
 $EndComp
-Wire Wire Line
-	11850 6900 11750 6900
-Connection ~ 11750 6900
-Wire Bus Line
-	12800 9200 14650 9200
-Wire Wire Line
-	11250 7000 11750 7000
-Connection ~ 11250 7000
-Connection ~ 11750 7000
-Wire Wire Line
-	11250 7100 11750 7100
-Connection ~ 11250 7100
-Connection ~ 11750 7100
 $Comp
 L Connector_Generic:Conn_02x20_Counter_Clockwise J4
 U 1 1 86D59BE2
@@ -6691,12 +6474,102 @@ $EndComp
 Wire Wire Line
 	1100 19600 1100 19500
 Connection ~ 1100 19500
+$Comp
+L power:+5V #PWR0116
+U 1 1 8741DF60
+P 14950 7000
+F 0 "#PWR0116" H 14950 6850 50  0001 C CNN
+F 1 "+5V" V 14965 7128 50  0000 L CNN
+F 2 "" H 14950 7000 50  0001 C CNN
+F 3 "" H 14950 7000 50  0001 C CNN
+	1    14950 7000
+	0    -1   -1   0   
+$EndComp
+Text Notes 10850 6050 0    50   ~ 0
+(KiCad bug, should use VBus but can't)
+Wire Wire Line
+	9900 7400 11250 7400
+Wire Wire Line
+	9900 7500 11250 7500
+Wire Wire Line
+	9900 7700 10650 7700
+Wire Wire Line
+	9900 7800 10650 7800
+NoConn ~ 9900 8000
+NoConn ~ 9900 8100
+NoConn ~ 9900 8300
+NoConn ~ 9900 8400
+Wire Wire Line
+	10450 6600 10750 6600
+NoConn ~ 9900 6700
+NoConn ~ 9900 8700
+Text Notes 10000 8250 0    50   ~ 0
+NON-reversible implementation.\nSorry for that but it's too expensive.
+NoConn ~ 9900 7000
+NoConn ~ 9900 7200
+Wire Bus Line
+	14350 9200 12800 9200
+Wire Wire Line
+	11750 7100 12600 7100
+Wire Wire Line
+	11850 6900 11750 6900
+Wire Wire Line
+	9300 9000 9300 9150
+Wire Wire Line
+	9000 9000 9000 9150
+Wire Wire Line
+	9000 9150 9300 9150
+Connection ~ 9300 9150
+Wire Wire Line
+	9300 9150 9300 9750
+Wire Wire Line
+	9350 5000 9350 5150
+Wire Wire Line
+	9250 5000 9250 5150
+Wire Wire Line
+	9250 5150 9350 5150
+Connection ~ 9350 5150
+Wire Wire Line
+	9350 5150 9350 5700
+Wire Wire Line
+	10750 6900 11100 6900
+Wire Wire Line
+	10450 6900 9900 6900
+Wire Wire Line
+	10750 7100 11250 7100
+Wire Wire Line
+	10450 7100 9900 7100
+Wire Wire Line
+	14550 8400 15250 8400
+Wire Wire Line
+	14550 8500 15250 8500
+Wire Wire Line
+	14550 8600 15250 8600
+Wire Wire Line
+	14550 8700 15250 8700
+Wire Wire Line
+	14550 8800 15250 8800
+Wire Wire Line
+	14550 8900 15250 8900
+Connection ~ 11750 6900
+Wire Wire Line
+	11250 6900 11750 6900
+Wire Wire Line
+	11100 7000 11250 7000
+Connection ~ 11250 7000
+Wire Wire Line
+	11250 7000 11750 7000
+Connection ~ 11750 7000
+Wire Wire Line
+	11750 7000 12600 7000
+Wire Wire Line
+	11250 7100 11750 7100
 Wire Bus Line
 	18150 9200 21550 9200
 Wire Bus Line
 	13050 14250 21550 14250
 Wire Bus Line
-	14750 8500 14750 9100
+	14450 8500 14450 9100
 Wire Bus Line
 	12700 7100 12700 9100
 Wire Bus Line
@@ -6715,17 +6588,6 @@ Wire Bus Line
 	14350 11300 14350 14150
 Wire Bus Line
 	18050 6500 18050 9100
-$Comp
-L power:+5V #PWR?
-U 1 1 8741DF60
-P 14950 7000
-F 0 "#PWR?" H 14950 6850 50  0001 C CNN
-F 1 "+5V" V 14965 7128 50  0000 L CNN
-F 2 "" H 14950 7000 50  0001 C CNN
-F 3 "" H 14950 7000 50  0001 C CNN
-	1    14950 7000
-	0    -1   -1   0   
-$EndComp
-Text Notes 10850 6050 0    50   ~ 0
-(KiCad bug, should use VBus but can't)
+Connection ~ 11250 7100
+Connection ~ 11750 7100
 $EndSCHEMATC
