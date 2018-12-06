@@ -4,4 +4,5 @@
   (lib (name SOA008-150mil)(type KiCad)(uri ${KIPRJMOD}/footprints/flash/SOA008-150mil.pretty)(options "")(descr ""))
   (lib (name PUSB3FR4Z)(type KiCad)(uri ${KIPRJMOD}/footprints/tinyfpga/PUSB3FR4Z.pretty)(options "")(descr ""))
   (lib (name kilsyth_extra)(type KiCad)(uri ${KIPRJMOD}/footprints/kilsyth_extra.pretty)(options "")(descr ""))
+  (lib (name L_1008_1210)(type KiCad)(uri ${KIPRJMOD}/footprints/inductor/L_1008_1210.pretty)(options "")(descr ""))
 )
