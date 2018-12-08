@@ -6242,13 +6242,13 @@ Wire Wire Line
 	10850 13650 10250 13650
 Wire Wire Line
 	10850 13750 10250 13750
-Text Label 19550 12550 2    50   ~ 0
+Text Label 19550 12650 2    50   ~ 0
 RAM_DQ0
 Text Label 21050 12550 0    50   ~ 0
 RAM_DQ1
-Text Label 19550 12450 2    50   ~ 0
+Text Label 19550 12550 2    50   ~ 0
 RAM_DQ2
-Text Label 19550 13450 2    50   ~ 0
+Text Label 19550 12450 2    50   ~ 0
 RAM_DQ3
 Text Label 21050 13250 0    50   ~ 0
 RAM_DQ4
@@ -6270,11 +6270,11 @@ Text Label 10850 13450 2    50   ~ 0
 RAM_DQ12
 Text Label 12350 13450 0    50   ~ 0
 RAM_DQ13
-Text Label 10850 12450 2    50   ~ 0
-RAM_DQ14
 Text Label 10850 13050 2    50   ~ 0
+RAM_DQ14
+Text Label 10850 12450 2    50   ~ 0
 RAM_DQ15
-Text Label 19550 12650 2    50   ~ 0
+Text Label 19550 12750 2    50   ~ 0
 RAM_DQM0
 Text Label 10850 12750 2    50   ~ 0
 RAM_DQM1
@@ -6284,9 +6284,9 @@ Text Label 12350 12750 0    50   ~ 0
 RAM_CLK
 Text Label 19550 12850 2    50   ~ 0
 RAM_~WE
-Text Label 19550 12750 2    50   ~ 0
-RAM_~CAS
 Text Label 21050 12950 0    50   ~ 0
+RAM_~CAS
+Text Label 21050 13050 0    50   ~ 0
 RAM_~RAS
 Text Label 19550 12950 2    50   ~ 0
 RAM_~CS
@@ -6564,10 +6564,10 @@ Entry Wire Line
 Entry Wire Line
 	21550 7900 21650 8000
 $Comp
-L power:+3V3 #PWR?
+L power:+3V3 #PWR0117
 U 1 1 66D5A216
 P 12200 1150
-F 0 "#PWR?" H 12200 1000 50  0001 C CNN
+F 0 "#PWR0117" H 12200 1000 50  0001 C CNN
 F 1 "+3V3" H 12215 1323 50  0000 C CNN
 F 2 "" H 12200 1150 50  0001 C CNN
 F 3 "" H 12200 1150 50  0001 C CNN
@@ -6576,6 +6576,7 @@ F 3 "" H 12200 1150 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	12200 1150 12200 1350
+Connection ~ 12200 1350
 Wire Bus Line
 	18150 9200 21550 9200
 Wire Bus Line
@@ -6602,5 +6603,4 @@ Wire Bus Line
 	19050 6500 19050 9100
 Wire Bus Line
 	18050 6500 18050 9100
-Connection ~ 12200 1350
 $EndSCHEMATC
