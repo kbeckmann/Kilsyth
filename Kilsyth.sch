@@ -2884,7 +2884,7 @@ U 1 1 654AD4BA
 P 2550 11400
 F 0 "J1" H 2600 11717 50  0000 C CNN
 F 1 "Conn_JTAG" H 2600 11626 50  0000 C CNN
-F 2 "Connector_PinSocket_2.54mm:PinSocket_2x03_P2.54mm_Vertical_SMD" H 2550 11400 50  0001 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_2x03_P2.54mm_Vertical_SMD" H 2550 11400 50  0001 C CNN
 F 3 "~" H 2550 11400 50  0001 C CNN
 	1    2550 11400
 	1    0    0    -1  
