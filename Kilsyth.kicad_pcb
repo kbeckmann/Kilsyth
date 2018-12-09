@@ -1954,7 +1954,7 @@
       (net 1 GND))
     (pad "" np_thru_hole circle (at -3.6 0 180) (size 0.6 0.6) (drill 0.6) (layers *.Mask F.Cu))
     (pad "" np_thru_hole oval (at 3.6 -0.065 180) (size 0.6 0.85) (drill oval 0.6 0.85) (layers *.Mask F.Cu))
-    (model ${KIPRJMOD}/Footprints.pretty/K3D-DX07S024JJ2-V1_JAE_Proprietary.wrl
+    (model ${KIPRJMOD}/footprints/tinyfpga/JAE-USB-C.pretty/K3D-DX07S024JJ2-V1_JAE_Proprietary.wrl
       (offset (xyz 0 -0.6 1.53))
       (scale (xyz 1 1 1))
       (rotate (xyz -90 0 0))
@@ -7745,7 +7745,7 @@
       (net 162 "Net-(R41-Pad2)"))
     (pad 1 smd rect (at -3.5 -2.6 270) (size 0.8 0.2) (layers F.Cu F.Paste F.Mask)
       (net 154 VD10))
-    (model ${KISYS3DMOD}/Package_DFN_QFN.3dshapes/QFN-56-1EP_7x7mm_P0.4mm_EP5.7x5.7mm.wrl
+    (model ${KISYS3DMOD}/Package_DFN_QFN.3dshapes/QFN-56-1EP_7x7mm_P0.4mm_EP5.6x5.6mm.wrl
       (at (xyz 0 0 0))
       (scale (xyz 1 1 1))
       (rotate (xyz 0 0 0))
