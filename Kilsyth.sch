@@ -635,7 +635,8 @@ F 0 "U3" H 2800 1865 50  0000 C CNN
 F 1 "TPS65261" H 2800 1774 50  0000 C CNN
 F 2 "kilsyth_extra:S-PVQFN-N32" H 3350 950 50  0001 C CNN
 F 3 "http://www.ti.com/general/docs/lit/getliterature.tsp?genericPartNumber=tps65261&fileType=pdf" H 3350 950 50  0001 C CNN
-F 4 "https://www.mouser.se/ProductDetail/Texas-Instruments/TPS65261RHBR?qs=sGAEpiMZZMuoocfCme37cqjWkDvx3CQP0UDHLTlcryc%3d" H 2800 1450 50  0001 C CNN "Mouser"
+F 4 "595-TPS65261RHBR" H 2800 1450 50  0001 C CNN "Mouser"
+F 5 "https://www.mouser.se/ProductDetail/Texas-Instruments/TPS65261RHBR?qs=sGAEpiMZZMuoocfCme37cqjWkDvx3CQP0UDHLTlcryc%3d" H 2800 1450 50  0001 C CNN "Mouser2"
 	1    2800 1450
 	1    0    0    -1  
 $EndComp
@@ -2872,6 +2873,7 @@ F 0 "U2" H 9073 2228 60  0000 R CNN
 F 1 "LFE5U-85F-6BG381C" H 9073 2122 60  0000 R CNN
 F 2 "lfe5bg381:BGA-381_pitch0.8mm_dia0.4mm" H 12350 3150 60  0001 C CNN
 F 3 "" H 12350 3150 60  0000 C CNN
+F 4 "842-LFE5U12F6BG381C" H 13400 2200 50  0001 C CNN "Mouser"
 	9    13400 2200
 	1    0    0    -1  
 $EndComp
@@ -3808,6 +3810,8 @@ F 0 "U7" H 15950 14015 50  0000 C CNN
 F 1 "AS4C32M16SB" H 15950 13924 50  0000 C CNN
 F 2 "Package_SO:TSOP-II-54_22.2x10.16mm_P0.8mm" H 15950 12250 50  0001 C CNN
 F 3 "" H 15950 12250 50  0001 C CNN
+F 4 "https://www.aliexpress.com/item/in-stock-CS8415A-CZZ-CS8415A-TSSOP/32803639341.html?tt=sns_none&aff_platform=default&cpt=1544468119113&sk=bJOMeZLT&aff_trace_key=89e596140421409c967752158b1fb099-1544468119113-03895-bJOMeZLT&terminal_id=5401f7b94e9b477d89a020c2c84b9378" H 15950 12250 50  0001 C CNN "Aliexpress"
+F 5 "K4S561632J-UC75" H 15950 12250 50  0001 C CNN "AlternativePart"
 	1    15950 12250
 	1    0    0    -1  
 $EndComp
