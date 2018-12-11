@@ -635,7 +635,8 @@ F 0 "U3" H 2800 1865 50  0000 C CNN
 F 1 "TPS65261" H 2800 1774 50  0000 C CNN
 F 2 "kilsyth_extra:S-PVQFN-N32" H 3350 950 50  0001 C CNN
 F 3 "http://www.ti.com/general/docs/lit/getliterature.tsp?genericPartNumber=tps65261&fileType=pdf" H 3350 950 50  0001 C CNN
-F 4 "https://www.mouser.se/ProductDetail/Texas-Instruments/TPS65261RHBR?qs=sGAEpiMZZMuoocfCme37cqjWkDvx3CQP0UDHLTlcryc%3d" H 2800 1450 50  0001 C CNN "Mouser"
+F 4 "595-TPS65261RHBR" H 2800 1450 50  0001 C CNN "Mouser"
+F 5 "https://www.mouser.se/ProductDetail/Texas-Instruments/TPS65261RHBR?qs=sGAEpiMZZMuoocfCme37cqjWkDvx3CQP0UDHLTlcryc%3d" H 2800 1450 50  0001 C CNN "Mouser2"
 	1    2800 1450
 	1    0    0    -1  
 $EndComp
@@ -2853,12 +2854,12 @@ Wire Wire Line
 $Comp
 L lfe5bg381:LFE5U-85F-6BG381C U2
 U 1 1 66BE2CC2
-P 11250 16050
-F 0 "U2" H 11250 17037 60  0000 C CNN
-F 1 "LFE5U-85F-6BG381C" H 11250 16931 60  0000 C CNN
-F 2 "lfe5bg381:BGA-381_pitch0.8mm_dia0.4mm" H 10200 17000 60  0001 C CNN
-F 3 "" H 10200 17000 60  0000 C CNN
-	1    11250 16050
+P 12550 16050
+F 0 "U2" H 12550 17037 60  0000 C CNN
+F 1 "LFE5U-85F-6BG381C" H 12550 16931 60  0000 C CNN
+F 2 "lfe5bg381:BGA-381_pitch0.8mm_dia0.4mm" H 11500 17000 60  0001 C CNN
+F 3 "" H 11500 17000 60  0000 C CNN
+	1    12550 16050
 	1    0    0    -1  
 $EndComp
 NoConn ~ 28950 10500
@@ -2872,6 +2873,7 @@ F 0 "U2" H 9073 2228 60  0000 R CNN
 F 1 "LFE5U-85F-6BG381C" H 9073 2122 60  0000 R CNN
 F 2 "lfe5bg381:BGA-381_pitch0.8mm_dia0.4mm" H 12350 3150 60  0001 C CNN
 F 3 "" H 12350 3150 60  0000 C CNN
+F 4 "842-LFE5U12F6BG381C" H 13400 2200 50  0001 C CNN "Mouser"
 	9    13400 2200
 	1    0    0    -1  
 $EndComp
@@ -3288,7 +3290,7 @@ F 6 "Standard Clock Oscillators MEMS Oscillator, Ultra Low Power, LVCMOS, -40C-8
 	1    1700 17600
 	1    0    0    -1  
 $EndComp
-Text GLabel 13200 16750 0    50   Input ~ 0
+Text GLabel 14500 16750 0    50   Input ~ 0
 CLK_16MHz
 Text Notes 1250 16350 0    197  ~ 0
 System clock
@@ -3808,6 +3810,8 @@ F 0 "U7" H 15950 14015 50  0000 C CNN
 F 1 "AS4C32M16SB" H 15950 13924 50  0000 C CNN
 F 2 "Package_SO:TSOP-II-54_22.2x10.16mm_P0.8mm" H 15950 12250 50  0001 C CNN
 F 3 "" H 15950 12250 50  0001 C CNN
+F 4 "https://www.aliexpress.com/item/in-stock-CS8415A-CZZ-CS8415A-TSSOP/32803639341.html?tt=sns_none&aff_platform=default&cpt=1544468119113&sk=bJOMeZLT&aff_trace_key=89e596140421409c967752158b1fb099-1544468119113-03895-bJOMeZLT&terminal_id=5401f7b94e9b477d89a020c2c84b9378" H 15950 12250 50  0001 C CNN "Aliexpress"
+F 5 "K4S561632J-UC75" H 15950 12250 50  0001 C CNN "AlternativePart"
 	1    15950 12250
 	1    0    0    -1  
 $EndComp
@@ -4438,12 +4442,12 @@ Wire Notes Line
 $Comp
 L lfe5bg381:LFE5U-85F-6BG381C U2
 U 6 1 674D2D73
-P 13950 15950
-F 0 "U2" H 13950 16937 60  0000 C CNN
-F 1 "LFE5U-85F-6BG381C" H 13950 16831 60  0000 C CNN
-F 2 "lfe5bg381:BGA-381_pitch0.8mm_dia0.4mm" H 12900 16900 60  0001 C CNN
-F 3 "" H 12900 16900 60  0000 C CNN
-	6    13950 15950
+P 15250 15950
+F 0 "U2" H 15250 16937 60  0000 C CNN
+F 1 "LFE5U-85F-6BG381C" H 15250 16831 60  0000 C CNN
+F 2 "lfe5bg381:BGA-381_pitch0.8mm_dia0.4mm" H 14200 16900 60  0001 C CNN
+F 3 "" H 14200 16900 60  0000 C CNN
+	6    15250 15950
 	1    0    0    -1  
 $EndComp
 Wire Notes Line
@@ -6170,96 +6174,96 @@ Text Label 8850 16950 2    50   ~ 0
 WIDE_37
 Text Label 8850 17050 2    50   ~ 0
 WIDE_39
-Text Label 14700 16750 0    50   ~ 0
+Text Label 16000 16750 0    50   ~ 0
 WIDE_1
-Text Label 14700 16650 0    50   ~ 0
+Text Label 16000 16650 0    50   ~ 0
 WIDE_3
-Text Label 13200 16350 2    50   ~ 0
+Text Label 14500 16350 2    50   ~ 0
 WIDE_5
-Text Label 13200 16150 2    50   ~ 0
+Text Label 14500 16150 2    50   ~ 0
 WIDE_7
-Text Label 14700 16050 0    50   ~ 0
+Text Label 16000 16050 0    50   ~ 0
 WIDE_9
-Text Label 13200 15450 2    50   ~ 0
+Text Label 14500 15450 2    50   ~ 0
 WIDE_11
-Text Label 13200 15650 2    50   ~ 0
+Text Label 14500 15650 2    50   ~ 0
 WIDE_13
-Text Label 13200 15350 2    50   ~ 0
+Text Label 14500 15350 2    50   ~ 0
 WIDE_15
-Text Label 13200 15550 2    50   ~ 0
+Text Label 14500 15550 2    50   ~ 0
 WIDE_17
-Text Label 14700 15350 0    50   ~ 0
+Text Label 16000 15350 0    50   ~ 0
 WIDE_19
-Text Label 14700 15250 0    50   ~ 0
+Text Label 16000 15250 0    50   ~ 0
 WIDE_21
-Text Label 10500 16450 2    50   ~ 0
+Text Label 11800 16450 2    50   ~ 0
 WIDE_23
-Text Label 10500 16150 2    50   ~ 0
+Text Label 11800 16150 2    50   ~ 0
 WIDE_25
-Text Label 12000 16150 0    50   ~ 0
+Text Label 13300 16150 0    50   ~ 0
 WIDE_27
-Text Label 12000 15950 0    50   ~ 0
+Text Label 13300 15950 0    50   ~ 0
 WIDE_29
-Text Label 10500 15550 2    50   ~ 0
+Text Label 11800 15550 2    50   ~ 0
 WIDE_31
-Text Label 10500 16650 2    50   ~ 0
+Text Label 11800 16650 2    50   ~ 0
 WIDE_33
-Text Label 12000 15550 0    50   ~ 0
+Text Label 13300 15550 0    50   ~ 0
 WIDE_35
-Text Label 12000 15450 0    50   ~ 0
+Text Label 13300 15450 0    50   ~ 0
 WIDE_37
-Text Label 10500 15350 2    50   ~ 0
+Text Label 11800 15350 2    50   ~ 0
 WIDE_39
-Text Label 13200 16650 2    50   ~ 0
+Text Label 14500 16650 2    50   ~ 0
 WIDE_2
-Text Label 14700 16250 0    50   ~ 0
+Text Label 16000 16250 0    50   ~ 0
 WIDE_4
-Text Label 14700 16350 0    50   ~ 0
+Text Label 16000 16350 0    50   ~ 0
 WIDE_6
-Text Label 14700 16150 0    50   ~ 0
+Text Label 16000 16150 0    50   ~ 0
 WIDE_8
-Text Label 13200 16050 2    50   ~ 0
+Text Label 14500 16050 2    50   ~ 0
 WIDE_10
-Text Label 13200 16250 2    50   ~ 0
+Text Label 14500 16250 2    50   ~ 0
 WIDE_12
-Text Label 14700 15450 0    50   ~ 0
+Text Label 16000 15450 0    50   ~ 0
 WIDE_14
-Text Label 14700 15650 0    50   ~ 0
+Text Label 16000 15650 0    50   ~ 0
 WIDE_16
-Text Label 14700 15550 0    50   ~ 0
+Text Label 16000 15550 0    50   ~ 0
 WIDE_18
-Text Label 13200 15750 2    50   ~ 0
+Text Label 14500 15750 2    50   ~ 0
 WIDE_20
-Text Label 13200 15250 2    50   ~ 0
+Text Label 14500 15250 2    50   ~ 0
 WIDE_22
-Text Label 14700 15750 0    50   ~ 0
+Text Label 16000 15750 0    50   ~ 0
 WIDE_24
-Text Label 12000 16450 0    50   ~ 0
+Text Label 13300 16450 0    50   ~ 0
 WIDE_26
-Text Label 10500 15850 2    50   ~ 0
+Text Label 11800 15850 2    50   ~ 0
 WIDE_28
-Text Label 12000 15850 0    50   ~ 0
+Text Label 13300 15850 0    50   ~ 0
 WIDE_30
-Text Label 10500 15950 2    50   ~ 0
+Text Label 11800 15950 2    50   ~ 0
 WIDE_32
-Text Label 10500 15650 2    50   ~ 0
+Text Label 11800 15650 2    50   ~ 0
 WIDE_34
-Text Label 10500 15450 2    50   ~ 0
+Text Label 11800 15450 2    50   ~ 0
 WIDE_36
-Text Label 12000 15650 0    50   ~ 0
+Text Label 13300 15650 0    50   ~ 0
 WIDE_38
-Text Label 12000 15350 0    50   ~ 0
+Text Label 13300 15350 0    50   ~ 0
 WIDE_40
-NoConn ~ 10500 15750
-NoConn ~ 10500 16050
-NoConn ~ 10500 16250
-NoConn ~ 10500 16350
-NoConn ~ 10500 16550
-NoConn ~ 12000 16550
-NoConn ~ 12000 16350
-NoConn ~ 12000 16250
-NoConn ~ 12000 16050
-NoConn ~ 12000 15750
+NoConn ~ 11800 15750
+NoConn ~ 11800 16050
+NoConn ~ 11800 16250
+NoConn ~ 11800 16350
+NoConn ~ 11800 16550
+NoConn ~ 13300 16550
+NoConn ~ 13300 16350
+NoConn ~ 13300 16250
+NoConn ~ 13300 16050
+NoConn ~ 13300 15750
 NoConn ~ 12350 21200
 $Comp
 L Device:LED D3
@@ -6704,13 +6708,13 @@ Text Label 5700 11650 0    50   ~ 0
 FLASH_SCK
 Text Label 5700 11750 0    50   ~ 0
 FLASH_MOSI
-NoConn ~ 13200 15850
-NoConn ~ 13200 15950
-NoConn ~ 13200 16450
-NoConn ~ 13200 16550
-NoConn ~ 14700 16450
-NoConn ~ 14700 15950
-NoConn ~ 14700 15850
+NoConn ~ 14500 15850
+NoConn ~ 14500 15950
+NoConn ~ 14500 16450
+NoConn ~ 14500 16550
+NoConn ~ 16000 16450
+NoConn ~ 16000 15950
+NoConn ~ 16000 15850
 NoConn ~ 10850 13150
 NoConn ~ 10850 13250
 NoConn ~ 10850 13350
@@ -6735,7 +6739,7 @@ F 3 "~" H 5800 1650 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	5800 1600 5800 1650
-Text GLabel 14700 16550 2    50   Input ~ 0
+Text GLabel 16000 16550 2    50   Input ~ 0
 FT_GPIO1
 $Comp
 L power:PWR_FLAG #FLG0102
@@ -6947,6 +6951,128 @@ F 3 "" H 5600 2450 50  0001 C CNN
 	1    5600 2450
 	0    1    1    0   
 $EndComp
+Wire Wire Line
+	9350 15150 9700 15150
+Wire Wire Line
+	9350 15250 9700 15250
+Wire Wire Line
+	9350 15350 9700 15350
+Wire Wire Line
+	9350 15450 9700 15450
+Wire Wire Line
+	9350 15550 9700 15550
+Wire Wire Line
+	9350 15650 9700 15650
+Wire Wire Line
+	9350 15750 9700 15750
+Wire Wire Line
+	9350 15850 9700 15850
+Wire Wire Line
+	9350 15950 9700 15950
+Wire Wire Line
+	9350 16050 9700 16050
+Wire Wire Line
+	9350 16150 9700 16150
+Wire Wire Line
+	9350 16250 9700 16250
+Wire Wire Line
+	9350 16350 9700 16350
+Wire Wire Line
+	9350 16450 9700 16450
+Wire Wire Line
+	9350 16550 9700 16550
+Wire Wire Line
+	9350 16650 9700 16650
+Wire Wire Line
+	9350 16750 9700 16750
+Wire Wire Line
+	9350 16850 9700 16850
+Wire Wire Line
+	9350 16950 9700 16950
+Wire Wire Line
+	9350 17050 9700 17050
+Wire Wire Line
+	8850 15150 8500 15150
+Wire Wire Line
+	8850 15250 8500 15250
+Wire Wire Line
+	8850 15350 8500 15350
+Wire Wire Line
+	8850 15450 8500 15450
+Wire Wire Line
+	8850 15550 8500 15550
+Wire Wire Line
+	8850 15650 8500 15650
+Wire Wire Line
+	8850 15750 8500 15750
+Wire Wire Line
+	8850 15850 8500 15850
+Wire Wire Line
+	8850 15950 8500 15950
+Wire Wire Line
+	8850 16050 8500 16050
+Wire Wire Line
+	8850 16150 8500 16150
+Wire Wire Line
+	8850 16250 8500 16250
+Wire Wire Line
+	8850 16350 8500 16350
+Wire Wire Line
+	8850 16450 8500 16450
+Wire Wire Line
+	8850 16550 8500 16550
+Wire Wire Line
+	8850 16650 8500 16650
+Wire Wire Line
+	8850 16750 8500 16750
+Wire Wire Line
+	8850 16850 8500 16850
+Wire Wire Line
+	8850 16950 8500 16950
+Wire Wire Line
+	8850 17050 8500 17050
+Text Notes 23750 4700 0    394  ~ 79
+ERRATA RevA
+Text Notes 23900 5000 0    50   ~ 0
+C9 is not a GPIO on F12.
+Text Notes 11700 17050 0    50   ~ 0
+FIXME: C9 is not a GPIO on F12.\nRemove pin and move LED to C8
+Wire Wire Line
+	11800 15350 11400 15350
+Wire Wire Line
+	11800 15450 11400 15450
+Wire Wire Line
+	11800 15550 11400 15550
+Wire Wire Line
+	11800 15650 11400 15650
+Wire Wire Line
+	11800 15850 11400 15850
+Wire Wire Line
+	11800 15950 11400 15950
+Wire Wire Line
+	11800 16150 11400 16150
+Wire Wire Line
+	11800 16450 11400 16450
+Wire Wire Line
+	11800 16650 11400 16650
+Wire Notes Line
+	11400 16550 11300 16550
+Wire Notes Line
+	11300 16550 11300 16750
+Wire Notes Line
+	11300 16750 11400 16750
+Text Notes 11050 16700 0    50   ~ 0
+DEAD
+Text Notes 8050 16800 0    50   ~ 0
+DEAD
+Wire Notes Line
+	8500 16700 8450 16700
+Wire Notes Line
+	8450 16800 8500 16800
+Wire Notes Line
+	8450 16700 8450 16800
+Wire Notes Line
+	8450 16750 8300 16750
 Wire Bus Line
 	18150 9200 21550 9200
 Wire Bus Line
