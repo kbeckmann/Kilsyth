@@ -1,0 +1,257 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD>
+<META http-equiv=Content-Type content="text/html; charset=iso-8859-1">
+<STYLE type=text/css>
+<!--
+.blink {text-decoration:blink}
+.ms  {font-size: 9pt; font-family: monospace; font-weight: normal}
+.msb {font-size: 9pt; font-family: monospace; font-weight: bold  }
+-->
+</STYLE>
+<META content="MSHTML 6.00.2900.2180" name=GENERATOR></HEAD>
+<BODY><B>
+</B>
+<BR><PRE><A name="Report Header"></A>
+--------------------------------------------------------------------------------
+Lattice TRACE Report - Hold, Version Diamond (64-bit) 3.10.3.144.3
+Tue Dec 11 21:40:30 2018
+
+Copyright (c) 1991-1994 by NeoCAD Inc. All rights reserved.
+Copyright (c) 1995 AT&T Corp.   All rights reserved.
+Copyright (c) 1995-2001 Lucent Technologies Inc.  All rights reserved.
+Copyright (c) 2001 Agere Systems   All rights reserved.
+Copyright (c) 2002-2018 Lattice Semiconductor Corporation,  All rights reserved.
+
+Report Information
+------------------
+Design file:     kilsyth_top
+Device,speed:    LFE5U-12F,M
+Report level:    verbose report, limited to 10 items per preference
+--------------------------------------------------------------------------------
+
+WARNING - No timing preferences found. Doing default enumeration.
+
+
+Derating parameters
+-------------------
+Voltage:    1.100 V
+
+VCCIO Voltage:
+                   3.300 V (Bank 0)
+                   2.500 V (Bank 1)
+                   2.500 V (Bank 2)
+                   2.500 V (Bank 3)
+                   2.500 V (Bank 4)
+                   2.500 V (Bank 5)
+                   2.500 V (Bank 6)
+                   3.300 V (Bank 7)
+
+
+
+</A><A name="Default path enumeration
+"></A>================================================================================
+Preference: Default path enumeration
+            373 items scored, 0 timing errors detected.
+--------------------------------------------------------------------------------
+
+Report:    0.287ns delay SLICE_10 to SLICE_10 (0.415ns delay and 0.128ns setup)
+
+   Name    Fanout   Delay (ns)          Site               Resource
+REG_DEL     ---     0.174     R2C24D.CLK to      R2C24D.Q1 <A href="#@comp:SLICE_10">SLICE_10</A> (from <A href="#@net:clk_c">clk_c</A>)
+ROUTE         1     0.160<A href="#@net:n20:R2C24D.Q1:R2C24D.A1:0.160">      R2C24D.Q1 to R2C24D.A1     </A> <A href="#@net:n20">n20</A>
+CTOF_DEL    ---     0.081      R2C24D.A1 to      R2C24D.F1 <A href="#@comp:SLICE_10">SLICE_10</A>
+ROUTE         1     0.000<A href="#@net:n129:R2C24D.F1:R2C24D.DI1:0.000">      R2C24D.F1 to R2C24D.DI1    </A> <A href="#@net:n129">n129</A> (to <A href="#@net:clk_c">clk_c</A>)
+                  --------
+                    0.415   (61.4% logic, 38.6% route), 2 logic levels.
+
+Report:    0.287ns delay SLICE_11 to SLICE_11 (0.415ns delay and 0.128ns setup)
+
+   Name    Fanout   Delay (ns)          Site               Resource
+REG_DEL     ---     0.174     R2C24C.CLK to      R2C24C.Q1 <A href="#@comp:SLICE_11">SLICE_11</A> (from <A href="#@net:clk_c">clk_c</A>)
+ROUTE         1     0.160<A href="#@net:n22:R2C24C.Q1:R2C24C.A1:0.160">      R2C24C.Q1 to R2C24C.A1     </A> <A href="#@net:n22">n22</A>
+CTOF_DEL    ---     0.081      R2C24C.A1 to      R2C24C.F1 <A href="#@comp:SLICE_11">SLICE_11</A>
+ROUTE         1     0.000<A href="#@net:n131:R2C24C.F1:R2C24C.DI1:0.000">      R2C24C.F1 to R2C24C.DI1    </A> <A href="#@net:n131">n131</A> (to <A href="#@net:clk_c">clk_c</A>)
+                  --------
+                    0.415   (61.4% logic, 38.6% route), 2 logic levels.
+
+Report:    0.287ns delay SLICE_6 to SLICE_6 (0.415ns delay and 0.128ns setup)
+
+   Name    Fanout   Delay (ns)          Site               Resource
+REG_DEL     ---     0.174     R2C25D.CLK to      R2C25D.Q1 <A href="#@comp:SLICE_6">SLICE_6</A> (from <A href="#@net:clk_c">clk_c</A>)
+ROUTE         1     0.160<A href="#@net:n12:R2C25D.Q1:R2C25D.A1:0.160">      R2C25D.Q1 to R2C25D.A1     </A> <A href="#@net:n12">n12</A>
+CTOF_DEL    ---     0.081      R2C25D.A1 to      R2C25D.F1 <A href="#@comp:SLICE_6">SLICE_6</A>
+ROUTE         1     0.000<A href="#@net:n121:R2C25D.F1:R2C25D.DI1:0.000">      R2C25D.F1 to R2C25D.DI1    </A> <A href="#@net:n121">n121</A> (to <A href="#@net:clk_c">clk_c</A>)
+                  --------
+                    0.415   (61.4% logic, 38.6% route), 2 logic levels.
+
+Report:    0.287ns delay SLICE_7 to SLICE_7 (0.415ns delay and 0.128ns setup)
+
+   Name    Fanout   Delay (ns)          Site               Resource
+REG_DEL     ---     0.174     R2C25C.CLK to      R2C25C.Q1 <A href="#@comp:SLICE_7">SLICE_7</A> (from <A href="#@net:clk_c">clk_c</A>)
+ROUTE         1     0.160<A href="#@net:n14:R2C25C.Q1:R2C25C.A1:0.160">      R2C25C.Q1 to R2C25C.A1     </A> <A href="#@net:n14">n14</A>
+CTOF_DEL    ---     0.081      R2C25C.A1 to      R2C25C.F1 <A href="#@comp:SLICE_7">SLICE_7</A>
+ROUTE         1     0.000<A href="#@net:n123:R2C25C.F1:R2C25C.DI1:0.000">      R2C25C.F1 to R2C25C.DI1    </A> <A href="#@net:n123">n123</A> (to <A href="#@net:clk_c">clk_c</A>)
+                  --------
+                    0.415   (61.4% logic, 38.6% route), 2 logic levels.
+
+Report:    0.289ns delay SLICE_2 to SLICE_2 (0.417ns delay and 0.128ns setup)
+
+   Name    Fanout   Delay (ns)          Site               Resource
+REG_DEL     ---     0.174     R2C26D.CLK to      R2C26D.Q1 <A href="#@comp:SLICE_2">SLICE_2</A> (from <A href="#@net:clk_c">clk_c</A>)
+ROUTE         2     0.162<A href="#@net:leds_c_4:R2C26D.Q1:R2C26D.A1:0.162">      R2C26D.Q1 to R2C26D.A1     </A> <A href="#@net:leds_c_4">leds_c_4</A>
+CTOF_DEL    ---     0.081      R2C26D.A1 to      R2C26D.F1 <A href="#@comp:SLICE_2">SLICE_2</A>
+ROUTE         1     0.000<A href="#@net:n113:R2C26D.F1:R2C26D.DI1:0.000">      R2C26D.F1 to R2C26D.DI1    </A> <A href="#@net:n113">n113</A> (to <A href="#@net:clk_c">clk_c</A>)
+                  --------
+                    0.417   (61.2% logic, 38.8% route), 2 logic levels.
+
+Report:    0.289ns delay SLICE_3 to SLICE_3 (0.417ns delay and 0.128ns setup)
+
+   Name    Fanout   Delay (ns)          Site               Resource
+REG_DEL     ---     0.174     R2C26C.CLK to      R2C26C.Q1 <A href="#@comp:SLICE_3">SLICE_3</A> (from <A href="#@net:clk_c">clk_c</A>)
+ROUTE         2     0.162<A href="#@net:leds_c_2:R2C26C.Q1:R2C26C.A1:0.162">      R2C26C.Q1 to R2C26C.A1     </A> <A href="#@net:leds_c_2">leds_c_2</A>
+CTOF_DEL    ---     0.081      R2C26C.A1 to      R2C26C.F1 <A href="#@comp:SLICE_3">SLICE_3</A>
+ROUTE         1     0.000<A href="#@net:n115:R2C26C.F1:R2C26C.DI1:0.000">      R2C26C.F1 to R2C26C.DI1    </A> <A href="#@net:n115">n115</A> (to <A href="#@net:clk_c">clk_c</A>)
+                  --------
+                    0.417   (61.2% logic, 38.8% route), 2 logic levels.
+
+Report:    0.293ns delay SLICE_12 to SLICE_12 (0.421ns delay and 0.128ns setup)
+
+   Name    Fanout   Delay (ns)          Site               Resource
+REG_DEL     ---     0.174     R2C24B.CLK to      R2C24B.Q1 <A href="#@comp:SLICE_12">SLICE_12</A> (from <A href="#@net:clk_c">clk_c</A>)
+ROUTE         1     0.166<A href="#@net:n24:R2C24B.Q1:R2C24B.B1:0.166">      R2C24B.Q1 to R2C24B.B1     </A> <A href="#@net:n24">n24</A>
+CTOF_DEL    ---     0.081      R2C24B.B1 to      R2C24B.F1 <A href="#@comp:SLICE_12">SLICE_12</A>
+ROUTE         1     0.000<A href="#@net:n133:R2C24B.F1:R2C24B.DI1:0.000">      R2C24B.F1 to R2C24B.DI1    </A> <A href="#@net:n133">n133</A> (to <A href="#@net:clk_c">clk_c</A>)
+                  --------
+                    0.421   (60.6% logic, 39.4% route), 2 logic levels.
+
+Report:    0.293ns delay SLICE_13 to SLICE_13 (0.421ns delay and 0.128ns setup)
+
+   Name    Fanout   Delay (ns)          Site               Resource
+REG_DEL     ---     0.174     R2C24A.CLK to      R2C24A.Q1 <A href="#@comp:SLICE_13">SLICE_13</A> (from <A href="#@net:clk_c">clk_c</A>)
+ROUTE         1     0.166<A href="#@net:n26:R2C24A.Q1:R2C24A.B1:0.166">      R2C24A.Q1 to R2C24A.B1     </A> <A href="#@net:n26">n26</A>
+CTOF_DEL    ---     0.081      R2C24A.B1 to      R2C24A.F1 <A href="#@comp:SLICE_13">SLICE_13</A>
+ROUTE         1     0.000<A href="#@net:n135:R2C24A.F1:R2C24A.DI1:0.000">      R2C24A.F1 to R2C24A.DI1    </A> <A href="#@net:n135">n135</A> (to <A href="#@net:clk_c">clk_c</A>)
+                  --------
+                    0.421   (60.6% logic, 39.4% route), 2 logic levels.
+
+Report:    0.293ns delay SLICE_5 to SLICE_5 (0.421ns delay and 0.128ns setup)
+
+   Name    Fanout   Delay (ns)          Site               Resource
+REG_DEL     ---     0.174     R2C26A.CLK to      R2C26A.Q1 <A href="#@comp:SLICE_5">SLICE_5</A> (from <A href="#@net:clk_c">clk_c</A>)
+ROUTE         1     0.166<A href="#@net:n10:R2C26A.Q1:R2C26A.B1:0.166">      R2C26A.Q1 to R2C26A.B1     </A> <A href="#@net:n10">n10</A>
+CTOF_DEL    ---     0.081      R2C26A.B1 to      R2C26A.F1 <A href="#@comp:SLICE_5">SLICE_5</A>
+ROUTE         1     0.000<A href="#@net:n119:R2C26A.F1:R2C26A.DI1:0.000">      R2C26A.F1 to R2C26A.DI1    </A> <A href="#@net:n119">n119</A> (to <A href="#@net:clk_c">clk_c</A>)
+                  --------
+                    0.421   (60.6% logic, 39.4% route), 2 logic levels.
+
+Report:    0.293ns delay SLICE_8 to SLICE_8 (0.421ns delay and 0.128ns setup)
+
+   Name    Fanout   Delay (ns)          Site               Resource
+REG_DEL     ---     0.174     R2C25B.CLK to      R2C25B.Q1 <A href="#@comp:SLICE_8">SLICE_8</A> (from <A href="#@net:clk_c">clk_c</A>)
+ROUTE         1     0.166<A href="#@net:n16:R2C25B.Q1:R2C25B.B1:0.166">      R2C25B.Q1 to R2C25B.B1     </A> <A href="#@net:n16">n16</A>
+CTOF_DEL    ---     0.081      R2C25B.B1 to      R2C25B.F1 <A href="#@comp:SLICE_8">SLICE_8</A>
+ROUTE         1     0.000<A href="#@net:n125:R2C25B.F1:R2C25B.DI1:0.000">      R2C25B.F1 to R2C25B.DI1    </A> <A href="#@net:n125">n125</A> (to <A href="#@net:clk_c">clk_c</A>)
+                  --------
+                    0.421   (60.6% logic, 39.4% route), 2 logic levels.
+
+Report:    0.287ns is the minimum delay for this preference.
+
+
+================================================================================
+Preference: Default net enumeration
+            66 items scored, 0 timing errors detected.
+--------------------------------------------------------------------------------
+
+Report:    0.000ns minimum delay on n158
+
+           Delays             Connection(s)
+           0.000ns       R2C24C.FCO to R2C24D.FCI      
+
+Report:    0.000ns minimum delay on n133
+
+           Delays             Connection(s)
+           0.000ns        R2C24B.F1 to R2C24B.DI1      
+
+Report:    0.000ns minimum delay on n134
+
+           Delays             Connection(s)
+           0.000ns        R2C24B.F0 to R2C24B.DI0      
+
+Report:    0.000ns minimum delay on n156
+
+           Delays             Connection(s)
+           0.000ns       R2C24A.FCO to R2C24B.FCI      
+
+Report:    0.000ns minimum delay on n135
+
+           Delays             Connection(s)
+           0.000ns        R2C24A.F1 to R2C24A.DI1      
+
+Report:    0.000ns minimum delay on n132
+
+           Delays             Connection(s)
+           0.000ns        R2C24C.F0 to R2C24C.DI0      
+
+Report:    0.000ns minimum delay on n157
+
+           Delays             Connection(s)
+           0.000ns       R2C24B.FCO to R2C24C.FCI      
+
+Report:    0.000ns minimum delay on n129
+
+           Delays             Connection(s)
+           0.000ns        R2C24D.F1 to R2C24D.DI1      
+
+Report:    0.000ns minimum delay on n130
+
+           Delays             Connection(s)
+           0.000ns        R2C24D.F0 to R2C24D.DI0      
+
+Report:    0.000ns minimum delay on n131
+
+           Delays             Connection(s)
+           0.000ns        R2C24C.F1 to R2C24C.DI1      
+
+Report:    0.000ns is the minimum delay for this preference.
+
+<A name="Report Summary"></A><B><U><big>Report Summary</big></U></B>
+--------------
+----------------------------------------------------------------------------
+Preference(MIN Delays)                  |   Constraint|       Actual|Levels
+----------------------------------------------------------------------------
+                                        |             |             |
+Default path enumeration                |     0.000 ns|     0.287 ns|   0  
+                                        |             |             |
+Default net enumeration                 |     0.000 ns|     0.000 ns|   0  
+                                        |             |             |
+----------------------------------------------------------------------------
+
+
+All preferences were met.
+
+
+<A name="Clock Domains Analysis"></A><B><U><big>Clock Domains Analysis</big></U></B>
+------------------------
+
+Found 1 clocks:
+
+Clock Domain: <A href="#@net:clk_c">clk_c</A>   Source: clk.PAD   Loads: 14
+   Covered under: Default path enumeration
+
+
+Timing summary (Hold):
+---------------
+
+Timing errors: 0  Score: 0
+Cumulative negative slack: 0
+
+Constraints cover 373 paths, 66 nets, and 87 connections (100.00% coverage)
+
+
+
+Timing summary (Setup and Hold):
+---------------
+
+Timing errors: 0 (setup), 0 (hold)
+Score: 0 (setup), 0 (hold)
+Cumulative negative slack: 0 (0+0)

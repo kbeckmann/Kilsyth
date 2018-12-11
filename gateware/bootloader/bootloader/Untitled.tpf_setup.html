@@ -1,0 +1,260 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD>
+<META http-equiv=Content-Type content="text/html; charset=iso-8859-1">
+<STYLE type=text/css>
+<!--
+.blink {text-decoration:blink}
+.ms  {font-size: 9pt; font-family: monospace; font-weight: normal}
+.msb {font-size: 9pt; font-family: monospace; font-weight: bold  }
+-->
+</STYLE>
+<META content="MSHTML 6.00.2900.2180" name=GENERATOR></HEAD>
+<BODY><B>
+</B>
+<BR><PRE><A name="Report Header"></A>
+--------------------------------------------------------------------------------
+Lattice TRACE Report - Setup, Version Diamond (64-bit) 3.10.3.144.3
+Tue Dec 11 21:40:29 2018
+
+Copyright (c) 1991-1994 by NeoCAD Inc. All rights reserved.
+Copyright (c) 1995 AT&T Corp.   All rights reserved.
+Copyright (c) 1995-2001 Lucent Technologies Inc.  All rights reserved.
+Copyright (c) 2001 Agere Systems   All rights reserved.
+Copyright (c) 2002-2018 Lattice Semiconductor Corporation,  All rights reserved.
+
+Report Information
+------------------
+Design file:     kilsyth_top
+Device,speed:    LFE5U-12F,6
+Report level:    verbose report, limited to 10 items per preference
+--------------------------------------------------------------------------------
+
+WARNING - No timing preferences found. Doing default enumeration.
+
+
+Derating parameters
+-------------------
+Voltage:    1.100 V
+
+VCCIO Voltage:
+                   3.300 V (Bank 0)
+                   1.500 V (Bank 1)
+                   1.500 V (Bank 2)
+                   1.500 V (Bank 3)
+                   1.500 V (Bank 4)
+                   1.500 V (Bank 5)
+                   1.500 V (Bank 6)
+                   3.300 V (Bank 7)
+
+
+
+</A><A name="Default path enumeration
+"></A>================================================================================
+Preference: Default path enumeration
+            373 items scored, 0 timing errors detected.
+--------------------------------------------------------------------------------
+
+Report:    4.213ns delay SLICE_4 to leds[0]
+
+   Name    Fanout   Delay (ns)          Site               Resource
+REG_DEL     ---     0.414     R2C26B.CLK to      R2C26B.Q1 <A href="#@comp:SLICE_4">SLICE_4</A> (from <A href="#@net:clk_c">clk_c</A>)
+ROUTE         2     1.297<A href="#@net:leds_c_0:R2C26B.Q1:C8.PADDO:1.297">      R2C26B.Q1 to C8.PADDO      </A> <A href="#@net:leds_c_0">leds_c_0</A>
+DOPAD_DEL   ---     2.502       C8.PADDO to         C8.PAD <A href="#@comp:leds[0]">leds[0]</A>
+                  --------
+                    4.213   (69.2% logic, 30.8% route), 2 logic levels.
+
+Report:    3.991ns delay SLICE_1 to leds[5]
+
+   Name    Fanout   Delay (ns)          Site               Resource
+REG_DEL     ---     0.416     R2C27A.CLK to      R2C27A.Q0 <A href="#@comp:SLICE_1">SLICE_1</A> (from <A href="#@net:clk_c">clk_c</A>)
+ROUTE         2     1.073<A href="#@net:leds_c_5:R2C27A.Q0:C10.PADDO:1.073">      R2C27A.Q0 to C10.PADDO     </A> <A href="#@net:leds_c_5">leds_c_5</A>
+DOPAD_DEL   ---     2.502      C10.PADDO to        C10.PAD <A href="#@comp:leds[5]">leds[5]</A>
+                  --------
+                    3.991   (73.1% logic, 26.9% route), 2 logic levels.
+
+Report:    3.902ns delay SLICE_0 to leds[7]
+
+   Name    Fanout   Delay (ns)          Site               Resource
+REG_DEL     ---     0.416     R2C27B.CLK to      R2C27B.Q0 <A href="#@comp:SLICE_0">SLICE_0</A> (from <A href="#@net:clk_c">clk_c</A>)
+ROUTE         2     0.984<A href="#@net:leds_c_7:R2C27B.Q0:C11.PADDO:0.984">      R2C27B.Q0 to C11.PADDO     </A> <A href="#@net:leds_c_7">leds_c_7</A>
+DOPAD_DEL   ---     2.502      C11.PADDO to        C11.PAD <A href="#@comp:leds[7]">leds[7]</A>
+                  --------
+                    3.902   (74.8% logic, 25.2% route), 2 logic levels.
+
+Report:    3.828ns delay SLICE_3 to leds[1]
+
+   Name    Fanout   Delay (ns)          Site               Resource
+REG_DEL     ---     0.416     R2C26C.CLK to      R2C26C.Q0 <A href="#@comp:SLICE_3">SLICE_3</A> (from <A href="#@net:clk_c">clk_c</A>)
+ROUTE         2     0.910<A href="#@net:leds_c_1:R2C26C.Q0:B9.PADDO:0.910">      R2C26C.Q0 to B9.PADDO      </A> <A href="#@net:leds_c_1">leds_c_1</A>
+DOPAD_DEL   ---     2.502       B9.PADDO to         B9.PAD <A href="#@comp:leds[1]">leds[1]</A>
+                  --------
+                    3.828   (76.2% logic, 23.8% route), 2 logic levels.
+
+Report:    3.763ns delay SLICE_2 to leds[3]
+
+   Name    Fanout   Delay (ns)          Site               Resource
+REG_DEL     ---     0.416     R2C26D.CLK to      R2C26D.Q0 <A href="#@comp:SLICE_2">SLICE_2</A> (from <A href="#@net:clk_c">clk_c</A>)
+ROUTE         2     0.845<A href="#@net:leds_c_3:R2C26D.Q0:A10.PADDO:0.845">      R2C26D.Q0 to A10.PADDO     </A> <A href="#@net:leds_c_3">leds_c_3</A>
+DOPAD_DEL   ---     2.502      A10.PADDO to        A10.PAD <A href="#@comp:leds[3]">leds[3]</A>
+                  --------
+                    3.763   (77.5% logic, 22.5% route), 2 logic levels.
+
+Report:    3.758ns delay SLICE_1 to leds[6]
+
+   Name    Fanout   Delay (ns)          Site               Resource
+REG_DEL     ---     0.414     R2C27A.CLK to      R2C27A.Q1 <A href="#@comp:SLICE_1">SLICE_1</A> (from <A href="#@net:clk_c">clk_c</A>)
+ROUTE         2     0.842<A href="#@net:leds_c_6:R2C27A.Q1:B11.PADDO:0.842">      R2C27A.Q1 to B11.PADDO     </A> <A href="#@net:leds_c_6">leds_c_6</A>
+DOPAD_DEL   ---     2.502      B11.PADDO to        B11.PAD <A href="#@comp:leds[6]">leds[6]</A>
+                  --------
+                    3.758   (77.6% logic, 22.4% route), 2 logic levels.
+
+Report:    3.595ns delay SLICE_2 to leds[4]
+
+   Name    Fanout   Delay (ns)          Site               Resource
+REG_DEL     ---     0.414     R2C26D.CLK to      R2C26D.Q1 <A href="#@comp:SLICE_2">SLICE_2</A> (from <A href="#@net:clk_c">clk_c</A>)
+ROUTE         2     0.679<A href="#@net:leds_c_4:R2C26D.Q1:A11.PADDO:0.679">      R2C26D.Q1 to A11.PADDO     </A> <A href="#@net:leds_c_4">leds_c_4</A>
+DOPAD_DEL   ---     2.502      A11.PADDO to        A11.PAD <A href="#@comp:leds[4]">leds[4]</A>
+                  --------
+                    3.595   (81.1% logic, 18.9% route), 2 logic levels.
+
+Report:    3.595ns delay SLICE_3 to leds[2]
+
+   Name    Fanout   Delay (ns)          Site               Resource
+REG_DEL     ---     0.414     R2C26C.CLK to      R2C26C.Q1 <A href="#@comp:SLICE_3">SLICE_3</A> (from <A href="#@net:clk_c">clk_c</A>)
+ROUTE         2     0.679<A href="#@net:leds_c_2:R2C26C.Q1:B10.PADDO:0.679">      R2C26C.Q1 to B10.PADDO     </A> <A href="#@net:leds_c_2">leds_c_2</A>
+DOPAD_DEL   ---     2.502      B10.PADDO to        B10.PAD <A href="#@comp:leds[2]">leds[2]</A>
+                  --------
+                    3.595   (81.1% logic, 18.9% route), 2 logic levels.
+
+Report:    3.219ns delay clk to SLICE_0
+
+   Name    Fanout   Delay (ns)          Site               Resource
+PADI_DEL    ---     1.077         G3.PAD to       G3.PADDI <A href="#@comp:clk">clk</A>
+ROUTE        14     2.142<A href="#@net:clk_c:G3.PADDI:R2C27B.CLK:2.142">       G3.PADDI to R2C27B.CLK    </A> <A href="#@net:clk_c">clk_c</A>
+                  --------
+                    3.219   (33.5% logic, 66.5% route), 1 logic levels.
+
+Report:    3.219ns delay clk to SLICE_1
+
+   Name    Fanout   Delay (ns)          Site               Resource
+PADI_DEL    ---     1.077         G3.PAD to       G3.PADDI <A href="#@comp:clk">clk</A>
+ROUTE        14     2.142<A href="#@net:clk_c:G3.PADDI:R2C27A.CLK:2.142">       G3.PADDI to R2C27A.CLK    </A> <A href="#@net:clk_c">clk_c</A>
+                  --------
+                    3.219   (33.5% logic, 66.5% route), 1 logic levels.
+
+Report:  456.621MHz is the maximum frequency for this preference.
+
+Report:    4.213ns is the maximum delay for this preference.
+
+
+================================================================================
+Preference: Default net enumeration
+            66 items scored, 0 timing errors detected.
+--------------------------------------------------------------------------------
+
+Report:    2.142ns maximum delay on clk_c
+
+           Delays             Connection(s)
+           2.142ns         G3.PADDI to R2C24A.CLK      
+           2.142ns         G3.PADDI to R2C24B.CLK      
+           2.142ns         G3.PADDI to R2C24C.CLK      
+           2.142ns         G3.PADDI to R2C24D.CLK      
+           2.142ns         G3.PADDI to R2C25A.CLK      
+           2.142ns         G3.PADDI to R2C25B.CLK      
+           2.142ns         G3.PADDI to R2C25C.CLK      
+           2.142ns         G3.PADDI to R2C25D.CLK      
+           2.142ns         G3.PADDI to R2C26A.CLK      
+           2.142ns         G3.PADDI to R2C26B.CLK      
+           2.142ns         G3.PADDI to R2C26C.CLK      
+           2.142ns         G3.PADDI to R2C26D.CLK      
+           2.142ns         G3.PADDI to R2C27A.CLK      
+           2.142ns         G3.PADDI to R2C27B.CLK      
+
+Report:    1.297ns maximum delay on leds_c_0
+
+           Delays             Connection(s)
+           1.297ns        R2C26B.Q1 to C8.PADDO        
+           0.503ns        R2C26B.Q1 to R2C26B.B1       
+
+Report:    1.073ns maximum delay on leds_c_5
+
+           Delays             Connection(s)
+           1.073ns        R2C27A.Q0 to C10.PADDO       
+           0.667ns        R2C27A.Q0 to R2C27A.B0       
+
+Report:    0.984ns maximum delay on leds_c_7
+
+           Delays             Connection(s)
+           0.984ns        R2C27B.Q0 to C11.PADDO       
+           0.667ns        R2C27B.Q0 to R2C27B.B0       
+
+Report:    0.910ns maximum delay on leds_c_1
+
+           Delays             Connection(s)
+           0.910ns        R2C26C.Q0 to B9.PADDO        
+           0.667ns        R2C26C.Q0 to R2C26C.B0       
+
+Report:    0.845ns maximum delay on leds_c_3
+
+           Delays             Connection(s)
+           0.845ns        R2C26D.Q0 to A10.PADDO       
+           0.667ns        R2C26D.Q0 to R2C26D.B0       
+
+Report:    0.842ns maximum delay on leds_c_6
+
+           Delays             Connection(s)
+           0.842ns        R2C27A.Q1 to B11.PADDO       
+           0.503ns        R2C27A.Q1 to R2C27A.B1       
+
+Report:    0.679ns maximum delay on leds_c_4
+
+           Delays             Connection(s)
+           0.679ns        R2C26D.Q1 to A11.PADDO       
+           0.510ns        R2C26D.Q1 to R2C26D.A1       
+
+Report:    0.679ns maximum delay on leds_c_2
+
+           Delays             Connection(s)
+           0.679ns        R2C26C.Q1 to B10.PADDO       
+           0.510ns        R2C26C.Q1 to R2C26C.A1       
+
+Report:    0.659ns maximum delay on n25
+
+           Delays             Connection(s)
+           0.659ns        R2C24B.Q0 to R2C24B.B0       
+
+Report:    2.142ns is the maximum delay for this preference.
+
+<A name="Report Summary"></A><B><U><big>Report Summary</big></U></B>
+--------------
+----------------------------------------------------------------------------
+Preference                              |   Constraint|       Actual|Levels
+----------------------------------------------------------------------------
+                                        |             |             |
+Default path enumeration                |     0.000 ns|     4.213 ns|   0  
+                                        |             |             |
+Default net enumeration                 |     0.000 ns|     2.142 ns|   0  
+                                        |             |             |
+----------------------------------------------------------------------------
+
+
+All preferences were met.
+
+
+<A name="Clock Domains Analysis"></A><B><U><big>Clock Domains Analysis</big></U></B>
+------------------------
+
+Found 1 clocks:
+
+Clock Domain: <A href="#@net:clk_c">clk_c</A>   Source: clk.PAD   Loads: 14
+   Covered under: Default path enumeration
+
+
+Timing summary (Setup):
+---------------
+
+Timing errors: 0  Score: 0
+Cumulative negative slack: 0
+
+Constraints cover 373 paths, 66 nets, and 87 connections (100.00% coverage)
+

@@ -1,0 +1,270 @@
+<HTML>
+<HEAD><TITLE>Lattice Synthesis Timing Report</TITLE>
+<STYLE TYPE="text/css">
+<!--
+ body,pre{    font-family:'Courier New', monospace;    color: #000000;    font-size:88%;    background-color: #ffffff;}h1 {    font-weight: bold;    margin-top: 24px;    margin-bottom: 10px;    border-bottom: 3px solid #000;    font-size: 1em;}h2 {    font-weight: bold;    margin-top: 18px;    margin-bottom: 5px;    font-size: 0.90em;}h3 {    font-weight: bold;    margin-top: 12px;    margin-bottom: 5px;    font-size: 0.80em;}p {    font-size:78%;}P.Table {    margin-top: 4px;    margin-bottom: 4px;    margin-right: 4px;    margin-left: 4px;}table{    border-width: 1px 1px 1px 1px;    border-style: solid solid solid solid;    border-color: black black black black;    border-collapse: collapse;}th {    font-weight:bold;    padding: 4px;    border-width: 1px 1px 1px 1px;    border-style: solid solid solid solid;    border-color: black black black black;    vertical-align:top;    text-align:left;    font-size:78%;}td {    padding: 4px;    border-width: 1px 1px 1px 1px;    border-style: solid solid solid solid;    border-color: black black black black;    vertical-align:top;    font-size:78%;}a {    color:#013C9A;    text-decoration:none;}a:visited {    color:#013C9A;}a:hover, a:active {    text-decoration:underline;    color:#5BAFD4;}.pass{background-color: #00ff00;}.fail{background-color: #ff0000;}.comment{    font-size: 90%;    font-style: italic;}
+-->
+</STYLE>
+</HEAD>
+<PRE><A name="Map_Twr"></A><B><U><big>Lattice Synthesis Timing Report</big></U></B>
+--------------------------------------------------------------------------------
+Lattice Synthesis Timing Report, Version  
+Tue Dec 11 23:35:38 2018
+
+Copyright (c) 1991-1994 by NeoCAD Inc. All rights reserved.
+Copyright (c) 1995 AT&T Corp.   All rights reserved.
+Copyright (c) 1995-2001 Lucent Technologies Inc.  All rights reserved.
+Copyright (c) 2001 Agere Systems   All rights reserved.
+Copyright (c) 2002-2017 Lattice Semiconductor Corporation,  All rights reserved.
+
+<A name="mtw1_ri"></A><B><U><big>Report Information</big></U></B>
+------------------
+Design:     kilsyth_top
+Constraint file:  
+Report level:    verbose report, limited to 3 items per constraint
+--------------------------------------------------------------------------------
+
+
+
+================================================================================
+Constraint: create_clock -period 5.000000 -name clk0 [get_nets i_clk16_c]
+            363 items scored, 0 timing errors detected.
+--------------------------------------------------------------------------------
+
+
+Passed:  The following path meets requirements by 0.250ns
+
+ Logical Details:  Cell type  Pin type       Cell name  (clock net +/-)
+
+   Source:         FD1S3IX    CK             counter_327__i0  (from i_clk16_c +)
+   Destination:    FD1S3IX    D              counter_327__i25  (to i_clk16_c +)
+
+   Delay:                   4.925ns  (33.1% logic, 66.9% route), 15 logic levels.
+
+ Constraint Details:
+
+      4.925ns data_path counter_327__i0 to counter_327__i25 meets
+      5.000ns delay constraint less
+     -0.175ns L_S requirement (totaling 5.175ns) by 0.250ns
+
+ Path Details: counter_327__i0 to counter_327__i25
+
+   Name    Fanout   Delay (ns)          Pins               Resource(Cell.Net)
+L_CO        ---     0.365             CK to Q              counter_327__i0 (from i_clk16_c)
+Route        89   e 2.017                                  counter[0]
+A1_TO_FCO   ---     0.329           A[2] to COUT           counter_327_add_4_1
+Route         1   e 0.020                                  n942
+FCI_TO_FCO  ---     0.051            CIN to COUT           counter_327_add_4_3
+Route         1   e 0.020                                  n943
+FCI_TO_FCO  ---     0.051            CIN to COUT           counter_327_add_4_5
+Route         1   e 0.020                                  n944
+FCI_TO_FCO  ---     0.051            CIN to COUT           counter_327_add_4_7
+Route         1   e 0.020                                  n945
+FCI_TO_FCO  ---     0.051            CIN to COUT           counter_327_add_4_9
+Route         1   e 0.020                                  n946
+FCI_TO_FCO  ---     0.051            CIN to COUT           counter_327_add_4_11
+Route         1   e 0.020                                  n947
+FCI_TO_FCO  ---     0.051            CIN to COUT           counter_327_add_4_13
+Route         1   e 0.020                                  n948
+FCI_TO_FCO  ---     0.051            CIN to COUT           counter_327_add_4_15
+Route         1   e 0.020                                  n949
+FCI_TO_FCO  ---     0.051            CIN to COUT           counter_327_add_4_17
+Route         1   e 0.020                                  n950
+FCI_TO_FCO  ---     0.051            CIN to COUT           counter_327_add_4_19
+Route         1   e 0.020                                  n951
+FCI_TO_FCO  ---     0.051            CIN to COUT           counter_327_add_4_21
+Route         1   e 0.020                                  n952
+FCI_TO_FCO  ---     0.051            CIN to COUT           counter_327_add_4_23
+Route         1   e 0.020                                  n953
+FCI_TO_FCO  ---     0.051            CIN to COUT           counter_327_add_4_25
+Route         1   e 0.020                                  n954
+FCI_TO_F    ---     0.322            CIN to S[2]           counter_327_add_4_27
+Route         1   e 1.020                                  n110
+                  --------
+                    4.925  (33.1% logic, 66.9% route), 15 logic levels.
+
+
+Passed:  The following path meets requirements by 0.321ns
+
+ Logical Details:  Cell type  Pin type       Cell name  (clock net +/-)
+
+   Source:         FD1S3IX    CK             counter_327__i0  (from i_clk16_c +)
+   Destination:    FD1S3IX    D              counter_327__i23  (to i_clk16_c +)
+
+   Delay:                   4.854ns  (32.5% logic, 67.5% route), 14 logic levels.
+
+ Constraint Details:
+
+      4.854ns data_path counter_327__i0 to counter_327__i23 meets
+      5.000ns delay constraint less
+     -0.175ns L_S requirement (totaling 5.175ns) by 0.321ns
+
+ Path Details: counter_327__i0 to counter_327__i23
+
+   Name    Fanout   Delay (ns)          Pins               Resource(Cell.Net)
+L_CO        ---     0.365             CK to Q              counter_327__i0 (from i_clk16_c)
+Route        89   e 2.017                                  counter[0]
+A1_TO_FCO   ---     0.329           A[2] to COUT           counter_327_add_4_1
+Route         1   e 0.020                                  n942
+FCI_TO_FCO  ---     0.051            CIN to COUT           counter_327_add_4_3
+Route         1   e 0.020                                  n943
+FCI_TO_FCO  ---     0.051            CIN to COUT           counter_327_add_4_5
+Route         1   e 0.020                                  n944
+FCI_TO_FCO  ---     0.051            CIN to COUT           counter_327_add_4_7
+Route         1   e 0.020                                  n945
+FCI_TO_FCO  ---     0.051            CIN to COUT           counter_327_add_4_9
+Route         1   e 0.020                                  n946
+FCI_TO_FCO  ---     0.051            CIN to COUT           counter_327_add_4_11
+Route         1   e 0.020                                  n947
+FCI_TO_FCO  ---     0.051            CIN to COUT           counter_327_add_4_13
+Route         1   e 0.020                                  n948
+FCI_TO_FCO  ---     0.051            CIN to COUT           counter_327_add_4_15
+Route         1   e 0.020                                  n949
+FCI_TO_FCO  ---     0.051            CIN to COUT           counter_327_add_4_17
+Route         1   e 0.020                                  n950
+FCI_TO_FCO  ---     0.051            CIN to COUT           counter_327_add_4_19
+Route         1   e 0.020                                  n951
+FCI_TO_FCO  ---     0.051            CIN to COUT           counter_327_add_4_21
+Route         1   e 0.020                                  n952
+FCI_TO_FCO  ---     0.051            CIN to COUT           counter_327_add_4_23
+Route         1   e 0.020                                  n953
+FCI_TO_F    ---     0.322            CIN to S[2]           counter_327_add_4_25
+Route         1   e 1.020                                  n112_adj_1
+                  --------
+                    4.854  (32.5% logic, 67.5% route), 14 logic levels.
+
+
+Passed:  The following path meets requirements by 0.321ns
+
+ Logical Details:  Cell type  Pin type       Cell name  (clock net +/-)
+
+   Source:         FD1S3IX    CK             counter_327__i0  (from i_clk16_c +)
+   Destination:    FD1S3IX    D              counter_327__i24  (to i_clk16_c +)
+
+   Delay:                   4.854ns  (32.5% logic, 67.5% route), 14 logic levels.
+
+ Constraint Details:
+
+      4.854ns data_path counter_327__i0 to counter_327__i24 meets
+      5.000ns delay constraint less
+     -0.175ns L_S requirement (totaling 5.175ns) by 0.321ns
+
+ Path Details: counter_327__i0 to counter_327__i24
+
+   Name    Fanout   Delay (ns)          Pins               Resource(Cell.Net)
+L_CO        ---     0.365             CK to Q              counter_327__i0 (from i_clk16_c)
+Route        89   e 2.017                                  counter[0]
+A1_TO_FCO   ---     0.329           A[2] to COUT           counter_327_add_4_1
+Route         1   e 0.020                                  n942
+FCI_TO_FCO  ---     0.051            CIN to COUT           counter_327_add_4_3
+Route         1   e 0.020                                  n943
+FCI_TO_FCO  ---     0.051            CIN to COUT           counter_327_add_4_5
+Route         1   e 0.020                                  n944
+FCI_TO_FCO  ---     0.051            CIN to COUT           counter_327_add_4_7
+Route         1   e 0.020                                  n945
+FCI_TO_FCO  ---     0.051            CIN to COUT           counter_327_add_4_9
+Route         1   e 0.020                                  n946
+FCI_TO_FCO  ---     0.051            CIN to COUT           counter_327_add_4_11
+Route         1   e 0.020                                  n947
+FCI_TO_FCO  ---     0.051            CIN to COUT           counter_327_add_4_13
+Route         1   e 0.020                                  n948
+FCI_TO_FCO  ---     0.051            CIN to COUT           counter_327_add_4_15
+Route         1   e 0.020                                  n949
+FCI_TO_FCO  ---     0.051            CIN to COUT           counter_327_add_4_17
+Route         1   e 0.020                                  n950
+FCI_TO_FCO  ---     0.051            CIN to COUT           counter_327_add_4_19
+Route         1   e 0.020                                  n951
+FCI_TO_FCO  ---     0.051            CIN to COUT           counter_327_add_4_21
+Route         1   e 0.020                                  n952
+FCI_TO_FCO  ---     0.051            CIN to COUT           counter_327_add_4_23
+Route         1   e 0.020                                  n953
+FCI_TO_F    ---     0.322            CIN to S[2]           counter_327_add_4_25
+Route         1   e 1.020                                  n111
+                  --------
+                    4.854  (32.5% logic, 67.5% route), 14 logic levels.
+
+Report: 4.750 ns is the maximum delay for this constraint.
+
+
+<A name="mtw1_rs"></A><B><U><big>Timing Report Summary</big></U></B>
+--------------
+--------------------------------------------------------------------------------
+Constraint                              |   Constraint|       Actual|Levels
+--------------------------------------------------------------------------------
+                                        |             |             |
+create_clock -period 5.000000 -name     |             |             |
+clk0 [get_nets i_clk16_c]               |     5.000 ns|     4.750 ns|    15  
+                                        |             |             |
+--------------------------------------------------------------------------------
+
+
+All constraints were met.
+
+
+
+<A name="mtw1_ts"></A><B><U><big>Timing summary:</big></U></B>
+---------------
+
+Timing errors: 0  Score: 0
+
+Constraints cover  363 paths, 66 nets, and 91 connections (25.9% coverage)
+
+
+Peak memory: 225751040 bytes, TRCE: 0 bytes, DLYMAN: 0 bytes
+CPU_TIME_REPORT: 0 secs 
+
+
+
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+</PRE></FONT>
+</BODY>
+</HTML>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BuildStatus>
+    <Strategy name="Strategy1">
+        <Milestone name="Export" build_result="0" build_time="0">
+            <Task name="IBIS" build_result="0" update_result="3" update_time="0"/>
+            <Task name="TimingSimFileVlg" build_result="0" update_result="3" update_time="0"/>
+            <Task name="TimingSimFileVHD" build_result="0" update_result="3" update_time="0"/>
+            <Task name="Bitgen" build_result="0" update_result="2" update_time="1544560495"/>
+            <Task name="Promgen" build_result="0" update_result="3" update_time="0"/>
+        </Milestone>
+        <Milestone name="Map" build_result="2" build_time="1544570331">
+            <Task name="Map" build_result="2" update_result="0" update_time="1544570331"/>
+            <Task name="MapTrace" build_result="0" update_result="2" update_time="1544560283"/>
+            <Task name="MapVerilogSimFile" build_result="0" update_result="3" update_time="0"/>
+            <Task name="MapVHDLSimFile" build_result="0" update_result="3" update_time="0"/>
+        </Milestone>
+        <Milestone name="PAR" build_result="1" build_time="1544570346">
+            <Task name="PAR" build_result="1" update_result="2" update_time="1544570346"/>
+            <Task name="PARTrace" build_result="0" update_result="2" update_time="1544560330"/>
+            <Task name="IOTiming" build_result="0" update_result="2" update_time="1544560842"/>
+        </Milestone>
+        <Milestone name="Synthesis" build_result="2" build_time="1544567738">
+            <Task name="Lattice_Synthesis" build_result="2" update_result="0" update_time="1544567738"/>
+            <Task name="LSE_Compile" build_result="2" update_result="0" update_time="1544567738"/>
+        </Milestone>
+        <Milestone name="TOOL_Report" build_result="0" build_time="0">
+            <Task name="HDLE" build_result="2" update_result="0" update_time="1544567735"/>
+            <Task name="SSO" build_result="0" update_result="3" update_time="0"/>
+            <Task name="PIODRC" build_result="0" update_result="3" update_time="0"/>
+        </Milestone>
+        <Report name=".vdbs/kilsyth_bootloader_map.vdb" last_build_time="1544570331" last_build_size="99320"/>
+        <Report name="kilsyth_bootloader.bgn" last_build_time="1544560495" last_build_size="4337"/>
+        <Report name="kilsyth_bootloader.bit" last_build_time="1544560495" last_build_size="582679"/>
+        <Report name="kilsyth_bootloader.ior" last_build_time="1544560842" last_build_size="2587"/>
+        <Report name="kilsyth_bootloader.lsedata" last_build_time="1544567737" last_build_size="60996"/>
+        <Report name="kilsyth_bootloader.ncd" last_build_time="1544560492" last_build_size="31135"/>
+        <Report name="kilsyth_bootloader.ngd" last_build_time="1544567738" last_build_size="126729"/>
+        <Report name="kilsyth_bootloader.tw1" last_build_time="1544560283" last_build_size="10174"/>
+        <Report name="kilsyth_bootloader.twr" last_build_time="1544560330" last_build_size="53821"/>
+        <Report name="kilsyth_bootloader_map.ncd" last_build_time="1544570330" last_build_size="127601"/>
+    </Strategy>
+</BuildStatus>

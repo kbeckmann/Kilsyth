@@ -1,0 +1,262 @@
+
+Loading design for application trce from file kilsyth_bootloader_map.ncd.
+Design name: kilsyth_top
+NCD version: 3.3
+Vendor:      LATTICE
+Device:      LFE5U-12F
+Package:     CABGA381
+Performance: 6
+Loading device for application trce from file 'sa5p25.nph' in environment: /usr/local/diamond/3.10_x64/ispfpga.
+Package Status:                     Final          Version 1.33.
+Performance Hardware Data Status:   Final          Version 55.1.
+Setup and Hold Report
+
+--------------------------------------------------------------------------------
+Lattice TRACE Report - Setup, Version Diamond (64-bit) 3.10.3.144.3
+Tue Dec 11 21:31:23 2018
+
+Copyright (c) 1991-1994 by NeoCAD Inc. All rights reserved.
+Copyright (c) 1995 AT&T Corp.   All rights reserved.
+Copyright (c) 1995-2001 Lucent Technologies Inc.  All rights reserved.
+Copyright (c) 2001 Agere Systems   All rights reserved.
+Copyright (c) 2002-2017 Lattice Semiconductor Corporation,  All rights reserved.
+
+Report Information
+------------------
+Command line:    trce -v 1 -gt -mapchkpnt 0 -sethld -o kilsyth_bootloader.tw1 -gui -msgset /home/konrad/dev/Kilsyth/gateware/bootloader/promote.xml kilsyth_bootloader_map.ncd kilsyth_bootloader.prf 
+Design file:     kilsyth_bootloader_map.ncd
+Preference file: kilsyth_bootloader.prf
+Device,speed:    LFE5U-12F,6
+Report level:    verbose report, limited to 1 item per preference
+--------------------------------------------------------------------------------
+
+Report Type:     based on TRACE automatically generated preferences
+BLOCK ASYNCPATHS
+BLOCK RESETPATHS
+--------------------------------------------------------------------------------
+
+
+Derating parameters
+-------------------
+Voltage:    1.100 V
+
+VCCIO Voltage:
+                   3.300 V (Bank 0, defined by PAR)
+                   3.300 V (Bank 1)
+                   3.300 V (Bank 2)
+                   3.300 V (Bank 3)
+                   1.500 V (Bank 4)
+                   1.500 V (Bank 5)
+                   3.300 V (Bank 6)
+                   3.300 V (Bank 7, defined by PAR)
+
+
+
+================================================================================
+Preference: FREQUENCY NET "clk_c" 323.834000 MHz ;
+            351 items scored, 0 timing errors detected.
+--------------------------------------------------------------------------------
+
+
+Passed: The following path meets requirements by 1.281ns
+
+ Logical Details:  Cell type  Pin type       Cell/ASIC name  (clock net +/-)
+
+   Source:         FF         Q              counter_9__i0  (from clk_c +)
+   Destination:    FF         Data in        counter_9__i25  (to clk_c +)
+
+   Delay:               2.013ns  (89.0% logic, 11.0% route), 15 logic levels.
+
+ Constraint Details:
+
+      2.013ns physical path delay SLICE_13 to SLICE_0 meets
+      3.088ns delay constraint less
+     -0.206ns DIN_SET requirement (totaling 3.294ns) by 1.281ns
+
+ Physical Path Details:
+
+      Data path SLICE_13 to SLICE_0:
+
+   Name    Fanout   Delay (ns)          Site               Resource
+REG_DEL     ---     0.414   SLICE_13.CLK to    SLICE_13.Q1 SLICE_13 (from clk_c)
+ROUTE         1   e 0.208    SLICE_13.Q1 to    SLICE_13.A1 n26
+C1TOFCO_DE  ---     0.354    SLICE_13.A1 to   SLICE_13.FCO SLICE_13
+ROUTE         1   e 0.001   SLICE_13.FCO to   SLICE_12.FCI n156
+FCITOFCO_D  ---     0.056   SLICE_12.FCI to   SLICE_12.FCO SLICE_12
+ROUTE         1   e 0.001   SLICE_12.FCO to   SLICE_11.FCI n157
+FCITOFCO_D  ---     0.056   SLICE_11.FCI to   SLICE_11.FCO SLICE_11
+ROUTE         1   e 0.001   SLICE_11.FCO to   SLICE_10.FCI n158
+FCITOFCO_D  ---     0.056   SLICE_10.FCI to   SLICE_10.FCO SLICE_10
+ROUTE         1   e 0.001   SLICE_10.FCO to    SLICE_9.FCI n159
+FCITOFCO_D  ---     0.056    SLICE_9.FCI to    SLICE_9.FCO SLICE_9
+ROUTE         1   e 0.001    SLICE_9.FCO to    SLICE_8.FCI n160
+FCITOFCO_D  ---     0.056    SLICE_8.FCI to    SLICE_8.FCO SLICE_8
+ROUTE         1   e 0.001    SLICE_8.FCO to    SLICE_7.FCI n161
+FCITOFCO_D  ---     0.056    SLICE_7.FCI to    SLICE_7.FCO SLICE_7
+ROUTE         1   e 0.001    SLICE_7.FCO to    SLICE_6.FCI n162
+FCITOFCO_D  ---     0.056    SLICE_6.FCI to    SLICE_6.FCO SLICE_6
+ROUTE         1   e 0.001    SLICE_6.FCO to    SLICE_5.FCI n163
+FCITOFCO_D  ---     0.056    SLICE_5.FCI to    SLICE_5.FCO SLICE_5
+ROUTE         1   e 0.001    SLICE_5.FCO to    SLICE_4.FCI n164
+FCITOFCO_D  ---     0.056    SLICE_4.FCI to    SLICE_4.FCO SLICE_4
+ROUTE         1   e 0.001    SLICE_4.FCO to    SLICE_3.FCI n165
+FCITOFCO_D  ---     0.056    SLICE_3.FCI to    SLICE_3.FCO SLICE_3
+ROUTE         1   e 0.001    SLICE_3.FCO to    SLICE_2.FCI n166
+FCITOFCO_D  ---     0.056    SLICE_2.FCI to    SLICE_2.FCO SLICE_2
+ROUTE         1   e 0.001    SLICE_2.FCO to    SLICE_1.FCI n167
+FCITOFCO_D  ---     0.056    SLICE_1.FCI to    SLICE_1.FCO SLICE_1
+ROUTE         1   e 0.001    SLICE_1.FCO to    SLICE_0.FCI n168
+FCITOF0_DE  ---     0.351    SLICE_0.FCI to     SLICE_0.F0 SLICE_0
+ROUTE         1   e 0.001     SLICE_0.F0 to    SLICE_0.DI0 n110 (to clk_c)
+                  --------
+                    2.013   (89.0% logic, 11.0% route), 15 logic levels.
+
+Report:  553.403MHz is the maximum frequency for this preference.
+
+Report Summary
+--------------
+----------------------------------------------------------------------------
+Preference                              |   Constraint|       Actual|Levels
+----------------------------------------------------------------------------
+                                        |             |             |
+FREQUENCY NET "clk_c" 323.834000 MHz ;  |  323.834 MHz|  553.403 MHz|  15  
+                                        |             |             |
+----------------------------------------------------------------------------
+
+
+All preferences were met.
+
+
+Clock Domains Analysis
+------------------------
+
+Found 1 clocks:
+
+Clock Domain: clk_c   Source: clk.PAD   Loads: 14
+   Covered under: FREQUENCY NET "clk_c" 323.834000 MHz ;
+
+
+Timing summary (Setup):
+---------------
+
+Timing errors: 0  Score: 0
+Cumulative negative slack: 0
+
+Constraints cover 351 paths, 1 nets, and 79 connections (90.80% coverage)
+
+--------------------------------------------------------------------------------
+Lattice TRACE Report - Hold, Version Diamond (64-bit) 3.10.3.144.3
+Tue Dec 11 21:31:23 2018
+
+Copyright (c) 1991-1994 by NeoCAD Inc. All rights reserved.
+Copyright (c) 1995 AT&T Corp.   All rights reserved.
+Copyright (c) 1995-2001 Lucent Technologies Inc.  All rights reserved.
+Copyright (c) 2001 Agere Systems   All rights reserved.
+Copyright (c) 2002-2017 Lattice Semiconductor Corporation,  All rights reserved.
+
+Report Information
+------------------
+Command line:    trce -v 1 -gt -mapchkpnt 0 -sethld -o kilsyth_bootloader.tw1 -gui -msgset /home/konrad/dev/Kilsyth/gateware/bootloader/promote.xml kilsyth_bootloader_map.ncd kilsyth_bootloader.prf 
+Design file:     kilsyth_bootloader_map.ncd
+Preference file: kilsyth_bootloader.prf
+Device,speed:    LFE5U-12F,M
+Report level:    verbose report, limited to 1 item per preference
+--------------------------------------------------------------------------------
+
+BLOCK ASYNCPATHS
+BLOCK RESETPATHS
+--------------------------------------------------------------------------------
+
+
+Derating parameters
+-------------------
+Voltage:    1.100 V
+
+VCCIO Voltage:
+                   3.300 V (Bank 0, defined by PAR)
+                   3.300 V (Bank 1)
+                   3.300 V (Bank 2)
+                   3.300 V (Bank 3)
+                   2.500 V (Bank 4)
+                   2.500 V (Bank 5)
+                   3.300 V (Bank 6)
+                   3.300 V (Bank 7, defined by PAR)
+
+
+
+================================================================================
+Preference: FREQUENCY NET "clk_c" 323.834000 MHz ;
+            351 items scored, 0 timing errors detected.
+--------------------------------------------------------------------------------
+
+
+Passed: The following path meets requirements by 0.186ns
+
+ Logical Details:  Cell type  Pin type       Cell/ASIC name  (clock net +/-)
+
+   Source:         FF         Q              counter_9__i24  (from clk_c +)
+   Destination:    FF         Data in        counter_9__i24  (to clk_c +)
+
+   Delay:               0.314ns  (81.2% logic, 18.8% route), 2 logic levels.
+
+ Constraint Details:
+
+      0.314ns physical path delay SLICE_1 to SLICE_1 meets
+      0.128ns DIN_HLD and
+      0.000ns delay constraint requirement (totaling 0.128ns) by 0.186ns
+
+ Physical Path Details:
+
+      Data path SLICE_1 to SLICE_1:
+
+   Name    Fanout   Delay (ns)          Site               Resource
+REG_DEL     ---     0.174    SLICE_1.CLK to     SLICE_1.Q1 SLICE_1 (from clk_c)
+ROUTE         2   e 0.058     SLICE_1.Q1 to     SLICE_1.A1 leds_c_6
+CTOF_DEL    ---     0.081     SLICE_1.A1 to     SLICE_1.F1 SLICE_1
+ROUTE         1   e 0.001     SLICE_1.F1 to    SLICE_1.DI1 n111 (to clk_c)
+                  --------
+                    0.314   (81.2% logic, 18.8% route), 2 logic levels.
+
+Report Summary
+--------------
+----------------------------------------------------------------------------
+Preference(MIN Delays)                  |   Constraint|       Actual|Levels
+----------------------------------------------------------------------------
+                                        |             |             |
+FREQUENCY NET "clk_c" 323.834000 MHz ;  |     0.000 ns|     0.186 ns|   2  
+                                        |             |             |
+----------------------------------------------------------------------------
+
+
+All preferences were met.
+
+
+Clock Domains Analysis
+------------------------
+
+Found 1 clocks:
+
+Clock Domain: clk_c   Source: clk.PAD   Loads: 14
+   Covered under: FREQUENCY NET "clk_c" 323.834000 MHz ;
+
+
+Timing summary (Hold):
+---------------
+
+Timing errors: 0  Score: 0
+Cumulative negative slack: 0
+
+Constraints cover 351 paths, 1 nets, and 79 connections (90.80% coverage)
+
+
+
+Timing summary (Setup and Hold):
+---------------
+
+Timing errors: 0 (setup), 0 (hold)
+Score: 0 (setup), 0 (hold)
+Cumulative negative slack: 0 (0+0)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+

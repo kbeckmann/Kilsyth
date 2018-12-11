@@ -1,0 +1,67 @@
+Loading design for application iotiming from file kilsyth_bootloader.ncd.
+Design name: kilsyth_top
+NCD version: 3.3
+Vendor:      LATTICE
+Device:      LFE5U-12F
+Package:     CABGA381
+Performance: 7
+Package Status:                     Final          Version 1.33.
+Performance Hardware Data Status:   Final          Version 55.1.
+Loading design for application iotiming from file kilsyth_bootloader.ncd.
+Design name: kilsyth_top
+NCD version: 3.3
+Vendor:      LATTICE
+Device:      LFE5U-12F
+Package:     CABGA381
+Performance: 8
+Package Status:                     Final          Version 1.33.
+Performance Hardware Data Status:   Final          Version 55.1.
+Loading design for application iotiming from file kilsyth_bootloader.ncd.
+Design name: kilsyth_top
+NCD version: 3.3
+Vendor:      LATTICE
+Device:      LFE5U-12F
+Package:     CABGA381
+Performance: 9
+Package Status:                     Final          Version 1.33.
+Performance Hardware Data Status:   Final          Version 55.1.
+Loading design for application iotiming from file kilsyth_bootloader.ncd.
+Design name: kilsyth_top
+NCD version: 3.3
+Vendor:      LATTICE
+Device:      LFE5U-12F
+Package:     CABGA381
+Performance: M
+Package Status:                     Final          Version 1.33.
+Performance Hardware Data Status:   Final          Version 55.1.
+// Design: kilsyth_top
+// Package: CABGA381
+// ncd File: kilsyth_bootloader.ncd
+// Version: Diamond (64-bit) 3.10.3.144.3
+// Written on Tue Dec 11 21:40:42 2018
+// M: Minimum Performance Grade
+// iotiming kilsyth_bootloader.ncd kilsyth_bootloader.prf -gui -msgset /home/konrad/dev/Kilsyth/gateware/bootloader/promote.xml
+
+I/O Timing Report (All units are in ns)
+
+Worst Case Results across Performance Grades (M, 9, 8, 7, 6):
+
+// Input Setup and Hold Times
+
+Port  Clock Edge  Setup Performance_Grade  Hold Performance_Grade
+----------------------------------------------------------------------
+(no input setup/hold data)
+
+
+// Clock to Output Delay
+
+Port    Clock Edge  Max_Delay Performance_Grade  Min_Delay Performance_Grade
+------------------------------------------------------------------------
+leds[0] clk   R     7.432         6        3.645          M
+leds[1] clk   R     7.047         6        3.467          M
+leds[2] clk   R     6.814         6        3.369          M
+leds[3] clk   R     6.982         6        3.444          M
+leds[4] clk   R     6.814         6        3.369          M
+leds[5] clk   R     7.210         6        3.541          M
+leds[6] clk   R     6.977         6        3.443          M
+leds[7] clk   R     7.121         6        3.487          M
