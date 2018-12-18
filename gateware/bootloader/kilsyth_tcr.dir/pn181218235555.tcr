@@ -1,0 +1,4 @@
+#Start recording tcl command: 12/18/2018 23:55:52
+#Project Location: /home/konrad/dev/Kilsyth/gateware/bootloader; Project name: kilsyth
+prj_project open "/home/konrad/dev/Kilsyth/gateware/bootloader/kilsyth.ldf"
+#Stop recording: 12/18/2018 23:55:55
