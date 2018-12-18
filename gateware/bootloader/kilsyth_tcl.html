@@ -23,6 +23,19 @@ prj_project open "/home/konrad/dev/Kilsyth/gateware/bootloader/kilsyth.ldf"
 
 
 
+<A name="pn181219000127"></A><B><U><big>pn181219000127</big></U></B>
+#Start recording tcl command: 12/18/2018 23:56:34
+#Project Location: /home/konrad/dev/Kilsyth/gateware/bootloader; Project name: kilsyth
+prj_project open "/home/konrad/dev/Kilsyth/gateware/bootloader/kilsyth.ldf"
+prj_src add "/home/konrad/dev/Kilsyth/gateware/bootloader/top.v"
+prj_run Export -impl bootloader -task Bitgen
+prj_src remove "/home/konrad/dev/Kilsyth/gateware/bootloader/top.v"
+prj_src add "/home/konrad/dev/Kilsyth/gateware/bootloader/src/kilsyth_top.v"
+prj_run Export -impl bootloader -task Bitgen
+#Stop recording: 12/19/2018 00:01:27
+
+
+
 <BR>
 <BR>
 <BR>

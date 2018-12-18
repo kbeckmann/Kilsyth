@@ -10,34 +10,6 @@
             <Severity>Info</Severity>
         </Message>
         <Message>
-            <ID>35901049</ID>
-            <Severity>Warning</Severity>
-            <Dynamic>/home/konrad/dev/Kilsyth/gateware/bootloader/src/kilsyth_top.v(17): </Dynamic>
-            <Navigation>/home/konrad/dev/Kilsyth/gateware/bootloader/src/kilsyth_top.v</Navigation>
-            <Navigation>17</Navigation>
-        </Message>
-        <Message>
-            <ID>35901049</ID>
-            <Severity>Warning</Severity>
-            <Dynamic>/home/konrad/dev/Kilsyth/gateware/bootloader/src/kilsyth_top.v(18): </Dynamic>
-            <Navigation>/home/konrad/dev/Kilsyth/gateware/bootloader/src/kilsyth_top.v</Navigation>
-            <Navigation>18</Navigation>
-        </Message>
-        <Message>
-            <ID>35901049</ID>
-            <Severity>Warning</Severity>
-            <Dynamic>/home/konrad/dev/Kilsyth/gateware/bootloader/src/kilsyth_top.v(30): </Dynamic>
-            <Navigation>/home/konrad/dev/Kilsyth/gateware/bootloader/src/kilsyth_top.v</Navigation>
-            <Navigation>30</Navigation>
-        </Message>
-        <Message>
-            <ID>35901049</ID>
-            <Severity>Warning</Severity>
-            <Dynamic>/home/konrad/dev/Kilsyth/gateware/bootloader/src/kilsyth_top.v(31): </Dynamic>
-            <Navigation>/home/konrad/dev/Kilsyth/gateware/bootloader/src/kilsyth_top.v</Navigation>
-            <Navigation>31</Navigation>
-        </Message>
-        <Message>
             <ID>35901018</ID>
             <Severity>Info</Severity>
             <Dynamic>/home/konrad/dev/Kilsyth/gateware/bootloader/src/kilsyth_top.v(3): </Dynamic>
@@ -46,13 +18,34 @@
             <Navigation>3</Navigation>
         </Message>
         <Message>
+            <ID>35901220</ID>
+            <Severity>Warning</Severity>
+            <Dynamic>/home/konrad/dev/Kilsyth/gateware/bootloader/src/kilsyth_top.v(47): </Dynamic>
+            <Dynamic>ft_txe_n</Dynamic>
+            <Navigation>/home/konrad/dev/Kilsyth/gateware/bootloader/src/kilsyth_top.v</Navigation>
+            <Navigation>47</Navigation>
+        </Message>
+        <Message>
+            <ID>35901220</ID>
+            <Severity>Warning</Severity>
+            <Dynamic>/home/konrad/dev/Kilsyth/gateware/bootloader/src/kilsyth_top.v(49): </Dynamic>
+            <Dynamic>ft_rxf_n</Dynamic>
+            <Navigation>/home/konrad/dev/Kilsyth/gateware/bootloader/src/kilsyth_top.v</Navigation>
+            <Navigation>49</Navigation>
+        </Message>
+        <Message>
             <ID>35901209</ID>
             <Severity>Warning</Severity>
-            <Dynamic>/home/konrad/dev/Kilsyth/gateware/bootloader/src/kilsyth_top.v(48): </Dynamic>
+            <Dynamic>/home/konrad/dev/Kilsyth/gateware/bootloader/src/kilsyth_top.v(54): </Dynamic>
             <Dynamic>32</Dynamic>
             <Dynamic>26</Dynamic>
             <Navigation>/home/konrad/dev/Kilsyth/gateware/bootloader/src/kilsyth_top.v</Navigation>
-            <Navigation>48</Navigation>
+            <Navigation>54</Navigation>
+        </Message>
+        <Message>
+            <ID>35001771</ID>
+            <Severity>Warning</Severity>
+            <Dynamic>pwr</Dynamic>
         </Message>
         <Message>
             <ID>35001611</ID>

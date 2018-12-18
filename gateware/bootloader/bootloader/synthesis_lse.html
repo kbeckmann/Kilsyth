@@ -14,7 +14,7 @@ Copyright (c) 1995 AT&T Corp.   All rights reserved.
 Copyright (c) 1995-2001 Lucent Technologies Inc.  All rights reserved.
 Copyright (c) 2001 Agere Systems   All rights reserved.
 Copyright (c) 2002-2017 Lattice Semiconductor Corporation,  All rights reserved.
-Wed Dec 19 00:00:57 2018
+Wed Dec 19 00:44:18 2018
 
 
 Command Line:  synthesis -f kilsyth_bootloader_lattice.synproj -gui -msgset /home/konrad/dev/Kilsyth/gateware/bootloader/promote.xml 
@@ -86,14 +86,12 @@ Analyzing Verilog file /usr/local/diamond/3.10_x64/ispfpga/userware/unix/SYNTHES
 Compile design.
 Compile Design Begin
 Analyzing Verilog file /home/konrad/dev/Kilsyth/gateware/bootloader/src/kilsyth_top.v. VERI-1482
-WARNING - synthesis: /home/konrad/dev/Kilsyth/gateware/bootloader/src/kilsyth_top.v(17): /* in comment. VERI-1049
-WARNING - synthesis: /home/konrad/dev/Kilsyth/gateware/bootloader/src/kilsyth_top.v(18): /* in comment. VERI-1049
-WARNING - synthesis: /home/konrad/dev/Kilsyth/gateware/bootloader/src/kilsyth_top.v(30): /* in comment. VERI-1049
-WARNING - synthesis: /home/konrad/dev/Kilsyth/gateware/bootloader/src/kilsyth_top.v(31): /* in comment. VERI-1049
 Analyzing Verilog file /usr/local/diamond/3.10_x64/ispfpga/userware/unix/SYNTHESIS_HEADERS/ecp5u.v. VERI-1482
 Top module name (Verilog): kilsyth_top
 INFO - synthesis: /home/konrad/dev/Kilsyth/gateware/bootloader/src/kilsyth_top.v(3): compiling module kilsyth_top. VERI-1018
-WARNING - synthesis: /home/konrad/dev/Kilsyth/gateware/bootloader/src/kilsyth_top.v(48): expression size 32 truncated to fit in target size 26. VERI-1209
+WARNING - synthesis: /home/konrad/dev/Kilsyth/gateware/bootloader/src/kilsyth_top.v(47): using initial value of ft_txe_n since it is never assigned. VERI-1220
+WARNING - synthesis: /home/konrad/dev/Kilsyth/gateware/bootloader/src/kilsyth_top.v(49): using initial value of ft_rxf_n since it is never assigned. VERI-1220
+WARNING - synthesis: /home/konrad/dev/Kilsyth/gateware/bootloader/src/kilsyth_top.v(54): expression size 32 truncated to fit in target size 26. VERI-1209
 Loading NGL library '/usr/local/diamond/3.10_x64/ispfpga/sa5p00/data/sa5plib.ngl'...
 Loading NGL library '/usr/local/diamond/3.10_x64/ispfpga/xo2c00/data/xo2clib.ngl'...
 Loading NGL library '/usr/local/diamond/3.10_x64/ispfpga/mg5g00/data/mg5glib.ngl'...
@@ -101,6 +99,24 @@ Loading NGL library '/usr/local/diamond/3.10_x64/ispfpga/or5g00/data/orc5glib.ng
 Loading device for application map from file 'sa5p25.nph' in environment: /usr/local/diamond/3.10_x64/ispfpga.
 Package Status:                     Final          Version 1.33.
 Top-level module name = kilsyth_top.
+WARNING - synthesis: Initial value found on net pwr will be ignored due to unrecognized driver type
+######## Converting I/O port io_ft_data[15] to input.
+######## Converting I/O port io_ft_data[14] to input.
+######## Converting I/O port io_ft_data[13] to input.
+######## Converting I/O port io_ft_data[12] to input.
+######## Converting I/O port io_ft_data[11] to input.
+######## Converting I/O port io_ft_data[10] to input.
+######## Converting I/O port io_ft_data[9] to input.
+######## Converting I/O port io_ft_data[8] to input.
+######## Converting I/O port io_ft_data[7] to input.
+######## Converting I/O port io_ft_data[6] to input.
+######## Converting I/O port io_ft_data[5] to input.
+######## Converting I/O port io_ft_data[4] to input.
+######## Converting I/O port io_ft_data[3] to input.
+######## Converting I/O port io_ft_data[2] to input.
+######## Converting I/O port io_ft_data[1] to input.
+######## Converting I/O port io_ft_data[0] to input.
+######## Converting I/O port io_ft_gpio1 to input.
 
 
 
@@ -117,33 +133,35 @@ All blocks are expanded and NGD expansion is successful.
 Writing NGD file kilsyth_bootloader.ngd.
 
 ################### Begin Area Report (kilsyth_top)######################
-Number of register bits => 26 of 12687 (0 % )
-CCU2C => 14
-FD1S3AX => 26
+Number of register bits => 32 of 12687 (0 % )
+CCU2C => 13
+FD1S3AX => 32
 GSR => 1
-IB => 1
-OB => 8
+IB => 24
+LUT4 => 7
+OB => 10
 ################### End Area Report ##################
 
 ################### Begin Clock Report ######################
 Clock Nets
-Number of Clocks: 1
-  Net : i_clk16_c, loads : 26
+Number of Clocks: 2
+  Net : i_clk16_c, loads : 31
+  Net : i_ft_clk_c, loads : 1
 Clock Enable Nets
 Number of Clock Enables: 0
 Top 0 highest fanout Clock Enables:
 Highest fanout non-clock nets
 Top 10 highest fanout non-clock nets:
-  Net : o_leds_c_7, loads : 2
-  Net : o_leds_c_6, loads : 2
-  Net : o_leds_c_5, loads : 2
-  Net : o_leds_c_4, loads : 2
-  Net : o_leds_c_3, loads : 2
-  Net : o_leds_c_2, loads : 2
-  Net : o_leds_c_1, loads : 2
-  Net : o_leds_c_0, loads : 2
-  Net : n26, loads : 1
-  Net : n25, loads : 1
+  Net : counter_23, loads : 2
+  Net : io_ft_data_c_15, loads : 1
+  Net : io_ft_data_c_14, loads : 1
+  Net : io_ft_data_c_13, loads : 1
+  Net : io_ft_data_c_12, loads : 1
+  Net : io_ft_data_c_11, loads : 1
+  Net : io_ft_data_c_10, loads : 1
+  Net : io_ft_data_c_9, loads : 1
+  Net : io_ft_data_c_8, loads : 1
+  Net : io_ft_data_c_7, loads : 1
 ################### End Clock Report ##################
 
 <A name="lse_trs"></A><B><U><big>Timing Report Summary</big></U></B>
@@ -153,7 +171,10 @@ Constraint                              |   Constraint|       Actual|Levels
 --------------------------------------------------------------------------------
                                         |             |             |
 create_clock -period 5.000000 -name     |             |             |
-clk0 [get_nets i_clk16_c]               |  200.000 MHz|  266.454 MHz|    15  
+clk1 [get_nets i_ft_clk_c]              |            -|            -|     0  
+                                        |             |             |
+create_clock -period 5.000000 -name     |             |             |
+clk0 [get_nets i_clk16_c]               |  200.000 MHz|  271.592 MHz|    14  
                                         |             |             |
 --------------------------------------------------------------------------------
 
@@ -161,10 +182,10 @@ clk0 [get_nets i_clk16_c]               |  200.000 MHz|  266.454 MHz|    15
 All constraints were met.
 
 
-Peak Memory Usage: 206.848  MB
+Peak Memory Usage: 207.602  MB
 
 --------------------------------------------------------------
-Elapsed CPU time for LSE flow : 0.470  secs
+Elapsed CPU time for LSE flow : 0.458  secs
 --------------------------------------------------------------
 
 

@@ -12,7 +12,7 @@ Copyright (c) 1995 AT&amp;T Corp.   All rights reserved.
 Copyright (c) 1995-2001 Lucent Technologies Inc.  All rights reserved.
 Copyright (c) 2001 Agere Systems   All rights reserved.
 Copyright (c) 2002-2017 Lattice Semiconductor Corporation,  All rights reserved.
-Wed Dec 19 00:00:59 2018
+Wed Dec 19 00:44:20 2018
 
 /usr/local/diamond/3.10_x64/ispfpga/bin/lin64/par -f kilsyth_bootloader.p2t
 kilsyth_bootloader_map.ncd kilsyth_bootloader.dir kilsyth_bootloader.prf -gui
@@ -25,16 +25,16 @@ Preference file: kilsyth_bootloader.prf.
 Level/       Number       Worst        Timing       Worst        Timing       Run          NCD
 Cost [ncd]   Unrouted     Slack        Score        Slack(hold)  Score(hold)  Time         Status
 ----------   --------     -----        ------       -----------  -----------  ----         ------
-5_1   *      0            -            -            -            -            11           Success
+5_1   *      0            -            -            -            -            10           Success
 
 * : Design saved.
 
-Total (real) run time for 1-seed: 11 secs 
+Total (real) run time for 1-seed: 10 secs 
 
 par done!
 
 Lattice Place and Route Report for Design &quot;kilsyth_bootloader_map.ncd&quot;
-Wed Dec 19 00:00:59 2018
+Wed Dec 19 00:44:20 2018
 
 
 <A name="par_best"></A><B><U><big>Best Par Run</big></U></B>
@@ -61,36 +61,38 @@ Ignore Preference Error(s):  True
 
 <A name="par_dus"></A><B><U><big>Device utilization summary:</big></U></B>
 
-   PIO (prelim)       9/197           4% used
-                      9/197           4% bonded
+   PIO (prelim)      34/197          17% used
+                     34/197          17% bonded
 
-   SLICE             14/6048         &lt;1% used
+   SLICE             21/6048         &lt;1% used
 
 
 
-Number of Signals: 66
-Number of Connections: 87
+Number of Signals: 99
+Number of Connections: 116
 
 Pin Constraint Summary:
-   9 out of 9 pins locked (100% locked).
+   33 out of 34 pins locked (97% locked).
 
-The following 1 signal is selected to use the primary clock routing resources:
-    i_clk16_c (driver: i_clk16, clk/ce/sr load #: 14/0/0)
+The following 2 signals are selected to use the primary clock routing resources:
+    i_clk16_c (driver: i_clk16, clk/ce/sr load #: 17/0/0)
+    i_ft_clk_c (driver: i_ft_clk, clk/ce/sr load #: 1/0/0)
 
 
 No signal is selected as Global Set/Reset.
+.
 Starting Placer Phase 0.
-
-Finished Placer Phase 0.  REAL time: 2 secs 
+...........
+Finished Placer Phase 0.  REAL time: 0 secs 
 
 Starting Placer Phase 1.
-.............
-Placer score = 2491.
+...................
+Placer score = 22488.
 Finished Placer Phase 1.  REAL time: 7 secs 
 
 Starting Placer Phase 2.
 .
-Placer score =  2491
+Placer score =  22461
 Finished Placer Phase 2.  REAL time: 7 secs 
 
 
@@ -98,7 +100,7 @@ Finished Placer Phase 2.  REAL time: 7 secs
 <A name="par_clk"></A><B><U><big>Clock Report</big></U></B>
 
 Global Clock Resources:
-  CLK_PIN    : 1 out of 12 (8%)
+  CLK_PIN    : 2 out of 12 (16%)
   GR_PCLK    : 0 out of 12 (0%)
   PLL        : 0 out of 2 (0%)
   DCS        : 0 out of 2 (0%)
@@ -106,7 +108,7 @@ Global Clock Resources:
   CLKDIV     : 0 out of 4 (0%)
 
 Quadrant TL Clocks:
-  PRIMARY &quot;i_clk16_c&quot; from comp &quot;i_clk16&quot; on CLK_PIN site &quot;G3 (PL23A)&quot;, CLK/CE/SR load = 14
+  PRIMARY &quot;i_clk16_c&quot; from comp &quot;i_clk16&quot; on CLK_PIN site &quot;G3 (PL23A)&quot;, CLK/CE/SR load = 17
 
   PRIMARY  : 1 out of 16 (6%)
 
@@ -115,8 +117,9 @@ Quadrant TR Clocks:
   PRIMARY  : 0 out of 16 (0%)
 
 Quadrant BL Clocks:
+  PRIMARY &quot;i_ft_clk_c&quot; from comp &quot;i_ft_clk&quot; on CLK_PIN site &quot;H2 (PL26C)&quot;, CLK/CE/SR load = 1
 
-  PRIMARY  : 0 out of 16 (0%)
+  PRIMARY  : 1 out of 16 (6%)
 
 Quadrant BR Clocks:
 
@@ -132,23 +135,23 @@ Edge Clocks:
 
 +
 I/O Usage Summary (final):
-   9 out of 197 (4.6%) PIO sites used.
-   9 out of 197 (4.6%) bonded PIO sites used.
-   Number of PIO comps: 9; differential: 0.
+   34 out of 197 (17.3%) PIO sites used.
+   34 out of 197 (17.3%) bonded PIO sites used.
+   Number of PIO comps: 34; differential: 0.
    Number of Vref pins used: 0.
 
 I/O Bank Usage Summary:
-+----------+---------------+------------+------------+------------+
-| I/O Bank | Usage         | Bank Vccio | Bank Vref1 | Bank Vref2 |
-+----------+---------------+------------+------------+------------+
-| 0        | 8 / 24 ( 33%) | 3.3V       | -          | -          |
-| 1        | 0 / 32 (  0%) | 3.3V       | -          | -          |
-| 2        | 0 / 32 (  0%) | 3.3V       | -          | -          |
-| 3        | 0 / 32 (  0%) | 3.3V       | -          | -          |
-| 6        | 0 / 32 (  0%) | 3.3V       | -          | -          |
-| 7        | 1 / 32 (  3%) | 3.3V       | -          | -          |
-| 8        | 0 / 13 (  0%) | 3.3V       | -          | -          |
-+----------+---------------+------------+------------+------------+
++----------+----------------+------------+------------+------------+
+| I/O Bank | Usage          | Bank Vccio | Bank Vref1 | Bank Vref2 |
++----------+----------------+------------+------------+------------+
+| 0        | 8 / 24 ( 33%)  | 3.3V       | -          | -          |
+| 1        | 1 / 32 (  3%)  | 3.3V       | -          | -          |
+| 2        | 0 / 32 (  0%)  | 3.3V       | -          | -          |
+| 3        | 0 / 32 (  0%)  | 3.3V       | -          | -          |
+| 6        | 24 / 32 ( 75%) | 3.3V       | -          | -          |
+| 7        | 1 / 32 (  3%)  | 3.3V       | -          | -          |
+| 8        | 0 / 13 (  0%)  | 3.3V       | -          | -          |
++----------+----------------+------------+------------+------------+
 
 Total placer CPU time: 7 secs 
 
@@ -159,12 +162,12 @@ Dumping design to file kilsyth_bootloader.dir/5_1.ncd.
 INFO - par: ASE feature is off due to non timing-driven settings.  
 -----------------------------------------------------------------
 
-0 connections routed; 87 unrouted.
+0 connections routed; 116 unrouted.
 Starting router resource preassignment
 
 Completed router resource preassignment. Real time: 10 secs 
 
-Start NBR router at Wed Dec 19 00:01:09 CET 2018
+Start NBR router at Wed Dec 19 00:44:30 CET 2018
 
 *****************************************************************
 Info: NBR allows conflicts(one node used by more than one signal)
@@ -179,24 +182,24 @@ Note: NBR uses a different method to calculate timing slacks. The
       your design.                                               
 *****************************************************************
 
-Start NBR special constraint process at Wed Dec 19 00:01:09 CET 2018
+Start NBR special constraint process at Wed Dec 19 00:44:30 CET 2018
 
-Start NBR section for initial routing at Wed Dec 19 00:01:09 CET 2018
+Start NBR section for initial routing at Wed Dec 19 00:44:30 CET 2018
 Level 4, iteration 1
 0(0.00%) conflict; 0(0.00%) untouched conn; 0 (nbr) score; real time: 10 secs 
 
 Info: Initial congestion level at 75% usage is 0
 Info: Initial congestion area  at 75% usage is 0 (0.00%)
 
-Start NBR section for normal routing at Wed Dec 19 00:01:09 CET 2018
+Start NBR section for normal routing at Wed Dec 19 00:44:30 CET 2018
 Level 4, iteration 1
 0(0.00%) conflict; 0(0.00%) untouched conn; 0 (nbr) score; real time: 10 secs 
 
-Start NBR section for re-routing at Wed Dec 19 00:01:09 CET 2018
+Start NBR section for re-routing at Wed Dec 19 00:44:30 CET 2018
 Level 4, iteration 1
 0(0.00%) conflict; 0(0.00%) untouched conn; 0 (nbr) score; real time: 10 secs 
 
-Start NBR section for post-routing at Wed Dec 19 00:01:09 CET 2018
+Start NBR section for post-routing at Wed Dec 19 00:44:30 CET 2018
 
 End NBR router with 0 unrouted connection
 
@@ -211,10 +214,10 @@ Notes: The timing info is calculated for SETUP only and all PAR_ADJs are ignored
 
 
 
-Total CPU time 9 secs 
+Total CPU time 10 secs 
 Total REAL time: 10 secs 
 Completely routed.
-End of route.  87 routed (100.00%); 0 unrouted.
+End of route.  116 routed (100.00%); 0 unrouted.
 
 Hold time timing score: 0, hold timing errors: 0
 
@@ -235,7 +238,7 @@ PAR_SUMMARY::Timing score&lt;hold /&lt;ns&gt;&gt; = &lt;n/a&gt;
 PAR_SUMMARY::Number of errors = 0
 
 Total CPU  time to completion: 10 secs 
-Total REAL time to completion: 11 secs 
+Total REAL time to completion: 10 secs 
 
 par done!
 
