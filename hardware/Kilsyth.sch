@@ -7034,7 +7034,7 @@ Wire Wire Line
 Text Notes 23750 4700 0    394  ~ 79
 ERRATA RevA
 Text Notes 23900 5000 0    50   ~ 0
-C9 is not a GPIO on F12.
+C9 is not a GPIO on F12.\nFT_CLK is not routed to a clock pin. Can be fixed with a bodge wire on RevA! (R50 <-> R36)
 Text Notes 11700 17050 0    50   ~ 0
 FIXME: C9 is not a GPIO on F12.\nRemove pin and move LED to C8
 Wire Wire Line
@@ -7167,4 +7167,6 @@ Wire Bus Line
 	19050 6500 19050 9100
 Wire Bus Line
 	18050 6500 18050 9100
+Text Notes 17200 5900 0    79   ~ 0
+BODGE: swap FT_RD_N with FT_CLK (R50 <-> R36)\nTODO: Route FT_CLK to a clock pin *sigh*
 $EndSCHEMATC
