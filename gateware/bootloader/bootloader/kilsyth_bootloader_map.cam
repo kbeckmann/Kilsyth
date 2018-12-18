@@ -2,21 +2,24 @@
 [ END MERGED ]
 [ START CLIPPED ]
 VCC_net
-counter_327_add_4_1/S0
-counter_327_add_4_1/CI
-counter_327_add_4_27/S1
-counter_327_add_4_27/CO
+counter_9_add_4_1/S0
+counter_9_add_4_1/CI
+counter_9_add_4_27/S1
+counter_9_add_4_27/CO
 [ END CLIPPED ]
 [ START DESIGN PREFS ]
 SCHEMATIC START ;
-# map:  version Diamond (64-bit) 3.10.3.144.3 -- WARNING: Map write only section -- Wed Dec 12 00:18:50 2018
+# map:  version Diamond (64-bit) 3.10.3.144.3 -- WARNING: Map write only section -- Mon Dec 17 22:50:29 2018
 
 SYSCONFIG SLAVE_SPI_PORT=DISABLE MASTER_SPI_PORT=DISABLE SLAVE_PARALLEL_PORT=DISABLE BACKGROUND_RECONFIG=OFF DONE_EX=OFF DONE_OD=ON DONE_PULL=ON MCCLK_FREQ=2.4 TRANSFR=OFF CONFIG_IOVOLTAGE=3.3 CONFIG_SECURE=OFF WAKE_UP=21 COMPRESS_CONFIG=OFF CONFIG_MODE=JTAG INBUF=OFF ;
-LOCATE COMP "i_ft_be[1]" SITE "J5" ;
-LOCATE COMP "i_ft_be[0]" SITE "K1" ;
-LOCATE COMP "i_ft_txe_n" SITE "J4" ;
-LOCATE COMP "i_ft_rxf_n" SITE "J3" ;
+LOCATE COMP "o_leds[7]" SITE "C11" ;
+LOCATE COMP "o_leds[6]" SITE "B11" ;
+LOCATE COMP "o_leds[5]" SITE "C10" ;
+LOCATE COMP "o_leds[4]" SITE "A11" ;
+LOCATE COMP "o_leds[3]" SITE "A10" ;
+LOCATE COMP "o_leds[2]" SITE "B10" ;
+LOCATE COMP "o_leds[1]" SITE "B9" ;
+LOCATE COMP "o_leds[0]" SITE "C8" ;
 LOCATE COMP "i_clk16" SITE "G3" ;
-LOCATE COMP "io_ft_gpio1" SITE "G5" ;
 SCHEMATIC END ;
 [ END DESIGN PREFS ]

@@ -5,7 +5,7 @@ Copyright (c) 1995 AT&T Corp.   All rights reserved.
 Copyright (c) 1995-2001 Lucent Technologies Inc.  All rights reserved.
 Copyright (c) 2001 Agere Systems   All rights reserved.
 Copyright (c) 2002-2017 Lattice Semiconductor Corporation,  All rights reserved.
-Tue Dec 11 23:35:37 2018
+Mon Dec 17 22:50:28 2018
 
 
 Command Line:  synthesis -f kilsyth_bootloader_lattice.synproj -gui -msgset /home/konrad/dev/Kilsyth/gateware/bootloader/promote.xml 
@@ -77,16 +77,14 @@ Analyzing Verilog file /usr/local/diamond/3.10_x64/ispfpga/userware/unix/SYNTHES
 Compile design.
 Compile Design Begin
 Analyzing Verilog file /home/konrad/dev/Kilsyth/gateware/bootloader/src/kilsyth_top.v. VERI-1482
+WARNING - synthesis: /home/konrad/dev/Kilsyth/gateware/bootloader/src/kilsyth_top.v(17): /* in comment. VERI-1049
+WARNING - synthesis: /home/konrad/dev/Kilsyth/gateware/bootloader/src/kilsyth_top.v(18): /* in comment. VERI-1049
+WARNING - synthesis: /home/konrad/dev/Kilsyth/gateware/bootloader/src/kilsyth_top.v(30): /* in comment. VERI-1049
+WARNING - synthesis: /home/konrad/dev/Kilsyth/gateware/bootloader/src/kilsyth_top.v(31): /* in comment. VERI-1049
 Analyzing Verilog file /usr/local/diamond/3.10_x64/ispfpga/userware/unix/SYNTHESIS_HEADERS/ecp5u.v. VERI-1482
 Top module name (Verilog): kilsyth_top
 INFO - synthesis: /home/konrad/dev/Kilsyth/gateware/bootloader/src/kilsyth_top.v(3): compiling module kilsyth_top. VERI-1018
-WARNING - synthesis: /home/konrad/dev/Kilsyth/gateware/bootloader/src/kilsyth_top.v(39): expression size 32 truncated to fit in target size 8. VERI-1209
-WARNING - synthesis: /home/konrad/dev/Kilsyth/gateware/bootloader/src/kilsyth_top.v(42): expression size 32 truncated to fit in target size 16. VERI-1209
-WARNING - synthesis: /home/konrad/dev/Kilsyth/gateware/bootloader/src/kilsyth_top.v(43): expression size 32 truncated to fit in target size 16. VERI-1209
-WARNING - synthesis: /home/konrad/dev/Kilsyth/gateware/bootloader/src/kilsyth_top.v(45): expression size 32 truncated to fit in target size 8. VERI-1209
-WARNING - synthesis: /home/konrad/dev/Kilsyth/gateware/bootloader/src/kilsyth_top.v(46): expression size 32 truncated to fit in target size 8. VERI-1209
-WARNING - synthesis: /home/konrad/dev/Kilsyth/gateware/bootloader/src/kilsyth_top.v(60): expression size 32 truncated to fit in target size 8. VERI-1209
-WARNING - synthesis: /home/konrad/dev/Kilsyth/gateware/bootloader/src/kilsyth_top.v(67): expression size 32 truncated to fit in target size 26. VERI-1209
+WARNING - synthesis: /home/konrad/dev/Kilsyth/gateware/bootloader/src/kilsyth_top.v(48): expression size 32 truncated to fit in target size 26. VERI-1209
 Loading NGL library '/usr/local/diamond/3.10_x64/ispfpga/sa5p00/data/sa5plib.ngl'...
 Loading NGL library '/usr/local/diamond/3.10_x64/ispfpga/xo2c00/data/xo2clib.ngl'...
 Loading NGL library '/usr/local/diamond/3.10_x64/ispfpga/mg5g00/data/mg5glib.ngl'...
@@ -94,69 +92,6 @@ Loading NGL library '/usr/local/diamond/3.10_x64/ispfpga/or5g00/data/orc5glib.ng
 Loading device for application map from file 'sa5p25.nph' in environment: /usr/local/diamond/3.10_x64/ispfpga.
 Package Status:                     Final          Version 1.33.
 Top-level module name = kilsyth_top.
-WARNING - synthesis: I/O Port i_ft_be[1] 's net has no driver and is unused.
-WARNING - synthesis: I/O Port i_ft_be[0] 's net has no driver and is unused.
-WARNING - synthesis: I/O Port i_ft_txe_n 's net has no driver and is unused.
-WARNING - synthesis: I/O Port i_ft_rxf_n 's net has no driver and is unused.
-######## Converting I/O port io_ft_gpio1 to input.
-WARNING - synthesis: I/O Port o_sdram_dqm[1] 's net has no driver and is unused.
-WARNING - synthesis: I/O Port o_sdram_dqm[0] 's net has no driver and is unused.
-WARNING - synthesis: I/O Port o_sdram_a[12] 's net has no driver and is unused.
-WARNING - synthesis: I/O Port o_sdram_a[11] 's net has no driver and is unused.
-WARNING - synthesis: I/O Port o_sdram_a[10] 's net has no driver and is unused.
-WARNING - synthesis: I/O Port o_sdram_a[9] 's net has no driver and is unused.
-WARNING - synthesis: I/O Port o_sdram_a[8] 's net has no driver and is unused.
-WARNING - synthesis: I/O Port o_sdram_a[7] 's net has no driver and is unused.
-WARNING - synthesis: I/O Port o_sdram_a[6] 's net has no driver and is unused.
-WARNING - synthesis: I/O Port o_sdram_a[5] 's net has no driver and is unused.
-WARNING - synthesis: I/O Port o_sdram_a[4] 's net has no driver and is unused.
-WARNING - synthesis: I/O Port o_sdram_a[3] 's net has no driver and is unused.
-WARNING - synthesis: I/O Port o_sdram_a[2] 's net has no driver and is unused.
-WARNING - synthesis: I/O Port o_sdram_a[1] 's net has no driver and is unused.
-WARNING - synthesis: I/O Port o_sdram_a[0] 's net has no driver and is unused.
-WARNING - synthesis: I/O Port o_sdram_ba[1] 's net has no driver and is unused.
-WARNING - synthesis: I/O Port o_sdram_ba[0] 's net has no driver and is unused.
-WARNING - synthesis: I/O Port o_sdram_cs_n 's net has no driver and is unused.
-WARNING - synthesis: I/O Port o_sdram_ras_n 's net has no driver and is unused.
-WARNING - synthesis: I/O Port o_sdram_cas_n 's net has no driver and is unused.
-WARNING - synthesis: I/O Port o_sdram_we_n 's net has no driver and is unused.
-WARNING - synthesis: I/O Port o_sdram_clk_n 's net has no driver and is unused.
-WARNING - synthesis: I/O Port o_sdram_cke_n 's net has no driver and is unused.
-######## Converting I/O port io_pmod_0[7] to output.
-######## Converting I/O port io_pmod_0[6] to output.
-######## Converting I/O port io_pmod_0[5] to output.
-######## Converting I/O port io_pmod_0[4] to output.
-######## Converting I/O port io_pmod_0[3] to output.
-######## Converting I/O port io_pmod_0[2] to output.
-######## Converting I/O port io_pmod_0[1] to output.
-######## Converting I/O port io_pmod_0[0] to output.
-######## Missing driver on net i_ft_be[1]. Patching with GND.
-######## Missing driver on net i_ft_be[0]. Patching with GND.
-######## Missing driver on net i_ft_txe_n. Patching with GND.
-######## Missing driver on net i_ft_rxf_n. Patching with GND.
-######## Missing driver on net o_sdram_dqm[1]. Patching with GND.
-######## Missing driver on net o_sdram_dqm[0]. Patching with GND.
-######## Missing driver on net o_sdram_a[12]. Patching with GND.
-######## Missing driver on net o_sdram_a[11]. Patching with GND.
-######## Missing driver on net o_sdram_a[10]. Patching with GND.
-######## Missing driver on net o_sdram_a[9]. Patching with GND.
-######## Missing driver on net o_sdram_a[8]. Patching with GND.
-######## Missing driver on net o_sdram_a[7]. Patching with GND.
-######## Missing driver on net o_sdram_a[6]. Patching with GND.
-######## Missing driver on net o_sdram_a[5]. Patching with GND.
-######## Missing driver on net o_sdram_a[4]. Patching with GND.
-######## Missing driver on net o_sdram_a[3]. Patching with GND.
-######## Missing driver on net o_sdram_a[2]. Patching with GND.
-######## Missing driver on net o_sdram_a[1]. Patching with GND.
-######## Missing driver on net o_sdram_a[0]. Patching with GND.
-######## Missing driver on net o_sdram_ba[1]. Patching with GND.
-######## Missing driver on net o_sdram_ba[0]. Patching with GND.
-######## Missing driver on net o_sdram_cs_n. Patching with GND.
-######## Missing driver on net o_sdram_ras_n. Patching with GND.
-######## Missing driver on net o_sdram_cas_n. Patching with GND.
-######## Missing driver on net o_sdram_we_n. Patching with GND.
-######## Missing driver on net o_sdram_clk_n. Patching with GND.
-######## Missing driver on net o_sdram_cke_n. Patching with GND.
 
 
 
@@ -174,14 +109,11 @@ Writing NGD file kilsyth_bootloader.ngd.
 
 ################### Begin Area Report (kilsyth_top)######################
 Number of register bits => 26 of 12687 (0 % )
-BB => 88
 CCU2C => 14
-FD1S3IX => 26
+FD1S3AX => 26
 GSR => 1
-IB => 6
-LUT4 => 39
-OB => 27
-OBZ => 8
+IB => 1
+OB => 8
 ################### End Area Report ##################
 
 ################### Begin Clock Report ######################
@@ -193,16 +125,16 @@ Number of Clock Enables: 0
 Top 0 highest fanout Clock Enables:
 Highest fanout non-clock nets
 Top 10 highest fanout non-clock nets:
-  Net : counter_0, loads : 89
-  Net : io_ft_gpio1_c, loads : 27
-  Net : io_pmod_0_7__N_2, loads : 8
-  Net : counter_25, loads : 2
-  Net : counter_24, loads : 2
-  Net : counter_23, loads : 2
-  Net : counter_22, loads : 2
-  Net : counter_21, loads : 2
-  Net : counter_20, loads : 2
-  Net : counter_19, loads : 2
+  Net : o_leds_c_7, loads : 2
+  Net : o_leds_c_6, loads : 2
+  Net : o_leds_c_5, loads : 2
+  Net : o_leds_c_4, loads : 2
+  Net : o_leds_c_3, loads : 2
+  Net : o_leds_c_2, loads : 2
+  Net : o_leds_c_1, loads : 2
+  Net : o_leds_c_0, loads : 2
+  Net : n26, loads : 1
+  Net : n25, loads : 1
 ################### End Clock Report ##################
 
 Timing Report Summary
@@ -212,7 +144,7 @@ Constraint                              |   Constraint|       Actual|Levels
 --------------------------------------------------------------------------------
                                         |             |             |
 create_clock -period 5.000000 -name     |             |             |
-clk0 [get_nets i_clk16_c]               |  200.000 MHz|  210.526 MHz|    15  
+clk0 [get_nets i_clk16_c]               |  200.000 MHz|  266.454 MHz|    15  
                                         |             |             |
 --------------------------------------------------------------------------------
 
@@ -220,8 +152,8 @@ clk0 [get_nets i_clk16_c]               |  200.000 MHz|  210.526 MHz|    15
 All constraints were met.
 
 
-Peak Memory Usage: 217.305  MB
+Peak Memory Usage: 206.852  MB
 
 --------------------------------------------------------------
-Elapsed CPU time for LSE flow : 0.620  secs
+Elapsed CPU time for LSE flow : 0.492  secs
 --------------------------------------------------------------

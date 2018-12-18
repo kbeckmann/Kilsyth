@@ -1,15 +1,12 @@
 ----------------------------------------------------------------------
 Report for cell kilsyth_top.TECH
 Register bits:  26 of 12687 (0.205%)
-I/O cells:      129
+I/O cells:      9
                                   Cell usage:
                                cell     count   Res Usage(%)
-                                 BB        88          100.0
                               CCU2C        14          100.0
-                            FD1S3IX        26          100.0
+                            FD1S3AX        26          100.0
                                 GSR         1          100.0
-                                 IB         6          100.0
-                               LUT4        39          100.0
-                                 OB        27          100.0
-                                OBZ         8          100.0
-                              TOTAL       209
+                                 IB         1          100.0
+                                 OB         8          100.0
+                              TOTAL        50

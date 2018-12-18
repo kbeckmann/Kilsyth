@@ -4,7 +4,7 @@ Copyright (c) 1995 AT&T Corp.   All rights reserved.
 Copyright (c) 1995-2001 Lucent Technologies Inc.  All rights reserved.
 Copyright (c) 2001 Agere Systems   All rights reserved.
 Copyright (c) 2002-2017 Lattice Semiconductor Corporation,  All rights reserved.
-Wed Dec 12 00:18:51 2018
+Mon Dec 17 22:50:30 2018
 
 /usr/local/diamond/3.10_x64/ispfpga/bin/lin64/par -f kilsyth_bootloader.p2t
 kilsyth_bootloader_map.ncd kilsyth_bootloader.dir kilsyth_bootloader.prf -gui
@@ -16,18 +16,16 @@ Preference file: kilsyth_bootloader.prf.
 Level/       Number       Worst        Timing       Worst        Timing       Run          NCD
 Cost [ncd]   Unrouted     Slack        Score        Slack(hold)  Score(hold)  Time         Status
 ----------   --------     -----        ------       -----------  -----------  ----         ------
-5_1          -            -            -            -            -            14           Failed
+5_1   *      0            -            -            -            -            10           Success
 
 * : Design saved.
 
-INFO - par: Iteration 5_1 failed due to error(s). Please refer to the PAR report files for each iteration under kilsyth_bootloader.dir to see the error(s).
+Total (real) run time for 1-seed: 10 secs 
 
-Total (real) run time for 1-seed: 14 secs 
-
-par failed!
+par done!
 
 Lattice Place and Route Report for Design "kilsyth_bootloader_map.ncd"
-Wed Dec 12 00:18:51 2018
+Mon Dec 17 22:50:30 2018
 
 PAR: Place And Route Diamond (64-bit) 3.10.3.144.3.
 Command Line: par -w -l 5 -i 6 -t 1 -c 0 -e 0 -gui -msgset /home/konrad/dev/Kilsyth/gateware/bootloader/promote.xml -exp parUseNBR=1:parCDP=auto:parCDR=1:parPathBased=OFF kilsyth_bootloader_map.ncd kilsyth_bootloader.dir/5_1.ncd kilsyth_bootloader.prf
@@ -51,496 +49,180 @@ License checked out.
 Ignore Preference Error(s):  True
 Device utilization summary:
 
-   PIO (prelim)     129/197          65% used
-                    129/197          65% bonded
+   PIO (prelim)       9/197           4% used
+                      9/197           4% bonded
 
-   SLICE             38/6048         <1% used
+   SLICE             14/6048         <1% used
 
 
 
-Number of Signals: 198
-Number of Connections: 328
+Number of Signals: 66
+Number of Connections: 87
 
 Pin Constraint Summary:
-   6 out of 129 pins locked (4% locked).
+   9 out of 9 pins locked (100% locked).
 
 The following 1 signal is selected to use the primary clock routing resources:
     i_clk16_c (driver: i_clk16, clk/ce/sr load #: 14/0/0)
 
 
 No signal is selected as Global Set/Reset.
-....................
-........................................................................
-........................................................................
-........................................................
-....................
-........................................................................
-........................................................................
-........................................................
-....................
-........................................................................
-........................................................................
-........................................................
-....................
-........................................................................
-........................................................................
-........................................................
-....................
-........................................................................
-........................................................................
-........................................................
+Starting Placer Phase 0.
 
-ERROR - par: I/O initial placement is unsuccessful.  Check the I/O placement constraints / user preferences (such as pin locking) carefully.
+Finished Placer Phase 0.  REAL time: 2 secs 
 
-***** I/O Placement and Bank Assignment *****
+Starting Placer Phase 1.
+.............
+Placer score = 2491.
+Finished Placer Phase 1.  REAL time: 7 secs 
 
-*** Overview of I/O Grouping ***
-+---+-------+------+---------+-------+---------+------------+
-| # | Vccio | Vref | Dir/IOL | # IOs | # Sites | Attributes |
-+---+-------+------+---------+-------+---------+------------+
-| 0 | 2.5V  | OFF  | BIDI    | 88    | 88      |            |
-| 1 | 2.5V  | OFF  | OUT     | 31    | 31      |            |
-| 2 | 2.5V  | OFF  | IN      | 4     | 4       |            |
-+---+-------+------+---------+-------+---------+------------+
-IOs *LOCKED* - # of IOs: 6, required # of sites: 6
-+-------------+----------+-----------+------+---------+------+------------+----------+
-| PIO         | IO Type  | Vccio(s)  | Vref | Dir/IOL | LCT# | Attributes | Site     |
-+-------------+----------+-----------+------+---------+------+------------+----------+
-| i_ft_be[1]  | LVCMOS25 | 2.5V 3.3V | OFF  | OUT     | 30@O |            | J5/PL29B |
-| i_ft_be[0]  | LVCMOS25 | 2.5V 3.3V | OFF  | OUT     | 30@O |            | K1/PL32D |
-| i_ft_txe_n  | LVCMOS25 | 2.5V 3.3V | OFF  | OUT     | 30@O |            | J4/PL29A |
-| i_ft_rxf_n  | LVCMOS25 | 2.5V 3.3V | OFF  | OUT     | 30@O |            | J3/PL29C |
-| i_clk16     | LVCMOS33 | 3.3V      | OFF  | IN      | 32@I |            | G3/PL23A |
-| io_ft_gpio1 | LVCMOS33 | 3.3V      | OFF  | IN      | 32@I |            | G5/PL20B |
-+-------------+----------+-----------+------+---------+------+------------+----------+
+Starting Placer Phase 2.
+.
+Placer score =  2491
+Finished Placer Phase 2.  REAL time: 7 secs 
 
 
-*** Primary/Secondary Clock Overview (PIO drivers only) ***
-Primary clock signal i_clk16_c (driver i_clk16, Vccio: 3.3V, Vref: OFF@OFF) uses PIO pad G3 (PL23A) in bank 7.
+------------------ Clock Report ------------------
+
+Global Clock Resources:
+  CLK_PIN    : 1 out of 12 (8%)
+  GR_PCLK    : 0 out of 12 (0%)
+  PLL        : 0 out of 2 (0%)
+  DCS        : 0 out of 2 (0%)
+  DCC        : 0 out of 60 (0%)
+  CLKDIV     : 0 out of 4 (0%)
+
+Quadrant TL Clocks:
+  PRIMARY "i_clk16_c" from comp "i_clk16" on CLK_PIN site "G3 (PL23A)", CLK/CE/SR load = 14
+
+  PRIMARY  : 1 out of 16 (6%)
+
+Quadrant TR Clocks:
+
+  PRIMARY  : 0 out of 16 (0%)
+
+Quadrant BL Clocks:
+
+  PRIMARY  : 0 out of 16 (0%)
+
+Quadrant BR Clocks:
+
+  PRIMARY  : 0 out of 16 (0%)
+
+Edge Clocks:
+
+  No edge clock selected.
 
 
-*** I/O Bank Assignment Overview ***
-+------+-------+-------+----------+------+------+
-| Bank | Vccio | Vref1 | Capacity | INRD | LVDS |
-+------+-------+-------+----------+------+------+
-| 0    | 3.3V  | OFF   | 24       |      |      |
-| 1    | 3.3V  | OFF   | 32       |      |      |
-| 2    | 3.3V  | OFF   | 32       |      |      |
-| 3    | 3.3V  | OFF   | 32       |      |      |
-| 6    | 3.3V  | OFF   | 32       |      |      |
-| 7    | 3.3V  | OFF   | 32       |      |      |
-| 8    | 3.3V  | OFF   | 13       |      |      |
-+------+-------+-------+----------+------+------+
-*** Detailed Bank Assignment ***
-
---- I/Os placed in Bank 0 ---
-Bank Vccio=3.3V, Vref=OFF@OFF
-
-+-----+-------+------+-----+------+------+-------+-----------+----------+-----------+------+---------+------+------+------+------+------------+
-| Pin | Site  | IOL  | T/C | Proh | Vref | Other | I/O       | IO_TYPE  | Vccio     | Vref | Dir/IOL | Lock | LCT# | INRD | LVDS | Attributes |
-+-----+-------+------+-----+------+------+-------+-----------+----------+-----------+------+---------+------+------+------+------+------------+
-| A6  | PT4A  | SIOL | T   |      |      |       | i_ft_clk  | LVCMOS25 | 2.5V 3.3V | OFF  | IN      |      | 35@I |      |      |            |
-| B6  | PT4B  | SIOL | C   |      |      |       | i_ft_wr_n | LVCMOS25 | 2.5V 3.3V | OFF  | IN      |      | 35@I |      |      |            |
-| E6  | PT6A  | SIOL | T   |      |      |       | i_ft_rd_n | LVCMOS25 | 2.5V 3.3V | OFF  | IN      |      | 35@I |      |      |            |
-| D6  | PT6B  | SIOL | C   |      |      |       | i_ft_oe_n | LVCMOS25 | 2.5V 3.3V | OFF  | IN      |      | 35@I |      |      |            |
-| E7  | PT9A  | SIOL | T   |      |      |       |           |          |           |      |         |      |      |      |      |            |
-| D7  | PT9B  | SIOL | C   |      |      |       |           |          |           |      |         |      |      |      |      |            |
-| C6  | PT11A | SIOL | T   |      |      |       |           |          |           |      |         |      |      |      |      |            |
-| C7  | PT11B | SIOL | C   |      |      |       |           |          |           |      |         |      |      |      |      |            |
-| E8  | PT13A | SIOL | T   |      |      |       |           |          |           |      |         |      |      |      |      |            |
-| D8  | PT13B | SIOL | C   |      |      |       |           |          |           |      |         |      |      |      |      |            |
-| C8  | PT15A | SIOL | T   |      |      |       |           |          |           |      |         |      |      |      |      |            |
-| B8  | PT15B | SIOL | C   |      |      |       |           |          |           |      |         |      |      |      |      |            |
-| A7  | PT18A | SIOL | T   |      |      |       |           |          |           |      |         |      |      |      |      |            |
-| A8  | PT18B | SIOL | C   |      |      |       |           |          |           |      |         |      |      |      |      |            |
-| D9  | PT20A | SIOL | T   |      |      |       |           |          |           |      |         |      |      |      |      |            |
-| E9  | PT20B | SIOL | C   |      |      |       |           |          |           |      |         |      |      |      |      |            |
-| B9  | PT22A | SIOL | T   |      |      |       |           |          |           |      |         |      |      |      |      |            |
-| C10 | PT22B | SIOL | C   |      |      |       |           |          |           |      |         |      |      |      |      |            |
-| A9  | PT24A | SIOL | T   |      |      |       |           |          |           |      |         |      |      |      |      |            |
-| B10 | PT24B | SIOL | C   |      |      |       |           |          |           |      |         |      |      |      |      |            |
-| A10 | PT27A | SIOL | T   |      |      | PCLK  |           |          |           |      |         |      |      |      |      |            |
-| A11 | PT27B | SIOL | C   |      |      |       |           |          |           |      |         |      |      |      |      |            |
-| B11 | PT29A | SIOL | T   |      |      | PCLK  |           |          |           |      |         |      |      |      |      |            |
-| C11 | PT29B | SIOL | C   |      |      |       |           |          |           |      |         |      |      |      |      |            |
-+-----+-------+------+-----+------+------+-------+-----------+----------+-----------+------+---------+------+------+------+------+------------+
-
-*** Bank 0 - # of PIO sites: 24, occupied: 4; # of Vref inputs used: 0
+--------------- End of Clock Report ---------------
 
 
---- I/Os placed in Bank 1 ---
-Bank Vccio=3.3V, Vref=OFF@OFF
++
+I/O Usage Summary (final):
+   9 out of 197 (4.6%) PIO sites used.
+   9 out of 197 (4.6%) bonded PIO sites used.
+   Number of PIO comps: 9; differential: 0.
+   Number of Vref pins used: 0.
 
-+-----+-------+------+-----+------+------+-------+-----+---------+-------+------+---------+------+------+------+------+------------+
-| Pin | Site  | IOL  | T/C | Proh | Vref | Other | I/O | IO_TYPE | Vccio | Vref | Dir/IOL | Lock | LCT# | INRD | LVDS | Attributes |
-+-----+-------+------+-----+------+------+-------+-----+---------+-------+------+---------+------+------+------+------+------------+
-| D11 | PT33A | SIOL | T   |      |      | PCLK  |     |         |       |      |         |      |      |      |      |            |
-| E11 | PT33B | SIOL | C   |      |      |       |     |         |       |      |         |      |      |      |      |            |
-| B12 | PT35A | SIOL | T   |      |      | PCLK  |     |         |       |      |         |      |      |      |      |            |
-| C12 | PT35B | SIOL | C   |      |      |       |     |         |       |      |         |      |      |      |      |            |
-| D12 | PT38A | SIOL | T   |      |      |       |     |         |       |      |         |      |      |      |      |            |
-| E12 | PT38B | SIOL | C   |      |      |       |     |         |       |      |         |      |      |      |      |            |
-| A12 | PT40A | SIOL | T   |      |      |       |     |         |       |      |         |      |      |      |      |            |
-| A13 | PT40B | SIOL | C   |      |      |       |     |         |       |      |         |      |      |      |      |            |
-| B13 | PT42A | SIOL | T   |      |      |       |     |         |       |      |         |      |      |      |      |            |
-| C13 | PT42B | SIOL | C   |      |      |       |     |         |       |      |         |      |      |      |      |            |
-| D13 | PT44A | SIOL | T   |      |      |       |     |         |       |      |         |      |      |      |      |            |
-| E13 | PT44B | SIOL | C   |      |      |       |     |         |       |      |         |      |      |      |      |            |
-| A14 | PT47A | SIOL | T   |      |      |       |     |         |       |      |         |      |      |      |      |            |
-| C14 | PT47B | SIOL | C   |      |      |       |     |         |       |      |         |      |      |      |      |            |
-| D14 | PT49A | SIOL | T   |      |      |       |     |         |       |      |         |      |      |      |      |            |
-| E14 | PT49B | SIOL | C   |      |      |       |     |         |       |      |         |      |      |      |      |            |
-| B15 | PT51A | SIOL | T   |      |      |       |     |         |       |      |         |      |      |      |      |            |
-| C15 | PT51B | SIOL | C   |      |      |       |     |         |       |      |         |      |      |      |      |            |
-| D15 | PT53A | SIOL | T   |      |      |       |     |         |       |      |         |      |      |      |      |            |
-| E15 | PT53B | SIOL | C   |      |      |       |     |         |       |      |         |      |      |      |      |            |
-| A16 | PT56A | SIOL | T   |      |      |       |     |         |       |      |         |      |      |      |      |            |
-| B16 | PT56B | SIOL | C   |      |      |       |     |         |       |      |         |      |      |      |      |            |
-| C16 | PT58A | SIOL | T   |      |      |       |     |         |       |      |         |      |      |      |      |            |
-| D16 | PT58B | SIOL | C   |      |      |       |     |         |       |      |         |      |      |      |      |            |
-| B17 | PT60A | SIOL | T   |      |      |       |     |         |       |      |         |      |      |      |      |            |
-| C17 | PT60B | SIOL | C   |      |      |       |     |         |       |      |         |      |      |      |      |            |
-| A17 | PT62A | SIOL | T   |      |      |       |     |         |       |      |         |      |      |      |      |            |
-| B18 | PT62B | SIOL | C   |      |      |       |     |         |       |      |         |      |      |      |      |            |
-| A18 | PT65A | SIOL | T   |      |      |       |     |         |       |      |         |      |      |      |      |            |
-| B19 | PT65B | SIOL | C   |      |      |       |     |         |       |      |         |      |      |      |      |            |
-| A19 | PT67A | SIOL | T   |      |      |       |     |         |       |      |         |      |      |      |      |            |
-| B20 | PT67B | SIOL | C   |      |      |       |     |         |       |      |         |      |      |      |      |            |
-+-----+-------+------+-----+------+------+-------+-----+---------+-------+------+---------+------+------+------+------+------------+
+I/O Bank Usage Summary:
++----------+---------------+------------+------------+------------+
+| I/O Bank | Usage         | Bank Vccio | Bank Vref1 | Bank Vref2 |
++----------+---------------+------------+------------+------------+
+| 0        | 8 / 24 ( 33%) | 3.3V       | -          | -          |
+| 1        | 0 / 32 (  0%) | 3.3V       | -          | -          |
+| 2        | 0 / 32 (  0%) | 3.3V       | -          | -          |
+| 3        | 0 / 32 (  0%) | 3.3V       | -          | -          |
+| 6        | 0 / 32 (  0%) | 3.3V       | -          | -          |
+| 7        | 1 / 32 (  3%) | 3.3V       | -          | -          |
+| 8        | 0 / 13 (  0%) | 3.3V       | -          | -          |
++----------+---------------+------------+------------+------------+
 
-*** Bank 1 - # of PIO sites: 32, occupied: 0; # of Vref inputs used: 0
+Total placer CPU time: 6 secs 
+
+Dumping design to file kilsyth_bootloader.dir/5_1.ncd.
 
 
---- I/Os placed in Bank 2 ---
-Bank Vccio=3.3V, Vref=OFF@OFF
+-----------------------------------------------------------------
+INFO - par: ASE feature is off due to non timing-driven settings.  
+-----------------------------------------------------------------
 
-+-----+-------+-----+-----+------+------+-------+-----+---------+-------+------+---------+------+------+------+------+------------+
-| Pin | Site  | IOL | T/C | Proh | Vref | Other | I/O | IO_TYPE | Vccio | Vref | Dir/IOL | Lock | LCT# | INRD | LVDS | Attributes |
-+-----+-------+-----+-----+------+------+-------+-----+---------+-------+------+---------+------+------+------+------+------------+
-| K20 | PR23D | IOL | C   |      |      |       |     |         |       |      |         |      |      |      |      |            |
-| J20 | PR23C | IOL | T   |      |      | PCLK  |     |         |       |      |         |      |      |      |      |            |
-| K19 | PR23B | IOL | L-  |      |      |       |     |         |       |      |         |      |      |      |      |            |
-| J19 | PR23A | IOL | L+  |      |      | PCLK  |     |         |       |      |         |      |      |      |      |            |
-| K18 | PR20D | IOL | C   |      |      |       |     |         |       |      |         |      |      |      |      |            |
-| J18 | PR20C | IOL | T   |      |      |       |     |         |       |      |         |      |      |      |      |            |
-| H20 | PR20B | IOL | L-  |      |      |       |     |         |       |      |         |      |      |      |      |            |
-| G19 | PR20A | IOL | L+  |      |      |       |     |         |       |      |         |      |      |      |      |            |
-| G20 | PR17D | IOL | C   |      |      |       |     |         |       |      |         |      |      |      |      |            |
-| F20 | PR17C | IOL | T   |      |      |       |     |         |       |      |         |      |      |      |      |            |
-| F19 | PR17B | IOL | L-  |      |      |       |     |         |       |      |         |      |      |      |      |            |
-| E20 | PR17A | IOL | L+  |      |      |       |     |         |       |      |         |      |      |      |      |            |
-| E19 | PR14D | IOL | C   |      |      |       |     |         |       |      |         |      |      |      |      |            |
-| D20 | PR14C | IOL | T   |      | 1    |       |     |         |       |      |         |      |      |      |      |            |
-| D19 | PR14B | IOL | L-  |      |      |       |     |         |       |      |         |      |      |      |      |            |
-| C20 | PR14A | IOL | L+  |      |      |       |     |         |       |      |         |      |      |      |      |            |
-| J16 | PR11D | IOL | C   |      |      |       |     |         |       |      |         |      |      |      |      |            |
-| J17 | PR11C | IOL | T   |      |      |       |     |         |       |      |         |      |      |      |      |            |
-| H17 | PR11B | IOL | L-  |      |      |       |     |         |       |      |         |      |      |      |      |            |
-| H18 | PR11A | IOL | L+  |      |      |       |     |         |       |      |         |      |      |      |      |            |
-| H16 | PR8D  | IOL | C   |      |      |       |     |         |       |      |         |      |      |      |      |            |
-| G16 | PR8C  | IOL | T   |      |      |       |     |         |       |      |         |      |      |      |      |            |
-| G18 | PR8B  | IOL | L-  |      |      |       |     |         |       |      |         |      |      |      |      |            |
-| F17 | PR8A  | IOL | L+  |      |      |       |     |         |       |      |         |      |      |      |      |            |
-| F18 | PR5D  | IOL | C   |      |      |       |     |         |       |      |         |      |      |      |      |            |
-| E18 | PR5C  | IOL | T   |      |      |       |     |         |       |      |         |      |      |      |      |            |
-| E17 | PR5B  | IOL | L-  |      |      |       |     |         |       |      |         |      |      |      |      |            |
-| D18 | PR5A  | IOL | L+  |      |      |       |     |         |       |      |         |      |      |      |      |            |
-| F16 | PR2D  | IOL | C   |      |      |       |     |         |       |      |         |      |      |      |      |            |
-| E16 | PR2C  | IOL | T   |      |      |       |     |         |       |      |         |      |      |      |      |            |
-| D17 | PR2B  | IOL | L-  |      |      |       |     |         |       |      |         |      |      |      |      |            |
-| C18 | PR2A  | IOL | L+  |      |      |       |     |         |       |      |         |      |      |      |      |            |
-+-----+-------+-----+-----+------+------+-------+-----+---------+-------+------+---------+------+------+------+------+------------+
+0 connections routed; 87 unrouted.
+Starting router resource preassignment
 
-*** Bank 2 - # of PIO sites: 32, occupied: 0; # of Vref inputs used: 0
+Completed router resource preassignment. Real time: 9 secs 
 
+Start NBR router at Mon Dec 17 22:50:39 CET 2018
 
---- I/Os placed in Bank 3 ---
-Bank Vccio=3.3V, Vref=OFF@OFF
+*****************************************************************
+Info: NBR allows conflicts(one node used by more than one signal)
+      in the earlier iterations. In each iteration, it tries to  
+      solve the conflicts while keeping the critical connections 
+      routed as short as possible. The routing process is said to
+      be completed when no conflicts exist and all connections   
+      are routed.                                                
+Note: NBR uses a different method to calculate timing slacks. The
+      worst slack and total negative slack may not be the same as
+      that in TRCE report. You should always run TRCE to verify  
+      your design.                                               
+*****************************************************************
 
-+-----+-------+-----+-----+------+------+-------+-----+---------+-------+------+---------+------+------+------+------+------------+
-| Pin | Site  | IOL | T/C | Proh | Vref | Other | I/O | IO_TYPE | Vccio | Vref | Dir/IOL | Lock | LCT# | INRD | LVDS | Attributes |
-+-----+-------+-----+-----+------+------+-------+-----+---------+-------+------+---------+------+------+------+------+------------+
-| T17 | PR47D | IOL | C   |      |      |       |     |         |       |      |         |      |      |      |      |            |
-| U16 | PR47C | IOL | T   |      |      |       |     |         |       |      |         |      |      |      |      |            |
-| U17 | PR47B | IOL | L-  |      |      |       |     |         |       |      |         |      |      |      |      |            |
-| U18 | PR47A | IOL | L+  |      |      |       |     |         |       |      |         |      |      |      |      |            |
-| T18 | PR44D | IOL | C   |      |      |       |     |         |       |      |         |      |      |      |      |            |
-| U19 | PR44C | IOL | T   |      |      |       |     |         |       |      |         |      |      |      |      |            |
-| R18 | PR44B | IOL | L-  |      |      |       |     |         |       |      |         |      |      |      |      |            |
-| T19 | PR44A | IOL | L+  |      |      |       |     |         |       |      |         |      |      |      |      |            |
-| U20 | PR41D | IOL | C   |      |      |       |     |         |       |      |         |      |      |      |      |            |
-| T20 | PR41C | IOL | T   |      |      |       |     |         |       |      |         |      |      |      |      |            |
-| R20 | PR41B | IOL | L-  |      |      |       |     |         |       |      |         |      |      |      |      |            |
-| P20 | PR41A | IOL | L+  |      |      |       |     |         |       |      |         |      |      |      |      |            |
-| P18 | PR38D | IOL | C   |      |      |       |     |         |       |      |         |      |      |      |      |            |
-| P19 | PR38C | IOL | T   |      |      |       |     |         |       |      |         |      |      |      |      |            |
-| N20 | PR38B | IOL | L-  |      |      |       |     |         |       |      |         |      |      |      |      |            |
-| N19 | PR38A | IOL | L+  |      |      |       |     |         |       |      |         |      |      |      |      |            |
-| R17 | PR35D | IOL | C   |      |      |       |     |         |       |      |         |      |      |      |      |            |
-| R16 | PR35C | IOL | T   |      |      |       |     |         |       |      |         |      |      |      |      |            |
-| P16 | PR35B | IOL | L-  |      | 1    |       |     |         |       |      |         |      |      |      |      |            |
-| N17 | PR35A | IOL | L+  |      |      |       |     |         |       |      |         |      |      |      |      |            |
-| P17 | PR32D | IOL | C   |      |      |       |     |         |       |      |         |      |      |      |      |            |
-| N18 | PR32C | IOL | T   |      |      |       |     |         |       |      |         |      |      |      |      |            |
-| M17 | PR32B | IOL | L-  |      |      |       |     |         |       |      |         |      |      |      |      |            |
-| N16 | PR32A | IOL | L+  |      |      |       |     |         |       |      |         |      |      |      |      |            |
-| M18 | PR29D | IOL | C   |      |      |       |     |         |       |      |         |      |      |      |      |            |
-| L18 | PR29C | IOL | T   |      |      |       |     |         |       |      |         |      |      |      |      |            |
-| L17 | PR29B | IOL | L-  |      |      |       |     |         |       |      |         |      |      |      |      |            |
-| L16 | PR29A | IOL | L+  |      |      |       |     |         |       |      |         |      |      |      |      |            |
-| M19 | PR26D | IOL | C   |      |      |       |     |         |       |      |         |      |      |      |      |            |
-| L19 | PR26C | IOL | T   |      |      | PCLK  |     |         |       |      |         |      |      |      |      |            |
-| M20 | PR26B | IOL | L-  |      |      |       |     |         |       |      |         |      |      |      |      |            |
-| L20 | PR26A | IOL | L+  |      |      | PCLK  |     |         |       |      |         |      |      |      |      |            |
-+-----+-------+-----+-----+------+------+-------+-----+---------+-------+------+---------+------+------+------+------+------------+
+Start NBR special constraint process at Mon Dec 17 22:50:39 CET 2018
 
-*** Bank 3 - # of PIO sites: 32, occupied: 0; # of Vref inputs used: 0
+Start NBR section for initial routing at Mon Dec 17 22:50:39 CET 2018
+Level 4, iteration 1
+0(0.00%) conflict; 0(0.00%) untouched conn; 0 (nbr) score; real time: 9 secs 
 
+Info: Initial congestion level at 75% usage is 0
+Info: Initial congestion area  at 75% usage is 0 (0.00%)
 
---- I/Os placed in Bank 6 ---
-Bank Vccio=3.3V, Vref=OFF@OFF
+Start NBR section for normal routing at Mon Dec 17 22:50:39 CET 2018
+Level 4, iteration 1
+0(0.00%) conflict; 0(0.00%) untouched conn; 0 (nbr) score; real time: 9 secs 
 
-+-----+-------+-----+-----+------+------+-------+------------+----------+-----------+------+---------+------+------+------+------+------------+
-| Pin | Site  | IOL | T/C | Proh | Vref | Other | I/O        | IO_TYPE  | Vccio     | Vref | Dir/IOL | Lock | LCT# | INRD | LVDS | Attributes |
-+-----+-------+-----+-----+------+------+-------+------------+----------+-----------+------+---------+------+------+------+------+------------+
-| P4  | PL47D | IOL | C   |      |      |       |            |          |           |      |         |      |      |      |      |            |
-| P3  | PL47C | IOL | T   |      |      |       |            |          |           |      |         |      |      |      |      |            |
-| P2  | PL47B | IOL | L-  |      |      |       |            |          |           |      |         |      |      |      |      |            |
-| P1  | PL47A | IOL | L+  |      |      |       |            |          |           |      |         |      |      |      |      |            |
-| N1  | PL44D | IOL | C   |      |      |       |            |          |           |      |         |      |      |      |      |            |
-| L1  | PL44C | IOL | T   |      |      |       |            |          |           |      |         |      |      |      |      |            |
-| M1  | PL44B | IOL | L-  |      |      |       |            |          |           |      |         |      |      |      |      |            |
-| N2  | PL44A | IOL | L+  |      |      |       |            |          |           |      |         |      |      |      |      |            |
-| L2  | PL41D | IOL | C   |      |      |       |            |          |           |      |         |      |      |      |      |            |
-| L3  | PL41C | IOL | T   |      |      |       |            |          |           |      |         |      |      |      |      |            |
-| M3  | PL41B | IOL | L-  |      |      |       |            |          |           |      |         |      |      |      |      |            |
-| N3  | PL41A | IOL | L+  |      |      |       |            |          |           |      |         |      |      |      |      |            |
-| P5  | PL38D | IOL | C   |      |      |       |            |          |           |      |         |      |      |      |      |            |
-| N4  | PL38C | IOL | T   |      |      |       |            |          |           |      |         |      |      |      |      |            |
-| N5  | PL38B | IOL | L-  |      |      |       |            |          |           |      |         |      |      |      |      |            |
-| M4  | PL38A | IOL | L+  |      |      |       |            |          |           |      |         |      |      |      |      |            |
-| L5  | PL35D | IOL | C   |      |      |       |            |          |           |      |         |      |      |      |      |            |
-| L4  | PL35C | IOL | T   |      |      |       |            |          |           |      |         |      |      |      |      |            |
-| K5  | PL35B | IOL | L-  |      | 1    |       |            |          |           |      |         |      |      |      |      |            |
-| K4  | PL35A | IOL | L+  |      |      |       |            |          |           |      |         |      |      |      |      |            |
-| K1  | PL32D | IOL | C   |      |      |       | i_ft_be[0] | LVCMOS25 | 2.5V 3.3V | OFF  | OUT     | Y    | 29@O |      |      |            |
-| H1  | PL32C | IOL | T   |      |      |       |            |          |           |      |         |      |      |      |      |            |
-| J1  | PL32B | IOL | L-  |      |      |       |            |          |           |      |         |      |      |      |      |            |
-| K2  | PL32A | IOL | L+  |      |      |       |            |          |           |      |         |      |      |      |      |            |
-| K3  | PL29D | IOL | C   |      |      |       |            |          |           |      |         |      |      |      |      |            |
-| J3  | PL29C | IOL | T   |      |      |       | i_ft_rxf_n | LVCMOS25 | 2.5V 3.3V | OFF  | OUT     | Y    | 29@O |      |      |            |
-| J5  | PL29B | IOL | L-  |      |      |       | i_ft_be[1] | LVCMOS25 | 2.5V 3.3V | OFF  | OUT     | Y    | 29@O |      |      |            |
-| J4  | PL29A | IOL | L+  |      |      |       | i_ft_txe_n | LVCMOS25 | 2.5V 3.3V | OFF  | OUT     | Y    | 29@O |      |      |            |
-| G1  | PL26D | IOL | C   |      |      |       |            |          |           |      |         |      |      |      |      |            |
-| H2  | PL26C | IOL | T   |      |      | PCLK  |            |          |           |      |         |      |      |      |      |            |
-| F1  | PL26B | IOL | L-  |      |      |       |            |          |           |      |         |      |      |      |      |            |
-| G2  | PL26A | IOL | L+  |      |      | PCLK  |            |          |           |      |         |      |      |      |      |            |
-+-----+-------+-----+-----+------+------+-------+------------+----------+-----------+------+---------+------+------+------+------+------------+
+Start NBR section for re-routing at Mon Dec 17 22:50:39 CET 2018
+Level 4, iteration 1
+0(0.00%) conflict; 0(0.00%) untouched conn; 0 (nbr) score; real time: 9 secs 
 
-*** Bank 6 - # of PIO sites: 32, occupied: 4; # of Vref inputs used: 0
+Start NBR section for post-routing at Mon Dec 17 22:50:39 CET 2018
 
+End NBR router with 0 unrouted connection
 
---- I/Os placed in Bank 7 ---
-Bank Vccio=3.3V, Vref=OFF@OFF
-
-+-----+-------+-----+-----+------+------+-------+-------------+----------+-------+------+---------+------+------+------+------+------------+
-| Pin | Site  | IOL | T/C | Proh | Vref | Other | I/O         | IO_TYPE  | Vccio | Vref | Dir/IOL | Lock | LCT# | INRD | LVDS | Attributes |
-+-----+-------+-----+-----+------+------+-------+-------------+----------+-------+------+---------+------+------+------+------+------------+
-| E2  | PL23D | IOL | C   |      |      |       |             |          |       |      |         |      |      |      |      |            |
-| F2  | PL23C | IOL | T   |      |      | PCLK  |             |          |       |      |         |      |      |      |      |            |
-| F3  | PL23B | IOL | L-  |      |      |       |             |          |       |      |         |      |      |      |      |            |
-| G3  | PL23A | IOL | L+  |      |      | PCLK  | i_clk16     | LVCMOS33 | 3.3V  | OFF  | IN      | Y    | 31@I |      |      |            |
-| H3  | PL20D | IOL | C   |      |      |       |             |          |       |      |         |      |      |      |      |            |
-| H5  | PL20C | IOL | T   |      |      |       |             |          |       |      |         |      |      |      |      |            |
-| G5  | PL20B | IOL | L-  |      |      |       | io_ft_gpio1 | LVCMOS33 | 3.3V  | OFF  | IN      | Y    | 31@I |      |      |            |
-| H4  | PL20A | IOL | L+  |      |      |       |             |          |       |      |         |      |      |      |      |            |
-| E1  | PL17D | IOL | C   |      |      |       |             |          |       |      |         |      |      |      |      |            |
-| D2  | PL17C | IOL | T   |      |      |       |             |          |       |      |         |      |      |      |      |            |
-| D1  | PL17B | IOL | L-  |      |      |       |             |          |       |      |         |      |      |      |      |            |
-| C1  | PL17A | IOL | L+  |      |      |       |             |          |       |      |         |      |      |      |      |            |
-| C2  | PL14D | IOL | C   |      |      |       |             |          |       |      |         |      |      |      |      |            |
-| B2  | PL14C | IOL | T   |      | 1    |       |             |          |       |      |         |      |      |      |      |            |
-| B1  | PL14B | IOL | L-  |      |      |       |             |          |       |      |         |      |      |      |      |            |
-| A2  | PL14A | IOL | L+  |      |      |       |             |          |       |      |         |      |      |      |      |            |
-| F5  | PL11D | IOL | C   |      |      |       |             |          |       |      |         |      |      |      |      |            |
-| E5  | PL11C | IOL | T   |      |      |       |             |          |       |      |         |      |      |      |      |            |
-| E3  | PL11B | IOL | L-  |      |      |       |             |          |       |      |         |      |      |      |      |            |
-| F4  | PL11A | IOL | L+  |      |      |       |             |          |       |      |         |      |      |      |      |            |
-| D3  | PL8D  | IOL | C   |      |      |       |             |          |       |      |         |      |      |      |      |            |
-| C3  | PL8C  | IOL | T   |      |      |       |             |          |       |      |         |      |      |      |      |            |
-| D5  | PL8B  | IOL | L-  |      |      |       |             |          |       |      |         |      |      |      |      |            |
-| E4  | PL8A  | IOL | L+  |      |      |       |             |          |       |      |         |      |      |      |      |            |
-| B3  | PL5D  | IOL | C   |      |      |       |             |          |       |      |         |      |      |      |      |            |
-| A3  | PL5C  | IOL | T   |      |      |       |             |          |       |      |         |      |      |      |      |            |
-| B4  | PL5B  | IOL | L-  |      |      |       |             |          |       |      |         |      |      |      |      |            |
-| C4  | PL5A  | IOL | L+  |      |      |       |             |          |       |      |         |      |      |      |      |            |
-| C5  | PL2D  | IOL | C   |      |      |       |             |          |       |      |         |      |      |      |      |            |
-| B5  | PL2C  | IOL | T   |      |      |       |             |          |       |      |         |      |      |      |      |            |
-| A5  | PL2B  | IOL | L-  |      |      |       |             |          |       |      |         |      |      |      |      |            |
-| A4  | PL2A  | IOL | L+  |      |      |       |             |          |       |      |         |      |      |      |      |            |
-+-----+-------+-----+-----+------+------+-------+-------------+----------+-------+------+---------+------+------+------+------+------------+
-
-*** Bank 7 - # of PIO sites: 32, occupied: 2; # of Vref inputs used: 0
-
-
---- I/Os placed in Bank 8 ---
-Bank Vccio=3.3V, Vref=OFF@OFF
-
-+-----+-------+------+-----+------+------+-------+-----+---------+-------+------+---------+------+------+------+------+------------+
-| Pin | Site  | IOL  | T/C | Proh | Vref | Other | I/O | IO_TYPE | Vccio | Vref | Dir/IOL | Lock | LCT# | INRD | LVDS | Attributes |
-+-----+-------+------+-----+------+------+-------+-----+---------+-------+------+---------+------+------+------+------+------------+
-| R1  | PB4A  | SIOL | T   |      |      |       |     |         |       |      |         |      |      |      |      |            |
-| T1  | PB4B  | SIOL | C   |      |      |       |     |         |       |      |         |      |      |      |      |            |
-| U1  | PB6A  | SIOL | T   |      |      |       |     |         |       |      |         |      |      |      |      |            |
-| V1  | PB6B  | SIOL | C   |      |      |       |     |         |       |      |         |      |      |      |      |            |
-| W1  | PB9A  | SIOL | T   |      |      |       |     |         |       |      |         |      |      |      |      |            |
-| Y2  | PB9B  | SIOL | C   |      |      |       |     |         |       |      |         |      |      |      |      |            |
-| V2  | PB11A | SIOL | T   |      |      |       |     |         |       |      |         |      |      |      |      |            |
-| W2  | PB11B | SIOL | C   |      |      |       |     |         |       |      |         |      |      |      |      |            |
-| T2  | PB13A | SIOL | T   |      |      |       |     |         |       |      |         |      |      |      |      |            |
-| U2  | PB13B | SIOL | C   |      |      |       |     |         |       |      |         |      |      |      |      |            |
-| R2  | PB15A | SIOL | T   |      |      |       |     |         |       |      |         |      |      |      |      |            |
-| R3  | PB15B | SIOL | C   |      |      |       |     |         |       |      |         |      |      |      |      |            |
-| T3  | PB18A | SIOL | C   |      |      |       |     |         |       |      |         |      |      |      |      |            |
-+-----+-------+------+-----+------+------+-------+-----+---------+-------+------+---------+------+------+------+------+------------+
-
-*** Bank 8 - # of PIO sites: 13, occupied: 0; # of Vref inputs used: 0
-
-
-*** I/Os not placed ***
-PIO "io_ft_data[15]": (IO_TYPE=LVCMOS25_BIDI, Vccio/Vref=2.5V/OFF@OFF, BIDI/NO_IOL) was not placed.
-PIO "io_ft_data[14]": (IO_TYPE=LVCMOS25_BIDI, Vccio/Vref=2.5V/OFF@OFF, BIDI/NO_IOL) was not placed.
-PIO "io_ft_data[13]": (IO_TYPE=LVCMOS25_BIDI, Vccio/Vref=2.5V/OFF@OFF, BIDI/NO_IOL) was not placed.
-PIO "io_ft_data[12]": (IO_TYPE=LVCMOS25_BIDI, Vccio/Vref=2.5V/OFF@OFF, BIDI/NO_IOL) was not placed.
-PIO "io_ft_data[11]": (IO_TYPE=LVCMOS25_BIDI, Vccio/Vref=2.5V/OFF@OFF, BIDI/NO_IOL) was not placed.
-PIO "io_ft_data[10]": (IO_TYPE=LVCMOS25_BIDI, Vccio/Vref=2.5V/OFF@OFF, BIDI/NO_IOL) was not placed.
-PIO "io_ft_data[9]": (IO_TYPE=LVCMOS25_BIDI, Vccio/Vref=2.5V/OFF@OFF, BIDI/NO_IOL) was not placed.
-PIO "io_ft_data[8]": (IO_TYPE=LVCMOS25_BIDI, Vccio/Vref=2.5V/OFF@OFF, BIDI/NO_IOL) was not placed.
-PIO "io_ft_data[7]": (IO_TYPE=LVCMOS25_BIDI, Vccio/Vref=2.5V/OFF@OFF, BIDI/NO_IOL) was not placed.
-PIO "io_ft_data[6]": (IO_TYPE=LVCMOS25_BIDI, Vccio/Vref=2.5V/OFF@OFF, BIDI/NO_IOL) was not placed.
-PIO "io_ft_data[5]": (IO_TYPE=LVCMOS25_BIDI, Vccio/Vref=2.5V/OFF@OFF, BIDI/NO_IOL) was not placed.
-PIO "io_ft_data[4]": (IO_TYPE=LVCMOS25_BIDI, Vccio/Vref=2.5V/OFF@OFF, BIDI/NO_IOL) was not placed.
-PIO "io_ft_data[3]": (IO_TYPE=LVCMOS25_BIDI, Vccio/Vref=2.5V/OFF@OFF, BIDI/NO_IOL) was not placed.
-PIO "io_ft_data[2]": (IO_TYPE=LVCMOS25_BIDI, Vccio/Vref=2.5V/OFF@OFF, BIDI/NO_IOL) was not placed.
-PIO "io_ft_data[1]": (IO_TYPE=LVCMOS25_BIDI, Vccio/Vref=2.5V/OFF@OFF, BIDI/NO_IOL) was not placed.
-PIO "io_ft_data[0]": (IO_TYPE=LVCMOS25_BIDI, Vccio/Vref=2.5V/OFF@OFF, BIDI/NO_IOL) was not placed.
-PIO "io_sdram_dq[15]": (IO_TYPE=LVCMOS25_BIDI, Vccio/Vref=2.5V/OFF@OFF, BIDI/NO_IOL) was not placed.
-PIO "io_sdram_dq[14]": (IO_TYPE=LVCMOS25_BIDI, Vccio/Vref=2.5V/OFF@OFF, BIDI/NO_IOL) was not placed.
-PIO "io_sdram_dq[13]": (IO_TYPE=LVCMOS25_BIDI, Vccio/Vref=2.5V/OFF@OFF, BIDI/NO_IOL) was not placed.
-PIO "io_sdram_dq[12]": (IO_TYPE=LVCMOS25_BIDI, Vccio/Vref=2.5V/OFF@OFF, BIDI/NO_IOL) was not placed.
-PIO "io_sdram_dq[11]": (IO_TYPE=LVCMOS25_BIDI, Vccio/Vref=2.5V/OFF@OFF, BIDI/NO_IOL) was not placed.
-PIO "io_sdram_dq[10]": (IO_TYPE=LVCMOS25_BIDI, Vccio/Vref=2.5V/OFF@OFF, BIDI/NO_IOL) was not placed.
-PIO "io_sdram_dq[9]": (IO_TYPE=LVCMOS25_BIDI, Vccio/Vref=2.5V/OFF@OFF, BIDI/NO_IOL) was not placed.
-PIO "io_sdram_dq[8]": (IO_TYPE=LVCMOS25_BIDI, Vccio/Vref=2.5V/OFF@OFF, BIDI/NO_IOL) was not placed.
-PIO "io_sdram_dq[7]": (IO_TYPE=LVCMOS25_BIDI, Vccio/Vref=2.5V/OFF@OFF, BIDI/NO_IOL) was not placed.
-PIO "io_sdram_dq[6]": (IO_TYPE=LVCMOS25_BIDI, Vccio/Vref=2.5V/OFF@OFF, BIDI/NO_IOL) was not placed.
-PIO "io_sdram_dq[5]": (IO_TYPE=LVCMOS25_BIDI, Vccio/Vref=2.5V/OFF@OFF, BIDI/NO_IOL) was not placed.
-PIO "io_sdram_dq[4]": (IO_TYPE=LVCMOS25_BIDI, Vccio/Vref=2.5V/OFF@OFF, BIDI/NO_IOL) was not placed.
-PIO "io_sdram_dq[3]": (IO_TYPE=LVCMOS25_BIDI, Vccio/Vref=2.5V/OFF@OFF, BIDI/NO_IOL) was not placed.
-PIO "io_sdram_dq[2]": (IO_TYPE=LVCMOS25_BIDI, Vccio/Vref=2.5V/OFF@OFF, BIDI/NO_IOL) was not placed.
-PIO "io_sdram_dq[1]": (IO_TYPE=LVCMOS25_BIDI, Vccio/Vref=2.5V/OFF@OFF, BIDI/NO_IOL) was not placed.
-PIO "io_sdram_dq[0]": (IO_TYPE=LVCMOS25_BIDI, Vccio/Vref=2.5V/OFF@OFF, BIDI/NO_IOL) was not placed.
-PIO "io_pmod_1[7]": (IO_TYPE=LVCMOS25_BIDI, Vccio/Vref=2.5V/OFF@OFF, BIDI/NO_IOL) was not placed.
-PIO "io_pmod_1[6]": (IO_TYPE=LVCMOS25_BIDI, Vccio/Vref=2.5V/OFF@OFF, BIDI/NO_IOL) was not placed.
-PIO "io_pmod_1[5]": (IO_TYPE=LVCMOS25_BIDI, Vccio/Vref=2.5V/OFF@OFF, BIDI/NO_IOL) was not placed.
-PIO "io_pmod_1[4]": (IO_TYPE=LVCMOS25_BIDI, Vccio/Vref=2.5V/OFF@OFF, BIDI/NO_IOL) was not placed.
-PIO "io_pmod_1[3]": (IO_TYPE=LVCMOS25_BIDI, Vccio/Vref=2.5V/OFF@OFF, BIDI/NO_IOL) was not placed.
-PIO "io_pmod_1[2]": (IO_TYPE=LVCMOS25_BIDI, Vccio/Vref=2.5V/OFF@OFF, BIDI/NO_IOL) was not placed.
-PIO "io_pmod_1[1]": (IO_TYPE=LVCMOS25_BIDI, Vccio/Vref=2.5V/OFF@OFF, BIDI/NO_IOL) was not placed.
-PIO "io_pmod_1[0]": (IO_TYPE=LVCMOS25_BIDI, Vccio/Vref=2.5V/OFF@OFF, BIDI/NO_IOL) was not placed.
-PIO "io_pmod_2[7]": (IO_TYPE=LVCMOS25_BIDI, Vccio/Vref=2.5V/OFF@OFF, BIDI/NO_IOL) was not placed.
-PIO "io_pmod_2[6]": (IO_TYPE=LVCMOS25_BIDI, Vccio/Vref=2.5V/OFF@OFF, BIDI/NO_IOL) was not placed.
-PIO "io_pmod_2[5]": (IO_TYPE=LVCMOS25_BIDI, Vccio/Vref=2.5V/OFF@OFF, BIDI/NO_IOL) was not placed.
-PIO "io_pmod_2[4]": (IO_TYPE=LVCMOS25_BIDI, Vccio/Vref=2.5V/OFF@OFF, BIDI/NO_IOL) was not placed.
-PIO "io_pmod_2[3]": (IO_TYPE=LVCMOS25_BIDI, Vccio/Vref=2.5V/OFF@OFF, BIDI/NO_IOL) was not placed.
-PIO "io_pmod_2[2]": (IO_TYPE=LVCMOS25_BIDI, Vccio/Vref=2.5V/OFF@OFF, BIDI/NO_IOL) was not placed.
-PIO "io_pmod_2[1]": (IO_TYPE=LVCMOS25_BIDI, Vccio/Vref=2.5V/OFF@OFF, BIDI/NO_IOL) was not placed.
-PIO "io_pmod_2[0]": (IO_TYPE=LVCMOS25_BIDI, Vccio/Vref=2.5V/OFF@OFF, BIDI/NO_IOL) was not placed.
-PIO "io_wide[39]": (IO_TYPE=LVCMOS25_BIDI, Vccio/Vref=2.5V/OFF@OFF, BIDI/NO_IOL) was not placed.
-PIO "io_wide[38]": (IO_TYPE=LVCMOS25_BIDI, Vccio/Vref=2.5V/OFF@OFF, BIDI/NO_IOL) was not placed.
-PIO "io_wide[37]": (IO_TYPE=LVCMOS25_BIDI, Vccio/Vref=2.5V/OFF@OFF, BIDI/NO_IOL) was not placed.
-PIO "io_wide[36]": (IO_TYPE=LVCMOS25_BIDI, Vccio/Vref=2.5V/OFF@OFF, BIDI/NO_IOL) was not placed.
-PIO "io_wide[35]": (IO_TYPE=LVCMOS25_BIDI, Vccio/Vref=2.5V/OFF@OFF, BIDI/NO_IOL) was not placed.
-PIO "io_wide[34]": (IO_TYPE=LVCMOS25_BIDI, Vccio/Vref=2.5V/OFF@OFF, BIDI/NO_IOL) was not placed.
-PIO "io_wide[33]": (IO_TYPE=LVCMOS25_BIDI, Vccio/Vref=2.5V/OFF@OFF, BIDI/NO_IOL) was not placed.
-PIO "io_wide[32]": (IO_TYPE=LVCMOS25_BIDI, Vccio/Vref=2.5V/OFF@OFF, BIDI/NO_IOL) was not placed.
-PIO "io_wide[31]": (IO_TYPE=LVCMOS25_BIDI, Vccio/Vref=2.5V/OFF@OFF, BIDI/NO_IOL) was not placed.
-PIO "io_wide[30]": (IO_TYPE=LVCMOS25_BIDI, Vccio/Vref=2.5V/OFF@OFF, BIDI/NO_IOL) was not placed.
-PIO "io_wide[29]": (IO_TYPE=LVCMOS25_BIDI, Vccio/Vref=2.5V/OFF@OFF, BIDI/NO_IOL) was not placed.
-PIO "io_wide[28]": (IO_TYPE=LVCMOS25_BIDI, Vccio/Vref=2.5V/OFF@OFF, BIDI/NO_IOL) was not placed.
-PIO "io_wide[27]": (IO_TYPE=LVCMOS25_BIDI, Vccio/Vref=2.5V/OFF@OFF, BIDI/NO_IOL) was not placed.
-PIO "io_wide[26]": (IO_TYPE=LVCMOS25_BIDI, Vccio/Vref=2.5V/OFF@OFF, BIDI/NO_IOL) was not placed.
-PIO "io_wide[25]": (IO_TYPE=LVCMOS25_BIDI, Vccio/Vref=2.5V/OFF@OFF, BIDI/NO_IOL) was not placed.
-PIO "io_wide[24]": (IO_TYPE=LVCMOS25_BIDI, Vccio/Vref=2.5V/OFF@OFF, BIDI/NO_IOL) was not placed.
-PIO "io_wide[23]": (IO_TYPE=LVCMOS25_BIDI, Vccio/Vref=2.5V/OFF@OFF, BIDI/NO_IOL) was not placed.
-PIO "io_wide[22]": (IO_TYPE=LVCMOS25_BIDI, Vccio/Vref=2.5V/OFF@OFF, BIDI/NO_IOL) was not placed.
-PIO "io_wide[21]": (IO_TYPE=LVCMOS25_BIDI, Vccio/Vref=2.5V/OFF@OFF, BIDI/NO_IOL) was not placed.
-PIO "io_wide[20]": (IO_TYPE=LVCMOS25_BIDI, Vccio/Vref=2.5V/OFF@OFF, BIDI/NO_IOL) was not placed.
-PIO "io_wide[19]": (IO_TYPE=LVCMOS25_BIDI, Vccio/Vref=2.5V/OFF@OFF, BIDI/NO_IOL) was not placed.
-PIO "io_wide[18]": (IO_TYPE=LVCMOS25_BIDI, Vccio/Vref=2.5V/OFF@OFF, BIDI/NO_IOL) was not placed.
-PIO "io_wide[17]": (IO_TYPE=LVCMOS25_BIDI, Vccio/Vref=2.5V/OFF@OFF, BIDI/NO_IOL) was not placed.
-PIO "io_wide[16]": (IO_TYPE=LVCMOS25_BIDI, Vccio/Vref=2.5V/OFF@OFF, BIDI/NO_IOL) was not placed.
-PIO "io_wide[15]": (IO_TYPE=LVCMOS25_BIDI, Vccio/Vref=2.5V/OFF@OFF, BIDI/NO_IOL) was not placed.
-PIO "io_wide[14]": (IO_TYPE=LVCMOS25_BIDI, Vccio/Vref=2.5V/OFF@OFF, BIDI/NO_IOL) was not placed.
-PIO "io_wide[13]": (IO_TYPE=LVCMOS25_BIDI, Vccio/Vref=2.5V/OFF@OFF, BIDI/NO_IOL) was not placed.
-PIO "io_wide[12]": (IO_TYPE=LVCMOS25_BIDI, Vccio/Vref=2.5V/OFF@OFF, BIDI/NO_IOL) was not placed.
-PIO "io_wide[11]": (IO_TYPE=LVCMOS25_BIDI, Vccio/Vref=2.5V/OFF@OFF, BIDI/NO_IOL) was not placed.
-PIO "io_wide[10]": (IO_TYPE=LVCMOS25_BIDI, Vccio/Vref=2.5V/OFF@OFF, BIDI/NO_IOL) was not placed.
-PIO "io_wide[9]": (IO_TYPE=LVCMOS25_BIDI, Vccio/Vref=2.5V/OFF@OFF, BIDI/NO_IOL) was not placed.
-PIO "io_wide[8]": (IO_TYPE=LVCMOS25_BIDI, Vccio/Vref=2.5V/OFF@OFF, BIDI/NO_IOL) was not placed.
-PIO "io_wide[7]": (IO_TYPE=LVCMOS25_BIDI, Vccio/Vref=2.5V/OFF@OFF, BIDI/NO_IOL) was not placed.
-PIO "io_wide[6]": (IO_TYPE=LVCMOS25_BIDI, Vccio/Vref=2.5V/OFF@OFF, BIDI/NO_IOL) was not placed.
-PIO "io_wide[5]": (IO_TYPE=LVCMOS25_BIDI, Vccio/Vref=2.5V/OFF@OFF, BIDI/NO_IOL) was not placed.
-PIO "io_wide[4]": (IO_TYPE=LVCMOS25_BIDI, Vccio/Vref=2.5V/OFF@OFF, BIDI/NO_IOL) was not placed.
-PIO "io_wide[3]": (IO_TYPE=LVCMOS25_BIDI, Vccio/Vref=2.5V/OFF@OFF, BIDI/NO_IOL) was not placed.
-PIO "io_wide[2]": (IO_TYPE=LVCMOS25_BIDI, Vccio/Vref=2.5V/OFF@OFF, BIDI/NO_IOL) was not placed.
-PIO "io_wide[1]": (IO_TYPE=LVCMOS25_BIDI, Vccio/Vref=2.5V/OFF@OFF, BIDI/NO_IOL) was not placed.
-PIO "io_wide[0]": (IO_TYPE=LVCMOS25_BIDI, Vccio/Vref=2.5V/OFF@OFF, BIDI/NO_IOL) was not placed.
-PIO "o_sdram_dqm[1]": (IO_TYPE=LVCMOS25_OUT, Vccio/Vref=2.5V/OFF@OFF, OUT/NO_IOL) was not placed.
-PIO "o_sdram_dqm[0]": (IO_TYPE=LVCMOS25_OUT, Vccio/Vref=2.5V/OFF@OFF, OUT/NO_IOL) was not placed.
-PIO "o_sdram_a[12]": (IO_TYPE=LVCMOS25_OUT, Vccio/Vref=2.5V/OFF@OFF, OUT/NO_IOL) was not placed.
-PIO "o_sdram_a[11]": (IO_TYPE=LVCMOS25_OUT, Vccio/Vref=2.5V/OFF@OFF, OUT/NO_IOL) was not placed.
-PIO "o_sdram_a[10]": (IO_TYPE=LVCMOS25_OUT, Vccio/Vref=2.5V/OFF@OFF, OUT/NO_IOL) was not placed.
-PIO "o_sdram_a[9]": (IO_TYPE=LVCMOS25_OUT, Vccio/Vref=2.5V/OFF@OFF, OUT/NO_IOL) was not placed.
-PIO "o_sdram_a[8]": (IO_TYPE=LVCMOS25_OUT, Vccio/Vref=2.5V/OFF@OFF, OUT/NO_IOL) was not placed.
-PIO "o_sdram_a[7]": (IO_TYPE=LVCMOS25_OUT, Vccio/Vref=2.5V/OFF@OFF, OUT/NO_IOL) was not placed.
-PIO "o_sdram_a[6]": (IO_TYPE=LVCMOS25_OUT, Vccio/Vref=2.5V/OFF@OFF, OUT/NO_IOL) was not placed.
-PIO "o_sdram_a[5]": (IO_TYPE=LVCMOS25_OUT, Vccio/Vref=2.5V/OFF@OFF, OUT/NO_IOL) was not placed.
-PIO "o_sdram_a[4]": (IO_TYPE=LVCMOS25_OUT, Vccio/Vref=2.5V/OFF@OFF, OUT/NO_IOL) was not placed.
-PIO "o_sdram_a[3]": (IO_TYPE=LVCMOS25_OUT, Vccio/Vref=2.5V/OFF@OFF, OUT/NO_IOL) was not placed.
-PIO "o_sdram_a[2]": (IO_TYPE=LVCMOS25_OUT, Vccio/Vref=2.5V/OFF@OFF, OUT/NO_IOL) was not placed.
-PIO "o_sdram_a[1]": (IO_TYPE=LVCMOS25_OUT, Vccio/Vref=2.5V/OFF@OFF, OUT/NO_IOL) was not placed.
-PIO "o_sdram_a[0]": (IO_TYPE=LVCMOS25_OUT, Vccio/Vref=2.5V/OFF@OFF, OUT/NO_IOL) was not placed.
-PIO "o_sdram_ba[1]": (IO_TYPE=LVCMOS25_OUT, Vccio/Vref=2.5V/OFF@OFF, OUT/NO_IOL) was not placed.
-PIO "o_sdram_ba[0]": (IO_TYPE=LVCMOS25_OUT, Vccio/Vref=2.5V/OFF@OFF, OUT/NO_IOL) was not placed.
-PIO "o_sdram_cs_n": (IO_TYPE=LVCMOS25_OUT, Vccio/Vref=2.5V/OFF@OFF, OUT/NO_IOL) was not placed.
-PIO "o_sdram_ras_n": (IO_TYPE=LVCMOS25_OUT, Vccio/Vref=2.5V/OFF@OFF, OUT/NO_IOL) was not placed.
-PIO "o_sdram_cas_n": (IO_TYPE=LVCMOS25_OUT, Vccio/Vref=2.5V/OFF@OFF, OUT/NO_IOL) was not placed.
-PIO "o_sdram_we_n": (IO_TYPE=LVCMOS25_OUT, Vccio/Vref=2.5V/OFF@OFF, OUT/NO_IOL) was not placed.
-PIO "o_sdram_clk_n": (IO_TYPE=LVCMOS25_OUT, Vccio/Vref=2.5V/OFF@OFF, OUT/NO_IOL) was not placed.
-PIO "o_sdram_cke_n": (IO_TYPE=LVCMOS25_OUT, Vccio/Vref=2.5V/OFF@OFF, OUT/NO_IOL) was not placed.
-PIO "io_pmod_0[7]": (IO_TYPE=LVCMOS25_OUT, Vccio/Vref=2.5V/OFF@OFF, OUT/NO_IOL) was not placed.
-PIO "io_pmod_0[6]": (IO_TYPE=LVCMOS25_OUT, Vccio/Vref=2.5V/OFF@OFF, OUT/NO_IOL) was not placed.
-PIO "io_pmod_0[5]": (IO_TYPE=LVCMOS25_OUT, Vccio/Vref=2.5V/OFF@OFF, OUT/NO_IOL) was not placed.
-PIO "io_pmod_0[4]": (IO_TYPE=LVCMOS25_OUT, Vccio/Vref=2.5V/OFF@OFF, OUT/NO_IOL) was not placed.
-PIO "io_pmod_0[3]": (IO_TYPE=LVCMOS25_OUT, Vccio/Vref=2.5V/OFF@OFF, OUT/NO_IOL) was not placed.
-PIO "io_pmod_0[2]": (IO_TYPE=LVCMOS25_OUT, Vccio/Vref=2.5V/OFF@OFF, OUT/NO_IOL) was not placed.
-PIO "io_pmod_0[1]": (IO_TYPE=LVCMOS25_OUT, Vccio/Vref=2.5V/OFF@OFF, OUT/NO_IOL) was not placed.
-PIO "io_pmod_0[0]": (IO_TYPE=LVCMOS25_OUT, Vccio/Vref=2.5V/OFF@OFF, OUT/NO_IOL) was not placed.
+NBR Summary
+-----------
+  Number of unrouted connections : 0 (0.00%)
+  Number of connections with timing violations : 0 (0.00%)
+  Estimated worst slack<setup> : <n/a>
+  Timing score<setup> : 0
+-----------
+Notes: The timing info is calculated for SETUP only and all PAR_ADJs are ignored.
 
 
 
+Total CPU time 9 secs 
+Total REAL time: 9 secs 
+Completely routed.
+End of route.  87 routed (100.00%); 0 unrouted.
 
-PAR_SUMMARY::Run status = Failed
-PAR_SUMMARY::Number of unrouted conns = <n/a>
+Hold time timing score: 0, hold timing errors: 0
+
+Timing score: 0 
+
+Dumping design to file kilsyth_bootloader.dir/5_1.ncd.
+
+
+All signals are completely routed.
+
+
+PAR_SUMMARY::Run status = Success
+PAR_SUMMARY::Number of unrouted conns = 0
 PAR_SUMMARY::Worst  slack<setup/<ns>> = <n/a>
 PAR_SUMMARY::Timing score<setup/<ns>> = <n/a>
 PAR_SUMMARY::Worst  slack<hold /<ns>> = <n/a>
 PAR_SUMMARY::Timing score<hold /<ns>> = <n/a>
-PAR_SUMMARY::Number of errors = 1
+PAR_SUMMARY::Number of errors = 0
 
-Total CPU  time to completion: 14 secs 
-Total REAL time to completion: 14 secs 
+Total CPU  time to completion: 9 secs 
+Total REAL time to completion: 10 secs 
 
 par done!
 

@@ -1,17 +1,17 @@
 NOTE Copyright (C), 1992-2010, Lattice Semiconductor Corporation *
 NOTE All Rights Reserved *
-NOTE DATE CREATED: Tue Dec 11 21:34:55 2018 *
+NOTE DATE CREATED: Mon Dec 17 22:50:45 2018 *
 NOTE DESIGN NAME: kilsyth_top *
 NOTE DEVICE NAME: LFE5U-12F-6CABGA381 *
 NOTE PIN ASSIGNMENTS *
-NOTE PINS leds[7] : C11 : out *
-NOTE PINS leds[6] : B11 : out *
-NOTE PINS leds[5] : C10 : out *
-NOTE PINS leds[4] : A11 : out *
-NOTE PINS leds[3] : A10 : out *
-NOTE PINS leds[2] : B10 : out *
-NOTE PINS leds[1] : B9 : out *
-NOTE PINS leds[0] : C8 : out *
-NOTE PINS clk : G3 : in *
+NOTE PINS o_leds[7] : C11 : out *
+NOTE PINS o_leds[6] : B11 : out *
+NOTE PINS o_leds[5] : C10 : out *
+NOTE PINS o_leds[4] : A11 : out *
+NOTE PINS o_leds[3] : A10 : out *
+NOTE PINS o_leds[2] : B10 : out *
+NOTE PINS o_leds[1] : B9 : out *
+NOTE PINS o_leds[0] : C8 : out *
+NOTE PINS i_clk16 : G3 : in *
 NOTE CONFIGURATION MODE: JTAG *
 NOTE COMPRESSION: off *
