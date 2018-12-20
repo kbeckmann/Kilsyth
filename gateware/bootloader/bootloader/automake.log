@@ -1,312 +1,4 @@
 
-synthesis -f "kilsyth_bootloader_lattice.synproj"
-synthesis:  version Diamond (64-bit) 3.10.3.144.3
-
-Copyright (c) 1991-1994 by NeoCAD Inc. All rights reserved.
-Copyright (c) 1995 AT&T Corp.   All rights reserved.
-Copyright (c) 1995-2001 Lucent Technologies Inc.  All rights reserved.
-Copyright (c) 2001 Agere Systems   All rights reserved.
-Copyright (c) 2002-2017 Lattice Semiconductor Corporation,  All rights reserved.
-Wed Dec 19 00:44:18 2018
-
-
-Command Line:  synthesis -f kilsyth_bootloader_lattice.synproj -gui -msgset /home/konrad/dev/Kilsyth/gateware/bootloader/promote.xml 
-
-    <postMsg mid="35002000" type="Info"    dynamic="0" navigation="0"  />
-Synthesis options:
-The -a option is ECP5U.
-The -s option is 6.
-The -t option is CABGA381.
-The -d option is LFE5U-12F.
-Using package CABGA381.
-Using performance grade 6.
-                                                          
-
-##########################################################
-
-### Lattice Family : ECP5U
-
-### Device  : LFE5U-12F
-
-### Package : CABGA381
-
-### Speed   : 6
-
-##########################################################
-
-                                                          
-
-    <postMsg mid="35001781" type="Info"    dynamic="0" navigation="0"  />
-Optimization goal = Timing
-Top-level module name = kilsyth_top.
-Target frequency = 200.000000 MHz.
-Maximum fanout = 1000.
-Timing path count = 3
-BRAM utilization = 100.000000 %
-DSP usage = true
-DSP utilization = 100.000000 %
-fsm_encoding_style = auto
-resolve_mixed_drivers = 0
-fix_gated_clocks = 1
-
-Mux style = Auto
-Use Carry Chain = true
-carry_chain_length = 0
-Loop Limit = 1950.
-Use IO Insertion = TRUE
-Use IO Reg = AUTO
-
-Resource Sharing = TRUE
-Propagate Constants = TRUE
-Remove Duplicate Registers = TRUE
-force_gsr = auto
-ROM style = auto
-RAM style = auto
-The -comp option is FALSE.
-The -syn option is FALSE.
--p /home/konrad/dev/Kilsyth/gateware/bootloader (searchpath added)
--p /usr/local/diamond/3.10_x64/ispfpga/sa5p00/data (searchpath added)
--p /home/konrad/dev/Kilsyth/gateware/bootloader/bootloader (searchpath added)
--p /home/konrad/dev/Kilsyth/gateware/bootloader (searchpath added)
-Verilog design file = /home/konrad/dev/Kilsyth/gateware/bootloader/src/kilsyth_top.v
-NGD file = kilsyth_bootloader.ngd
--sdc option: SDC file input not used.
--lpf option: Output file option is ON.
-Hardtimer checking is enabled (default). The -dt option is not used.
-The -r option is OFF. [ Remove LOC Properties is OFF. ]
-Technology check ok...
-
-Analyzing Verilog file /usr/local/diamond/3.10_x64/ispfpga/userware/unix/SYNTHESIS_HEADERS/ecp5u.v. VERI-1482
-Compile design.
-Compile Design Begin
-Analyzing Verilog file /home/konrad/dev/Kilsyth/gateware/bootloader/src/kilsyth_top.v. VERI-1482
-Analyzing Verilog file /usr/local/diamond/3.10_x64/ispfpga/userware/unix/SYNTHESIS_HEADERS/ecp5u.v. VERI-1482
-Top module name (Verilog): kilsyth_top
-    <postMsg mid="35901018" type="Info"    dynamic="2" navigation="2" arg0="/home/konrad/dev/Kilsyth/gateware/bootloader/src/kilsyth_top.v(3): " arg1="kilsyth_top" arg2="/home/konrad/dev/Kilsyth/gateware/bootloader/src/kilsyth_top.v" arg3="3"  />
-    <postMsg mid="35901220" type="Warning" dynamic="2" navigation="2" arg0="/home/konrad/dev/Kilsyth/gateware/bootloader/src/kilsyth_top.v(47): " arg1="ft_txe_n" arg2="/home/konrad/dev/Kilsyth/gateware/bootloader/src/kilsyth_top.v" arg3="47"  />
-    <postMsg mid="35901220" type="Warning" dynamic="2" navigation="2" arg0="/home/konrad/dev/Kilsyth/gateware/bootloader/src/kilsyth_top.v(49): " arg1="ft_rxf_n" arg2="/home/konrad/dev/Kilsyth/gateware/bootloader/src/kilsyth_top.v" arg3="49"  />
-    <postMsg mid="35901209" type="Warning" dynamic="3" navigation="2" arg0="/home/konrad/dev/Kilsyth/gateware/bootloader/src/kilsyth_top.v(54): " arg1="32" arg2="26" arg3="/home/konrad/dev/Kilsyth/gateware/bootloader/src/kilsyth_top.v" arg4="54"  />
-Last elaborated design is kilsyth_top()
-Loading NGL library '/usr/local/diamond/3.10_x64/ispfpga/sa5p00/data/sa5plib.ngl'...
-Loading NGL library '/usr/local/diamond/3.10_x64/ispfpga/xo2c00/data/xo2clib.ngl'...
-Loading NGL library '/usr/local/diamond/3.10_x64/ispfpga/mg5g00/data/mg5glib.ngl'...
-Loading NGL library '/usr/local/diamond/3.10_x64/ispfpga/or5g00/data/orc5glib.ngl'...
-Loading device for application map from file 'sa5p25.nph' in environment: /usr/local/diamond/3.10_x64/ispfpga.
-Package Status:                     Final          Version 1.33.
-Top-level module name = kilsyth_top.
-    <postMsg mid="35001771" type="Warning" dynamic="1" navigation="0" arg0="pwr"  />
-######## Converting I/O port io_ft_data[15] to input.
-######## Converting I/O port io_ft_data[14] to input.
-######## Converting I/O port io_ft_data[13] to input.
-######## Converting I/O port io_ft_data[12] to input.
-######## Converting I/O port io_ft_data[11] to input.
-######## Converting I/O port io_ft_data[10] to input.
-######## Converting I/O port io_ft_data[9] to input.
-######## Converting I/O port io_ft_data[8] to input.
-######## Converting I/O port io_ft_data[7] to input.
-######## Converting I/O port io_ft_data[6] to input.
-######## Converting I/O port io_ft_data[5] to input.
-######## Converting I/O port io_ft_data[4] to input.
-######## Converting I/O port io_ft_data[3] to input.
-######## Converting I/O port io_ft_data[2] to input.
-######## Converting I/O port io_ft_data[1] to input.
-######## Converting I/O port io_ft_data[0] to input.
-######## Converting I/O port io_ft_gpio1 to input.
-
-
-
-GSR will not be inferred because no asynchronous signal was found in the netlist.
-Applying 200.000000 MHz constraint to all clocks
-
-    <postMsg mid="35001611" type="Warning" dynamic="0" navigation="0"  />
-Results of NGD DRC are available in kilsyth_top_drc.log.
-Loading NGL library '/usr/local/diamond/3.10_x64/ispfpga/sa5p00/data/sa5plib.ngl'...
-Loading NGL library '/usr/local/diamond/3.10_x64/ispfpga/xo2c00/data/xo2clib.ngl'...
-Loading NGL library '/usr/local/diamond/3.10_x64/ispfpga/mg5g00/data/mg5glib.ngl'...
-Loading NGL library '/usr/local/diamond/3.10_x64/ispfpga/or5g00/data/orc5glib.ngl'...
-
-
-Running DRC...
-
-DRC complete with no errors or warnings
-
-Design Results:
-     90 blocks expanded
-completed the first expansion
-All blocks are expanded and NGD expansion is successful.
-Writing NGD file kilsyth_bootloader.ngd.
-
-################### Begin Area Report (kilsyth_top)######################
-Number of register bits => 32 of 12687 (0 % )
-CCU2C => 13
-FD1S3AX => 32
-GSR => 1
-IB => 24
-LUT4 => 7
-OB => 10
-################### End Area Report ##################
-
-################### Begin Clock Report ######################
-Clock Nets
-Number of Clocks: 2
-  Net : i_clk16_c, loads : 31
-  Net : i_ft_clk_c, loads : 1
-Clock Enable Nets
-Number of Clock Enables: 0
-Top 0 highest fanout Clock Enables:
-Highest fanout non-clock nets
-Top 10 highest fanout non-clock nets:
-  Net : counter_23, loads : 2
-  Net : io_ft_data_c_15, loads : 1
-  Net : io_ft_data_c_14, loads : 1
-  Net : io_ft_data_c_13, loads : 1
-  Net : io_ft_data_c_12, loads : 1
-  Net : io_ft_data_c_11, loads : 1
-  Net : io_ft_data_c_10, loads : 1
-  Net : io_ft_data_c_9, loads : 1
-  Net : io_ft_data_c_8, loads : 1
-  Net : io_ft_data_c_7, loads : 1
-################### End Clock Report ##################
-
-Timing Report Summary
---------------
---------------------------------------------------------------------------------
-Constraint                              |   Constraint|       Actual|Levels
---------------------------------------------------------------------------------
-                                        |             |             |
-create_clock -period 5.000000 -name     |             |             |
-clk1 [get_nets i_ft_clk_c]              |            -|            -|     0  
-                                        |             |             |
-create_clock -period 5.000000 -name     |             |             |
-clk0 [get_nets i_clk16_c]               |  200.000 MHz|  271.592 MHz|    14  
-                                        |             |             |
---------------------------------------------------------------------------------
-
-
-All constraints were met.
-
-
-Peak Memory Usage: 207.602  MB
-
---------------------------------------------------------------
-Elapsed CPU time for LSE flow : 0.458  secs
---------------------------------------------------------------
-
-map -a "ECP5U" -p LFE5U-12F -t CABGA381 -s 6 -oc Commercial   "kilsyth_bootloader.ngd" -o "kilsyth_bootloader_map.ncd" -pr "kilsyth_bootloader.prf" -mp "kilsyth_bootloader.mrp" -lpf "/home/konrad/dev/Kilsyth/gateware/bootloader/bootloader/kilsyth_bootloader.lpf" -lpf "/home/konrad/dev/Kilsyth/gateware/bootloader/kilsyth.lpf"             
-map:  version Diamond (64-bit) 3.10.3.144.3
-
-Copyright (c) 1991-1994 by NeoCAD Inc. All rights reserved.
-Copyright (c) 1995 AT&T Corp.   All rights reserved.
-Copyright (c) 1995-2001 Lucent Technologies Inc.  All rights reserved.
-Copyright (c) 2001 Agere Systems   All rights reserved.
-Copyright (c) 2002-2017 Lattice Semiconductor Corporation,  All rights reserved.
-   Process the file: kilsyth_bootloader.ngd
-   Picdevice="LFE5U-12F"
-
-   Pictype="CABGA381"
-
-   Picspeed=6
-
-   Remove unused logic
-
-   Do not produce over sized NCDs.
-
-Part used: LFE5U-12FCABGA381, Performance used: 6.
-
-Loading device for application baspr from file 'sa5p25.nph' in environment: /usr/local/diamond/3.10_x64/ispfpga.
-Package Status:                     Final          Version 1.33.
-
-Running general design DRC...
-
-Removing unused logic...
-
-Optimizing...
-
-56 CCU2 constant inputs absorbed.
-
-
-
-
-Design Summary:
-   Number of registers:     32 out of 12687 (0%)
-      PFU registers:           32 out of 12096 (0%)
-      PIO registers:            0 out of   591 (0%)
-   Number of SLICEs:        21 out of  6048 (0%)
-      SLICEs as Logic/ROM:     21 out of  6048 (0%)
-      SLICEs as RAM:            0 out of  4536 (0%)
-      SLICEs as Carry:         13 out of  6048 (0%)
-   Number of LUT4s:         33 out of 12096 (0%)
-      Number used as logic LUTs:          7
-      Number used as distributed RAM:     0
-      Number used as ripple logic:       26
-      Number used as shift registers:     0
-   Number of PIO sites used: 34 out of 197 (17%)
-   Number of block RAMs:  0 out of 32 (0%)
-   Number of GSRs:  0 out of 1 (0%)
-   JTAG used :      No
-   Readback used :  No
-   Oscillator used :  No
-   Startup used :   No
-   DTR used :   No
-   Number of Dynamic Bank Controller (BCINRD):  0 out of 4 (0%)
-   Number of Dynamic Bank Controller (BCLVDSOB):  0 out of 4 (0%)
-   Number of DCC:  0 out of 60 (0%)
-   Number of DCS:  0 out of 2 (0%)
-   Number of PLLs:  0 out of 2 (0%)
-   Number of DDRDLLs:  0 out of 4 (0%)
-   Number of CLKDIV:  0 out of 4 (0%)
-   Number of ECLKSYNC:  0 out of 10 (0%)
-   Number of ECLKBRIDGECS:  0 out of 2 (0%)
-   Notes:-
-      1. Total number of LUT4s = (Number of logic LUT4s) + 2*(Number of distributed RAMs) + 2*(Number of ripple logic)
-      2. Number of logic LUT4s does not include count of distributed RAM and ripple logic.
-
-   Number Of Mapped DSP Components:
-   --------------------------------
-   MULT18X18D          0
-   MULT9X9D            0
-   ALU54B              0
-   ALU24B              0
-   PRADD18A            0
-   PRADD9A             0
-   --------------------------------
-   Number of Used DSP MULT Sites:  0 out of 56 (0 %)
-   Number of Used DSP ALU Sites:  0 out of 28 (0 %)
-   Number of Used DSP PRADD Sites:  0 out of 56 (0 %)
-   Number of clocks:  2
-     Net i_clk16_c: 17 loads, 17 rising, 0 falling (Driver: PIO i_clk16 )
-     Net i_ft_clk_c: 1 loads, 1 rising, 0 falling (Driver: PIO i_ft_clk )
-   Number of Clock Enables:  0
-   Number of LSRs:  0
-   Number of nets driven by tri-state buffers:  0
-   Top 10 highest fanout non-clock nets:
-     Net counter_23: 2 loads
-     Net i_ft_be_c_0: 1 loads
-     Net i_ft_be_c_1: 1 loads
-     Net i_ft_oe_n_c: 1 loads
-     Net i_ft_rd_n_c: 1 loads
-     Net i_ft_wr_n_c: 1 loads
-     Net o_leds_c_1: 1 loads
-     Net o_leds_c_2: 1 loads
-     Net o_leds_c_3: 1 loads
-     Net o_leds_c_4: 1 loads
- 
-
-   Number of warnings:  0
-   Number of errors:    0
-
-
-
-Total CPU Time: 0 secs  
-Total REAL Time: 0 secs  
-Peak Memory Usage: 264 MB
-
-Dumping design to file kilsyth_bootloader_map.ncd.
-
-ncd2vdb "kilsyth_bootloader_map.ncd" ".vdbs/kilsyth_bootloader_map.vdb"
-
-Loading device for application ncd2vdb from file 'sa5p25.nph' in environment: /usr/local/diamond/3.10_x64/ispfpga.
-
 mpartrce -p "kilsyth_bootloader.p2t" -f "kilsyth_bootloader.p3t" -tf "kilsyth_bootloader.pt" "kilsyth_bootloader_map.ncd" "kilsyth_bootloader.ncd"
 
 ---- MParTrce Tool ----
@@ -314,7 +6,7 @@ Removing old design directory at request of -rem command line option to this pro
 Running par. Please wait . . .
 
 Lattice Place and Route Report for Design "kilsyth_bootloader_map.ncd"
-Wed Dec 19 00:44:20 2018
+Thu Dec 20 22:41:26 2018
 
 PAR: Place And Route Diamond (64-bit) 3.10.3.144.3.
 Command Line: par -w -l 5 -i 6 -t 1 -c 0 -e 0 -gui -msgset /home/konrad/dev/Kilsyth/gateware/bootloader/promote.xml -exp parUseNBR=1:parCDP=auto:parCDR=1:parPathBased=OFF kilsyth_bootloader_map.ncd kilsyth_bootloader.dir/5_1.ncd kilsyth_bootloader.prf
@@ -338,39 +30,39 @@ License checked out.
 Ignore Preference Error(s):  True
 Device utilization summary:
 
-   PIO (prelim)      34/197          17% used
-                     34/197          17% bonded
+   PIO (prelim)      33/197          16% used
+                     33/197          16% bonded
 
-   SLICE             21/6048         <1% used
+   SLICE             23/6048         <1% used
 
 
 
 Number of Signals: 99
-Number of Connections: 116
+Number of Connections: 120
 
 Pin Constraint Summary:
-   33 out of 34 pins locked (97% locked).
+   32 out of 33 pins locked (96% locked).
 
 The following 2 signals are selected to use the primary clock routing resources:
-    i_clk16_c (driver: i_clk16, clk/ce/sr load #: 17/0/0)
-    i_ft_clk_c (driver: i_ft_clk, clk/ce/sr load #: 1/0/0)
+    i_clk16_c (driver: i_clk16, clk/ce/sr load #: 16/0/0)
+    i_ft_clk_c (driver: i_ft_clk, clk/ce/sr load #: 2/0/0)
 
 
 No signal is selected as Global Set/Reset.
 .
 Starting Placer Phase 0.
-...........
-Finished Placer Phase 0.  REAL time: 0 secs 
+..........
+Finished Placer Phase 0.  REAL time: 2 secs 
 
 Starting Placer Phase 1.
-...................
-Placer score = 22488.
-Finished Placer Phase 1.  REAL time: 7 secs 
+....................
+Placer score = 25035.
+Finished Placer Phase 1.  REAL time: 8 secs 
 
 Starting Placer Phase 2.
 .
-Placer score =  22461
-Finished Placer Phase 2.  REAL time: 7 secs 
+Placer score =  24977
+Finished Placer Phase 2.  REAL time: 8 secs 
 
 
 ------------------ Clock Report ------------------
@@ -384,7 +76,7 @@ Global Clock Resources:
   CLKDIV     : 0 out of 4 (0%)
 
 Quadrant TL Clocks:
-  PRIMARY "i_clk16_c" from comp "i_clk16" on CLK_PIN site "G3 (PL23A)", CLK/CE/SR load = 17
+  PRIMARY "i_clk16_c" from comp "i_clk16" on CLK_PIN site "G3 (PL23A)", CLK/CE/SR load = 14
 
   PRIMARY  : 1 out of 16 (6%)
 
@@ -393,9 +85,10 @@ Quadrant TR Clocks:
   PRIMARY  : 0 out of 16 (0%)
 
 Quadrant BL Clocks:
-  PRIMARY "i_ft_clk_c" from comp "i_ft_clk" on CLK_PIN site "H2 (PL26C)", CLK/CE/SR load = 1
+  PRIMARY "i_clk16_c" from comp "i_clk16" on CLK_PIN site "G3 (PL23A)", CLK/CE/SR load = 2
+  PRIMARY "i_ft_clk_c" from comp "i_ft_clk" on CLK_PIN site "H2 (PL26C)", CLK/CE/SR load = 2
 
-  PRIMARY  : 1 out of 16 (6%)
+  PRIMARY  : 2 out of 16 (12%)
 
 Quadrant BR Clocks:
 
@@ -411,9 +104,9 @@ Edge Clocks:
 
 +
 I/O Usage Summary (final):
-   34 out of 197 (17.3%) PIO sites used.
-   34 out of 197 (17.3%) bonded PIO sites used.
-   Number of PIO comps: 34; differential: 0.
+   33 out of 197 (16.8%) PIO sites used.
+   33 out of 197 (16.8%) bonded PIO sites used.
+   Number of PIO comps: 33; differential: 0.
    Number of Vref pins used: 0.
 
 I/O Bank Usage Summary:
@@ -421,7 +114,7 @@ I/O Bank Usage Summary:
 | I/O Bank | Usage          | Bank Vccio | Bank Vref1 | Bank Vref2 |
 +----------+----------------+------------+------------+------------+
 | 0        | 8 / 24 ( 33%)  | 3.3V       | -          | -          |
-| 1        | 1 / 32 (  3%)  | 3.3V       | -          | -          |
+| 1        | 0 / 32 (  0%)  | 3.3V       | -          | -          |
 | 2        | 0 / 32 (  0%)  | 3.3V       | -          | -          |
 | 3        | 0 / 32 (  0%)  | 3.3V       | -          | -          |
 | 6        | 24 / 32 ( 75%) | 3.3V       | -          | -          |
@@ -429,21 +122,16 @@ I/O Bank Usage Summary:
 | 8        | 0 / 13 (  0%)  | 3.3V       | -          | -          |
 +----------+----------------+------------+------------+------------+
 
-Total placer CPU time: 7 secs 
+Total placer CPU time: 8 secs 
 
 Dumping design to file kilsyth_bootloader.dir/5_1.ncd.
 
-
------------------------------------------------------------------
-INFO - par: ASE feature is off due to non timing-driven settings.  
------------------------------------------------------------------
-
-0 connections routed; 116 unrouted.
+0 connections routed; 120 unrouted.
 Starting router resource preassignment
 
-Completed router resource preassignment. Real time: 10 secs 
+Completed router resource preassignment. Real time: 11 secs 
 
-Start NBR router at Wed Dec 19 00:44:30 CET 2018
+Start NBR router at Thu Dec 20 22:41:37 CET 2018
 
 *****************************************************************
 Info: NBR allows conflicts(one node used by more than one signal)
@@ -458,24 +146,38 @@ Note: NBR uses a different method to calculate timing slacks. The
       your design.                                               
 *****************************************************************
 
-Start NBR special constraint process at Wed Dec 19 00:44:30 CET 2018
+Start NBR special constraint process at Thu Dec 20 22:41:37 CET 2018
 
-Start NBR section for initial routing at Wed Dec 19 00:44:30 CET 2018
+Start NBR section for initial routing at Thu Dec 20 22:41:37 CET 2018
+Level 1, iteration 1
+0(0.00%) conflict; 63(52.50%) untouched conns; 0 (nbr) score; 
+Estimated worst slack/total negative slack<setup>: 9.431ns/0.000ns; real time: 11 secs 
+Level 2, iteration 1
+0(0.00%) conflict; 63(52.50%) untouched conns; 0 (nbr) score; 
+Estimated worst slack/total negative slack<setup>: 9.431ns/0.000ns; real time: 11 secs 
+Level 3, iteration 1
+0(0.00%) conflict; 63(52.50%) untouched conns; 0 (nbr) score; 
+Estimated worst slack/total negative slack<setup>: 9.431ns/0.000ns; real time: 11 secs 
 Level 4, iteration 1
-0(0.00%) conflict; 0(0.00%) untouched conn; 0 (nbr) score; real time: 10 secs 
+0(0.00%) conflict; 0(0.00%) untouched conn; 0 (nbr) score; 
+Estimated worst slack/total negative slack<setup>: 9.423ns/0.000ns; real time: 11 secs 
 
 Info: Initial congestion level at 75% usage is 0
 Info: Initial congestion area  at 75% usage is 0 (0.00%)
 
-Start NBR section for normal routing at Wed Dec 19 00:44:30 CET 2018
+Start NBR section for normal routing at Thu Dec 20 22:41:37 CET 2018
 Level 4, iteration 1
-0(0.00%) conflict; 0(0.00%) untouched conn; 0 (nbr) score; real time: 10 secs 
+0(0.00%) conflict; 0(0.00%) untouched conn; 0 (nbr) score; 
+Estimated worst slack/total negative slack<setup>: 9.423ns/0.000ns; real time: 11 secs 
 
-Start NBR section for re-routing at Wed Dec 19 00:44:30 CET 2018
+Start NBR section for setup/hold timing optimization with effort level 3 at Thu Dec 20 22:41:37 CET 2018
+
+Start NBR section for re-routing at Thu Dec 20 22:41:37 CET 2018
 Level 4, iteration 1
-0(0.00%) conflict; 0(0.00%) untouched conn; 0 (nbr) score; real time: 10 secs 
+0(0.00%) conflict; 0(0.00%) untouched conn; 0 (nbr) score; 
+Estimated worst slack/total negative slack<setup>: 9.423ns/0.000ns; real time: 11 secs 
 
-Start NBR section for post-routing at Wed Dec 19 00:44:30 CET 2018
+Start NBR section for post-routing at Thu Dec 20 22:41:37 CET 2018
 
 End NBR router with 0 unrouted connection
 
@@ -483,17 +185,17 @@ NBR Summary
 -----------
   Number of unrouted connections : 0 (0.00%)
   Number of connections with timing violations : 0 (0.00%)
-  Estimated worst slack<setup> : <n/a>
+  Estimated worst slack<setup> : 9.423ns
   Timing score<setup> : 0
 -----------
 Notes: The timing info is calculated for SETUP only and all PAR_ADJs are ignored.
 
 
 
-Total CPU time 10 secs 
-Total REAL time: 10 secs 
+Total CPU time 11 secs 
+Total REAL time: 12 secs 
 Completely routed.
-End of route.  116 routed (100.00%); 0 unrouted.
+End of route.  120 routed (100.00%); 0 unrouted.
 
 Hold time timing score: 0, hold timing errors: 0
 
@@ -504,14 +206,14 @@ Dumping design to file kilsyth_bootloader.dir/5_1.ncd.
 
 PAR_SUMMARY::Run status = Success
 PAR_SUMMARY::Number of unrouted conns = 0
-PAR_SUMMARY::Worst  slack<setup/<ns>> = <n/a>
-PAR_SUMMARY::Timing score<setup/<ns>> = <n/a>
-PAR_SUMMARY::Worst  slack<hold /<ns>> = <n/a>
-PAR_SUMMARY::Timing score<hold /<ns>> = <n/a>
+PAR_SUMMARY::Worst  slack<setup/<ns>> = 9.423
+PAR_SUMMARY::Timing score<setup/<ns>> = 0.000
+PAR_SUMMARY::Worst  slack<hold /<ns>> = 0.187
+PAR_SUMMARY::Timing score<hold /<ns>> = 0.000
 PAR_SUMMARY::Number of errors = 0
 
-Total CPU  time to completion: 10 secs 
-Total REAL time to completion: 10 secs 
+Total CPU  time to completion: 11 secs 
+Total REAL time to completion: 12 secs 
 
 par done!
 

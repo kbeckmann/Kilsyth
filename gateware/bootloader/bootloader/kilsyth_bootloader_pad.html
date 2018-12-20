@@ -14,7 +14,7 @@ Performance Grade:      6
 PACKAGE:          CABGA381
 Package Status:                     Final          Version 1.33
 
-Wed Dec 19 00:44:27 2018
+Thu Dec 20 22:41:34 2018
 
 Pinout by Port Name:
 +----------------+----------+--------------+-------+-----------+-----------------------------------+
@@ -24,9 +24,8 @@ Pinout by Port Name:
 | i_ft_be[0]     | K1/6     | LVCMOS33_IN  | PL32D |           | PULL:DOWN CLAMP:ON HYSTERESIS:ON  |
 | i_ft_be[1]     | J5/6     | LVCMOS33_IN  | PL29B |           | PULL:DOWN CLAMP:ON HYSTERESIS:ON  |
 | i_ft_clk       | H2/6     | LVCMOS33_IN  | PL26C |           | PULL:DOWN CLAMP:ON HYSTERESIS:ON  |
-| i_ft_oe_n      | H1/6     | LVCMOS33_IN  | PL32C |           | PULL:DOWN CLAMP:ON HYSTERESIS:ON  |
-| i_ft_rd_n      | M4/6     | LVCMOS33_IN  | PL38A |           | PULL:DOWN CLAMP:ON HYSTERESIS:ON  |
-| i_ft_wr_n      | J1/6     | LVCMOS33_IN  | PL32B |           | PULL:DOWN CLAMP:ON HYSTERESIS:ON  |
+| i_ft_rxf_n     | J3/6     | LVCMOS33_IN  | PL29C |           | PULL:DOWN CLAMP:ON HYSTERESIS:ON  |
+| i_ft_txe_n     | J4/6     | LVCMOS33_IN  | PL29A |           | PULL:DOWN CLAMP:ON HYSTERESIS:ON  |
 | io_ft_data[0]  | P4/6     | LVCMOS33_IN  | PL47D |           | PULL:DOWN CLAMP:ON HYSTERESIS:ON  |
 | io_ft_data[10] | L3/6     | LVCMOS33_IN  | PL41C |           | PULL:DOWN CLAMP:ON HYSTERESIS:ON  |
 | io_ft_data[11] | L2/6     | LVCMOS33_IN  | PL41D |           | PULL:DOWN CLAMP:ON HYSTERESIS:ON  |
@@ -43,9 +42,9 @@ Pinout by Port Name:
 | io_ft_data[7]  | N1/6     | LVCMOS33_IN  | PL44D |           | PULL:DOWN CLAMP:ON HYSTERESIS:ON  |
 | io_ft_data[8]  | M3/6     | LVCMOS33_IN  | PL41B |           | PULL:DOWN CLAMP:ON HYSTERESIS:ON  |
 | io_ft_data[9]  | M1/6     | LVCMOS33_IN  | PL44B |           | PULL:DOWN CLAMP:ON HYSTERESIS:ON  |
-| io_ft_gpio1    | D11/1    | LVCMOS33_IN  | PT33A |           | PULL:DOWN CLAMP:ON HYSTERESIS:ON  |
-| o_ft_rxf_n     | J3/6     | LVCMOS33_OUT | PL29C |           | DRIVE:8mA CLAMP:ON SLEW:SLOW      |
-| o_ft_txe_n     | J4/6     | LVCMOS33_OUT | PL29A |           | DRIVE:8mA CLAMP:ON SLEW:SLOW      |
+| io_ft_oe_n     | H1/6     | LVCMOS33_OUT | PL32C |           | DRIVE:8mA CLAMP:ON SLEW:SLOW      |
+| o_ft_rd_n      | M4/6     | LVCMOS33_OUT | PL38A |           | DRIVE:8mA CLAMP:ON SLEW:SLOW      |
+| o_ft_wr_n      | J1/6     | LVCMOS33_OUT | PL32B |           | DRIVE:8mA CLAMP:ON SLEW:SLOW      |
 | o_leds[0]      | A9/0     | LVCMOS33_OUT | PT24A |           | DRIVE:8mA CLAMP:ON SLEW:SLOW      |
 | o_leds[1]      | B9/0     | LVCMOS33_OUT | PT22A |           | DRIVE:8mA CLAMP:ON SLEW:SLOW      |
 | o_leds[2]      | B10/0    | LVCMOS33_OUT | PT24B |           | DRIVE:8mA CLAMP:ON SLEW:SLOW      |
@@ -142,7 +141,7 @@ Vccio by Bank:
 | D7/0     |     unused, PULL:DOWN |            |              | PT9B  |                          |           |
 | D8/0     |     unused, PULL:DOWN |            |              | PT13B |                          |           |
 | D9/0     |     unused, PULL:DOWN |            |              | PT20A |                          |           |
-| D11/1    | io_ft_gpio1           |            | LVCMOS33_IN  | PT33A | PCLKT1_1                 |           |
+| D11/1    |     unused, PULL:DOWN |            |              | PT33A | PCLKT1_1                 |           |
 | D12/1    |     unused, PULL:DOWN |            |              | PT38A | GR_PCLK1_0               |           |
 | D13/1    |     unused, PULL:DOWN |            |              | PT44A |                          |           |
 | D14/1    |     unused, PULL:DOWN |            |              | PT49A |                          |           |
@@ -189,7 +188,7 @@ Vccio by Bank:
 | G18/2    |     unused, PULL:DOWN |            |              | PR8B  | RDQSN8                   |           |
 | G19/2    |     unused, PULL:DOWN |            |              | PR20A | GR_PCLK2_1/RDQS20        |           |
 | G20/2    |     unused, PULL:DOWN |            |              | PR17D | RDQ20                    |           |
-| H1/6     | i_ft_oe_n             | LOCATED    | LVCMOS33_IN  | PL32C | LDQ32                    |           |
+| H1/6     | io_ft_oe_n            |            | LVCMOS33_OUT | PL32C | LDQ32                    |           |
 | H2/6     | i_ft_clk              | LOCATED    | LVCMOS33_IN  | PL26C | PCLKT6_0/LDQ32           |           |
 | H3/7     |     unused, PULL:DOWN |            |              | PL20D | LDQ20                    |           |
 | H4/7     |     unused, PULL:DOWN |            |              | PL20A | GR_PCLK7_1/LDQS20        |           |
@@ -198,9 +197,9 @@ Vccio by Bank:
 | H17/2    |     unused, PULL:DOWN |            |              | PR11B | RDQ8                     |           |
 | H18/2    |     unused, PULL:DOWN |            |              | PR11A | RDQ8                     |           |
 | H20/2    |     unused, PULL:DOWN |            |              | PR20B | RDQSN20                  |           |
-| J1/6     | i_ft_wr_n             | LOCATED    | LVCMOS33_IN  | PL32B | LDQSN32                  |           |
-| J3/6     | o_ft_rxf_n            | LOCATED    | LVCMOS33_OUT | PL29C | GR_PCLK6_1/LDQ32         |           |
-| J4/6     | o_ft_txe_n            | LOCATED    | LVCMOS33_OUT | PL29A | GR_PCLK6_0/LDQ32         |           |
+| J1/6     | o_ft_wr_n             | LOCATED    | LVCMOS33_OUT | PL32B | LDQSN32                  |           |
+| J3/6     | i_ft_rxf_n            | LOCATED    | LVCMOS33_IN  | PL29C | GR_PCLK6_1/LDQ32         |           |
+| J4/6     | i_ft_txe_n            | LOCATED    | LVCMOS33_IN  | PL29A | GR_PCLK6_0/LDQ32         |           |
 | J5/6     | i_ft_be[1]            | LOCATED    | LVCMOS33_IN  | PL29B | LDQ32                    |           |
 | J16/2    |     unused, PULL:DOWN |            |              | PR11D | RDQ8                     |           |
 | J17/2    |     unused, PULL:DOWN |            |              | PR11C | RDQ8                     |           |
@@ -227,7 +226,7 @@ Vccio by Bank:
 | L20/3    |     unused, PULL:DOWN |            |              | PR26A | PCLKT3_1/RDQ32           |           |
 | M1/6     | io_ft_data[9]         | LOCATED    | LVCMOS33_IN  | PL44B | LDQSN44                  |           |
 | M3/6     | io_ft_data[8]         | LOCATED    | LVCMOS33_IN  | PL41B | LDQ44                    |           |
-| M4/6     | i_ft_rd_n             | LOCATED    | LVCMOS33_IN  | PL38A | LDQ44                    |           |
+| M4/6     | o_ft_rd_n             | LOCATED    | LVCMOS33_OUT | PL38A | LDQ44                    |           |
 | M17/3    |     unused, PULL:DOWN |            |              | PR32B | RDQSN32                  |           |
 | M18/3    |     unused, PULL:DOWN |            |              | PR29D | RDQ32                    |           |
 | M19/3    |     unused, PULL:DOWN |            |              | PR26D | PCLKC3_0/RDQ32           |           |
@@ -294,9 +293,8 @@ LOCATE  COMP  "i_clk16"  SITE  "G3";
 LOCATE  COMP  "i_ft_be[0]"  SITE  "K1";
 LOCATE  COMP  "i_ft_be[1]"  SITE  "J5";
 LOCATE  COMP  "i_ft_clk"  SITE  "H2";
-LOCATE  COMP  "i_ft_oe_n"  SITE  "H1";
-LOCATE  COMP  "i_ft_rd_n"  SITE  "M4";
-LOCATE  COMP  "i_ft_wr_n"  SITE  "J1";
+LOCATE  COMP  "i_ft_rxf_n"  SITE  "J3";
+LOCATE  COMP  "i_ft_txe_n"  SITE  "J4";
 LOCATE  COMP  "io_ft_data[0]"  SITE  "P4";
 LOCATE  COMP  "io_ft_data[10]"  SITE  "L3";
 LOCATE  COMP  "io_ft_data[11]"  SITE  "L2";
@@ -313,9 +311,9 @@ LOCATE  COMP  "io_ft_data[6]"  SITE  "N2";
 LOCATE  COMP  "io_ft_data[7]"  SITE  "N1";
 LOCATE  COMP  "io_ft_data[8]"  SITE  "M3";
 LOCATE  COMP  "io_ft_data[9]"  SITE  "M1";
-LOCATE  COMP  "io_ft_gpio1"  SITE  "D11";
-LOCATE  COMP  "o_ft_rxf_n"  SITE  "J3";
-LOCATE  COMP  "o_ft_txe_n"  SITE  "J4";
+LOCATE  COMP  "io_ft_oe_n"  SITE  "H1";
+LOCATE  COMP  "o_ft_rd_n"  SITE  "M4";
+LOCATE  COMP  "o_ft_wr_n"  SITE  "J1";
 LOCATE  COMP  "o_leds[0]"  SITE  "A9";
 LOCATE  COMP  "o_leds[1]"  SITE  "B9";
 LOCATE  COMP  "o_leds[2]"  SITE  "B10";
@@ -335,7 +333,7 @@ Copyright (c) 1995 AT&T Corp.   All rights reserved.
 Copyright (c) 1995-2001 Lucent Technologies Inc.  All rights reserved.
 Copyright (c) 2001 Agere Systems   All rights reserved.
 Copyright (c) 2002-2017 Lattice Semiconductor Corporation,  All rights reserved.
-Wed Dec 19 00:44:27 2018
+Thu Dec 20 22:41:34 2018
 
 
 

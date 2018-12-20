@@ -7,10 +7,12 @@ Loading NGL library '/usr/local/diamond/3.10_x64/ispfpga/or5g00/data/orc5glib.ng
 
 Running DRC...
 
-DRC complete with no errors or warnings
+WARNING - synthesis: logical net 'io_ft_gpio1' has no load.
+WARNING - synthesis: input pad net 'io_ft_gpio1' has no legal load.
+WARNING - synthesis: DRC complete with 2 warnings.
 
 Design Results:
-     90 blocks expanded
+     91 blocks expanded
 completed the first expansion
 All blocks are expanded and NGD expansion is successful.
 Writing NGD file kilsyth_bootloader.ngd.

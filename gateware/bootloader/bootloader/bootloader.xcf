@@ -7,18 +7,31 @@
 		<Device>
 			<SelectedProg value="TRUE"/>
 			<Pos>1</Pos>
-			<Family>Generic JTAG Device</Family>
-			<Name>JTAG-NOP</Name>
+			<Vendor>Lattice</Vendor>
+			<Family>ECP5U</Family>
+			<Name>LFE5U-12F</Name>
+			<IDCode>0x21111043</IDCode>
+			<Package>All</Package>
+			<PON>LFE5U-12F</PON>
 			<Bypass>
-				<InstrLen>0</InstrLen>
-				<InstrVal></InstrVal>
+				<InstrLen>8</InstrLen>
+				<InstrVal>11111111</InstrVal>
 				<BScanLen>1</BScanLen>
 				<BScanVal>0</BScanVal>
 			</Bypass>
-			<Operation>Bypass</Operation>
+			<File>/home/konrad/dev/Kilsyth/gateware/bootloader/bootloader/kilsyth_bootloader.bit</File>
+			<FileTime>12/20/18 22:41:41</FileTime>
+			<JedecChecksum>N/A</JedecChecksum>
+			<Operation>Fast Program</Operation>
 			<Option>
 				<SVFVendor>JTAG STANDARD</SVFVendor>
+				<IOState>HighZ</IOState>
+				<PreloadLength>409</PreloadLength>
+				<IOVectorData>0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF</IOVectorData>
+				<TCKFrequency>1.000000 MHz</TCKFrequency>
 				<SVFProcessor>SVF Processor</SVFProcessor>
+				<Usercode>0x00000000</Usercode>
+				<AccessMode>JTAG</AccessMode>
 			</Option>
 		</Device>
 	</Chain>
@@ -35,5 +48,9 @@
 		<CableName>USB2</CableName>
 		<PortAdd>FTUSB-0</PortAdd>
 		<USBID>DUAL RS232-HS A Location 0000 Serial Dual RS232-HS A</USBID>
+		<JTAGPinSetting>
+			TRST	ABSENT;
+			ISPEN	ABSENT;
+		</JTAGPinSetting>
 	</CableOptions>
 </ispXCF>

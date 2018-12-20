@@ -7,11 +7,11 @@ module kilsyth_top(
 	inout  wire [15:0] io_ft_data,
 	input  wire        i_ft_clk,
 	input  wire [ 1:0] i_ft_be,
-	output wire        o_ft_txe_n,
-	output wire        o_ft_rxf_n,
-	input  wire        i_ft_wr_n,
-	input  wire        i_ft_rd_n,
-	input  wire        i_ft_oe_n,
+	input  wire        i_ft_txe_n,
+	input  wire        i_ft_rxf_n,
+	output wire        o_ft_wr_n,
+	output wire        o_ft_rd_n,
+	inout  wire        io_ft_oe_n,
 	inout  wire        io_ft_gpio1,
 
 	/* SDRAM */
@@ -45,25 +45,34 @@ module kilsyth_top(
 	assign o_leds = leds;
 	
 	/* Read datasheet and figure out this stuff */
-	reg ft_txe_n = 1;
-	assign o_ft_txe_n = ft_txe_n;
-	reg ft_rxf_n = 1;
-	assign o_ft_rxf_n = ft_rxf_n;
+	reg ft_oe_n = 1;
+	assign io_ft_oe_n = ft_oe_n;
+	reg ft_wr_n = 1;
+	assign o_ft_wr_n = ft_wr_n;
+	reg ft_rd_n = 1;
+	assign o_ft_rd_n = ft_rd_n;
 
 	/* This clock is _always_ ticking */
 	always @(posedge i_clk16) begin
 		counter    <= counter + 1;
 		leds[0]    <= counter[23];
 		leds[2:1]  <= i_ft_be;
-		leds[3]    <= i_ft_wr_n;
-		leds[4]    <= i_ft_rd_n;
-		leds[5]    <= i_ft_oe_n;
-		leds[6]    <= io_ft_gpio1;
+		leds[3]    <= i_ft_txe_n;
+		leds[4]    <= i_ft_rxf_n;
+		leds[5]    <= ft_rd_n; 
 	end
-
+	
 	/* This clock might only tick while there is a transfer ongoing, not sure... */
 	always @(posedge i_ft_clk) begin
-		leds[7] <= |io_ft_data;
+		leds[6]    <= ~leds[6];
+		leds[7]    <= |io_ft_data;
+		if (!i_ft_rxf_n) begin
+			ft_oe_n <= 0;
+			ft_rd_n <= 0;
+		end else begin
+			ft_oe_n <= 1;
+			ft_rd_n <= 1;
+		end
 	end
 
 

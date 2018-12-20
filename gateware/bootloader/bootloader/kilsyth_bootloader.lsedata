@@ -44,11 +44,11 @@
         <pitem  name = "i_ft_clk"  direction = "in"  />
         <pitem  name = "i_ft_be[1]"  direction = "in"  />
         <pitem  name = "i_ft_be[0]"  direction = "in"  />
-        <pitem  name = "o_ft_txe_n"  direction = "out"  />
-        <pitem  name = "o_ft_rxf_n"  direction = "out"  />
-        <pitem  name = "i_ft_wr_n"  direction = "in"  />
-        <pitem  name = "i_ft_rd_n"  direction = "in"  />
-        <pitem  name = "i_ft_oe_n"  direction = "in"  />
+        <pitem  name = "i_ft_txe_n"  direction = "in"  />
+        <pitem  name = "i_ft_rxf_n"  direction = "in"  />
+        <pitem  name = "o_ft_wr_n"  direction = "out"  />
+        <pitem  name = "o_ft_rd_n"  direction = "out"  />
+        <pitem  name = "io_ft_oe_n"  direction = "inout"  />
         <pitem  name = "io_ft_gpio1"  direction = "inout"  />
         <pitem  name = "o_leds[7]"  direction = "out"  />
         <pitem  name = "o_leds[6]"  direction = "out"  />
@@ -61,7 +61,7 @@
     </pins>
 
     <!--
-        Instances in netlist: 11
+        Instances in netlist: 13
     -->
 
     <instance  name = "counter_25__I_0"  library = "work"  arch = ""  type = "comb">
@@ -188,36 +188,36 @@
         <nitem  name = "counter[1]"  />
         <nitem  name = "counter[0]"  />
         <nitem  name = "pwr"  />
-        <nitem  name = "counter_25__N_2[25]"  />
-        <nitem  name = "counter_25__N_2[24]"  />
-        <nitem  name = "counter_25__N_2[23]"  />
-        <nitem  name = "counter_25__N_2[22]"  />
-        <nitem  name = "counter_25__N_2[21]"  />
-        <nitem  name = "counter_25__N_2[20]"  />
-        <nitem  name = "counter_25__N_2[19]"  />
-        <nitem  name = "counter_25__N_2[18]"  />
-        <nitem  name = "counter_25__N_2[17]"  />
-        <nitem  name = "counter_25__N_2[16]"  />
-        <nitem  name = "counter_25__N_2[15]"  />
-        <nitem  name = "counter_25__N_2[14]"  />
-        <nitem  name = "counter_25__N_2[13]"  />
-        <nitem  name = "counter_25__N_2[12]"  />
-        <nitem  name = "counter_25__N_2[11]"  />
-        <nitem  name = "counter_25__N_2[10]"  />
-        <nitem  name = "counter_25__N_2[9]"  />
-        <nitem  name = "counter_25__N_2[8]"  />
-        <nitem  name = "counter_25__N_2[7]"  />
-        <nitem  name = "counter_25__N_2[6]"  />
-        <nitem  name = "counter_25__N_2[5]"  />
-        <nitem  name = "counter_25__N_2[4]"  />
-        <nitem  name = "counter_25__N_2[3]"  />
-        <nitem  name = "counter_25__N_2[2]"  />
-        <nitem  name = "counter_25__N_2[1]"  />
-        <nitem  name = "counter_25__N_2[0]"  />
+        <nitem  name = "counter_25__N_4[25]"  />
+        <nitem  name = "counter_25__N_4[24]"  />
+        <nitem  name = "counter_25__N_4[23]"  />
+        <nitem  name = "counter_25__N_4[22]"  />
+        <nitem  name = "counter_25__N_4[21]"  />
+        <nitem  name = "counter_25__N_4[20]"  />
+        <nitem  name = "counter_25__N_4[19]"  />
+        <nitem  name = "counter_25__N_4[18]"  />
+        <nitem  name = "counter_25__N_4[17]"  />
+        <nitem  name = "counter_25__N_4[16]"  />
+        <nitem  name = "counter_25__N_4[15]"  />
+        <nitem  name = "counter_25__N_4[14]"  />
+        <nitem  name = "counter_25__N_4[13]"  />
+        <nitem  name = "counter_25__N_4[12]"  />
+        <nitem  name = "counter_25__N_4[11]"  />
+        <nitem  name = "counter_25__N_4[10]"  />
+        <nitem  name = "counter_25__N_4[9]"  />
+        <nitem  name = "counter_25__N_4[8]"  />
+        <nitem  name = "counter_25__N_4[7]"  />
+        <nitem  name = "counter_25__N_4[6]"  />
+        <nitem  name = "counter_25__N_4[5]"  />
+        <nitem  name = "counter_25__N_4[4]"  />
+        <nitem  name = "counter_25__N_4[3]"  />
+        <nitem  name = "counter_25__N_4[2]"  />
+        <nitem  name = "counter_25__N_4[1]"  />
+        <nitem  name = "counter_25__N_4[0]"  />
         </nets>
     </instance>
 
-    <instance  name = "leds[6]_16"  library = "work"  arch = ""  type = "reg">
+    <instance  name = "leds[5]_20"  library = "work"  arch = ""  type = "reg">
         <pins>
         <pitem  name = "d"  direction = "in"  />
         <pitem  name = "clk"  direction = "in"  />
@@ -227,31 +227,14 @@
         </pins>
 
         <nets>
-        <nitem  name = "io_ft_gpio1"  />
-        <nitem  name = "i_clk16"  />
-        <nitem  name = "gnd"  />
-        <nitem  name = "o_leds[6]"  />
-        </nets>
-    </instance>
-
-    <instance  name = "leds[5]_17"  library = "work"  arch = ""  type = "reg">
-        <pins>
-        <pitem  name = "d"  direction = "in"  />
-        <pitem  name = "clk"  direction = "in"  />
-        <pitem  name = "s"  direction = "in"  />
-        <pitem  name = "r"  direction = "in"  />
-        <pitem  name = "q"  direction = "out"  />
-        </pins>
-
-        <nets>
-        <nitem  name = "i_ft_oe_n"  />
+        <nitem  name = "o_ft_rd_n"  />
         <nitem  name = "i_clk16"  />
         <nitem  name = "gnd"  />
         <nitem  name = "o_leds[5]"  />
         </nets>
     </instance>
 
-    <instance  name = "leds[4]_18"  library = "work"  arch = ""  type = "reg">
+    <instance  name = "leds[4]_21"  library = "work"  arch = ""  type = "reg">
         <pins>
         <pitem  name = "d"  direction = "in"  />
         <pitem  name = "clk"  direction = "in"  />
@@ -261,14 +244,14 @@
         </pins>
 
         <nets>
-        <nitem  name = "i_ft_rd_n"  />
+        <nitem  name = "i_ft_rxf_n"  />
         <nitem  name = "i_clk16"  />
         <nitem  name = "gnd"  />
         <nitem  name = "o_leds[4]"  />
         </nets>
     </instance>
 
-    <instance  name = "leds[3]_19"  library = "work"  arch = ""  type = "reg">
+    <instance  name = "leds[3]_22"  library = "work"  arch = ""  type = "reg">
         <pins>
         <pitem  name = "d"  direction = "in"  />
         <pitem  name = "clk"  direction = "in"  />
@@ -278,14 +261,14 @@
         </pins>
 
         <nets>
-        <nitem  name = "i_ft_wr_n"  />
+        <nitem  name = "i_ft_txe_n"  />
         <nitem  name = "i_clk16"  />
         <nitem  name = "gnd"  />
         <nitem  name = "o_leds[3]"  />
         </nets>
     </instance>
 
-    <instance  name = "leds[2]_20"  library = "work"  arch = ""  type = "reg">
+    <instance  name = "leds[2]_23"  library = "work"  arch = ""  type = "reg">
         <pins>
         <pitem  name = "d"  direction = "in"  />
         <pitem  name = "clk"  direction = "in"  />
@@ -302,7 +285,7 @@
         </nets>
     </instance>
 
-    <instance  name = "leds[1]_21"  library = "work"  arch = ""  type = "reg">
+    <instance  name = "leds[1]_24"  library = "work"  arch = ""  type = "reg">
         <pins>
         <pitem  name = "d"  direction = "in"  />
         <pitem  name = "clk"  direction = "in"  />
@@ -319,7 +302,7 @@
         </nets>
     </instance>
 
-    <instance  name = "leds[0]_22"  library = "work"  arch = ""  type = "reg">
+    <instance  name = "leds[0]_25"  library = "work"  arch = ""  type = "reg">
         <pins>
         <pitem  name = "d"  direction = "in"  />
         <pitem  name = "clk"  direction = "in"  />
@@ -336,7 +319,7 @@
         </nets>
     </instance>
 
-    <instance  name = "leds[7]_23"  library = "work"  arch = ""  type = "reg">
+    <instance  name = "leds[7]_26"  library = "work"  arch = ""  type = "reg">
         <pins>
         <pitem  name = "d"  direction = "in"  />
         <pitem  name = "clk"  direction = "in"  />
@@ -350,6 +333,18 @@
         <nitem  name = "i_ft_clk"  />
         <nitem  name = "gnd"  />
         <nitem  name = "o_leds[7]"  />
+        </nets>
+    </instance>
+
+    <instance  name = "o_leds_6__I_0"  library = "work"  arch = ""  type = "comb">
+        <pins>
+        <pitem  name = "i"  direction = "in"  />
+        <pitem  name = "o"  direction = "out"  />
+        </pins>
+
+        <nets>
+        <nitem  name = "o_leds[6]"  />
+        <nitem  name = "o_leds_6__N_3"  />
         </nets>
     </instance>
 
@@ -392,6 +387,40 @@
         <nitem  name = "io_ft_data[1]"  />
         <nitem  name = "io_ft_data[0]"  />
         <nitem  name = "o_leds_7__N_1"  />
+        </nets>
+    </instance>
+
+    <instance  name = "leds[6]_27"  library = "work"  arch = ""  type = "reg">
+        <pins>
+        <pitem  name = "d"  direction = "in"  />
+        <pitem  name = "clk"  direction = "in"  />
+        <pitem  name = "s"  direction = "in"  />
+        <pitem  name = "r"  direction = "in"  />
+        <pitem  name = "q"  direction = "out"  />
+        </pins>
+
+        <nets>
+        <nitem  name = "o_leds_6__N_3"  />
+        <nitem  name = "i_ft_clk"  />
+        <nitem  name = "gnd"  />
+        <nitem  name = "o_leds[6]"  />
+        </nets>
+    </instance>
+
+    <instance  name = "ft_rd_n_29"  library = "work"  arch = ""  type = "reg">
+        <pins>
+        <pitem  name = "d"  direction = "in"  />
+        <pitem  name = "clk"  direction = "in"  />
+        <pitem  name = "s"  direction = "in"  />
+        <pitem  name = "r"  direction = "in"  />
+        <pitem  name = "q"  direction = "out"  />
+        </pins>
+
+        <nets>
+        <nitem  name = "i_ft_rxf_n"  />
+        <nitem  name = "i_ft_clk"  />
+        <nitem  name = "gnd"  />
+        <nitem  name = "o_ft_rd_n"  />
         </nets>
     </instance>
 
@@ -505,32 +534,32 @@
         </pins>
 
         <nets>
-        <nitem  name = "counter_25__N_2[25]"  />
-        <nitem  name = "counter_25__N_2[24]"  />
-        <nitem  name = "counter_25__N_2[23]"  />
-        <nitem  name = "counter_25__N_2[22]"  />
-        <nitem  name = "counter_25__N_2[21]"  />
-        <nitem  name = "counter_25__N_2[20]"  />
-        <nitem  name = "counter_25__N_2[19]"  />
-        <nitem  name = "counter_25__N_2[18]"  />
-        <nitem  name = "counter_25__N_2[17]"  />
-        <nitem  name = "counter_25__N_2[16]"  />
-        <nitem  name = "counter_25__N_2[15]"  />
-        <nitem  name = "counter_25__N_2[14]"  />
-        <nitem  name = "counter_25__N_2[13]"  />
-        <nitem  name = "counter_25__N_2[12]"  />
-        <nitem  name = "counter_25__N_2[11]"  />
-        <nitem  name = "counter_25__N_2[10]"  />
-        <nitem  name = "counter_25__N_2[9]"  />
-        <nitem  name = "counter_25__N_2[8]"  />
-        <nitem  name = "counter_25__N_2[7]"  />
-        <nitem  name = "counter_25__N_2[6]"  />
-        <nitem  name = "counter_25__N_2[5]"  />
-        <nitem  name = "counter_25__N_2[4]"  />
-        <nitem  name = "counter_25__N_2[3]"  />
-        <nitem  name = "counter_25__N_2[2]"  />
-        <nitem  name = "counter_25__N_2[1]"  />
-        <nitem  name = "counter_25__N_2[0]"  />
+        <nitem  name = "counter_25__N_4[25]"  />
+        <nitem  name = "counter_25__N_4[24]"  />
+        <nitem  name = "counter_25__N_4[23]"  />
+        <nitem  name = "counter_25__N_4[22]"  />
+        <nitem  name = "counter_25__N_4[21]"  />
+        <nitem  name = "counter_25__N_4[20]"  />
+        <nitem  name = "counter_25__N_4[19]"  />
+        <nitem  name = "counter_25__N_4[18]"  />
+        <nitem  name = "counter_25__N_4[17]"  />
+        <nitem  name = "counter_25__N_4[16]"  />
+        <nitem  name = "counter_25__N_4[15]"  />
+        <nitem  name = "counter_25__N_4[14]"  />
+        <nitem  name = "counter_25__N_4[13]"  />
+        <nitem  name = "counter_25__N_4[12]"  />
+        <nitem  name = "counter_25__N_4[11]"  />
+        <nitem  name = "counter_25__N_4[10]"  />
+        <nitem  name = "counter_25__N_4[9]"  />
+        <nitem  name = "counter_25__N_4[8]"  />
+        <nitem  name = "counter_25__N_4[7]"  />
+        <nitem  name = "counter_25__N_4[6]"  />
+        <nitem  name = "counter_25__N_4[5]"  />
+        <nitem  name = "counter_25__N_4[4]"  />
+        <nitem  name = "counter_25__N_4[3]"  />
+        <nitem  name = "counter_25__N_4[2]"  />
+        <nitem  name = "counter_25__N_4[1]"  />
+        <nitem  name = "counter_25__N_4[0]"  />
         <nitem  name = "gnd"  />
         <nitem  name = "i_clk16"  />
         <nitem  name = "counter[25]"  />
@@ -563,18 +592,19 @@
     </instance>
 
     <!--
-        REG instances in netlist: 9
+        REG instances in netlist: 10
     -->
 
     <regs>
-        <reg  name = "leds[6]_16"  />
-        <reg  name = "leds[5]_17"  />
-        <reg  name = "leds[4]_18"  />
-        <reg  name = "leds[3]_19"  />
-        <reg  name = "leds[2]_20"  />
-        <reg  name = "leds[1]_21"  />
-        <reg  name = "leds[0]_22"  />
-        <reg  name = "leds[7]_23"  />
+        <reg  name = "leds[5]_20"  />
+        <reg  name = "leds[4]_21"  />
+        <reg  name = "leds[3]_22"  />
+        <reg  name = "leds[2]_23"  />
+        <reg  name = "leds[1]_24"  />
+        <reg  name = "leds[0]_25"  />
+        <reg  name = "leds[7]_26"  />
+        <reg  name = "leds[6]_27"  />
+        <reg  name = "ft_rd_n_29"  />
         <reg  name = "counter"  />
     </regs>
 

@@ -13,7 +13,7 @@ Setup and Hold Report
 
 --------------------------------------------------------------------------------
 Lattice TRACE Report - Setup, Version Diamond (64-bit) 3.10.3.144.3
-Tue Dec 11 21:31:23 2018
+Thu Dec 20 22:41:17 2018
 
 Copyright (c) 1991-1994 by NeoCAD Inc. All rights reserved.
 Copyright (c) 1995 AT&T Corp.   All rights reserved.
@@ -30,7 +30,6 @@ Device,speed:    LFE5U-12F,6
 Report level:    verbose report, limited to 1 item per preference
 --------------------------------------------------------------------------------
 
-Report Type:     based on TRACE automatically generated preferences
 BLOCK ASYNCPATHS
 BLOCK RESETPATHS
 --------------------------------------------------------------------------------
@@ -47,71 +46,125 @@ VCCIO Voltage:
                    3.300 V (Bank 3)
                    1.500 V (Bank 4)
                    1.500 V (Bank 5)
-                   3.300 V (Bank 6)
+                   3.300 V (Bank 6, defined by PAR)
                    3.300 V (Bank 7, defined by PAR)
 
 
 
 ================================================================================
-Preference: FREQUENCY NET "clk_c" 323.834000 MHz ;
-            351 items scored, 0 timing errors detected.
+Preference: FREQUENCY PORT "i_ft_clk" 100.000000 MHz ;
+            1 item scored, 0 timing errors detected.
 --------------------------------------------------------------------------------
 
 
-Passed: The following path meets requirements by 1.281ns
+Passed:  The following path meets requirements by 5.000ns
+         The internal maximum frequency of the following component is 200.000 MHz
+
+ Logical Details:  Cell type  Pin name       Component name
+
+   Destination:    PIO        PAD            i_ft_clk
+
+   Delay:               5.000ns -- based on Minimum Pulse Width
+
+
+Passed: The following path meets requirements by 9.394ns
 
  Logical Details:  Cell type  Pin type       Cell/ASIC name  (clock net +/-)
 
-   Source:         FF         Q              counter_9__i0  (from clk_c +)
-   Destination:    FF         Data in        counter_9__i25  (to clk_c +)
+   Source:         FF         Q              leds_6__27  (from i_ft_clk_c +)
+   Destination:    FF         Data in        leds_6__27  (to i_ft_clk_c +)
 
-   Delay:               2.013ns  (89.0% logic, 11.0% route), 15 logic levels.
+   Delay:               0.812ns  (74.3% logic, 25.7% route), 2 logic levels.
 
  Constraint Details:
 
-      2.013ns physical path delay SLICE_13 to SLICE_0 meets
-      3.088ns delay constraint less
-     -0.206ns DIN_SET requirement (totaling 3.294ns) by 1.281ns
+      0.812ns physical path delay SLICE_17 to SLICE_17 meets
+     10.000ns delay constraint less
+     -0.206ns DIN_SET requirement (totaling 10.206ns) by 9.394ns
 
  Physical Path Details:
 
-      Data path SLICE_13 to SLICE_0:
+      Data path SLICE_17 to SLICE_17:
 
    Name    Fanout   Delay (ns)          Site               Resource
-REG_DEL     ---     0.414   SLICE_13.CLK to    SLICE_13.Q1 SLICE_13 (from clk_c)
-ROUTE         1   e 0.208    SLICE_13.Q1 to    SLICE_13.A1 n26
-C1TOFCO_DE  ---     0.354    SLICE_13.A1 to   SLICE_13.FCO SLICE_13
-ROUTE         1   e 0.001   SLICE_13.FCO to   SLICE_12.FCI n156
-FCITOFCO_D  ---     0.056   SLICE_12.FCI to   SLICE_12.FCO SLICE_12
-ROUTE         1   e 0.001   SLICE_12.FCO to   SLICE_11.FCI n157
-FCITOFCO_D  ---     0.056   SLICE_11.FCI to   SLICE_11.FCO SLICE_11
-ROUTE         1   e 0.001   SLICE_11.FCO to   SLICE_10.FCI n158
-FCITOFCO_D  ---     0.056   SLICE_10.FCI to   SLICE_10.FCO SLICE_10
-ROUTE         1   e 0.001   SLICE_10.FCO to    SLICE_9.FCI n159
-FCITOFCO_D  ---     0.056    SLICE_9.FCI to    SLICE_9.FCO SLICE_9
-ROUTE         1   e 0.001    SLICE_9.FCO to    SLICE_8.FCI n160
-FCITOFCO_D  ---     0.056    SLICE_8.FCI to    SLICE_8.FCO SLICE_8
-ROUTE         1   e 0.001    SLICE_8.FCO to    SLICE_7.FCI n161
-FCITOFCO_D  ---     0.056    SLICE_7.FCI to    SLICE_7.FCO SLICE_7
-ROUTE         1   e 0.001    SLICE_7.FCO to    SLICE_6.FCI n162
-FCITOFCO_D  ---     0.056    SLICE_6.FCI to    SLICE_6.FCO SLICE_6
-ROUTE         1   e 0.001    SLICE_6.FCO to    SLICE_5.FCI n163
-FCITOFCO_D  ---     0.056    SLICE_5.FCI to    SLICE_5.FCO SLICE_5
-ROUTE         1   e 0.001    SLICE_5.FCO to    SLICE_4.FCI n164
-FCITOFCO_D  ---     0.056    SLICE_4.FCI to    SLICE_4.FCO SLICE_4
-ROUTE         1   e 0.001    SLICE_4.FCO to    SLICE_3.FCI n165
-FCITOFCO_D  ---     0.056    SLICE_3.FCI to    SLICE_3.FCO SLICE_3
-ROUTE         1   e 0.001    SLICE_3.FCO to    SLICE_2.FCI n166
-FCITOFCO_D  ---     0.056    SLICE_2.FCI to    SLICE_2.FCO SLICE_2
-ROUTE         1   e 0.001    SLICE_2.FCO to    SLICE_1.FCI n167
-FCITOFCO_D  ---     0.056    SLICE_1.FCI to    SLICE_1.FCO SLICE_1
-ROUTE         1   e 0.001    SLICE_1.FCO to    SLICE_0.FCI n168
-FCITOF0_DE  ---     0.351    SLICE_0.FCI to     SLICE_0.F0 SLICE_0
-ROUTE         1   e 0.001     SLICE_0.F0 to    SLICE_0.DI0 n110 (to clk_c)
+REG_DEL     ---     0.416   SLICE_17.CLK to    SLICE_17.Q0 SLICE_17 (from i_ft_clk_c)
+ROUTE         2   e 0.208    SLICE_17.Q0 to    SLICE_17.A0 o_leds_c_6
+CTOF_DEL    ---     0.187    SLICE_17.A0 to    SLICE_17.F0 SLICE_17
+ROUTE         1   e 0.001    SLICE_17.F0 to   SLICE_17.DI0 o_leds_6__N_3 (to i_ft_clk_c)
                   --------
-                    2.013   (89.0% logic, 11.0% route), 15 logic levels.
+                    0.812   (74.3% logic, 25.7% route), 2 logic levels.
 
-Report:  553.403MHz is the maximum frequency for this preference.
+Report:  200.000MHz is the maximum frequency for this preference.
+
+
+================================================================================
+Preference: FREQUENCY PORT "i_clk16" 16.000000 MHz ;
+            301 items scored, 0 timing errors detected.
+--------------------------------------------------------------------------------
+
+
+Passed:  The following path meets requirements by 57.500ns
+         The internal maximum frequency of the following component is 200.000 MHz
+
+ Logical Details:  Cell type  Pin name       Component name
+
+   Destination:    PIO        PAD            i_clk16
+
+   Delay:               5.000ns -- based on Minimum Pulse Width
+
+
+Passed: The following path meets requirements by 60.750ns
+
+ Logical Details:  Cell type  Pin type       Cell/ASIC name  (clock net +/-)
+
+   Source:         FF         Q              counter_32_33__i0  (from i_clk16_c +)
+   Destination:    FF         Data in        counter_32_33__i23  (to i_clk16_c +)
+
+   Delay:               1.956ns  (88.7% logic, 11.3% route), 14 logic levels.
+
+ Constraint Details:
+
+      1.956ns physical path delay SLICE_12 to SLICE_0 meets
+     62.500ns delay constraint less
+     -0.206ns DIN_SET requirement (totaling 62.706ns) by 60.750ns
+
+ Physical Path Details:
+
+      Data path SLICE_12 to SLICE_0:
+
+   Name    Fanout   Delay (ns)          Site               Resource
+REG_DEL     ---     0.414   SLICE_12.CLK to    SLICE_12.Q1 SLICE_12 (from i_clk16_c)
+ROUTE         1   e 0.208    SLICE_12.Q1 to    SLICE_12.A1 n24
+C1TOFCO_DE  ---     0.354    SLICE_12.A1 to   SLICE_12.FCO SLICE_12
+ROUTE         1   e 0.001   SLICE_12.FCO to   SLICE_11.FCI n192
+FCITOFCO_D  ---     0.056   SLICE_11.FCI to   SLICE_11.FCO SLICE_11
+ROUTE         1   e 0.001   SLICE_11.FCO to   SLICE_10.FCI n193
+FCITOFCO_D  ---     0.056   SLICE_10.FCI to   SLICE_10.FCO SLICE_10
+ROUTE         1   e 0.001   SLICE_10.FCO to    SLICE_9.FCI n194
+FCITOFCO_D  ---     0.056    SLICE_9.FCI to    SLICE_9.FCO SLICE_9
+ROUTE         1   e 0.001    SLICE_9.FCO to    SLICE_8.FCI n195
+FCITOFCO_D  ---     0.056    SLICE_8.FCI to    SLICE_8.FCO SLICE_8
+ROUTE         1   e 0.001    SLICE_8.FCO to    SLICE_7.FCI n196
+FCITOFCO_D  ---     0.056    SLICE_7.FCI to    SLICE_7.FCO SLICE_7
+ROUTE         1   e 0.001    SLICE_7.FCO to    SLICE_6.FCI n197
+FCITOFCO_D  ---     0.056    SLICE_6.FCI to    SLICE_6.FCO SLICE_6
+ROUTE         1   e 0.001    SLICE_6.FCO to    SLICE_5.FCI n198
+FCITOFCO_D  ---     0.056    SLICE_5.FCI to    SLICE_5.FCO SLICE_5
+ROUTE         1   e 0.001    SLICE_5.FCO to    SLICE_4.FCI n199
+FCITOFCO_D  ---     0.056    SLICE_4.FCI to    SLICE_4.FCO SLICE_4
+ROUTE         1   e 0.001    SLICE_4.FCO to    SLICE_3.FCI n200
+FCITOFCO_D  ---     0.056    SLICE_3.FCI to    SLICE_3.FCO SLICE_3
+ROUTE         1   e 0.001    SLICE_3.FCO to    SLICE_2.FCI n201
+FCITOFCO_D  ---     0.056    SLICE_2.FCI to    SLICE_2.FCO SLICE_2
+ROUTE         1   e 0.001    SLICE_2.FCO to    SLICE_1.FCI n202
+FCITOFCO_D  ---     0.056    SLICE_1.FCI to    SLICE_1.FCO SLICE_1
+ROUTE         1   e 0.001    SLICE_1.FCO to    SLICE_0.FCI n203
+FCITOF0_DE  ---     0.351    SLICE_0.FCI to     SLICE_0.F0 SLICE_0
+ROUTE         1   e 0.001     SLICE_0.F0 to    SLICE_0.DI0 n102 (to i_clk16_c)
+                  --------
+                    1.956   (88.7% logic, 11.3% route), 14 logic levels.
+
+Report:  200.000MHz is the maximum frequency for this preference.
 
 Report Summary
 --------------
@@ -119,7 +172,11 @@ Report Summary
 Preference                              |   Constraint|       Actual|Levels
 ----------------------------------------------------------------------------
                                         |             |             |
-FREQUENCY NET "clk_c" 323.834000 MHz ;  |  323.834 MHz|  553.403 MHz|  15  
+FREQUENCY PORT "i_ft_clk" 100.000000    |             |             |
+MHz ;                                   |  100.000 MHz|  200.000 MHz|   0  
+                                        |             |             |
+FREQUENCY PORT "i_clk16" 16.000000 MHz  |             |             |
+;                                       |   16.000 MHz|  200.000 MHz|   0  
                                         |             |             |
 ----------------------------------------------------------------------------
 
@@ -130,10 +187,19 @@ All preferences were met.
 Clock Domains Analysis
 ------------------------
 
-Found 1 clocks:
+Found 2 clocks:
 
-Clock Domain: clk_c   Source: clk.PAD   Loads: 14
-   Covered under: FREQUENCY NET "clk_c" 323.834000 MHz ;
+Clock Domain: i_ft_clk_c   Source: i_ft_clk.PAD   Loads: 2
+   Covered under: FREQUENCY PORT "i_ft_clk" 100.000000 MHz ;
+
+Clock Domain: i_clk16_c   Source: i_clk16.PAD   Loads: 16
+   Covered under: FREQUENCY PORT "i_clk16" 16.000000 MHz ;
+
+   Data transfers from:
+   Clock Domain: i_ft_clk_c   Source: i_ft_clk.PAD
+      Not reported because source and destination domains are unrelated.
+      To report these transfers please refer to preference CLKSKEWDIFF to define
+      external clock skew between clock ports.
 
 
 Timing summary (Setup):
@@ -142,11 +208,11 @@ Timing summary (Setup):
 Timing errors: 0  Score: 0
 Cumulative negative slack: 0
 
-Constraints cover 351 paths, 1 nets, and 79 connections (90.80% coverage)
+Constraints cover 302 paths, 2 nets, and 78 connections (65.00% coverage)
 
 --------------------------------------------------------------------------------
 Lattice TRACE Report - Hold, Version Diamond (64-bit) 3.10.3.144.3
-Tue Dec 11 21:31:23 2018
+Thu Dec 20 22:41:17 2018
 
 Copyright (c) 1991-1994 by NeoCAD Inc. All rights reserved.
 Copyright (c) 1995 AT&T Corp.   All rights reserved.
@@ -179,14 +245,48 @@ VCCIO Voltage:
                    3.300 V (Bank 3)
                    2.500 V (Bank 4)
                    2.500 V (Bank 5)
-                   3.300 V (Bank 6)
+                   3.300 V (Bank 6, defined by PAR)
                    3.300 V (Bank 7, defined by PAR)
 
 
 
 ================================================================================
-Preference: FREQUENCY NET "clk_c" 323.834000 MHz ;
-            351 items scored, 0 timing errors detected.
+Preference: FREQUENCY PORT "i_ft_clk" 100.000000 MHz ;
+            1 item scored, 0 timing errors detected.
+--------------------------------------------------------------------------------
+
+
+Passed: The following path meets requirements by 0.187ns
+
+ Logical Details:  Cell type  Pin type       Cell/ASIC name  (clock net +/-)
+
+   Source:         FF         Q              leds_6__27  (from i_ft_clk_c +)
+   Destination:    FF         Data in        leds_6__27  (to i_ft_clk_c +)
+
+   Delay:               0.315ns  (81.3% logic, 18.7% route), 2 logic levels.
+
+ Constraint Details:
+
+      0.315ns physical path delay SLICE_17 to SLICE_17 meets
+      0.128ns DIN_HLD and
+      0.000ns delay constraint requirement (totaling 0.128ns) by 0.187ns
+
+ Physical Path Details:
+
+      Data path SLICE_17 to SLICE_17:
+
+   Name    Fanout   Delay (ns)          Site               Resource
+REG_DEL     ---     0.175   SLICE_17.CLK to    SLICE_17.Q0 SLICE_17 (from i_ft_clk_c)
+ROUTE         2   e 0.058    SLICE_17.Q0 to    SLICE_17.A0 o_leds_c_6
+CTOF_DEL    ---     0.081    SLICE_17.A0 to    SLICE_17.F0 SLICE_17
+ROUTE         1   e 0.001    SLICE_17.F0 to   SLICE_17.DI0 o_leds_6__N_3 (to i_ft_clk_c)
+                  --------
+                    0.315   (81.3% logic, 18.7% route), 2 logic levels.
+
+
+================================================================================
+Preference: FREQUENCY PORT "i_clk16" 16.000000 MHz ;
+            301 items scored, 0 timing errors detected.
 --------------------------------------------------------------------------------
 
 
@@ -194,8 +294,8 @@ Passed: The following path meets requirements by 0.186ns
 
  Logical Details:  Cell type  Pin type       Cell/ASIC name  (clock net +/-)
 
-   Source:         FF         Q              counter_9__i24  (from clk_c +)
-   Destination:    FF         Data in        counter_9__i24  (to clk_c +)
+   Source:         FF         Q              counter_32_33__i22  (from i_clk16_c +)
+   Destination:    FF         Data in        counter_32_33__i22  (to i_clk16_c +)
 
    Delay:               0.314ns  (81.2% logic, 18.8% route), 2 logic levels.
 
@@ -210,10 +310,10 @@ Passed: The following path meets requirements by 0.186ns
       Data path SLICE_1 to SLICE_1:
 
    Name    Fanout   Delay (ns)          Site               Resource
-REG_DEL     ---     0.174    SLICE_1.CLK to     SLICE_1.Q1 SLICE_1 (from clk_c)
-ROUTE         2   e 0.058     SLICE_1.Q1 to     SLICE_1.A1 leds_c_6
+REG_DEL     ---     0.174    SLICE_1.CLK to     SLICE_1.Q1 SLICE_1 (from i_clk16_c)
+ROUTE         1   e 0.058     SLICE_1.Q1 to     SLICE_1.A1 n2
 CTOF_DEL    ---     0.081     SLICE_1.A1 to     SLICE_1.F1 SLICE_1
-ROUTE         1   e 0.001     SLICE_1.F1 to    SLICE_1.DI1 n111 (to clk_c)
+ROUTE         1   e 0.001     SLICE_1.F1 to    SLICE_1.DI1 n103 (to i_clk16_c)
                   --------
                     0.314   (81.2% logic, 18.8% route), 2 logic levels.
 
@@ -223,7 +323,11 @@ Report Summary
 Preference(MIN Delays)                  |   Constraint|       Actual|Levels
 ----------------------------------------------------------------------------
                                         |             |             |
-FREQUENCY NET "clk_c" 323.834000 MHz ;  |     0.000 ns|     0.186 ns|   2  
+FREQUENCY PORT "i_ft_clk" 100.000000    |             |             |
+MHz ;                                   |            -|            -|   2  
+                                        |             |             |
+FREQUENCY PORT "i_clk16" 16.000000 MHz  |             |             |
+;                                       |            -|            -|   2  
                                         |             |             |
 ----------------------------------------------------------------------------
 
@@ -234,10 +338,19 @@ All preferences were met.
 Clock Domains Analysis
 ------------------------
 
-Found 1 clocks:
+Found 2 clocks:
 
-Clock Domain: clk_c   Source: clk.PAD   Loads: 14
-   Covered under: FREQUENCY NET "clk_c" 323.834000 MHz ;
+Clock Domain: i_ft_clk_c   Source: i_ft_clk.PAD   Loads: 2
+   Covered under: FREQUENCY PORT "i_ft_clk" 100.000000 MHz ;
+
+Clock Domain: i_clk16_c   Source: i_clk16.PAD   Loads: 16
+   Covered under: FREQUENCY PORT "i_clk16" 16.000000 MHz ;
+
+   Data transfers from:
+   Clock Domain: i_ft_clk_c   Source: i_ft_clk.PAD
+      Not reported because source and destination domains are unrelated.
+      To report these transfers please refer to preference CLKSKEWDIFF to define
+      external clock skew between clock ports.
 
 
 Timing summary (Hold):
@@ -246,7 +359,7 @@ Timing summary (Hold):
 Timing errors: 0  Score: 0
 Cumulative negative slack: 0
 
-Constraints cover 351 paths, 1 nets, and 79 connections (90.80% coverage)
+Constraints cover 302 paths, 2 nets, and 78 connections (65.00% coverage)
 
 
 

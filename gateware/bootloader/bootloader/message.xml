@@ -1,5 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <BaliMessageLog>
+    <Task name="Map">
+        <Message>
+            <ID>1100644</ID>
+            <Severity>Warning</Severity>
+            <Dynamic>/home/konrad/dev/Kilsyth/gateware/bootloader/kilsyth.lpf(72): Semantic error in &quot;IOBUF PORT &quot;io_ft_gpio1&quot; IO_TYPE=LVCMOS33 ;&quot;: </Dynamic>
+            <Dynamic>io_ft_gpio1</Dynamic>
+            <Navigation>/home/konrad/dev/Kilsyth/gateware/bootloader/kilsyth.lpf</Navigation>
+            <Navigation>72</Navigation>
+        </Message>
+        <Message>
+            <ID>1166064</ID>
+            <Severity>Warning</Severity>
+            <Dynamic>input</Dynamic>
+            <Dynamic>io_ft_gpio1</Dynamic>
+        </Message>
+        <Message>
+            <ID>51001046</ID>
+            <Severity>Warning</Severity>
+            <Dynamic>io_ft_gpio1</Dynamic>
+        </Message>
+    </Task>
     <Task name="Lattice_Synthesis">
         <Message>
             <ID>35002000</ID>
@@ -20,27 +41,19 @@
         <Message>
             <ID>35901220</ID>
             <Severity>Warning</Severity>
-            <Dynamic>/home/konrad/dev/Kilsyth/gateware/bootloader/src/kilsyth_top.v(47): </Dynamic>
-            <Dynamic>ft_txe_n</Dynamic>
+            <Dynamic>/home/konrad/dev/Kilsyth/gateware/bootloader/src/kilsyth_top.v(50): </Dynamic>
+            <Dynamic>ft_wr_n</Dynamic>
             <Navigation>/home/konrad/dev/Kilsyth/gateware/bootloader/src/kilsyth_top.v</Navigation>
-            <Navigation>47</Navigation>
-        </Message>
-        <Message>
-            <ID>35901220</ID>
-            <Severity>Warning</Severity>
-            <Dynamic>/home/konrad/dev/Kilsyth/gateware/bootloader/src/kilsyth_top.v(49): </Dynamic>
-            <Dynamic>ft_rxf_n</Dynamic>
-            <Navigation>/home/konrad/dev/Kilsyth/gateware/bootloader/src/kilsyth_top.v</Navigation>
-            <Navigation>49</Navigation>
+            <Navigation>50</Navigation>
         </Message>
         <Message>
             <ID>35901209</ID>
             <Severity>Warning</Severity>
-            <Dynamic>/home/konrad/dev/Kilsyth/gateware/bootloader/src/kilsyth_top.v(54): </Dynamic>
+            <Dynamic>/home/konrad/dev/Kilsyth/gateware/bootloader/src/kilsyth_top.v(57): </Dynamic>
             <Dynamic>32</Dynamic>
             <Dynamic>26</Dynamic>
             <Navigation>/home/konrad/dev/Kilsyth/gateware/bootloader/src/kilsyth_top.v</Navigation>
-            <Navigation>54</Navigation>
+            <Navigation>57</Navigation>
         </Message>
         <Message>
             <ID>35001771</ID>
@@ -48,8 +61,31 @@
             <Dynamic>pwr</Dynamic>
         </Message>
         <Message>
+            <ID>35002005</ID>
+            <Severity>Warning</Severity>
+            <Dynamic>io_ft_gpio1</Dynamic>
+        </Message>
+        <Message>
             <ID>35001611</ID>
             <Severity>Warning</Severity>
+        </Message>
+        <Message>
+            <ID>1166052</ID>
+            <Severity>Warning</Severity>
+            <Dynamic>logical</Dynamic>
+            <Dynamic>io_ft_gpio1</Dynamic>
+            <Navigation>io_ft_gpio1</Navigation>
+        </Message>
+        <Message>
+            <ID>1166064</ID>
+            <Severity>Warning</Severity>
+            <Dynamic>input</Dynamic>
+            <Dynamic>io_ft_gpio1</Dynamic>
+        </Message>
+        <Message>
+            <ID>1163101</ID>
+            <Severity>Warning</Severity>
+            <Dynamic>2</Dynamic>
         </Message>
     </Task>
 </BaliMessageLog>

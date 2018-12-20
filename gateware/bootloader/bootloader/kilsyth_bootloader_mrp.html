@@ -23,23 +23,23 @@ Target Vendor:  LATTICE
 Target Device:  LFE5U-12FCABGA381
 Target Performance:   6
 Mapper:  sa5p00,  version:  Diamond (64-bit) 3.10.3.144.3
-Mapped on:  12/19/18  00:44:18
+Mapped on:  12/20/18  22:41:14
 
 
 <A name="mrp_ds"></A><B><U><big>Design Summary</big></U></B>
-   Number of registers:     32 out of 12687 (0%)
-      PFU registers:           32 out of 12096 (0%)
+   Number of registers:     33 out of 12687 (0%)
+      PFU registers:           33 out of 12096 (0%)
       PIO registers:            0 out of   591 (0%)
-   Number of SLICEs:        21 out of  6048 (0%)
-      SLICEs as Logic/ROM:     21 out of  6048 (0%)
+   Number of SLICEs:        23 out of  6048 (0%)
+      SLICEs as Logic/ROM:     23 out of  6048 (0%)
       SLICEs as RAM:            0 out of  4536 (0%)
       SLICEs as Carry:         13 out of  6048 (0%)
-   Number of LUT4s:         33 out of 12096 (0%)
-      Number used as logic LUTs:          7
+   Number of LUT4s:         34 out of 12096 (0%)
+      Number used as logic LUTs:          8
       Number used as distributed RAM:     0
       Number used as ripple logic:       26
       Number used as shift registers:     0
-   Number of PIO sites used: 34 out of 197 (17%)
+   Number of PIO sites used: 33 out of 197 (17%)
    Number of block RAMs:  0 out of 32 (0%)
    Number of GSRs:  0 out of 1 (0%)
    JTAG used :      No
@@ -76,27 +76,27 @@ Mapped on:  12/19/18  00:44:18
    Number of Used DSP ALU Sites:  0 out of 28 (0 %)
    Number of Used DSP PRADD Sites:  0 out of 56 (0 %)
    Number of clocks:  2
-     Net i_clk16_c: 17 loads, 17 rising, 0 falling (Driver: PIO i_clk16 )
-     Net i_ft_clk_c: 1 loads, 1 rising, 0 falling (Driver: PIO i_ft_clk )
+     Net i_clk16_c: 16 loads, 16 rising, 0 falling (Driver: PIO i_clk16 )
+     Net i_ft_clk_c: 2 loads, 2 rising, 0 falling (Driver: PIO i_ft_clk )
    Number of Clock Enables:  0
    Number of LSRs:  0
    Number of nets driven by tri-state buffers:  0
    Top 10 highest fanout non-clock nets:
+     Net io_ft_oe_n_c: 3 loads
      Net counter_23: 2 loads
+     Net i_ft_rxf_n_c: 2 loads
+     Net o_leds_c_6: 2 loads
      Net i_ft_be_c_0: 1 loads
      Net i_ft_be_c_1: 1 loads
-     Net i_ft_oe_n_c: 1 loads
-     Net i_ft_rd_n_c: 1 loads
-     Net i_ft_wr_n_c: 1 loads
+     Net i_ft_txe_n_c: 1 loads
+     Net o_leds_c_0: 1 loads
      Net o_leds_c_1: 1 loads
      Net o_leds_c_2: 1 loads
-     Net o_leds_c_3: 1 loads
-     Net o_leds_c_4: 1 loads
 
 
 
 
-   Number of warnings:  0
+   Number of warnings:  3
    Number of errors:    0
      
 
@@ -105,7 +105,13 @@ Mapped on:  12/19/18  00:44:18
 
 <A name="mrp_dwe"></A><B><U><big>Design Errors/Warnings</big></U></B>
 
-   No errors or warnings present.
+WARNING - map: /home/konrad/dev/Kilsyth/gateware/bootloader/kilsyth.lpf(72):
+     Semantic error in "IOBUF PORT "io_ft_gpio1" IO_TYPE=LVCMOS33 ;": Port
+     "io_ft_gpio1" does not exist in the design. This preference has been
+     disabled.
+WARNING - map: input pad net 'io_ft_gpio1' has no legal load.
+WARNING - map: IO buffer missing for top level port io_ft_gpio1...logic will be
+     discarded.
 
 
 
@@ -115,10 +121,13 @@ Mapped on:  12/19/18  00:44:18
 | IO Name             | Direction | Levelmode | IO         |
 |                     |           |  IO_TYPE  | Register   |
 +---------------------+-----------+-----------+------------+
-| o_ft_txe_n          | OUTPUT    | LVCMOS33  |            |
+| o_ft_wr_n           | OUTPUT    | LVCMOS33  |            |
 +---------------------+-----------+-----------+------------+
-| o_ft_rxf_n          | OUTPUT    | LVCMOS33  |            |
+| o_ft_rd_n           | OUTPUT    | LVCMOS33  |            |
 +---------------------+-----------+-----------+------------+
+| io_ft_oe_n          | OUTPUT    | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+
 | o_leds[7]           | OUTPUT    | LVCMOS33  |            |
 +---------------------+-----------+-----------+------------+
 | o_leds[6]           | OUTPUT    | LVCMOS33  |            |
@@ -127,7 +136,6 @@ Mapped on:  12/19/18  00:44:18
 +---------------------+-----------+-----------+------------+
 | o_leds[4]           | OUTPUT    | LVCMOS33  |            |
 +---------------------+-----------+-----------+------------+
-
 | o_leds[3]           | OUTPUT    | LVCMOS33  |            |
 +---------------------+-----------+-----------+------------+
 | o_leds[2]           | OUTPUT    | LVCMOS33  |            |
@@ -176,15 +184,11 @@ Mapped on:  12/19/18  00:44:18
 +---------------------+-----------+-----------+------------+
 | i_ft_be[0]          | INPUT     | LVCMOS33  |            |
 +---------------------+-----------+-----------+------------+
-| i_ft_wr_n           | INPUT     | LVCMOS33  |            |
-+---------------------+-----------+-----------+------------+
-| i_ft_rd_n           | INPUT     | LVCMOS33  |            |
-+---------------------+-----------+-----------+------------+
-| i_ft_oe_n           | INPUT     | LVCMOS33  |            |
-+---------------------+-----------+-----------+------------+
-| io_ft_gpio1         | INPUT     | LVCMOS33  |            |
-+---------------------+-----------+-----------+------------+
 
+| i_ft_txe_n          | INPUT     | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| i_ft_rxf_n          | INPUT     | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
 
 
 
@@ -192,10 +196,10 @@ Mapped on:  12/19/18  00:44:18
 
 Block GSR_INST undriven or does not drive anything - clipped.
 Signal VCC_net undriven or does not drive anything - clipped.
-Signal counter_26_27_add_4_1/S0 undriven or does not drive anything - clipped.
-Signal counter_26_27_add_4_1/CI undriven or does not drive anything - clipped.
-Signal counter_26_27_add_4_25/S1 undriven or does not drive anything - clipped.
-Signal counter_26_27_add_4_25/CO undriven or does not drive anything - clipped.
+Signal counter_32_33_add_4_1/S0 undriven or does not drive anything - clipped.
+Signal counter_32_33_add_4_1/CI undriven or does not drive anything - clipped.
+Signal counter_32_33_add_4_25/S1 undriven or does not drive anything - clipped.
+Signal counter_32_33_add_4_25/CO undriven or does not drive anything - clipped.
 Block i2 was optimized away.
 
 
@@ -214,12 +218,6 @@ Block i2 was optimized away.
    Total REAL Time: 0 secs  
    Peak Memory Usage: 264 MB
         
-
-
-
-
-
-
 
 
 
