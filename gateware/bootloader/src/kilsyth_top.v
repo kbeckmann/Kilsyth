@@ -6,7 +6,7 @@ module kilsyth_top(
 	/* ft600 interface */
 	inout  wire [15:0] io_ft_data,
 	input  wire        i_ft_clk,
-	input  wire [ 1:0] i_ft_be,
+	inout  wire [ 1:0] io_ft_be,
 	input  wire        i_ft_txe_n,
 	input  wire        i_ft_rxf_n,
 	output wire        o_ft_wr_n,
@@ -52,27 +52,91 @@ module kilsyth_top(
 	reg ft_rd_n = 1;
 	assign o_ft_rd_n = ft_rd_n;
 
+	reg [15:0] ft_data_buf = 'b0;
+	reg ft_data_dir = 0;
+	assign io_ft_data = ft_data_dir ? ft_data_buf : 'bz;
+
+	reg [1:0] ft_be = 'b0;
+	assign io_ft_be = ft_data_dir ? ft_be : 'bz;
+
 	/* This clock is _always_ ticking */
 	always @(posedge i_clk16) begin
 		counter    <= counter + 1;
 		leds[0]    <= counter[23];
-		leds[2:1]  <= i_ft_be;
+		leds[2:1]  <= io_ft_be;
 		leds[3]    <= i_ft_txe_n;
 		leds[4]    <= i_ft_rxf_n;
 		leds[5]    <= ft_rd_n; 
 	end
+
+	reg [7:0] state = 0;
+	reg [7:0] next_state = 0;
+	
+	reg [31:0] tx_words;
+	reg wants_to_write = 0;
+	
+	reg [15:0] fifo_buf[0:1023];
+	reg [31:0] index;
+	reg [15:0] ft_counter = 0;
 	
 	/* This clock might only tick while there is a transfer ongoing, not sure... */
 	always @(posedge i_ft_clk) begin
 		leds[6]    <= ~leds[6];
-		leds[7]    <= |io_ft_data;
-		if (!i_ft_rxf_n) begin
-			ft_oe_n <= 0;
-			ft_rd_n <= 0;
-		end else begin
-			ft_oe_n <= 1;
-			ft_rd_n <= 1;
-		end
+		leds[7]    <= wants_to_write;
+		
+		state      <= next_state;
+		case (state)
+			0: begin
+				ft_oe_n <= 1;
+				ft_rd_n <= 1;
+				ft_wr_n <= 1;
+				ft_data_dir <= 0;
+				
+				if (!i_ft_txe_n && wants_to_write) begin
+					wants_to_write <= 0;
+					next_state <= 3;
+				end else if (!i_ft_rxf_n) begin
+					ft_oe_n <= 0;
+					ft_rd_n <= 0;
+					//words_to_read <= 1024;
+					index <= 0;
+					next_state <= 1;
+				end
+			end
+			1: begin
+				// read a word..
+				//ft_data_buf <= io_ft_data;
+				//fifo_buf[index] <= io_ft_data;
+				//index <= index + 1;
+				//if (i_ft_rxf_n || index == 0) begin
+				if (i_ft_rxf_n) begin
+					wants_to_write <= 1;
+					next_state <= 0;
+				end
+			end
+			3: begin
+				ft_oe_n <= 1;
+				ft_wr_n <= 0;
+				ft_be <= 2'b11;
+				ft_data_buf <= 16'h42;
+				tx_words <= 16;
+				ft_data_dir <= 1;
+				next_state <= 4;
+			end
+			4: begin
+				ft_data_buf <= 16'hFF;
+//				ft_data_buf <= ft_counter;
+//				ft_counter <= ft_counter + 1;
+//				if (!i_ft_txe_n)
+	//				tx_words <= tx_words - 1;
+
+		//		if (tx_words == 0) begin
+			//	if (i_ft_txe_n) begin
+					next_state <= 0;
+					wants_to_write <= 0;
+				//end
+			end
+		endcase
 	end
 
 

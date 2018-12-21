@@ -1,9 +1,27 @@
 NOTE Copyright (C), 1992-2010, Lattice Semiconductor Corporation *
 NOTE All Rights Reserved *
-NOTE DATE CREATED: Thu Dec 20 22:41:41 2018 *
+NOTE DATE CREATED: Fri Dec 21 01:40:03 2018 *
 NOTE DESIGN NAME: kilsyth_top *
 NOTE DEVICE NAME: LFE5U-12F-6CABGA381 *
 NOTE PIN ASSIGNMENTS *
+NOTE PINS io_ft_be[1] : J5 : inout *
+NOTE PINS io_ft_be[0] : K1 : inout *
+NOTE PINS io_ft_data[15] : K2 : out *
+NOTE PINS io_ft_data[14] : K3 : out *
+NOTE PINS io_ft_data[13] : K4 : out *
+NOTE PINS io_ft_data[12] : L1 : out *
+NOTE PINS io_ft_data[11] : L2 : out *
+NOTE PINS io_ft_data[10] : L3 : out *
+NOTE PINS io_ft_data[9] : M1 : out *
+NOTE PINS io_ft_data[8] : M3 : out *
+NOTE PINS io_ft_data[7] : N1 : out *
+NOTE PINS io_ft_data[6] : N2 : out *
+NOTE PINS io_ft_data[5] : N3 : out *
+NOTE PINS io_ft_data[4] : N4 : out *
+NOTE PINS io_ft_data[3] : P1 : out *
+NOTE PINS io_ft_data[2] : P2 : out *
+NOTE PINS io_ft_data[1] : P3 : out *
+NOTE PINS io_ft_data[0] : P4 : out *
 NOTE PINS o_ft_wr_n : J1 : out *
 NOTE PINS o_ft_rd_n : M4 : out *
 NOTE PINS io_ft_oe_n : H1 : out *
@@ -16,25 +34,7 @@ NOTE PINS o_leds[2] : B10 : out *
 NOTE PINS o_leds[1] : B9 : out *
 NOTE PINS o_leds[0] : A9 : out *
 NOTE PINS i_clk16 : G3 : in *
-NOTE PINS io_ft_data[15] : K2 : in *
-NOTE PINS io_ft_data[14] : K3 : in *
-NOTE PINS io_ft_data[13] : K4 : in *
-NOTE PINS io_ft_data[12] : L1 : in *
-NOTE PINS io_ft_data[11] : L2 : in *
-NOTE PINS io_ft_data[10] : L3 : in *
-NOTE PINS io_ft_data[9] : M1 : in *
-NOTE PINS io_ft_data[8] : M3 : in *
-NOTE PINS io_ft_data[7] : N1 : in *
-NOTE PINS io_ft_data[6] : N2 : in *
-NOTE PINS io_ft_data[5] : N3 : in *
-NOTE PINS io_ft_data[4] : N4 : in *
-NOTE PINS io_ft_data[3] : P1 : in *
-NOTE PINS io_ft_data[2] : P2 : in *
-NOTE PINS io_ft_data[1] : P3 : in *
-NOTE PINS io_ft_data[0] : P4 : in *
 NOTE PINS i_ft_clk : H2 : in *
-NOTE PINS i_ft_be[1] : J5 : in *
-NOTE PINS i_ft_be[0] : K1 : in *
 NOTE PINS i_ft_txe_n : J4 : in *
 NOTE PINS i_ft_rxf_n : J3 : in *
 NOTE CONFIGURATION MODE: JTAG *

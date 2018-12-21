@@ -39,31 +39,116 @@
             <Navigation>3</Navigation>
         </Message>
         <Message>
-            <ID>35901220</ID>
-            <Severity>Warning</Severity>
-            <Dynamic>/home/konrad/dev/Kilsyth/gateware/bootloader/src/kilsyth_top.v(50): </Dynamic>
-            <Dynamic>ft_wr_n</Dynamic>
-            <Navigation>/home/konrad/dev/Kilsyth/gateware/bootloader/src/kilsyth_top.v</Navigation>
-            <Navigation>50</Navigation>
-        </Message>
-        <Message>
             <ID>35901209</ID>
             <Severity>Warning</Severity>
             <Dynamic>/home/konrad/dev/Kilsyth/gateware/bootloader/src/kilsyth_top.v(57): </Dynamic>
             <Dynamic>32</Dynamic>
-            <Dynamic>26</Dynamic>
+            <Dynamic>16</Dynamic>
             <Navigation>/home/konrad/dev/Kilsyth/gateware/bootloader/src/kilsyth_top.v</Navigation>
             <Navigation>57</Navigation>
         </Message>
         <Message>
-            <ID>35001771</ID>
+            <ID>35901209</ID>
             <Severity>Warning</Severity>
-            <Dynamic>pwr</Dynamic>
+            <Dynamic>/home/konrad/dev/Kilsyth/gateware/bootloader/src/kilsyth_top.v(60): </Dynamic>
+            <Dynamic>32</Dynamic>
+            <Dynamic>2</Dynamic>
+            <Navigation>/home/konrad/dev/Kilsyth/gateware/bootloader/src/kilsyth_top.v</Navigation>
+            <Navigation>60</Navigation>
+        </Message>
+        <Message>
+            <ID>35901209</ID>
+            <Severity>Warning</Severity>
+            <Dynamic>/home/konrad/dev/Kilsyth/gateware/bootloader/src/kilsyth_top.v(64): </Dynamic>
+            <Dynamic>32</Dynamic>
+            <Dynamic>26</Dynamic>
+            <Navigation>/home/konrad/dev/Kilsyth/gateware/bootloader/src/kilsyth_top.v</Navigation>
+            <Navigation>64</Navigation>
+        </Message>
+        <Message>
+            <ID>35001748</ID>
+            <Severity>Warning</Severity>
+            <Dynamic>0</Dynamic>
+            <Dynamic>ft_be</Dynamic>
+        </Message>
+        <Message>
+            <ID>35001748</ID>
+            <Severity>Warning</Severity>
+            <Dynamic>1</Dynamic>
+            <Dynamic>ft_be</Dynamic>
+        </Message>
+        <Message>
+            <ID>35001747</ID>
+            <Severity>Warning</Severity>
+            <Dynamic>0</Dynamic>
+            <Dynamic>ft_data_buf</Dynamic>
+        </Message>
+        <Message>
+            <ID>35001747</ID>
+            <Severity>Warning</Severity>
+            <Dynamic>1</Dynamic>
+            <Dynamic>ft_data_buf</Dynamic>
+        </Message>
+        <Message>
+            <ID>35001747</ID>
+            <Severity>Warning</Severity>
+            <Dynamic>2</Dynamic>
+            <Dynamic>ft_data_buf</Dynamic>
+        </Message>
+        <Message>
+            <ID>35001747</ID>
+            <Severity>Warning</Severity>
+            <Dynamic>3</Dynamic>
+            <Dynamic>ft_data_buf</Dynamic>
+        </Message>
+        <Message>
+            <ID>35001747</ID>
+            <Severity>Warning</Severity>
+            <Dynamic>4</Dynamic>
+            <Dynamic>ft_data_buf</Dynamic>
+        </Message>
+        <Message>
+            <ID>35001747</ID>
+            <Severity>Warning</Severity>
+            <Dynamic>5</Dynamic>
+            <Dynamic>ft_data_buf</Dynamic>
+        </Message>
+        <Message>
+            <ID>35001747</ID>
+            <Severity>Warning</Severity>
+            <Dynamic>6</Dynamic>
+            <Dynamic>ft_data_buf</Dynamic>
+        </Message>
+        <Message>
+            <ID>35001747</ID>
+            <Severity>Warning</Severity>
+            <Dynamic>7</Dynamic>
+            <Dynamic>ft_data_buf</Dynamic>
+        </Message>
+        <Message>
+            <ID>35001748</ID>
+            <Severity>Warning</Severity>
+            <Dynamic>9</Dynamic>
+            <Dynamic>ft_data_buf</Dynamic>
+        </Message>
+        <Message>
+            <ID>35001748</ID>
+            <Severity>Warning</Severity>
+            <Dynamic>14</Dynamic>
+            <Dynamic>ft_data_buf</Dynamic>
         </Message>
         <Message>
             <ID>35002005</ID>
             <Severity>Warning</Severity>
             <Dynamic>io_ft_gpio1</Dynamic>
+        </Message>
+        <Message>
+            <ID>35935013</ID>
+            <Severity>Warning</Severity>
+            <Dynamic>/home/konrad/dev/Kilsyth/gateware/bootloader/src/kilsyth_top.v(140): </Dynamic>
+            <Dynamic>state_i7</Dynamic>
+            <Navigation>/home/konrad/dev/Kilsyth/gateware/bootloader/src/kilsyth_top.v</Navigation>
+            <Navigation>140</Navigation>
         </Message>
         <Message>
             <ID>35001611</ID>
@@ -86,6 +171,13 @@
             <ID>1163101</ID>
             <Severity>Warning</Severity>
             <Dynamic>2</Dynamic>
+        </Message>
+    </Task>
+    <Task name="TimingSimFileVHD">
+        <Message>
+            <ID>35400250</ID>
+            <Severity>Info</Severity>
+            <Dynamic>0</Dynamic>
         </Message>
     </Task>
 </BaliMessageLog>

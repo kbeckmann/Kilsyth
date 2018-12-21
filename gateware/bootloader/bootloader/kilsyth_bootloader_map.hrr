@@ -3,8 +3,8 @@ Report for cell kilsyth_top
    Instance path: kilsyth_top
                      Cell usage:
                                   cell	      count    Res Usage(%)
-                                  SLIC	      23.00        100.0
-                                  LUT4	       8.00        100.0
+                                  SLIC	      30.00        100.0
+                                  LUT4	      18.00        100.0
                                  IOBUF	         33        100.0
-                                PFUREG	         33        100.0
+                                PFUREG	         44        100.0
                                 RIPPLE	         13        100.0

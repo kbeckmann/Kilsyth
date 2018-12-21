@@ -15,20 +15,20 @@ Target Vendor:  LATTICE
 Target Device:  LFE5U-12FCABGA381
 Target Performance:   6
 Mapper:  sa5p00,  version:  Diamond (64-bit) 3.10.3.144.3
-Mapped on:  12/20/18  22:41:14
+Mapped on:  12/21/18  01:39:43
 
 Design Summary
 --------------
 
-   Number of registers:     33 out of 12687 (0%)
-      PFU registers:           33 out of 12096 (0%)
+   Number of registers:     44 out of 12687 (0%)
+      PFU registers:           44 out of 12096 (0%)
       PIO registers:            0 out of   591 (0%)
-   Number of SLICEs:        23 out of  6048 (0%)
-      SLICEs as Logic/ROM:     23 out of  6048 (0%)
+   Number of SLICEs:        30 out of  6048 (0%)
+      SLICEs as Logic/ROM:     30 out of  6048 (0%)
       SLICEs as RAM:            0 out of  4536 (0%)
       SLICEs as Carry:         13 out of  6048 (0%)
-   Number of LUT4s:         34 out of 12096 (0%)
-      Number used as logic LUTs:          8
+   Number of LUT4s:         44 out of 12096 (0%)
+      Number used as logic LUTs:         18
       Number used as distributed RAM:     0
       Number used as ripple logic:       26
       Number used as shift registers:     0
@@ -66,7 +66,7 @@ Design Summary
 
 
 
-Design:  kilsyth_top                                   Date:  12/20/18  22:41:14
+Design:  kilsyth_top                                   Date:  12/21/18  01:39:43
 
 Design Summary (cont)
 ---------------------
@@ -79,21 +79,27 @@ Design Summary (cont)
    Number of Used DSP PRADD Sites:  0 out of 56 (0 %)
    Number of clocks:  2
      Net i_clk16_c: 16 loads, 16 rising, 0 falling (Driver: PIO i_clk16 )
-     Net i_ft_clk_c: 2 loads, 2 rising, 0 falling (Driver: PIO i_ft_clk )
-   Number of Clock Enables:  0
-   Number of LSRs:  0
+     Net i_ft_clk_c: 11 loads, 11 rising, 0 falling (Driver: PIO i_ft_clk )
+   Number of Clock Enables:  5
+     Net i_ft_clk_c_enable_3: 3 loads, 3 LSLICEs
+     Net i_ft_clk_c_enable_4: 1 loads, 1 LSLICEs
+     Net i_ft_clk_c_enable_9: 2 loads, 2 LSLICEs
+     Net i_ft_clk_c_enable_6: 1 loads, 1 LSLICEs
+     Net i_ft_clk_c_enable_7: 1 loads, 1 LSLICEs
+   Number of LSRs:  1
+     Net n1032: 2 loads, 2 LSLICEs
    Number of nets driven by tri-state buffers:  0
    Top 10 highest fanout non-clock nets:
-     Net io_ft_oe_n_c: 3 loads
+     Net ft_data_dir: 18 loads
+     Net state_1: 13 loads
+     Net state_0: 12 loads
+     Net state_2: 7 loads
+     Net ft_data_buf_7: 6 loads
+     Net i_ft_rxf_n_c: 6 loads
+     Net i_ft_txe_n_c: 6 loads
+     Net wants_to_write: 6 loads
+     Net i_ft_clk_c_enable_3: 3 loads
      Net counter_23: 2 loads
-     Net i_ft_rxf_n_c: 2 loads
-     Net o_leds_c_6: 2 loads
-     Net i_ft_be_c_0: 1 loads
-     Net i_ft_be_c_1: 1 loads
-     Net i_ft_txe_n_c: 1 loads
-     Net o_leds_c_0: 1 loads
-     Net o_leds_c_1: 1 loads
-     Net o_leds_c_2: 1 loads
 
 
 
@@ -120,22 +126,58 @@ IO (PIO) Attributes
 | IO Name             | Direction | Levelmode | IO         |
 |                     |           |  IO_TYPE  | Register   |
 +---------------------+-----------+-----------+------------+
-| o_ft_wr_n           | OUTPUT    | LVCMOS33  |            |
-+---------------------+-----------+-----------+------------+
-| o_ft_rd_n           | OUTPUT    | LVCMOS33  |            |
-+---------------------+-----------+-----------+------------+
-| io_ft_oe_n          | OUTPUT    | LVCMOS33  |            |
-+---------------------+-----------+-----------+------------+
 
                                     Page 2
 
 
 
 
-Design:  kilsyth_top                                   Date:  12/20/18  22:41:14
+Design:  kilsyth_top                                   Date:  12/21/18  01:39:43
 
 IO (PIO) Attributes (cont)
 --------------------------
+| io_ft_be[1]         | BIDIR     | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| io_ft_be[0]         | BIDIR     | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| io_ft_data[15]      | OUTPUT    | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| io_ft_data[14]      | OUTPUT    | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| io_ft_data[13]      | OUTPUT    | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| io_ft_data[12]      | OUTPUT    | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| io_ft_data[11]      | OUTPUT    | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| io_ft_data[10]      | OUTPUT    | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| io_ft_data[9]       | OUTPUT    | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| io_ft_data[8]       | OUTPUT    | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| io_ft_data[7]       | OUTPUT    | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| io_ft_data[6]       | OUTPUT    | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| io_ft_data[5]       | OUTPUT    | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| io_ft_data[4]       | OUTPUT    | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| io_ft_data[3]       | OUTPUT    | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| io_ft_data[2]       | OUTPUT    | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| io_ft_data[1]       | OUTPUT    | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| io_ft_data[0]       | OUTPUT    | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| o_ft_wr_n           | OUTPUT    | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| o_ft_rd_n           | OUTPUT    | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| io_ft_oe_n          | OUTPUT    | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
 | o_leds[7]           | OUTPUT    | LVCMOS33  |            |
 +---------------------+-----------+-----------+------------+
 | o_leds[6]           | OUTPUT    | LVCMOS33  |            |
@@ -150,58 +192,22 @@ IO (PIO) Attributes (cont)
 +---------------------+-----------+-----------+------------+
 | o_leds[1]           | OUTPUT    | LVCMOS33  |            |
 +---------------------+-----------+-----------+------------+
-| o_leds[0]           | OUTPUT    | LVCMOS33  |            |
-+---------------------+-----------+-----------+------------+
-| i_clk16             | INPUT     | LVCMOS33  |            |
-+---------------------+-----------+-----------+------------+
-| io_ft_data[15]      | INPUT     | LVCMOS33  |            |
-+---------------------+-----------+-----------+------------+
-| io_ft_data[14]      | INPUT     | LVCMOS33  |            |
-+---------------------+-----------+-----------+------------+
-| io_ft_data[13]      | INPUT     | LVCMOS33  |            |
-+---------------------+-----------+-----------+------------+
-| io_ft_data[12]      | INPUT     | LVCMOS33  |            |
-+---------------------+-----------+-----------+------------+
-| io_ft_data[11]      | INPUT     | LVCMOS33  |            |
-+---------------------+-----------+-----------+------------+
-| io_ft_data[10]      | INPUT     | LVCMOS33  |            |
-+---------------------+-----------+-----------+------------+
-| io_ft_data[9]       | INPUT     | LVCMOS33  |            |
-+---------------------+-----------+-----------+------------+
-| io_ft_data[8]       | INPUT     | LVCMOS33  |            |
-+---------------------+-----------+-----------+------------+
-| io_ft_data[7]       | INPUT     | LVCMOS33  |            |
-+---------------------+-----------+-----------+------------+
-| io_ft_data[6]       | INPUT     | LVCMOS33  |            |
-+---------------------+-----------+-----------+------------+
-| io_ft_data[5]       | INPUT     | LVCMOS33  |            |
-+---------------------+-----------+-----------+------------+
-| io_ft_data[4]       | INPUT     | LVCMOS33  |            |
-+---------------------+-----------+-----------+------------+
-| io_ft_data[3]       | INPUT     | LVCMOS33  |            |
-+---------------------+-----------+-----------+------------+
-| io_ft_data[2]       | INPUT     | LVCMOS33  |            |
-+---------------------+-----------+-----------+------------+
-| io_ft_data[1]       | INPUT     | LVCMOS33  |            |
-+---------------------+-----------+-----------+------------+
-| io_ft_data[0]       | INPUT     | LVCMOS33  |            |
-+---------------------+-----------+-----------+------------+
-| i_ft_clk            | INPUT     | LVCMOS33  |            |
-+---------------------+-----------+-----------+------------+
-| i_ft_be[1]          | INPUT     | LVCMOS33  |            |
-+---------------------+-----------+-----------+------------+
-| i_ft_be[0]          | INPUT     | LVCMOS33  |            |
-+---------------------+-----------+-----------+------------+
 
                                     Page 3
 
 
 
 
-Design:  kilsyth_top                                   Date:  12/20/18  22:41:14
+Design:  kilsyth_top                                   Date:  12/21/18  01:39:43
 
 IO (PIO) Attributes (cont)
 --------------------------
+| o_leds[0]           | OUTPUT    | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| i_clk16             | INPUT     | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| i_ft_clk            | INPUT     | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
 | i_ft_txe_n          | INPUT     | LVCMOS33  |            |
 +---------------------+-----------+-----------+------------+
 | i_ft_rxf_n          | INPUT     | LVCMOS33  |            |
@@ -211,11 +217,17 @@ Removed logic
 -------------
 
 Block GSR_INST undriven or does not drive anything - clipped.
+Signal n1158 was merged into signal ft_data_dir
 Signal VCC_net undriven or does not drive anything - clipped.
-Signal counter_32_33_add_4_1/S0 undriven or does not drive anything - clipped.
-Signal counter_32_33_add_4_1/CI undriven or does not drive anything - clipped.
-Signal counter_32_33_add_4_25/S1 undriven or does not drive anything - clipped.
-Signal counter_32_33_add_4_25/CO undriven or does not drive anything - clipped.
+Signal counter_296_302_add_4_25/S1 undriven or does not drive anything -
+     clipped.
+Signal counter_296_302_add_4_25/CO undriven or does not drive anything -
+     clipped.
+Signal counter_296_302_add_4_1/S0 undriven or does not drive anything - clipped.
+     
+Signal counter_296_302_add_4_1/CI undriven or does not drive anything - clipped.
+     
+Block i308_1_lut was optimized away.
 Block i2 was optimized away.
 
 Memory Usage
@@ -231,18 +243,6 @@ Run Time and Memory Usage
    Total REAL Time: 0 secs  
    Peak Memory Usage: 264 MB
         
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

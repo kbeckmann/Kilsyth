@@ -4,7 +4,7 @@ Copyright (c) 1995 AT&T Corp.   All rights reserved.
 Copyright (c) 1995-2001 Lucent Technologies Inc.  All rights reserved.
 Copyright (c) 2001 Agere Systems   All rights reserved.
 Copyright (c) 2002-2017 Lattice Semiconductor Corporation,  All rights reserved.
-Thu Dec 20 22:41:26 2018
+Fri Dec 21 01:39:45 2018
 
 /usr/local/diamond/3.10_x64/ispfpga/bin/lin64/par -f kilsyth_bootloader.p2t
 kilsyth_bootloader_map.ncd kilsyth_bootloader.dir kilsyth_bootloader.prf -gui
@@ -16,7 +16,7 @@ Preference file: kilsyth_bootloader.prf.
 Level/       Number       Worst        Timing       Worst        Timing       Run          NCD
 Cost [ncd]   Unrouted     Slack        Score        Slack(hold)  Score(hold)  Time         Status
 ----------   --------     -----        ------       -----------  -----------  ----         ------
-5_1   *      0            9.423        0            0.187        0            12           Success
+5_1   *      0            6.920        0            0.182        0            12           Success
 
 * : Design saved.
 

@@ -14,7 +14,7 @@
 <BR><PRE><A name="Report Header"></A>
 --------------------------------------------------------------------------------
 Lattice TRACE Report - Setup, Version Diamond (64-bit) 3.10.3.144.3
-Thu Dec 20 22:41:43 2018
+Fri Dec 21 01:40:04 2018
 
 Copyright (c) 1991-1994 by NeoCAD Inc. All rights reserved.
 Copyright (c) 1995 AT&T Corp.   All rights reserved.
@@ -48,7 +48,7 @@ VCCIO Voltage:
 
 </A><A name="FREQUENCY PORT 'i_ft_clk' 100.000000 MH"></A>================================================================================
 Preference: FREQUENCY PORT "i_ft_clk" 100.000000 MHz ;
-            1 item scored, 0 timing errors detected.
+            10 items scored, 0 timing errors detected.
 --------------------------------------------------------------------------------
 
 
@@ -62,47 +62,453 @@ Passed:  The following path meets requirements by 5.000ns
    Delay:               5.000ns -- based on Minimum Pulse Width
 <font color=#000000> 
 
-Passed: The following path meets requirements by 9.423ns
+Passed: The following path meets requirements by 6.920ns
  </font>
  Logical Details:  Cell type  Pin type       Cell/ASIC name  (clock net +/-)
 
-   Source:         FF         Q              <A href="#@comp:SLICE_17">leds_6__27</A>  (from <A href="#@net:i_ft_clk_c">i_ft_clk_c</A> +)
-   Destination:    FF         Data in        <A href="#@comp:SLICE_17">leds_6__27</A>  (to <A href="#@net:i_ft_clk_c">i_ft_clk_c</A> +)
+   Source:         FF         Q              <A href="#@comp:SLICE_26">wants_to_write_128</A>  (from <A href="#@net:i_ft_clk_c">i_ft_clk_c</A> +)
+   Destination:    FF         Data in        <A href="#@comp:SLICE_23">leds_7__121</A>  (to <A href="#@net:i_ft_clk_c">i_ft_clk_c</A> +)
 
-   Delay:               0.783ns  (77.0% logic, 23.0% route), 2 logic levels.
+   Delay:               3.209ns  (13.0% logic, 87.0% route), 1 logic levels.
 
  Constraint Details:
 
-      0.783ns physical path delay SLICE_17 to SLICE_17 meets
+      3.209ns physical path delay SLICE_26 to SLICE_23 meets
      10.000ns delay constraint less
       0.000ns skew and
-     -0.206ns DIN_SET requirement (totaling 10.206ns) by 9.423ns
+     -0.129ns M_SET requirement (totaling 10.129ns) by 6.920ns
 
  Physical Path Details:
 
-      <A href="#@path:FREQUENCY PORT 'i_ft_clk' 100.000000 MHz ;:REG_DEL, 0.416,R41C2A.CLK,R41C2A.Q0,SLICE_17:ROUTE, 0.180,R41C2A.Q0,R41C2A.D0,o_leds_c_6:CTOF_DEL, 0.187,R41C2A.D0,R41C2A.F0,SLICE_17:ROUTE, 0.000,R41C2A.F0,R41C2A.DI0,o_leds_6__N_3">Data path</A> SLICE_17 to SLICE_17:
+      <A href="#@path:FREQUENCY PORT 'i_ft_clk' 100.000000 MHz ;:REG_DEL, 0.416,R31C4D.CLK,R31C4D.Q0,SLICE_26:ROUTE, 2.793,R31C4D.Q0,R2C29D.M1,wants_to_write">Data path</A> SLICE_26 to SLICE_23:
 
    Name    Fanout   Delay (ns)          Site               Resource
-REG_DEL     ---     0.416     R41C2A.CLK to      R41C2A.Q0 <A href="#@comp:SLICE_17">SLICE_17</A> (from <A href="#@net:i_ft_clk_c">i_ft_clk_c</A>)
-ROUTE         2     0.180<A href="#@net:o_leds_c_6:R41C2A.Q0:R41C2A.D0:0.180">      R41C2A.Q0 to R41C2A.D0     </A> <A href="#@net:o_leds_c_6">o_leds_c_6</A>
-CTOF_DEL    ---     0.187      R41C2A.D0 to      R41C2A.F0 <A href="#@comp:SLICE_17">SLICE_17</A>
-ROUTE         1     0.000<A href="#@net:o_leds_6__N_3:R41C2A.F0:R41C2A.DI0:0.000">      R41C2A.F0 to R41C2A.DI0    </A> <A href="#@net:o_leds_6__N_3">o_leds_6__N_3</A> (to <A href="#@net:i_ft_clk_c">i_ft_clk_c</A>)
+REG_DEL     ---     0.416     R31C4D.CLK to      R31C4D.Q0 <A href="#@comp:SLICE_26">SLICE_26</A> (from <A href="#@net:i_ft_clk_c">i_ft_clk_c</A>)
+ROUTE         6     2.793<A href="#@net:wants_to_write:R31C4D.Q0:R2C29D.M1:2.793">      R31C4D.Q0 to R2C29D.M1     </A> <A href="#@net:wants_to_write">wants_to_write</A> (to <A href="#@net:i_ft_clk_c">i_ft_clk_c</A>)
                   --------
-                    0.783   (77.0% logic, 23.0% route), 2 logic levels.
+                    3.209   (13.0% logic, 87.0% route), 1 logic levels.
 
  Clock Skew Details: 
 
-      <A href="#@path:FREQUENCY PORT 'i_ft_clk' 100.000000 MHz ;:ROUTE, 2.142,H2.PADDI,R41C2A.CLK,i_ft_clk_c">Source Clock Path</A> i_ft_clk to SLICE_17:
+      <A href="#@path:FREQUENCY PORT 'i_ft_clk' 100.000000 MHz ;:ROUTE, 2.142,H2.PADDI,R31C4D.CLK,i_ft_clk_c">Source Clock Path</A> i_ft_clk to SLICE_26:
 
    Name    Fanout   Delay (ns)          Site               Resource
-ROUTE         2     2.142<A href="#@net:i_ft_clk_c:H2.PADDI:R41C2A.CLK:2.142">       H2.PADDI to R41C2A.CLK    </A> <A href="#@net:i_ft_clk_c">i_ft_clk_c</A>
+ROUTE        11     2.142<A href="#@net:i_ft_clk_c:H2.PADDI:R31C4D.CLK:2.142">       H2.PADDI to R31C4D.CLK    </A> <A href="#@net:i_ft_clk_c">i_ft_clk_c</A>
                   --------
                     2.142   (0.0% logic, 100.0% route), 0 logic levels.
 
-      <A href="#@path:FREQUENCY PORT 'i_ft_clk' 100.000000 MHz ;:ROUTE, 2.142,H2.PADDI,R41C2A.CLK,i_ft_clk_c">Destination Clock Path</A> i_ft_clk to SLICE_17:
+      <A href="#@path:FREQUENCY PORT 'i_ft_clk' 100.000000 MHz ;:ROUTE, 2.142,H2.PADDI,R2C29D.CLK,i_ft_clk_c">Destination Clock Path</A> i_ft_clk to SLICE_23:
 
    Name    Fanout   Delay (ns)          Site               Resource
-ROUTE         2     2.142<A href="#@net:i_ft_clk_c:H2.PADDI:R41C2A.CLK:2.142">       H2.PADDI to R41C2A.CLK    </A> <A href="#@net:i_ft_clk_c">i_ft_clk_c</A>
+ROUTE        11     2.142<A href="#@net:i_ft_clk_c:H2.PADDI:R2C29D.CLK:2.142">       H2.PADDI to R2C29D.CLK    </A> <A href="#@net:i_ft_clk_c">i_ft_clk_c</A>
+                  --------
+                    2.142   (0.0% logic, 100.0% route), 0 logic levels.
+<font color=#000000> 
+
+Passed: The following path meets requirements by 7.713ns
+ </font>
+ Logical Details:  Cell type  Pin type       Cell/ASIC name  (clock net +/-)
+
+   Source:         FF         Q              <A href="#@comp:SLICE_24">state_i1</A>  (from <A href="#@net:i_ft_clk_c">i_ft_clk_c</A> +)
+   Destination:    FF         Data in        <A href="#@comp:SLICE_16">next_state__i1</A>  (to <A href="#@net:i_ft_clk_c">i_ft_clk_c</A> +)
+                   FF                        <A href="#@net:next_state__i0">next_state__i0</A>
+
+   Delay:               1.951ns  (30.8% logic, 69.2% route), 2 logic levels.
+
+ Constraint Details:
+
+      1.951ns physical path delay SLICE_24 to SLICE_16 meets
+     10.000ns delay constraint less
+      0.000ns skew and
+      0.336ns LSR_SET requirement (totaling 9.664ns) by 7.713ns
+
+ Physical Path Details:
+
+      <A href="#@path:FREQUENCY PORT 'i_ft_clk' 100.000000 MHz ;:REG_DEL, 0.414,R31C3B.CLK,R31C3B.Q1,SLICE_24:ROUTE, 0.754,R31C3B.Q1,R31C2D.B0,state_1:CTOF_DEL, 0.187,R31C2D.B0,R31C2D.F0,SLICE_29:ROUTE, 0.596,R31C2D.F0,R31C3C.LSR,n1032">Data path</A> SLICE_24 to SLICE_16:
+
+   Name    Fanout   Delay (ns)          Site               Resource
+REG_DEL     ---     0.414     R31C3B.CLK to      R31C3B.Q1 <A href="#@comp:SLICE_24">SLICE_24</A> (from <A href="#@net:i_ft_clk_c">i_ft_clk_c</A>)
+ROUTE        13     0.754<A href="#@net:state_1:R31C3B.Q1:R31C2D.B0:0.754">      R31C3B.Q1 to R31C2D.B0     </A> <A href="#@net:state_1">state_1</A>
+CTOF_DEL    ---     0.187      R31C2D.B0 to      R31C2D.F0 <A href="#@comp:SLICE_29">SLICE_29</A>
+ROUTE         2     0.596<A href="#@net:n1032:R31C2D.F0:R31C3C.LSR:0.596">      R31C2D.F0 to R31C3C.LSR    </A> <A href="#@net:n1032">n1032</A> (to <A href="#@net:i_ft_clk_c">i_ft_clk_c</A>)
+                  --------
+                    1.951   (30.8% logic, 69.2% route), 2 logic levels.
+
+ Clock Skew Details: 
+
+      <A href="#@path:FREQUENCY PORT 'i_ft_clk' 100.000000 MHz ;:ROUTE, 2.142,H2.PADDI,R31C3B.CLK,i_ft_clk_c">Source Clock Path</A> i_ft_clk to SLICE_24:
+
+   Name    Fanout   Delay (ns)          Site               Resource
+ROUTE        11     2.142<A href="#@net:i_ft_clk_c:H2.PADDI:R31C3B.CLK:2.142">       H2.PADDI to R31C3B.CLK    </A> <A href="#@net:i_ft_clk_c">i_ft_clk_c</A>
+                  --------
+                    2.142   (0.0% logic, 100.0% route), 0 logic levels.
+
+      <A href="#@path:FREQUENCY PORT 'i_ft_clk' 100.000000 MHz ;:ROUTE, 2.142,H2.PADDI,R31C3C.CLK,i_ft_clk_c">Destination Clock Path</A> i_ft_clk to SLICE_16:
+
+   Name    Fanout   Delay (ns)          Site               Resource
+ROUTE        11     2.142<A href="#@net:i_ft_clk_c:H2.PADDI:R31C3C.CLK:2.142">       H2.PADDI to R31C3C.CLK    </A> <A href="#@net:i_ft_clk_c">i_ft_clk_c</A>
+                  --------
+                    2.142   (0.0% logic, 100.0% route), 0 logic levels.
+<font color=#000000> 
+
+Passed: The following path meets requirements by 7.713ns
+ </font>
+ Logical Details:  Cell type  Pin type       Cell/ASIC name  (clock net +/-)
+
+   Source:         FF         Q              <A href="#@comp:SLICE_24">state_i1</A>  (from <A href="#@net:i_ft_clk_c">i_ft_clk_c</A> +)
+   Destination:    FF         Data in        <A href="#@comp:SLICE_17">next_state__i2</A>  (to <A href="#@net:i_ft_clk_c">i_ft_clk_c</A> +)
+
+   Delay:               1.951ns  (30.8% logic, 69.2% route), 2 logic levels.
+
+ Constraint Details:
+
+      1.951ns physical path delay SLICE_24 to SLICE_17 meets
+     10.000ns delay constraint less
+      0.000ns skew and
+      0.336ns LSR_SET requirement (totaling 9.664ns) by 7.713ns
+
+ Physical Path Details:
+
+      <A href="#@path:FREQUENCY PORT 'i_ft_clk' 100.000000 MHz ;:REG_DEL, 0.414,R31C3B.CLK,R31C3B.Q1,SLICE_24:ROUTE, 0.754,R31C3B.Q1,R31C2D.B0,state_1:CTOF_DEL, 0.187,R31C2D.B0,R31C2D.F0,SLICE_29:ROUTE, 0.596,R31C2D.F0,R31C3D.LSR,n1032">Data path</A> SLICE_24 to SLICE_17:
+
+   Name    Fanout   Delay (ns)          Site               Resource
+REG_DEL     ---     0.414     R31C3B.CLK to      R31C3B.Q1 <A href="#@comp:SLICE_24">SLICE_24</A> (from <A href="#@net:i_ft_clk_c">i_ft_clk_c</A>)
+ROUTE        13     0.754<A href="#@net:state_1:R31C3B.Q1:R31C2D.B0:0.754">      R31C3B.Q1 to R31C2D.B0     </A> <A href="#@net:state_1">state_1</A>
+CTOF_DEL    ---     0.187      R31C2D.B0 to      R31C2D.F0 <A href="#@comp:SLICE_29">SLICE_29</A>
+ROUTE         2     0.596<A href="#@net:n1032:R31C2D.F0:R31C3D.LSR:0.596">      R31C2D.F0 to R31C3D.LSR    </A> <A href="#@net:n1032">n1032</A> (to <A href="#@net:i_ft_clk_c">i_ft_clk_c</A>)
+                  --------
+                    1.951   (30.8% logic, 69.2% route), 2 logic levels.
+
+ Clock Skew Details: 
+
+      <A href="#@path:FREQUENCY PORT 'i_ft_clk' 100.000000 MHz ;:ROUTE, 2.142,H2.PADDI,R31C3B.CLK,i_ft_clk_c">Source Clock Path</A> i_ft_clk to SLICE_24:
+
+   Name    Fanout   Delay (ns)          Site               Resource
+ROUTE        11     2.142<A href="#@net:i_ft_clk_c:H2.PADDI:R31C3B.CLK:2.142">       H2.PADDI to R31C3B.CLK    </A> <A href="#@net:i_ft_clk_c">i_ft_clk_c</A>
+                  --------
+                    2.142   (0.0% logic, 100.0% route), 0 logic levels.
+
+      <A href="#@path:FREQUENCY PORT 'i_ft_clk' 100.000000 MHz ;:ROUTE, 2.142,H2.PADDI,R31C3D.CLK,i_ft_clk_c">Destination Clock Path</A> i_ft_clk to SLICE_17:
+
+   Name    Fanout   Delay (ns)          Site               Resource
+ROUTE        11     2.142<A href="#@net:i_ft_clk_c:H2.PADDI:R31C3D.CLK:2.142">       H2.PADDI to R31C3D.CLK    </A> <A href="#@net:i_ft_clk_c">i_ft_clk_c</A>
+                  --------
+                    2.142   (0.0% logic, 100.0% route), 0 logic levels.
+<font color=#000000> 
+
+Passed: The following path meets requirements by 7.883ns
+ </font>
+ Logical Details:  Cell type  Pin type       Cell/ASIC name  (clock net +/-)
+
+   Source:         FF         Q              <A href="#@comp:SLICE_28">state_i2</A>  (from <A href="#@net:i_ft_clk_c">i_ft_clk_c</A> +)
+   Destination:    FF         Data in        <A href="#@comp:SLICE_16">next_state__i1</A>  (to <A href="#@net:i_ft_clk_c">i_ft_clk_c</A> +)
+                   FF                        <A href="#@net:next_state__i0">next_state__i0</A>
+
+   Delay:               1.781ns  (33.9% logic, 66.1% route), 2 logic levels.
+
+ Constraint Details:
+
+      1.781ns physical path delay SLICE_28 to SLICE_16 meets
+     10.000ns delay constraint less
+      0.000ns skew and
+      0.336ns LSR_SET requirement (totaling 9.664ns) by 7.883ns
+
+ Physical Path Details:
+
+      <A href="#@path:FREQUENCY PORT 'i_ft_clk' 100.000000 MHz ;:REG_DEL, 0.416,R31C4C.CLK,R31C4C.Q0,SLICE_28:ROUTE, 0.582,R31C4C.Q0,R31C2D.C0,state_2:CTOF_DEL, 0.187,R31C2D.C0,R31C2D.F0,SLICE_29:ROUTE, 0.596,R31C2D.F0,R31C3C.LSR,n1032">Data path</A> SLICE_28 to SLICE_16:
+
+   Name    Fanout   Delay (ns)          Site               Resource
+REG_DEL     ---     0.416     R31C4C.CLK to      R31C4C.Q0 <A href="#@comp:SLICE_28">SLICE_28</A> (from <A href="#@net:i_ft_clk_c">i_ft_clk_c</A>)
+ROUTE         7     0.582<A href="#@net:state_2:R31C4C.Q0:R31C2D.C0:0.582">      R31C4C.Q0 to R31C2D.C0     </A> <A href="#@net:state_2">state_2</A>
+CTOF_DEL    ---     0.187      R31C2D.C0 to      R31C2D.F0 <A href="#@comp:SLICE_29">SLICE_29</A>
+ROUTE         2     0.596<A href="#@net:n1032:R31C2D.F0:R31C3C.LSR:0.596">      R31C2D.F0 to R31C3C.LSR    </A> <A href="#@net:n1032">n1032</A> (to <A href="#@net:i_ft_clk_c">i_ft_clk_c</A>)
+                  --------
+                    1.781   (33.9% logic, 66.1% route), 2 logic levels.
+
+ Clock Skew Details: 
+
+      <A href="#@path:FREQUENCY PORT 'i_ft_clk' 100.000000 MHz ;:ROUTE, 2.142,H2.PADDI,R31C4C.CLK,i_ft_clk_c">Source Clock Path</A> i_ft_clk to SLICE_28:
+
+   Name    Fanout   Delay (ns)          Site               Resource
+ROUTE        11     2.142<A href="#@net:i_ft_clk_c:H2.PADDI:R31C4C.CLK:2.142">       H2.PADDI to R31C4C.CLK    </A> <A href="#@net:i_ft_clk_c">i_ft_clk_c</A>
+                  --------
+                    2.142   (0.0% logic, 100.0% route), 0 logic levels.
+
+      <A href="#@path:FREQUENCY PORT 'i_ft_clk' 100.000000 MHz ;:ROUTE, 2.142,H2.PADDI,R31C3C.CLK,i_ft_clk_c">Destination Clock Path</A> i_ft_clk to SLICE_16:
+
+   Name    Fanout   Delay (ns)          Site               Resource
+ROUTE        11     2.142<A href="#@net:i_ft_clk_c:H2.PADDI:R31C3C.CLK:2.142">       H2.PADDI to R31C3C.CLK    </A> <A href="#@net:i_ft_clk_c">i_ft_clk_c</A>
+                  --------
+                    2.142   (0.0% logic, 100.0% route), 0 logic levels.
+<font color=#000000> 
+
+Passed: The following path meets requirements by 7.883ns
+ </font>
+ Logical Details:  Cell type  Pin type       Cell/ASIC name  (clock net +/-)
+
+   Source:         FF         Q              <A href="#@comp:SLICE_28">state_i2</A>  (from <A href="#@net:i_ft_clk_c">i_ft_clk_c</A> +)
+   Destination:    FF         Data in        <A href="#@comp:SLICE_17">next_state__i2</A>  (to <A href="#@net:i_ft_clk_c">i_ft_clk_c</A> +)
+
+   Delay:               1.781ns  (33.9% logic, 66.1% route), 2 logic levels.
+
+ Constraint Details:
+
+      1.781ns physical path delay SLICE_28 to SLICE_17 meets
+     10.000ns delay constraint less
+      0.000ns skew and
+      0.336ns LSR_SET requirement (totaling 9.664ns) by 7.883ns
+
+ Physical Path Details:
+
+      <A href="#@path:FREQUENCY PORT 'i_ft_clk' 100.000000 MHz ;:REG_DEL, 0.416,R31C4C.CLK,R31C4C.Q0,SLICE_28:ROUTE, 0.582,R31C4C.Q0,R31C2D.C0,state_2:CTOF_DEL, 0.187,R31C2D.C0,R31C2D.F0,SLICE_29:ROUTE, 0.596,R31C2D.F0,R31C3D.LSR,n1032">Data path</A> SLICE_28 to SLICE_17:
+
+   Name    Fanout   Delay (ns)          Site               Resource
+REG_DEL     ---     0.416     R31C4C.CLK to      R31C4C.Q0 <A href="#@comp:SLICE_28">SLICE_28</A> (from <A href="#@net:i_ft_clk_c">i_ft_clk_c</A>)
+ROUTE         7     0.582<A href="#@net:state_2:R31C4C.Q0:R31C2D.C0:0.582">      R31C4C.Q0 to R31C2D.C0     </A> <A href="#@net:state_2">state_2</A>
+CTOF_DEL    ---     0.187      R31C2D.C0 to      R31C2D.F0 <A href="#@comp:SLICE_29">SLICE_29</A>
+ROUTE         2     0.596<A href="#@net:n1032:R31C2D.F0:R31C3D.LSR:0.596">      R31C2D.F0 to R31C3D.LSR    </A> <A href="#@net:n1032">n1032</A> (to <A href="#@net:i_ft_clk_c">i_ft_clk_c</A>)
+                  --------
+                    1.781   (33.9% logic, 66.1% route), 2 logic levels.
+
+ Clock Skew Details: 
+
+      <A href="#@path:FREQUENCY PORT 'i_ft_clk' 100.000000 MHz ;:ROUTE, 2.142,H2.PADDI,R31C4C.CLK,i_ft_clk_c">Source Clock Path</A> i_ft_clk to SLICE_28:
+
+   Name    Fanout   Delay (ns)          Site               Resource
+ROUTE        11     2.142<A href="#@net:i_ft_clk_c:H2.PADDI:R31C4C.CLK:2.142">       H2.PADDI to R31C4C.CLK    </A> <A href="#@net:i_ft_clk_c">i_ft_clk_c</A>
+                  --------
+                    2.142   (0.0% logic, 100.0% route), 0 logic levels.
+
+      <A href="#@path:FREQUENCY PORT 'i_ft_clk' 100.000000 MHz ;:ROUTE, 2.142,H2.PADDI,R31C3D.CLK,i_ft_clk_c">Destination Clock Path</A> i_ft_clk to SLICE_17:
+
+   Name    Fanout   Delay (ns)          Site               Resource
+ROUTE        11     2.142<A href="#@net:i_ft_clk_c:H2.PADDI:R31C3D.CLK:2.142">       H2.PADDI to R31C3D.CLK    </A> <A href="#@net:i_ft_clk_c">i_ft_clk_c</A>
+                  --------
+                    2.142   (0.0% logic, 100.0% route), 0 logic levels.
+<font color=#000000> 
+
+Passed: The following path meets requirements by 8.000ns
+ </font>
+ Logical Details:  Cell type  Pin type       Cell/ASIC name  (clock net +/-)
+
+   Source:         FF         Q              <A href="#@comp:SLICE_24">state_i1</A>  (from <A href="#@net:i_ft_clk_c">i_ft_clk_c</A> +)
+   Destination:    FF         Data in        <A href="#@comp:SLICE_17">next_state__i2</A>  (to <A href="#@net:i_ft_clk_c">i_ft_clk_c</A> +)
+
+   Delay:               2.128ns  (28.2% logic, 71.8% route), 2 logic levels.
+
+ Constraint Details:
+
+      2.128ns physical path delay SLICE_24 to SLICE_17 meets
+     10.000ns delay constraint less
+      0.000ns skew and
+     -0.128ns M_SET requirement (totaling 10.128ns) by 8.000ns
+
+ Physical Path Details:
+
+      <A href="#@path:FREQUENCY PORT 'i_ft_clk' 100.000000 MHz ;:REG_DEL, 0.414,R31C3B.CLK,R31C3B.Q1,SLICE_24:ROUTE, 0.754,R31C3B.Q1,R31C2A.B0,state_1:CTOF_DEL, 0.187,R31C2A.B0,R31C2A.F0,SLICE_14:ROUTE, 0.773,R31C2A.F0,R31C3D.M0,n1381">Data path</A> SLICE_24 to SLICE_17:
+
+   Name    Fanout   Delay (ns)          Site               Resource
+REG_DEL     ---     0.414     R31C3B.CLK to      R31C3B.Q1 <A href="#@comp:SLICE_24">SLICE_24</A> (from <A href="#@net:i_ft_clk_c">i_ft_clk_c</A>)
+ROUTE        13     0.754<A href="#@net:state_1:R31C3B.Q1:R31C2A.B0:0.754">      R31C3B.Q1 to R31C2A.B0     </A> <A href="#@net:state_1">state_1</A>
+CTOF_DEL    ---     0.187      R31C2A.B0 to      R31C2A.F0 <A href="#@comp:SLICE_14">SLICE_14</A>
+ROUTE         2     0.773<A href="#@net:n1381:R31C2A.F0:R31C3D.M0:0.773">      R31C2A.F0 to R31C3D.M0     </A> <A href="#@net:n1381">n1381</A> (to <A href="#@net:i_ft_clk_c">i_ft_clk_c</A>)
+                  --------
+                    2.128   (28.2% logic, 71.8% route), 2 logic levels.
+
+ Clock Skew Details: 
+
+      <A href="#@path:FREQUENCY PORT 'i_ft_clk' 100.000000 MHz ;:ROUTE, 2.142,H2.PADDI,R31C3B.CLK,i_ft_clk_c">Source Clock Path</A> i_ft_clk to SLICE_24:
+
+   Name    Fanout   Delay (ns)          Site               Resource
+ROUTE        11     2.142<A href="#@net:i_ft_clk_c:H2.PADDI:R31C3B.CLK:2.142">       H2.PADDI to R31C3B.CLK    </A> <A href="#@net:i_ft_clk_c">i_ft_clk_c</A>
+                  --------
+                    2.142   (0.0% logic, 100.0% route), 0 logic levels.
+
+      <A href="#@path:FREQUENCY PORT 'i_ft_clk' 100.000000 MHz ;:ROUTE, 2.142,H2.PADDI,R31C3D.CLK,i_ft_clk_c">Destination Clock Path</A> i_ft_clk to SLICE_17:
+
+   Name    Fanout   Delay (ns)          Site               Resource
+ROUTE        11     2.142<A href="#@net:i_ft_clk_c:H2.PADDI:R31C3D.CLK:2.142">       H2.PADDI to R31C3D.CLK    </A> <A href="#@net:i_ft_clk_c">i_ft_clk_c</A>
+                  --------
+                    2.142   (0.0% logic, 100.0% route), 0 logic levels.
+<font color=#000000> 
+
+Passed: The following path meets requirements by 8.024ns
+ </font>
+ Logical Details:  Cell type  Pin type       Cell/ASIC name  (clock net +/-)
+
+   Source:         FF         Q              <A href="#@comp:SLICE_24">state_i0</A>  (from <A href="#@net:i_ft_clk_c">i_ft_clk_c</A> +)
+   Destination:    FF         Data in        <A href="#@comp:SLICE_16">next_state__i1</A>  (to <A href="#@net:i_ft_clk_c">i_ft_clk_c</A> +)
+                   FF                        <A href="#@net:next_state__i0">next_state__i0</A>
+
+   Delay:               1.640ns  (36.8% logic, 63.2% route), 2 logic levels.
+
+ Constraint Details:
+
+      1.640ns physical path delay SLICE_24 to SLICE_16 meets
+     10.000ns delay constraint less
+      0.000ns skew and
+      0.336ns LSR_SET requirement (totaling 9.664ns) by 8.024ns
+
+ Physical Path Details:
+
+      <A href="#@path:FREQUENCY PORT 'i_ft_clk' 100.000000 MHz ;:REG_DEL, 0.416,R31C3B.CLK,R31C3B.Q0,SLICE_24:ROUTE, 0.441,R31C3B.Q0,R31C2D.D0,state_0:CTOF_DEL, 0.187,R31C2D.D0,R31C2D.F0,SLICE_29:ROUTE, 0.596,R31C2D.F0,R31C3C.LSR,n1032">Data path</A> SLICE_24 to SLICE_16:
+
+   Name    Fanout   Delay (ns)          Site               Resource
+REG_DEL     ---     0.416     R31C3B.CLK to      R31C3B.Q0 <A href="#@comp:SLICE_24">SLICE_24</A> (from <A href="#@net:i_ft_clk_c">i_ft_clk_c</A>)
+ROUTE        12     0.441<A href="#@net:state_0:R31C3B.Q0:R31C2D.D0:0.441">      R31C3B.Q0 to R31C2D.D0     </A> <A href="#@net:state_0">state_0</A>
+CTOF_DEL    ---     0.187      R31C2D.D0 to      R31C2D.F0 <A href="#@comp:SLICE_29">SLICE_29</A>
+ROUTE         2     0.596<A href="#@net:n1032:R31C2D.F0:R31C3C.LSR:0.596">      R31C2D.F0 to R31C3C.LSR    </A> <A href="#@net:n1032">n1032</A> (to <A href="#@net:i_ft_clk_c">i_ft_clk_c</A>)
+                  --------
+                    1.640   (36.8% logic, 63.2% route), 2 logic levels.
+
+ Clock Skew Details: 
+
+      <A href="#@path:FREQUENCY PORT 'i_ft_clk' 100.000000 MHz ;:ROUTE, 2.142,H2.PADDI,R31C3B.CLK,i_ft_clk_c">Source Clock Path</A> i_ft_clk to SLICE_24:
+
+   Name    Fanout   Delay (ns)          Site               Resource
+ROUTE        11     2.142<A href="#@net:i_ft_clk_c:H2.PADDI:R31C3B.CLK:2.142">       H2.PADDI to R31C3B.CLK    </A> <A href="#@net:i_ft_clk_c">i_ft_clk_c</A>
+                  --------
+                    2.142   (0.0% logic, 100.0% route), 0 logic levels.
+
+      <A href="#@path:FREQUENCY PORT 'i_ft_clk' 100.000000 MHz ;:ROUTE, 2.142,H2.PADDI,R31C3C.CLK,i_ft_clk_c">Destination Clock Path</A> i_ft_clk to SLICE_16:
+
+   Name    Fanout   Delay (ns)          Site               Resource
+ROUTE        11     2.142<A href="#@net:i_ft_clk_c:H2.PADDI:R31C3C.CLK:2.142">       H2.PADDI to R31C3C.CLK    </A> <A href="#@net:i_ft_clk_c">i_ft_clk_c</A>
+                  --------
+                    2.142   (0.0% logic, 100.0% route), 0 logic levels.
+<font color=#000000> 
+
+Passed: The following path meets requirements by 8.024ns
+ </font>
+ Logical Details:  Cell type  Pin type       Cell/ASIC name  (clock net +/-)
+
+   Source:         FF         Q              <A href="#@comp:SLICE_24">state_i0</A>  (from <A href="#@net:i_ft_clk_c">i_ft_clk_c</A> +)
+   Destination:    FF         Data in        <A href="#@comp:SLICE_17">next_state__i2</A>  (to <A href="#@net:i_ft_clk_c">i_ft_clk_c</A> +)
+
+   Delay:               1.640ns  (36.8% logic, 63.2% route), 2 logic levels.
+
+ Constraint Details:
+
+      1.640ns physical path delay SLICE_24 to SLICE_17 meets
+     10.000ns delay constraint less
+      0.000ns skew and
+      0.336ns LSR_SET requirement (totaling 9.664ns) by 8.024ns
+
+ Physical Path Details:
+
+      <A href="#@path:FREQUENCY PORT 'i_ft_clk' 100.000000 MHz ;:REG_DEL, 0.416,R31C3B.CLK,R31C3B.Q0,SLICE_24:ROUTE, 0.441,R31C3B.Q0,R31C2D.D0,state_0:CTOF_DEL, 0.187,R31C2D.D0,R31C2D.F0,SLICE_29:ROUTE, 0.596,R31C2D.F0,R31C3D.LSR,n1032">Data path</A> SLICE_24 to SLICE_17:
+
+   Name    Fanout   Delay (ns)          Site               Resource
+REG_DEL     ---     0.416     R31C3B.CLK to      R31C3B.Q0 <A href="#@comp:SLICE_24">SLICE_24</A> (from <A href="#@net:i_ft_clk_c">i_ft_clk_c</A>)
+ROUTE        12     0.441<A href="#@net:state_0:R31C3B.Q0:R31C2D.D0:0.441">      R31C3B.Q0 to R31C2D.D0     </A> <A href="#@net:state_0">state_0</A>
+CTOF_DEL    ---     0.187      R31C2D.D0 to      R31C2D.F0 <A href="#@comp:SLICE_29">SLICE_29</A>
+ROUTE         2     0.596<A href="#@net:n1032:R31C2D.F0:R31C3D.LSR:0.596">      R31C2D.F0 to R31C3D.LSR    </A> <A href="#@net:n1032">n1032</A> (to <A href="#@net:i_ft_clk_c">i_ft_clk_c</A>)
+                  --------
+                    1.640   (36.8% logic, 63.2% route), 2 logic levels.
+
+ Clock Skew Details: 
+
+      <A href="#@path:FREQUENCY PORT 'i_ft_clk' 100.000000 MHz ;:ROUTE, 2.142,H2.PADDI,R31C3B.CLK,i_ft_clk_c">Source Clock Path</A> i_ft_clk to SLICE_24:
+
+   Name    Fanout   Delay (ns)          Site               Resource
+ROUTE        11     2.142<A href="#@net:i_ft_clk_c:H2.PADDI:R31C3B.CLK:2.142">       H2.PADDI to R31C3B.CLK    </A> <A href="#@net:i_ft_clk_c">i_ft_clk_c</A>
+                  --------
+                    2.142   (0.0% logic, 100.0% route), 0 logic levels.
+
+      <A href="#@path:FREQUENCY PORT 'i_ft_clk' 100.000000 MHz ;:ROUTE, 2.142,H2.PADDI,R31C3D.CLK,i_ft_clk_c">Destination Clock Path</A> i_ft_clk to SLICE_17:
+
+   Name    Fanout   Delay (ns)          Site               Resource
+ROUTE        11     2.142<A href="#@net:i_ft_clk_c:H2.PADDI:R31C3D.CLK:2.142">       H2.PADDI to R31C3D.CLK    </A> <A href="#@net:i_ft_clk_c">i_ft_clk_c</A>
+                  --------
+                    2.142   (0.0% logic, 100.0% route), 0 logic levels.
+<font color=#000000> 
+
+Passed: The following path meets requirements by 8.068ns
+ </font>
+ Logical Details:  Cell type  Pin type       Cell/ASIC name  (clock net +/-)
+
+   Source:         FF         Q              <A href="#@comp:SLICE_24">state_i1</A>  (from <A href="#@net:i_ft_clk_c">i_ft_clk_c</A> +)
+   Destination:    FF         Data in        <A href="#@comp:SLICE_17">next_state__i2</A>  (to <A href="#@net:i_ft_clk_c">i_ft_clk_c</A> +)
+
+   Delay:               2.032ns  (36.0% logic, 64.0% route), 2 logic levels.
+
+ Constraint Details:
+
+      2.032ns physical path delay SLICE_24 to SLICE_17 meets
+     10.000ns delay constraint less
+      0.000ns skew and
+     -0.100ns CE_SET requirement (totaling 10.100ns) by 8.068ns
+
+ Physical Path Details:
+
+      <A href="#@path:FREQUENCY PORT 'i_ft_clk' 100.000000 MHz ;:REG_DEL, 0.414,R31C3B.CLK,R31C3B.Q1,SLICE_24:ROUTE, 0.712,R31C3B.Q1,R31C3A.A1,state_1:CTOOFX_DEL, 0.318,R31C3A.A1,R31C3A.OFX0,i514/SLICE_27:ROUTE, 0.588,R31C3A.OFX0,R31C3D.CE,i_ft_clk_c_enable_9">Data path</A> SLICE_24 to SLICE_17:
+
+   Name    Fanout   Delay (ns)          Site               Resource
+REG_DEL     ---     0.414     R31C3B.CLK to      R31C3B.Q1 <A href="#@comp:SLICE_24">SLICE_24</A> (from <A href="#@net:i_ft_clk_c">i_ft_clk_c</A>)
+ROUTE        13     0.712<A href="#@net:state_1:R31C3B.Q1:R31C3A.A1:0.712">      R31C3B.Q1 to R31C3A.A1     </A> <A href="#@net:state_1">state_1</A>
+CTOOFX_DEL  ---     0.318      R31C3A.A1 to    R31C3A.OFX0 <A href="#@comp:i514/SLICE_27">i514/SLICE_27</A>
+ROUTE         2     0.588<A href="#@net:i_ft_clk_c_enable_9:R31C3A.OFX0:R31C3D.CE:0.588">    R31C3A.OFX0 to R31C3D.CE     </A> <A href="#@net:i_ft_clk_c_enable_9">i_ft_clk_c_enable_9</A> (to <A href="#@net:i_ft_clk_c">i_ft_clk_c</A>)
+                  --------
+                    2.032   (36.0% logic, 64.0% route), 2 logic levels.
+
+ Clock Skew Details: 
+
+      <A href="#@path:FREQUENCY PORT 'i_ft_clk' 100.000000 MHz ;:ROUTE, 2.142,H2.PADDI,R31C3B.CLK,i_ft_clk_c">Source Clock Path</A> i_ft_clk to SLICE_24:
+
+   Name    Fanout   Delay (ns)          Site               Resource
+ROUTE        11     2.142<A href="#@net:i_ft_clk_c:H2.PADDI:R31C3B.CLK:2.142">       H2.PADDI to R31C3B.CLK    </A> <A href="#@net:i_ft_clk_c">i_ft_clk_c</A>
+                  --------
+                    2.142   (0.0% logic, 100.0% route), 0 logic levels.
+
+      <A href="#@path:FREQUENCY PORT 'i_ft_clk' 100.000000 MHz ;:ROUTE, 2.142,H2.PADDI,R31C3D.CLK,i_ft_clk_c">Destination Clock Path</A> i_ft_clk to SLICE_17:
+
+   Name    Fanout   Delay (ns)          Site               Resource
+ROUTE        11     2.142<A href="#@net:i_ft_clk_c:H2.PADDI:R31C3D.CLK:2.142">       H2.PADDI to R31C3D.CLK    </A> <A href="#@net:i_ft_clk_c">i_ft_clk_c</A>
+                  --------
+                    2.142   (0.0% logic, 100.0% route), 0 logic levels.
+<font color=#000000> 
+
+Passed: The following path meets requirements by 8.068ns
+ </font>
+ Logical Details:  Cell type  Pin type       Cell/ASIC name  (clock net +/-)
+
+   Source:         FF         Q              <A href="#@comp:SLICE_24">state_i1</A>  (from <A href="#@net:i_ft_clk_c">i_ft_clk_c</A> +)
+   Destination:    FF         Data in        <A href="#@comp:SLICE_17">next_state__i2</A>  (to <A href="#@net:i_ft_clk_c">i_ft_clk_c</A> +)
+
+   Delay:               2.032ns  (36.0% logic, 64.0% route), 2 logic levels.
+
+ Constraint Details:
+
+      2.032ns physical path delay SLICE_24 to SLICE_17 meets
+     10.000ns delay constraint less
+      0.000ns skew and
+     -0.100ns CE_SET requirement (totaling 10.100ns) by 8.068ns
+
+ Physical Path Details:
+
+      <A href="#@path:FREQUENCY PORT 'i_ft_clk' 100.000000 MHz ;:REG_DEL, 0.414,R31C3B.CLK,R31C3B.Q1,SLICE_24:ROUTE, 0.712,R31C3B.Q1,R31C3A.A0,state_1:CTOOFX_DEL, 0.318,R31C3A.A0,R31C3A.OFX0,i514/SLICE_27:ROUTE, 0.588,R31C3A.OFX0,R31C3D.CE,i_ft_clk_c_enable_9">Data path</A> SLICE_24 to SLICE_17:
+
+   Name    Fanout   Delay (ns)          Site               Resource
+REG_DEL     ---     0.414     R31C3B.CLK to      R31C3B.Q1 <A href="#@comp:SLICE_24">SLICE_24</A> (from <A href="#@net:i_ft_clk_c">i_ft_clk_c</A>)
+ROUTE        13     0.712<A href="#@net:state_1:R31C3B.Q1:R31C3A.A0:0.712">      R31C3B.Q1 to R31C3A.A0     </A> <A href="#@net:state_1">state_1</A>
+CTOOFX_DEL  ---     0.318      R31C3A.A0 to    R31C3A.OFX0 <A href="#@comp:i514/SLICE_27">i514/SLICE_27</A>
+ROUTE         2     0.588<A href="#@net:i_ft_clk_c_enable_9:R31C3A.OFX0:R31C3D.CE:0.588">    R31C3A.OFX0 to R31C3D.CE     </A> <A href="#@net:i_ft_clk_c_enable_9">i_ft_clk_c_enable_9</A> (to <A href="#@net:i_ft_clk_c">i_ft_clk_c</A>)
+                  --------
+                    2.032   (36.0% logic, 64.0% route), 2 logic levels.
+
+ Clock Skew Details: 
+
+      <A href="#@path:FREQUENCY PORT 'i_ft_clk' 100.000000 MHz ;:ROUTE, 2.142,H2.PADDI,R31C3B.CLK,i_ft_clk_c">Source Clock Path</A> i_ft_clk to SLICE_24:
+
+   Name    Fanout   Delay (ns)          Site               Resource
+ROUTE        11     2.142<A href="#@net:i_ft_clk_c:H2.PADDI:R31C3B.CLK:2.142">       H2.PADDI to R31C3B.CLK    </A> <A href="#@net:i_ft_clk_c">i_ft_clk_c</A>
+                  --------
+                    2.142   (0.0% logic, 100.0% route), 0 logic levels.
+
+      <A href="#@path:FREQUENCY PORT 'i_ft_clk' 100.000000 MHz ;:ROUTE, 2.142,H2.PADDI,R31C3D.CLK,i_ft_clk_c">Destination Clock Path</A> i_ft_clk to SLICE_17:
+
+   Name    Fanout   Delay (ns)          Site               Resource
+ROUTE        11     2.142<A href="#@net:i_ft_clk_c:H2.PADDI:R31C3D.CLK:2.142">       H2.PADDI to R31C3D.CLK    </A> <A href="#@net:i_ft_clk_c">i_ft_clk_c</A>
                   --------
                     2.142   (0.0% logic, 100.0% route), 0 logic levels.
 
@@ -129,62 +535,62 @@ Passed: The following path meets requirements by 60.366ns
  </font>
  Logical Details:  Cell type  Pin type       Cell/ASIC name  (clock net +/-)
 
-   Source:         FF         Q              <A href="#@comp:SLICE_11">counter_32_33__i1</A>  (from <A href="#@net:i_clk16_c">i_clk16_c</A> +)
-   Destination:    FF         Data in        <A href="#@comp:SLICE_0">counter_32_33__i23</A>  (to <A href="#@net:i_clk16_c">i_clk16_c</A> +)
+   Source:         FF         Q              <A href="#@comp:SLICE_7">counter_296_302__i1</A>  (from <A href="#@net:i_clk16_c">i_clk16_c</A> +)
+   Destination:    FF         Data in        <A href="#@comp:SLICE_10">counter_296_302__i23</A>  (to <A href="#@net:i_clk16_c">i_clk16_c</A> +)
 
    Delay:               2.340ns  (71.8% logic, 28.2% route), 13 logic levels.
 
  Constraint Details:
 
-      2.340ns physical path delay SLICE_11 to SLICE_0 meets
+      2.340ns physical path delay SLICE_7 to SLICE_10 meets
      62.500ns delay constraint less
       0.000ns skew and
      -0.206ns DIN_SET requirement (totaling 62.706ns) by 60.366ns
 
  Physical Path Details:
 
-      <A href="#@path:FREQUENCY PORT 'i_clk16' 16.000000 MHz ;:REG_DEL, 0.416,R3C19B.CLK,R3C19B.Q0,SLICE_11:ROUTE, 0.659,R3C19B.Q0,R3C19B.B0,n23:C0TOFCO_DEL, 0.354,R3C19B.B0,R3C19B.FCO,SLICE_11:ROUTE, 0.000,R3C19B.FCO,R3C19C.FCI,n193:FCITOFCO_DEL, 0.056,R3C19C.FCI,R3C19C.FCO,SLICE_10:ROUTE, 0.000,R3C19C.FCO,R3C19D.FCI,n194:FCITOFCO_DEL, 0.056,R3C19D.FCI,R3C19D.FCO,SLICE_9:ROUTE, 0.000,R3C19D.FCO,R3C20A.FCI,n195:FCITOFCO_DEL, 0.056,R3C20A.FCI,R3C20A.FCO,SLICE_8:ROUTE, 0.000,R3C20A.FCO,R3C20B.FCI,n196:FCITOFCO_DEL, 0.056,R3C20B.FCI,R3C20B.FCO,SLICE_7:ROUTE, 0.000,R3C20B.FCO,R3C20C.FCI,n197:FCITOFCO_DEL, 0.056,R3C20C.FCI,R3C20C.FCO,SLICE_6:ROUTE, 0.000,R3C20C.FCO,R3C20D.FCI,n198:FCITOFCO_DEL, 0.056,R3C20D.FCI,R3C20D.FCO,SLICE_5:ROUTE, 0.000,R3C20D.FCO,R3C21A.FCI,n199:FCITOFCO_DEL, 0.056,R3C21A.FCI,R3C21A.FCO,SLICE_4:ROUTE, 0.000,R3C21A.FCO,R3C21B.FCI,n200:FCITOFCO_DEL, 0.056,R3C21B.FCI,R3C21B.FCO,SLICE_3:ROUTE, 0.000,R3C21B.FCO,R3C21C.FCI,n201:FCITOFCO_DEL, 0.056,R3C21C.FCI,R3C21C.FCO,SLICE_2:ROUTE, 0.000,R3C21C.FCO,R3C21D.FCI,n202:FCITOFCO_DEL, 0.056,R3C21D.FCI,R3C21D.FCO,SLICE_1:ROUTE, 0.000,R3C21D.FCO,R3C22A.FCI,n203:FCITOF0_DEL, 0.351,R3C22A.FCI,R3C22A.F0,SLICE_0:ROUTE, 0.000,R3C22A.F0,R3C22A.DI0,n102">Data path</A> SLICE_11 to SLICE_0:
+      <A href="#@path:FREQUENCY PORT 'i_clk16' 16.000000 MHz ;:REG_DEL, 0.416,R3C19B.CLK,R3C19B.Q0,SLICE_7:ROUTE, 0.659,R3C19B.Q0,R3C19B.B0,n23:C0TOFCO_DEL, 0.354,R3C19B.B0,R3C19B.FCO,SLICE_7:ROUTE, 0.000,R3C19B.FCO,R3C19C.FCI,n1333:FCITOFCO_DEL, 0.056,R3C19C.FCI,R3C19C.FCO,SLICE_6:ROUTE, 0.000,R3C19C.FCO,R3C19D.FCI,n1334:FCITOFCO_DEL, 0.056,R3C19D.FCI,R3C19D.FCO,SLICE_5:ROUTE, 0.000,R3C19D.FCO,R3C20A.FCI,n1335:FCITOFCO_DEL, 0.056,R3C20A.FCI,R3C20A.FCO,SLICE_4:ROUTE, 0.000,R3C20A.FCO,R3C20B.FCI,n1336:FCITOFCO_DEL, 0.056,R3C20B.FCI,R3C20B.FCO,SLICE_3:ROUTE, 0.000,R3C20B.FCO,R3C20C.FCI,n1337:FCITOFCO_DEL, 0.056,R3C20C.FCI,R3C20C.FCO,SLICE_2:ROUTE, 0.000,R3C20C.FCO,R3C20D.FCI,n1338:FCITOFCO_DEL, 0.056,R3C20D.FCI,R3C20D.FCO,SLICE_1:ROUTE, 0.000,R3C20D.FCO,R3C21A.FCI,n1339:FCITOFCO_DEL, 0.056,R3C21A.FCI,R3C21A.FCO,SLICE_0:ROUTE, 0.000,R3C21A.FCO,R3C21B.FCI,n1340:FCITOFCO_DEL, 0.056,R3C21B.FCI,R3C21B.FCO,SLICE_9:ROUTE, 0.000,R3C21B.FCO,R3C21C.FCI,n1341:FCITOFCO_DEL, 0.056,R3C21C.FCI,R3C21C.FCO,SLICE_12:ROUTE, 0.000,R3C21C.FCO,R3C21D.FCI,n1342:FCITOFCO_DEL, 0.056,R3C21D.FCI,R3C21D.FCO,SLICE_11:ROUTE, 0.000,R3C21D.FCO,R3C22A.FCI,n1343:FCITOF0_DEL, 0.351,R3C22A.FCI,R3C22A.F0,SLICE_10:ROUTE, 0.000,R3C22A.F0,R3C22A.DI0,n102">Data path</A> SLICE_7 to SLICE_10:
 
    Name    Fanout   Delay (ns)          Site               Resource
-REG_DEL     ---     0.416     R3C19B.CLK to      R3C19B.Q0 <A href="#@comp:SLICE_11">SLICE_11</A> (from <A href="#@net:i_clk16_c">i_clk16_c</A>)
+REG_DEL     ---     0.416     R3C19B.CLK to      R3C19B.Q0 <A href="#@comp:SLICE_7">SLICE_7</A> (from <A href="#@net:i_clk16_c">i_clk16_c</A>)
 ROUTE         1     0.659<A href="#@net:n23:R3C19B.Q0:R3C19B.B0:0.659">      R3C19B.Q0 to R3C19B.B0     </A> <A href="#@net:n23">n23</A>
-C0TOFCO_DE  ---     0.354      R3C19B.B0 to     R3C19B.FCO <A href="#@comp:SLICE_11">SLICE_11</A>
-ROUTE         1     0.000<A href="#@net:n193:R3C19B.FCO:R3C19C.FCI:0.000">     R3C19B.FCO to R3C19C.FCI    </A> <A href="#@net:n193">n193</A>
-FCITOFCO_D  ---     0.056     R3C19C.FCI to     R3C19C.FCO <A href="#@comp:SLICE_10">SLICE_10</A>
-ROUTE         1     0.000<A href="#@net:n194:R3C19C.FCO:R3C19D.FCI:0.000">     R3C19C.FCO to R3C19D.FCI    </A> <A href="#@net:n194">n194</A>
-FCITOFCO_D  ---     0.056     R3C19D.FCI to     R3C19D.FCO <A href="#@comp:SLICE_9">SLICE_9</A>
-ROUTE         1     0.000<A href="#@net:n195:R3C19D.FCO:R3C20A.FCI:0.000">     R3C19D.FCO to R3C20A.FCI    </A> <A href="#@net:n195">n195</A>
-FCITOFCO_D  ---     0.056     R3C20A.FCI to     R3C20A.FCO <A href="#@comp:SLICE_8">SLICE_8</A>
-ROUTE         1     0.000<A href="#@net:n196:R3C20A.FCO:R3C20B.FCI:0.000">     R3C20A.FCO to R3C20B.FCI    </A> <A href="#@net:n196">n196</A>
-FCITOFCO_D  ---     0.056     R3C20B.FCI to     R3C20B.FCO <A href="#@comp:SLICE_7">SLICE_7</A>
-ROUTE         1     0.000<A href="#@net:n197:R3C20B.FCO:R3C20C.FCI:0.000">     R3C20B.FCO to R3C20C.FCI    </A> <A href="#@net:n197">n197</A>
-FCITOFCO_D  ---     0.056     R3C20C.FCI to     R3C20C.FCO <A href="#@comp:SLICE_6">SLICE_6</A>
-ROUTE         1     0.000<A href="#@net:n198:R3C20C.FCO:R3C20D.FCI:0.000">     R3C20C.FCO to R3C20D.FCI    </A> <A href="#@net:n198">n198</A>
-FCITOFCO_D  ---     0.056     R3C20D.FCI to     R3C20D.FCO <A href="#@comp:SLICE_5">SLICE_5</A>
-ROUTE         1     0.000<A href="#@net:n199:R3C20D.FCO:R3C21A.FCI:0.000">     R3C20D.FCO to R3C21A.FCI    </A> <A href="#@net:n199">n199</A>
-FCITOFCO_D  ---     0.056     R3C21A.FCI to     R3C21A.FCO <A href="#@comp:SLICE_4">SLICE_4</A>
-ROUTE         1     0.000<A href="#@net:n200:R3C21A.FCO:R3C21B.FCI:0.000">     R3C21A.FCO to R3C21B.FCI    </A> <A href="#@net:n200">n200</A>
-FCITOFCO_D  ---     0.056     R3C21B.FCI to     R3C21B.FCO <A href="#@comp:SLICE_3">SLICE_3</A>
-ROUTE         1     0.000<A href="#@net:n201:R3C21B.FCO:R3C21C.FCI:0.000">     R3C21B.FCO to R3C21C.FCI    </A> <A href="#@net:n201">n201</A>
-FCITOFCO_D  ---     0.056     R3C21C.FCI to     R3C21C.FCO <A href="#@comp:SLICE_2">SLICE_2</A>
-ROUTE         1     0.000<A href="#@net:n202:R3C21C.FCO:R3C21D.FCI:0.000">     R3C21C.FCO to R3C21D.FCI    </A> <A href="#@net:n202">n202</A>
-FCITOFCO_D  ---     0.056     R3C21D.FCI to     R3C21D.FCO <A href="#@comp:SLICE_1">SLICE_1</A>
-ROUTE         1     0.000<A href="#@net:n203:R3C21D.FCO:R3C22A.FCI:0.000">     R3C21D.FCO to R3C22A.FCI    </A> <A href="#@net:n203">n203</A>
-FCITOF0_DE  ---     0.351     R3C22A.FCI to      R3C22A.F0 <A href="#@comp:SLICE_0">SLICE_0</A>
+C0TOFCO_DE  ---     0.354      R3C19B.B0 to     R3C19B.FCO <A href="#@comp:SLICE_7">SLICE_7</A>
+ROUTE         1     0.000<A href="#@net:n1333:R3C19B.FCO:R3C19C.FCI:0.000">     R3C19B.FCO to R3C19C.FCI    </A> <A href="#@net:n1333">n1333</A>
+FCITOFCO_D  ---     0.056     R3C19C.FCI to     R3C19C.FCO <A href="#@comp:SLICE_6">SLICE_6</A>
+ROUTE         1     0.000<A href="#@net:n1334:R3C19C.FCO:R3C19D.FCI:0.000">     R3C19C.FCO to R3C19D.FCI    </A> <A href="#@net:n1334">n1334</A>
+FCITOFCO_D  ---     0.056     R3C19D.FCI to     R3C19D.FCO <A href="#@comp:SLICE_5">SLICE_5</A>
+ROUTE         1     0.000<A href="#@net:n1335:R3C19D.FCO:R3C20A.FCI:0.000">     R3C19D.FCO to R3C20A.FCI    </A> <A href="#@net:n1335">n1335</A>
+FCITOFCO_D  ---     0.056     R3C20A.FCI to     R3C20A.FCO <A href="#@comp:SLICE_4">SLICE_4</A>
+ROUTE         1     0.000<A href="#@net:n1336:R3C20A.FCO:R3C20B.FCI:0.000">     R3C20A.FCO to R3C20B.FCI    </A> <A href="#@net:n1336">n1336</A>
+FCITOFCO_D  ---     0.056     R3C20B.FCI to     R3C20B.FCO <A href="#@comp:SLICE_3">SLICE_3</A>
+ROUTE         1     0.000<A href="#@net:n1337:R3C20B.FCO:R3C20C.FCI:0.000">     R3C20B.FCO to R3C20C.FCI    </A> <A href="#@net:n1337">n1337</A>
+FCITOFCO_D  ---     0.056     R3C20C.FCI to     R3C20C.FCO <A href="#@comp:SLICE_2">SLICE_2</A>
+ROUTE         1     0.000<A href="#@net:n1338:R3C20C.FCO:R3C20D.FCI:0.000">     R3C20C.FCO to R3C20D.FCI    </A> <A href="#@net:n1338">n1338</A>
+FCITOFCO_D  ---     0.056     R3C20D.FCI to     R3C20D.FCO <A href="#@comp:SLICE_1">SLICE_1</A>
+ROUTE         1     0.000<A href="#@net:n1339:R3C20D.FCO:R3C21A.FCI:0.000">     R3C20D.FCO to R3C21A.FCI    </A> <A href="#@net:n1339">n1339</A>
+FCITOFCO_D  ---     0.056     R3C21A.FCI to     R3C21A.FCO <A href="#@comp:SLICE_0">SLICE_0</A>
+ROUTE         1     0.000<A href="#@net:n1340:R3C21A.FCO:R3C21B.FCI:0.000">     R3C21A.FCO to R3C21B.FCI    </A> <A href="#@net:n1340">n1340</A>
+FCITOFCO_D  ---     0.056     R3C21B.FCI to     R3C21B.FCO <A href="#@comp:SLICE_9">SLICE_9</A>
+ROUTE         1     0.000<A href="#@net:n1341:R3C21B.FCO:R3C21C.FCI:0.000">     R3C21B.FCO to R3C21C.FCI    </A> <A href="#@net:n1341">n1341</A>
+FCITOFCO_D  ---     0.056     R3C21C.FCI to     R3C21C.FCO <A href="#@comp:SLICE_12">SLICE_12</A>
+ROUTE         1     0.000<A href="#@net:n1342:R3C21C.FCO:R3C21D.FCI:0.000">     R3C21C.FCO to R3C21D.FCI    </A> <A href="#@net:n1342">n1342</A>
+FCITOFCO_D  ---     0.056     R3C21D.FCI to     R3C21D.FCO <A href="#@comp:SLICE_11">SLICE_11</A>
+ROUTE         1     0.000<A href="#@net:n1343:R3C21D.FCO:R3C22A.FCI:0.000">     R3C21D.FCO to R3C22A.FCI    </A> <A href="#@net:n1343">n1343</A>
+FCITOF0_DE  ---     0.351     R3C22A.FCI to      R3C22A.F0 <A href="#@comp:SLICE_10">SLICE_10</A>
 ROUTE         1     0.000<A href="#@net:n102:R3C22A.F0:R3C22A.DI0:0.000">      R3C22A.F0 to R3C22A.DI0    </A> <A href="#@net:n102">n102</A> (to <A href="#@net:i_clk16_c">i_clk16_c</A>)
                   --------
                     2.340   (71.8% logic, 28.2% route), 13 logic levels.
 
  Clock Skew Details: 
 
-      <A href="#@path:FREQUENCY PORT 'i_clk16' 16.000000 MHz ;:ROUTE, 2.142,G3.PADDI,R3C19B.CLK,i_clk16_c">Source Clock Path</A> i_clk16 to SLICE_11:
+      <A href="#@path:FREQUENCY PORT 'i_clk16' 16.000000 MHz ;:ROUTE, 2.142,G3.PADDI,R3C19B.CLK,i_clk16_c">Source Clock Path</A> i_clk16 to SLICE_7:
 
    Name    Fanout   Delay (ns)          Site               Resource
 ROUTE        16     2.142<A href="#@net:i_clk16_c:G3.PADDI:R3C19B.CLK:2.142">       G3.PADDI to R3C19B.CLK    </A> <A href="#@net:i_clk16_c">i_clk16_c</A>
                   --------
                     2.142   (0.0% logic, 100.0% route), 0 logic levels.
 
-      <A href="#@path:FREQUENCY PORT 'i_clk16' 16.000000 MHz ;:ROUTE, 2.142,G3.PADDI,R3C22A.CLK,i_clk16_c">Destination Clock Path</A> i_clk16 to SLICE_0:
+      <A href="#@path:FREQUENCY PORT 'i_clk16' 16.000000 MHz ;:ROUTE, 2.142,G3.PADDI,R3C22A.CLK,i_clk16_c">Destination Clock Path</A> i_clk16 to SLICE_10:
 
    Name    Fanout   Delay (ns)          Site               Resource
 ROUTE        16     2.142<A href="#@net:i_clk16_c:G3.PADDI:R3C22A.CLK:2.142">       G3.PADDI to R3C22A.CLK    </A> <A href="#@net:i_clk16_c">i_clk16_c</A>
@@ -196,60 +602,60 @@ Passed: The following path meets requirements by 60.402ns
  </font>
  Logical Details:  Cell type  Pin type       Cell/ASIC name  (clock net +/-)
 
-   Source:         FF         Q              <A href="#@comp:SLICE_11">counter_32_33__i1</A>  (from <A href="#@net:i_clk16_c">i_clk16_c</A> +)
-   Destination:    FF         Data in        <A href="#@comp:SLICE_1">counter_32_33__i22</A>  (to <A href="#@net:i_clk16_c">i_clk16_c</A> +)
+   Source:         FF         Q              <A href="#@comp:SLICE_7">counter_296_302__i1</A>  (from <A href="#@net:i_clk16_c">i_clk16_c</A> +)
+   Destination:    FF         Data in        <A href="#@comp:SLICE_11">counter_296_302__i22</A>  (to <A href="#@net:i_clk16_c">i_clk16_c</A> +)
 
    Delay:               2.309ns  (71.5% logic, 28.5% route), 12 logic levels.
 
  Constraint Details:
 
-      2.309ns physical path delay SLICE_11 to SLICE_1 meets
+      2.309ns physical path delay SLICE_7 to SLICE_11 meets
      62.500ns delay constraint less
       0.000ns skew and
      -0.211ns DIN_SET requirement (totaling 62.711ns) by 60.402ns
 
  Physical Path Details:
 
-      <A href="#@path:FREQUENCY PORT 'i_clk16' 16.000000 MHz ;:REG_DEL, 0.416,R3C19B.CLK,R3C19B.Q0,SLICE_11:ROUTE, 0.659,R3C19B.Q0,R3C19B.B0,n23:C0TOFCO_DEL, 0.354,R3C19B.B0,R3C19B.FCO,SLICE_11:ROUTE, 0.000,R3C19B.FCO,R3C19C.FCI,n193:FCITOFCO_DEL, 0.056,R3C19C.FCI,R3C19C.FCO,SLICE_10:ROUTE, 0.000,R3C19C.FCO,R3C19D.FCI,n194:FCITOFCO_DEL, 0.056,R3C19D.FCI,R3C19D.FCO,SLICE_9:ROUTE, 0.000,R3C19D.FCO,R3C20A.FCI,n195:FCITOFCO_DEL, 0.056,R3C20A.FCI,R3C20A.FCO,SLICE_8:ROUTE, 0.000,R3C20A.FCO,R3C20B.FCI,n196:FCITOFCO_DEL, 0.056,R3C20B.FCI,R3C20B.FCO,SLICE_7:ROUTE, 0.000,R3C20B.FCO,R3C20C.FCI,n197:FCITOFCO_DEL, 0.056,R3C20C.FCI,R3C20C.FCO,SLICE_6:ROUTE, 0.000,R3C20C.FCO,R3C20D.FCI,n198:FCITOFCO_DEL, 0.056,R3C20D.FCI,R3C20D.FCO,SLICE_5:ROUTE, 0.000,R3C20D.FCO,R3C21A.FCI,n199:FCITOFCO_DEL, 0.056,R3C21A.FCI,R3C21A.FCO,SLICE_4:ROUTE, 0.000,R3C21A.FCO,R3C21B.FCI,n200:FCITOFCO_DEL, 0.056,R3C21B.FCI,R3C21B.FCO,SLICE_3:ROUTE, 0.000,R3C21B.FCO,R3C21C.FCI,n201:FCITOFCO_DEL, 0.056,R3C21C.FCI,R3C21C.FCO,SLICE_2:ROUTE, 0.000,R3C21C.FCO,R3C21D.FCI,n202:FCITOF1_DEL, 0.376,R3C21D.FCI,R3C21D.F1,SLICE_1:ROUTE, 0.000,R3C21D.F1,R3C21D.DI1,n103">Data path</A> SLICE_11 to SLICE_1:
+      <A href="#@path:FREQUENCY PORT 'i_clk16' 16.000000 MHz ;:REG_DEL, 0.416,R3C19B.CLK,R3C19B.Q0,SLICE_7:ROUTE, 0.659,R3C19B.Q0,R3C19B.B0,n23:C0TOFCO_DEL, 0.354,R3C19B.B0,R3C19B.FCO,SLICE_7:ROUTE, 0.000,R3C19B.FCO,R3C19C.FCI,n1333:FCITOFCO_DEL, 0.056,R3C19C.FCI,R3C19C.FCO,SLICE_6:ROUTE, 0.000,R3C19C.FCO,R3C19D.FCI,n1334:FCITOFCO_DEL, 0.056,R3C19D.FCI,R3C19D.FCO,SLICE_5:ROUTE, 0.000,R3C19D.FCO,R3C20A.FCI,n1335:FCITOFCO_DEL, 0.056,R3C20A.FCI,R3C20A.FCO,SLICE_4:ROUTE, 0.000,R3C20A.FCO,R3C20B.FCI,n1336:FCITOFCO_DEL, 0.056,R3C20B.FCI,R3C20B.FCO,SLICE_3:ROUTE, 0.000,R3C20B.FCO,R3C20C.FCI,n1337:FCITOFCO_DEL, 0.056,R3C20C.FCI,R3C20C.FCO,SLICE_2:ROUTE, 0.000,R3C20C.FCO,R3C20D.FCI,n1338:FCITOFCO_DEL, 0.056,R3C20D.FCI,R3C20D.FCO,SLICE_1:ROUTE, 0.000,R3C20D.FCO,R3C21A.FCI,n1339:FCITOFCO_DEL, 0.056,R3C21A.FCI,R3C21A.FCO,SLICE_0:ROUTE, 0.000,R3C21A.FCO,R3C21B.FCI,n1340:FCITOFCO_DEL, 0.056,R3C21B.FCI,R3C21B.FCO,SLICE_9:ROUTE, 0.000,R3C21B.FCO,R3C21C.FCI,n1341:FCITOFCO_DEL, 0.056,R3C21C.FCI,R3C21C.FCO,SLICE_12:ROUTE, 0.000,R3C21C.FCO,R3C21D.FCI,n1342:FCITOF1_DEL, 0.376,R3C21D.FCI,R3C21D.F1,SLICE_11:ROUTE, 0.000,R3C21D.F1,R3C21D.DI1,n103">Data path</A> SLICE_7 to SLICE_11:
 
    Name    Fanout   Delay (ns)          Site               Resource
-REG_DEL     ---     0.416     R3C19B.CLK to      R3C19B.Q0 <A href="#@comp:SLICE_11">SLICE_11</A> (from <A href="#@net:i_clk16_c">i_clk16_c</A>)
+REG_DEL     ---     0.416     R3C19B.CLK to      R3C19B.Q0 <A href="#@comp:SLICE_7">SLICE_7</A> (from <A href="#@net:i_clk16_c">i_clk16_c</A>)
 ROUTE         1     0.659<A href="#@net:n23:R3C19B.Q0:R3C19B.B0:0.659">      R3C19B.Q0 to R3C19B.B0     </A> <A href="#@net:n23">n23</A>
-C0TOFCO_DE  ---     0.354      R3C19B.B0 to     R3C19B.FCO <A href="#@comp:SLICE_11">SLICE_11</A>
-ROUTE         1     0.000<A href="#@net:n193:R3C19B.FCO:R3C19C.FCI:0.000">     R3C19B.FCO to R3C19C.FCI    </A> <A href="#@net:n193">n193</A>
-FCITOFCO_D  ---     0.056     R3C19C.FCI to     R3C19C.FCO <A href="#@comp:SLICE_10">SLICE_10</A>
-ROUTE         1     0.000<A href="#@net:n194:R3C19C.FCO:R3C19D.FCI:0.000">     R3C19C.FCO to R3C19D.FCI    </A> <A href="#@net:n194">n194</A>
-FCITOFCO_D  ---     0.056     R3C19D.FCI to     R3C19D.FCO <A href="#@comp:SLICE_9">SLICE_9</A>
-ROUTE         1     0.000<A href="#@net:n195:R3C19D.FCO:R3C20A.FCI:0.000">     R3C19D.FCO to R3C20A.FCI    </A> <A href="#@net:n195">n195</A>
-FCITOFCO_D  ---     0.056     R3C20A.FCI to     R3C20A.FCO <A href="#@comp:SLICE_8">SLICE_8</A>
-ROUTE         1     0.000<A href="#@net:n196:R3C20A.FCO:R3C20B.FCI:0.000">     R3C20A.FCO to R3C20B.FCI    </A> <A href="#@net:n196">n196</A>
-FCITOFCO_D  ---     0.056     R3C20B.FCI to     R3C20B.FCO <A href="#@comp:SLICE_7">SLICE_7</A>
-ROUTE         1     0.000<A href="#@net:n197:R3C20B.FCO:R3C20C.FCI:0.000">     R3C20B.FCO to R3C20C.FCI    </A> <A href="#@net:n197">n197</A>
-FCITOFCO_D  ---     0.056     R3C20C.FCI to     R3C20C.FCO <A href="#@comp:SLICE_6">SLICE_6</A>
-ROUTE         1     0.000<A href="#@net:n198:R3C20C.FCO:R3C20D.FCI:0.000">     R3C20C.FCO to R3C20D.FCI    </A> <A href="#@net:n198">n198</A>
-FCITOFCO_D  ---     0.056     R3C20D.FCI to     R3C20D.FCO <A href="#@comp:SLICE_5">SLICE_5</A>
-ROUTE         1     0.000<A href="#@net:n199:R3C20D.FCO:R3C21A.FCI:0.000">     R3C20D.FCO to R3C21A.FCI    </A> <A href="#@net:n199">n199</A>
-FCITOFCO_D  ---     0.056     R3C21A.FCI to     R3C21A.FCO <A href="#@comp:SLICE_4">SLICE_4</A>
-ROUTE         1     0.000<A href="#@net:n200:R3C21A.FCO:R3C21B.FCI:0.000">     R3C21A.FCO to R3C21B.FCI    </A> <A href="#@net:n200">n200</A>
-FCITOFCO_D  ---     0.056     R3C21B.FCI to     R3C21B.FCO <A href="#@comp:SLICE_3">SLICE_3</A>
-ROUTE         1     0.000<A href="#@net:n201:R3C21B.FCO:R3C21C.FCI:0.000">     R3C21B.FCO to R3C21C.FCI    </A> <A href="#@net:n201">n201</A>
-FCITOFCO_D  ---     0.056     R3C21C.FCI to     R3C21C.FCO <A href="#@comp:SLICE_2">SLICE_2</A>
-ROUTE         1     0.000<A href="#@net:n202:R3C21C.FCO:R3C21D.FCI:0.000">     R3C21C.FCO to R3C21D.FCI    </A> <A href="#@net:n202">n202</A>
-FCITOF1_DE  ---     0.376     R3C21D.FCI to      R3C21D.F1 <A href="#@comp:SLICE_1">SLICE_1</A>
+C0TOFCO_DE  ---     0.354      R3C19B.B0 to     R3C19B.FCO <A href="#@comp:SLICE_7">SLICE_7</A>
+ROUTE         1     0.000<A href="#@net:n1333:R3C19B.FCO:R3C19C.FCI:0.000">     R3C19B.FCO to R3C19C.FCI    </A> <A href="#@net:n1333">n1333</A>
+FCITOFCO_D  ---     0.056     R3C19C.FCI to     R3C19C.FCO <A href="#@comp:SLICE_6">SLICE_6</A>
+ROUTE         1     0.000<A href="#@net:n1334:R3C19C.FCO:R3C19D.FCI:0.000">     R3C19C.FCO to R3C19D.FCI    </A> <A href="#@net:n1334">n1334</A>
+FCITOFCO_D  ---     0.056     R3C19D.FCI to     R3C19D.FCO <A href="#@comp:SLICE_5">SLICE_5</A>
+ROUTE         1     0.000<A href="#@net:n1335:R3C19D.FCO:R3C20A.FCI:0.000">     R3C19D.FCO to R3C20A.FCI    </A> <A href="#@net:n1335">n1335</A>
+FCITOFCO_D  ---     0.056     R3C20A.FCI to     R3C20A.FCO <A href="#@comp:SLICE_4">SLICE_4</A>
+ROUTE         1     0.000<A href="#@net:n1336:R3C20A.FCO:R3C20B.FCI:0.000">     R3C20A.FCO to R3C20B.FCI    </A> <A href="#@net:n1336">n1336</A>
+FCITOFCO_D  ---     0.056     R3C20B.FCI to     R3C20B.FCO <A href="#@comp:SLICE_3">SLICE_3</A>
+ROUTE         1     0.000<A href="#@net:n1337:R3C20B.FCO:R3C20C.FCI:0.000">     R3C20B.FCO to R3C20C.FCI    </A> <A href="#@net:n1337">n1337</A>
+FCITOFCO_D  ---     0.056     R3C20C.FCI to     R3C20C.FCO <A href="#@comp:SLICE_2">SLICE_2</A>
+ROUTE         1     0.000<A href="#@net:n1338:R3C20C.FCO:R3C20D.FCI:0.000">     R3C20C.FCO to R3C20D.FCI    </A> <A href="#@net:n1338">n1338</A>
+FCITOFCO_D  ---     0.056     R3C20D.FCI to     R3C20D.FCO <A href="#@comp:SLICE_1">SLICE_1</A>
+ROUTE         1     0.000<A href="#@net:n1339:R3C20D.FCO:R3C21A.FCI:0.000">     R3C20D.FCO to R3C21A.FCI    </A> <A href="#@net:n1339">n1339</A>
+FCITOFCO_D  ---     0.056     R3C21A.FCI to     R3C21A.FCO <A href="#@comp:SLICE_0">SLICE_0</A>
+ROUTE         1     0.000<A href="#@net:n1340:R3C21A.FCO:R3C21B.FCI:0.000">     R3C21A.FCO to R3C21B.FCI    </A> <A href="#@net:n1340">n1340</A>
+FCITOFCO_D  ---     0.056     R3C21B.FCI to     R3C21B.FCO <A href="#@comp:SLICE_9">SLICE_9</A>
+ROUTE         1     0.000<A href="#@net:n1341:R3C21B.FCO:R3C21C.FCI:0.000">     R3C21B.FCO to R3C21C.FCI    </A> <A href="#@net:n1341">n1341</A>
+FCITOFCO_D  ---     0.056     R3C21C.FCI to     R3C21C.FCO <A href="#@comp:SLICE_12">SLICE_12</A>
+ROUTE         1     0.000<A href="#@net:n1342:R3C21C.FCO:R3C21D.FCI:0.000">     R3C21C.FCO to R3C21D.FCI    </A> <A href="#@net:n1342">n1342</A>
+FCITOF1_DE  ---     0.376     R3C21D.FCI to      R3C21D.F1 <A href="#@comp:SLICE_11">SLICE_11</A>
 ROUTE         1     0.000<A href="#@net:n103:R3C21D.F1:R3C21D.DI1:0.000">      R3C21D.F1 to R3C21D.DI1    </A> <A href="#@net:n103">n103</A> (to <A href="#@net:i_clk16_c">i_clk16_c</A>)
                   --------
                     2.309   (71.5% logic, 28.5% route), 12 logic levels.
 
  Clock Skew Details: 
 
-      <A href="#@path:FREQUENCY PORT 'i_clk16' 16.000000 MHz ;:ROUTE, 2.142,G3.PADDI,R3C19B.CLK,i_clk16_c">Source Clock Path</A> i_clk16 to SLICE_11:
+      <A href="#@path:FREQUENCY PORT 'i_clk16' 16.000000 MHz ;:ROUTE, 2.142,G3.PADDI,R3C19B.CLK,i_clk16_c">Source Clock Path</A> i_clk16 to SLICE_7:
 
    Name    Fanout   Delay (ns)          Site               Resource
 ROUTE        16     2.142<A href="#@net:i_clk16_c:G3.PADDI:R3C19B.CLK:2.142">       G3.PADDI to R3C19B.CLK    </A> <A href="#@net:i_clk16_c">i_clk16_c</A>
                   --------
                     2.142   (0.0% logic, 100.0% route), 0 logic levels.
 
-      <A href="#@path:FREQUENCY PORT 'i_clk16' 16.000000 MHz ;:ROUTE, 2.142,G3.PADDI,R3C21D.CLK,i_clk16_c">Destination Clock Path</A> i_clk16 to SLICE_1:
+      <A href="#@path:FREQUENCY PORT 'i_clk16' 16.000000 MHz ;:ROUTE, 2.142,G3.PADDI,R3C21D.CLK,i_clk16_c">Destination Clock Path</A> i_clk16 to SLICE_11:
 
    Name    Fanout   Delay (ns)          Site               Resource
 ROUTE        16     2.142<A href="#@net:i_clk16_c:G3.PADDI:R3C21D.CLK:2.142">       G3.PADDI to R3C21D.CLK    </A> <A href="#@net:i_clk16_c">i_clk16_c</A>
@@ -261,60 +667,60 @@ Passed: The following path meets requirements by 60.422ns
  </font>
  Logical Details:  Cell type  Pin type       Cell/ASIC name  (clock net +/-)
 
-   Source:         FF         Q              <A href="#@comp:SLICE_10">counter_32_33__i3</A>  (from <A href="#@net:i_clk16_c">i_clk16_c</A> +)
-   Destination:    FF         Data in        <A href="#@comp:SLICE_0">counter_32_33__i23</A>  (to <A href="#@net:i_clk16_c">i_clk16_c</A> +)
+   Source:         FF         Q              <A href="#@comp:SLICE_6">counter_296_302__i3</A>  (from <A href="#@net:i_clk16_c">i_clk16_c</A> +)
+   Destination:    FF         Data in        <A href="#@comp:SLICE_10">counter_296_302__i23</A>  (to <A href="#@net:i_clk16_c">i_clk16_c</A> +)
 
    Delay:               2.284ns  (71.1% logic, 28.9% route), 12 logic levels.
 
  Constraint Details:
 
-      2.284ns physical path delay SLICE_10 to SLICE_0 meets
+      2.284ns physical path delay SLICE_6 to SLICE_10 meets
      62.500ns delay constraint less
       0.000ns skew and
      -0.206ns DIN_SET requirement (totaling 62.706ns) by 60.422ns
 
  Physical Path Details:
 
-      <A href="#@path:FREQUENCY PORT 'i_clk16' 16.000000 MHz ;:REG_DEL, 0.416,R3C19C.CLK,R3C19C.Q0,SLICE_10:ROUTE, 0.659,R3C19C.Q0,R3C19C.B0,n21:C0TOFCO_DEL, 0.354,R3C19C.B0,R3C19C.FCO,SLICE_10:ROUTE, 0.000,R3C19C.FCO,R3C19D.FCI,n194:FCITOFCO_DEL, 0.056,R3C19D.FCI,R3C19D.FCO,SLICE_9:ROUTE, 0.000,R3C19D.FCO,R3C20A.FCI,n195:FCITOFCO_DEL, 0.056,R3C20A.FCI,R3C20A.FCO,SLICE_8:ROUTE, 0.000,R3C20A.FCO,R3C20B.FCI,n196:FCITOFCO_DEL, 0.056,R3C20B.FCI,R3C20B.FCO,SLICE_7:ROUTE, 0.000,R3C20B.FCO,R3C20C.FCI,n197:FCITOFCO_DEL, 0.056,R3C20C.FCI,R3C20C.FCO,SLICE_6:ROUTE, 0.000,R3C20C.FCO,R3C20D.FCI,n198:FCITOFCO_DEL, 0.056,R3C20D.FCI,R3C20D.FCO,SLICE_5:ROUTE, 0.000,R3C20D.FCO,R3C21A.FCI,n199:FCITOFCO_DEL, 0.056,R3C21A.FCI,R3C21A.FCO,SLICE_4:ROUTE, 0.000,R3C21A.FCO,R3C21B.FCI,n200:FCITOFCO_DEL, 0.056,R3C21B.FCI,R3C21B.FCO,SLICE_3:ROUTE, 0.000,R3C21B.FCO,R3C21C.FCI,n201:FCITOFCO_DEL, 0.056,R3C21C.FCI,R3C21C.FCO,SLICE_2:ROUTE, 0.000,R3C21C.FCO,R3C21D.FCI,n202:FCITOFCO_DEL, 0.056,R3C21D.FCI,R3C21D.FCO,SLICE_1:ROUTE, 0.000,R3C21D.FCO,R3C22A.FCI,n203:FCITOF0_DEL, 0.351,R3C22A.FCI,R3C22A.F0,SLICE_0:ROUTE, 0.000,R3C22A.F0,R3C22A.DI0,n102">Data path</A> SLICE_10 to SLICE_0:
+      <A href="#@path:FREQUENCY PORT 'i_clk16' 16.000000 MHz ;:REG_DEL, 0.416,R3C19C.CLK,R3C19C.Q0,SLICE_6:ROUTE, 0.659,R3C19C.Q0,R3C19C.B0,n21:C0TOFCO_DEL, 0.354,R3C19C.B0,R3C19C.FCO,SLICE_6:ROUTE, 0.000,R3C19C.FCO,R3C19D.FCI,n1334:FCITOFCO_DEL, 0.056,R3C19D.FCI,R3C19D.FCO,SLICE_5:ROUTE, 0.000,R3C19D.FCO,R3C20A.FCI,n1335:FCITOFCO_DEL, 0.056,R3C20A.FCI,R3C20A.FCO,SLICE_4:ROUTE, 0.000,R3C20A.FCO,R3C20B.FCI,n1336:FCITOFCO_DEL, 0.056,R3C20B.FCI,R3C20B.FCO,SLICE_3:ROUTE, 0.000,R3C20B.FCO,R3C20C.FCI,n1337:FCITOFCO_DEL, 0.056,R3C20C.FCI,R3C20C.FCO,SLICE_2:ROUTE, 0.000,R3C20C.FCO,R3C20D.FCI,n1338:FCITOFCO_DEL, 0.056,R3C20D.FCI,R3C20D.FCO,SLICE_1:ROUTE, 0.000,R3C20D.FCO,R3C21A.FCI,n1339:FCITOFCO_DEL, 0.056,R3C21A.FCI,R3C21A.FCO,SLICE_0:ROUTE, 0.000,R3C21A.FCO,R3C21B.FCI,n1340:FCITOFCO_DEL, 0.056,R3C21B.FCI,R3C21B.FCO,SLICE_9:ROUTE, 0.000,R3C21B.FCO,R3C21C.FCI,n1341:FCITOFCO_DEL, 0.056,R3C21C.FCI,R3C21C.FCO,SLICE_12:ROUTE, 0.000,R3C21C.FCO,R3C21D.FCI,n1342:FCITOFCO_DEL, 0.056,R3C21D.FCI,R3C21D.FCO,SLICE_11:ROUTE, 0.000,R3C21D.FCO,R3C22A.FCI,n1343:FCITOF0_DEL, 0.351,R3C22A.FCI,R3C22A.F0,SLICE_10:ROUTE, 0.000,R3C22A.F0,R3C22A.DI0,n102">Data path</A> SLICE_6 to SLICE_10:
 
    Name    Fanout   Delay (ns)          Site               Resource
-REG_DEL     ---     0.416     R3C19C.CLK to      R3C19C.Q0 <A href="#@comp:SLICE_10">SLICE_10</A> (from <A href="#@net:i_clk16_c">i_clk16_c</A>)
+REG_DEL     ---     0.416     R3C19C.CLK to      R3C19C.Q0 <A href="#@comp:SLICE_6">SLICE_6</A> (from <A href="#@net:i_clk16_c">i_clk16_c</A>)
 ROUTE         1     0.659<A href="#@net:n21:R3C19C.Q0:R3C19C.B0:0.659">      R3C19C.Q0 to R3C19C.B0     </A> <A href="#@net:n21">n21</A>
-C0TOFCO_DE  ---     0.354      R3C19C.B0 to     R3C19C.FCO <A href="#@comp:SLICE_10">SLICE_10</A>
-ROUTE         1     0.000<A href="#@net:n194:R3C19C.FCO:R3C19D.FCI:0.000">     R3C19C.FCO to R3C19D.FCI    </A> <A href="#@net:n194">n194</A>
-FCITOFCO_D  ---     0.056     R3C19D.FCI to     R3C19D.FCO <A href="#@comp:SLICE_9">SLICE_9</A>
-ROUTE         1     0.000<A href="#@net:n195:R3C19D.FCO:R3C20A.FCI:0.000">     R3C19D.FCO to R3C20A.FCI    </A> <A href="#@net:n195">n195</A>
-FCITOFCO_D  ---     0.056     R3C20A.FCI to     R3C20A.FCO <A href="#@comp:SLICE_8">SLICE_8</A>
-ROUTE         1     0.000<A href="#@net:n196:R3C20A.FCO:R3C20B.FCI:0.000">     R3C20A.FCO to R3C20B.FCI    </A> <A href="#@net:n196">n196</A>
-FCITOFCO_D  ---     0.056     R3C20B.FCI to     R3C20B.FCO <A href="#@comp:SLICE_7">SLICE_7</A>
-ROUTE         1     0.000<A href="#@net:n197:R3C20B.FCO:R3C20C.FCI:0.000">     R3C20B.FCO to R3C20C.FCI    </A> <A href="#@net:n197">n197</A>
-FCITOFCO_D  ---     0.056     R3C20C.FCI to     R3C20C.FCO <A href="#@comp:SLICE_6">SLICE_6</A>
-ROUTE         1     0.000<A href="#@net:n198:R3C20C.FCO:R3C20D.FCI:0.000">     R3C20C.FCO to R3C20D.FCI    </A> <A href="#@net:n198">n198</A>
-FCITOFCO_D  ---     0.056     R3C20D.FCI to     R3C20D.FCO <A href="#@comp:SLICE_5">SLICE_5</A>
-ROUTE         1     0.000<A href="#@net:n199:R3C20D.FCO:R3C21A.FCI:0.000">     R3C20D.FCO to R3C21A.FCI    </A> <A href="#@net:n199">n199</A>
-FCITOFCO_D  ---     0.056     R3C21A.FCI to     R3C21A.FCO <A href="#@comp:SLICE_4">SLICE_4</A>
-ROUTE         1     0.000<A href="#@net:n200:R3C21A.FCO:R3C21B.FCI:0.000">     R3C21A.FCO to R3C21B.FCI    </A> <A href="#@net:n200">n200</A>
-FCITOFCO_D  ---     0.056     R3C21B.FCI to     R3C21B.FCO <A href="#@comp:SLICE_3">SLICE_3</A>
-ROUTE         1     0.000<A href="#@net:n201:R3C21B.FCO:R3C21C.FCI:0.000">     R3C21B.FCO to R3C21C.FCI    </A> <A href="#@net:n201">n201</A>
-FCITOFCO_D  ---     0.056     R3C21C.FCI to     R3C21C.FCO <A href="#@comp:SLICE_2">SLICE_2</A>
-ROUTE         1     0.000<A href="#@net:n202:R3C21C.FCO:R3C21D.FCI:0.000">     R3C21C.FCO to R3C21D.FCI    </A> <A href="#@net:n202">n202</A>
-FCITOFCO_D  ---     0.056     R3C21D.FCI to     R3C21D.FCO <A href="#@comp:SLICE_1">SLICE_1</A>
-ROUTE         1     0.000<A href="#@net:n203:R3C21D.FCO:R3C22A.FCI:0.000">     R3C21D.FCO to R3C22A.FCI    </A> <A href="#@net:n203">n203</A>
-FCITOF0_DE  ---     0.351     R3C22A.FCI to      R3C22A.F0 <A href="#@comp:SLICE_0">SLICE_0</A>
+C0TOFCO_DE  ---     0.354      R3C19C.B0 to     R3C19C.FCO <A href="#@comp:SLICE_6">SLICE_6</A>
+ROUTE         1     0.000<A href="#@net:n1334:R3C19C.FCO:R3C19D.FCI:0.000">     R3C19C.FCO to R3C19D.FCI    </A> <A href="#@net:n1334">n1334</A>
+FCITOFCO_D  ---     0.056     R3C19D.FCI to     R3C19D.FCO <A href="#@comp:SLICE_5">SLICE_5</A>
+ROUTE         1     0.000<A href="#@net:n1335:R3C19D.FCO:R3C20A.FCI:0.000">     R3C19D.FCO to R3C20A.FCI    </A> <A href="#@net:n1335">n1335</A>
+FCITOFCO_D  ---     0.056     R3C20A.FCI to     R3C20A.FCO <A href="#@comp:SLICE_4">SLICE_4</A>
+ROUTE         1     0.000<A href="#@net:n1336:R3C20A.FCO:R3C20B.FCI:0.000">     R3C20A.FCO to R3C20B.FCI    </A> <A href="#@net:n1336">n1336</A>
+FCITOFCO_D  ---     0.056     R3C20B.FCI to     R3C20B.FCO <A href="#@comp:SLICE_3">SLICE_3</A>
+ROUTE         1     0.000<A href="#@net:n1337:R3C20B.FCO:R3C20C.FCI:0.000">     R3C20B.FCO to R3C20C.FCI    </A> <A href="#@net:n1337">n1337</A>
+FCITOFCO_D  ---     0.056     R3C20C.FCI to     R3C20C.FCO <A href="#@comp:SLICE_2">SLICE_2</A>
+ROUTE         1     0.000<A href="#@net:n1338:R3C20C.FCO:R3C20D.FCI:0.000">     R3C20C.FCO to R3C20D.FCI    </A> <A href="#@net:n1338">n1338</A>
+FCITOFCO_D  ---     0.056     R3C20D.FCI to     R3C20D.FCO <A href="#@comp:SLICE_1">SLICE_1</A>
+ROUTE         1     0.000<A href="#@net:n1339:R3C20D.FCO:R3C21A.FCI:0.000">     R3C20D.FCO to R3C21A.FCI    </A> <A href="#@net:n1339">n1339</A>
+FCITOFCO_D  ---     0.056     R3C21A.FCI to     R3C21A.FCO <A href="#@comp:SLICE_0">SLICE_0</A>
+ROUTE         1     0.000<A href="#@net:n1340:R3C21A.FCO:R3C21B.FCI:0.000">     R3C21A.FCO to R3C21B.FCI    </A> <A href="#@net:n1340">n1340</A>
+FCITOFCO_D  ---     0.056     R3C21B.FCI to     R3C21B.FCO <A href="#@comp:SLICE_9">SLICE_9</A>
+ROUTE         1     0.000<A href="#@net:n1341:R3C21B.FCO:R3C21C.FCI:0.000">     R3C21B.FCO to R3C21C.FCI    </A> <A href="#@net:n1341">n1341</A>
+FCITOFCO_D  ---     0.056     R3C21C.FCI to     R3C21C.FCO <A href="#@comp:SLICE_12">SLICE_12</A>
+ROUTE         1     0.000<A href="#@net:n1342:R3C21C.FCO:R3C21D.FCI:0.000">     R3C21C.FCO to R3C21D.FCI    </A> <A href="#@net:n1342">n1342</A>
+FCITOFCO_D  ---     0.056     R3C21D.FCI to     R3C21D.FCO <A href="#@comp:SLICE_11">SLICE_11</A>
+ROUTE         1     0.000<A href="#@net:n1343:R3C21D.FCO:R3C22A.FCI:0.000">     R3C21D.FCO to R3C22A.FCI    </A> <A href="#@net:n1343">n1343</A>
+FCITOF0_DE  ---     0.351     R3C22A.FCI to      R3C22A.F0 <A href="#@comp:SLICE_10">SLICE_10</A>
 ROUTE         1     0.000<A href="#@net:n102:R3C22A.F0:R3C22A.DI0:0.000">      R3C22A.F0 to R3C22A.DI0    </A> <A href="#@net:n102">n102</A> (to <A href="#@net:i_clk16_c">i_clk16_c</A>)
                   --------
                     2.284   (71.1% logic, 28.9% route), 12 logic levels.
 
  Clock Skew Details: 
 
-      <A href="#@path:FREQUENCY PORT 'i_clk16' 16.000000 MHz ;:ROUTE, 2.142,G3.PADDI,R3C19C.CLK,i_clk16_c">Source Clock Path</A> i_clk16 to SLICE_10:
+      <A href="#@path:FREQUENCY PORT 'i_clk16' 16.000000 MHz ;:ROUTE, 2.142,G3.PADDI,R3C19C.CLK,i_clk16_c">Source Clock Path</A> i_clk16 to SLICE_6:
 
    Name    Fanout   Delay (ns)          Site               Resource
 ROUTE        16     2.142<A href="#@net:i_clk16_c:G3.PADDI:R3C19C.CLK:2.142">       G3.PADDI to R3C19C.CLK    </A> <A href="#@net:i_clk16_c">i_clk16_c</A>
                   --------
                     2.142   (0.0% logic, 100.0% route), 0 logic levels.
 
-      <A href="#@path:FREQUENCY PORT 'i_clk16' 16.000000 MHz ;:ROUTE, 2.142,G3.PADDI,R3C22A.CLK,i_clk16_c">Destination Clock Path</A> i_clk16 to SLICE_0:
+      <A href="#@path:FREQUENCY PORT 'i_clk16' 16.000000 MHz ;:ROUTE, 2.142,G3.PADDI,R3C22A.CLK,i_clk16_c">Destination Clock Path</A> i_clk16 to SLICE_10:
 
    Name    Fanout   Delay (ns)          Site               Resource
 ROUTE        16     2.142<A href="#@net:i_clk16_c:G3.PADDI:R3C22A.CLK:2.142">       G3.PADDI to R3C22A.CLK    </A> <A href="#@net:i_clk16_c">i_clk16_c</A>
@@ -326,60 +732,60 @@ Passed: The following path meets requirements by 60.422ns
  </font>
  Logical Details:  Cell type  Pin type       Cell/ASIC name  (clock net +/-)
 
-   Source:         FF         Q              <A href="#@comp:SLICE_11">counter_32_33__i1</A>  (from <A href="#@net:i_clk16_c">i_clk16_c</A> +)
-   Destination:    FF         Data in        <A href="#@comp:SLICE_1">counter_32_33__i21</A>  (to <A href="#@net:i_clk16_c">i_clk16_c</A> +)
+   Source:         FF         Q              <A href="#@comp:SLICE_7">counter_296_302__i1</A>  (from <A href="#@net:i_clk16_c">i_clk16_c</A> +)
+   Destination:    FF         Data in        <A href="#@comp:SLICE_11">counter_296_302__i21</A>  (to <A href="#@net:i_clk16_c">i_clk16_c</A> +)
 
    Delay:               2.284ns  (71.1% logic, 28.9% route), 12 logic levels.
 
  Constraint Details:
 
-      2.284ns physical path delay SLICE_11 to SLICE_1 meets
+      2.284ns physical path delay SLICE_7 to SLICE_11 meets
      62.500ns delay constraint less
       0.000ns skew and
      -0.206ns DIN_SET requirement (totaling 62.706ns) by 60.422ns
 
  Physical Path Details:
 
-      <A href="#@path:FREQUENCY PORT 'i_clk16' 16.000000 MHz ;:REG_DEL, 0.416,R3C19B.CLK,R3C19B.Q0,SLICE_11:ROUTE, 0.659,R3C19B.Q0,R3C19B.B0,n23:C0TOFCO_DEL, 0.354,R3C19B.B0,R3C19B.FCO,SLICE_11:ROUTE, 0.000,R3C19B.FCO,R3C19C.FCI,n193:FCITOFCO_DEL, 0.056,R3C19C.FCI,R3C19C.FCO,SLICE_10:ROUTE, 0.000,R3C19C.FCO,R3C19D.FCI,n194:FCITOFCO_DEL, 0.056,R3C19D.FCI,R3C19D.FCO,SLICE_9:ROUTE, 0.000,R3C19D.FCO,R3C20A.FCI,n195:FCITOFCO_DEL, 0.056,R3C20A.FCI,R3C20A.FCO,SLICE_8:ROUTE, 0.000,R3C20A.FCO,R3C20B.FCI,n196:FCITOFCO_DEL, 0.056,R3C20B.FCI,R3C20B.FCO,SLICE_7:ROUTE, 0.000,R3C20B.FCO,R3C20C.FCI,n197:FCITOFCO_DEL, 0.056,R3C20C.FCI,R3C20C.FCO,SLICE_6:ROUTE, 0.000,R3C20C.FCO,R3C20D.FCI,n198:FCITOFCO_DEL, 0.056,R3C20D.FCI,R3C20D.FCO,SLICE_5:ROUTE, 0.000,R3C20D.FCO,R3C21A.FCI,n199:FCITOFCO_DEL, 0.056,R3C21A.FCI,R3C21A.FCO,SLICE_4:ROUTE, 0.000,R3C21A.FCO,R3C21B.FCI,n200:FCITOFCO_DEL, 0.056,R3C21B.FCI,R3C21B.FCO,SLICE_3:ROUTE, 0.000,R3C21B.FCO,R3C21C.FCI,n201:FCITOFCO_DEL, 0.056,R3C21C.FCI,R3C21C.FCO,SLICE_2:ROUTE, 0.000,R3C21C.FCO,R3C21D.FCI,n202:FCITOF0_DEL, 0.351,R3C21D.FCI,R3C21D.F0,SLICE_1:ROUTE, 0.000,R3C21D.F0,R3C21D.DI0,n104">Data path</A> SLICE_11 to SLICE_1:
+      <A href="#@path:FREQUENCY PORT 'i_clk16' 16.000000 MHz ;:REG_DEL, 0.416,R3C19B.CLK,R3C19B.Q0,SLICE_7:ROUTE, 0.659,R3C19B.Q0,R3C19B.B0,n23:C0TOFCO_DEL, 0.354,R3C19B.B0,R3C19B.FCO,SLICE_7:ROUTE, 0.000,R3C19B.FCO,R3C19C.FCI,n1333:FCITOFCO_DEL, 0.056,R3C19C.FCI,R3C19C.FCO,SLICE_6:ROUTE, 0.000,R3C19C.FCO,R3C19D.FCI,n1334:FCITOFCO_DEL, 0.056,R3C19D.FCI,R3C19D.FCO,SLICE_5:ROUTE, 0.000,R3C19D.FCO,R3C20A.FCI,n1335:FCITOFCO_DEL, 0.056,R3C20A.FCI,R3C20A.FCO,SLICE_4:ROUTE, 0.000,R3C20A.FCO,R3C20B.FCI,n1336:FCITOFCO_DEL, 0.056,R3C20B.FCI,R3C20B.FCO,SLICE_3:ROUTE, 0.000,R3C20B.FCO,R3C20C.FCI,n1337:FCITOFCO_DEL, 0.056,R3C20C.FCI,R3C20C.FCO,SLICE_2:ROUTE, 0.000,R3C20C.FCO,R3C20D.FCI,n1338:FCITOFCO_DEL, 0.056,R3C20D.FCI,R3C20D.FCO,SLICE_1:ROUTE, 0.000,R3C20D.FCO,R3C21A.FCI,n1339:FCITOFCO_DEL, 0.056,R3C21A.FCI,R3C21A.FCO,SLICE_0:ROUTE, 0.000,R3C21A.FCO,R3C21B.FCI,n1340:FCITOFCO_DEL, 0.056,R3C21B.FCI,R3C21B.FCO,SLICE_9:ROUTE, 0.000,R3C21B.FCO,R3C21C.FCI,n1341:FCITOFCO_DEL, 0.056,R3C21C.FCI,R3C21C.FCO,SLICE_12:ROUTE, 0.000,R3C21C.FCO,R3C21D.FCI,n1342:FCITOF0_DEL, 0.351,R3C21D.FCI,R3C21D.F0,SLICE_11:ROUTE, 0.000,R3C21D.F0,R3C21D.DI0,n104">Data path</A> SLICE_7 to SLICE_11:
 
    Name    Fanout   Delay (ns)          Site               Resource
-REG_DEL     ---     0.416     R3C19B.CLK to      R3C19B.Q0 <A href="#@comp:SLICE_11">SLICE_11</A> (from <A href="#@net:i_clk16_c">i_clk16_c</A>)
+REG_DEL     ---     0.416     R3C19B.CLK to      R3C19B.Q0 <A href="#@comp:SLICE_7">SLICE_7</A> (from <A href="#@net:i_clk16_c">i_clk16_c</A>)
 ROUTE         1     0.659<A href="#@net:n23:R3C19B.Q0:R3C19B.B0:0.659">      R3C19B.Q0 to R3C19B.B0     </A> <A href="#@net:n23">n23</A>
-C0TOFCO_DE  ---     0.354      R3C19B.B0 to     R3C19B.FCO <A href="#@comp:SLICE_11">SLICE_11</A>
-ROUTE         1     0.000<A href="#@net:n193:R3C19B.FCO:R3C19C.FCI:0.000">     R3C19B.FCO to R3C19C.FCI    </A> <A href="#@net:n193">n193</A>
-FCITOFCO_D  ---     0.056     R3C19C.FCI to     R3C19C.FCO <A href="#@comp:SLICE_10">SLICE_10</A>
-ROUTE         1     0.000<A href="#@net:n194:R3C19C.FCO:R3C19D.FCI:0.000">     R3C19C.FCO to R3C19D.FCI    </A> <A href="#@net:n194">n194</A>
-FCITOFCO_D  ---     0.056     R3C19D.FCI to     R3C19D.FCO <A href="#@comp:SLICE_9">SLICE_9</A>
-ROUTE         1     0.000<A href="#@net:n195:R3C19D.FCO:R3C20A.FCI:0.000">     R3C19D.FCO to R3C20A.FCI    </A> <A href="#@net:n195">n195</A>
-FCITOFCO_D  ---     0.056     R3C20A.FCI to     R3C20A.FCO <A href="#@comp:SLICE_8">SLICE_8</A>
-ROUTE         1     0.000<A href="#@net:n196:R3C20A.FCO:R3C20B.FCI:0.000">     R3C20A.FCO to R3C20B.FCI    </A> <A href="#@net:n196">n196</A>
-FCITOFCO_D  ---     0.056     R3C20B.FCI to     R3C20B.FCO <A href="#@comp:SLICE_7">SLICE_7</A>
-ROUTE         1     0.000<A href="#@net:n197:R3C20B.FCO:R3C20C.FCI:0.000">     R3C20B.FCO to R3C20C.FCI    </A> <A href="#@net:n197">n197</A>
-FCITOFCO_D  ---     0.056     R3C20C.FCI to     R3C20C.FCO <A href="#@comp:SLICE_6">SLICE_6</A>
-ROUTE         1     0.000<A href="#@net:n198:R3C20C.FCO:R3C20D.FCI:0.000">     R3C20C.FCO to R3C20D.FCI    </A> <A href="#@net:n198">n198</A>
-FCITOFCO_D  ---     0.056     R3C20D.FCI to     R3C20D.FCO <A href="#@comp:SLICE_5">SLICE_5</A>
-ROUTE         1     0.000<A href="#@net:n199:R3C20D.FCO:R3C21A.FCI:0.000">     R3C20D.FCO to R3C21A.FCI    </A> <A href="#@net:n199">n199</A>
-FCITOFCO_D  ---     0.056     R3C21A.FCI to     R3C21A.FCO <A href="#@comp:SLICE_4">SLICE_4</A>
-ROUTE         1     0.000<A href="#@net:n200:R3C21A.FCO:R3C21B.FCI:0.000">     R3C21A.FCO to R3C21B.FCI    </A> <A href="#@net:n200">n200</A>
-FCITOFCO_D  ---     0.056     R3C21B.FCI to     R3C21B.FCO <A href="#@comp:SLICE_3">SLICE_3</A>
-ROUTE         1     0.000<A href="#@net:n201:R3C21B.FCO:R3C21C.FCI:0.000">     R3C21B.FCO to R3C21C.FCI    </A> <A href="#@net:n201">n201</A>
-FCITOFCO_D  ---     0.056     R3C21C.FCI to     R3C21C.FCO <A href="#@comp:SLICE_2">SLICE_2</A>
-ROUTE         1     0.000<A href="#@net:n202:R3C21C.FCO:R3C21D.FCI:0.000">     R3C21C.FCO to R3C21D.FCI    </A> <A href="#@net:n202">n202</A>
-FCITOF0_DE  ---     0.351     R3C21D.FCI to      R3C21D.F0 <A href="#@comp:SLICE_1">SLICE_1</A>
+C0TOFCO_DE  ---     0.354      R3C19B.B0 to     R3C19B.FCO <A href="#@comp:SLICE_7">SLICE_7</A>
+ROUTE         1     0.000<A href="#@net:n1333:R3C19B.FCO:R3C19C.FCI:0.000">     R3C19B.FCO to R3C19C.FCI    </A> <A href="#@net:n1333">n1333</A>
+FCITOFCO_D  ---     0.056     R3C19C.FCI to     R3C19C.FCO <A href="#@comp:SLICE_6">SLICE_6</A>
+ROUTE         1     0.000<A href="#@net:n1334:R3C19C.FCO:R3C19D.FCI:0.000">     R3C19C.FCO to R3C19D.FCI    </A> <A href="#@net:n1334">n1334</A>
+FCITOFCO_D  ---     0.056     R3C19D.FCI to     R3C19D.FCO <A href="#@comp:SLICE_5">SLICE_5</A>
+ROUTE         1     0.000<A href="#@net:n1335:R3C19D.FCO:R3C20A.FCI:0.000">     R3C19D.FCO to R3C20A.FCI    </A> <A href="#@net:n1335">n1335</A>
+FCITOFCO_D  ---     0.056     R3C20A.FCI to     R3C20A.FCO <A href="#@comp:SLICE_4">SLICE_4</A>
+ROUTE         1     0.000<A href="#@net:n1336:R3C20A.FCO:R3C20B.FCI:0.000">     R3C20A.FCO to R3C20B.FCI    </A> <A href="#@net:n1336">n1336</A>
+FCITOFCO_D  ---     0.056     R3C20B.FCI to     R3C20B.FCO <A href="#@comp:SLICE_3">SLICE_3</A>
+ROUTE         1     0.000<A href="#@net:n1337:R3C20B.FCO:R3C20C.FCI:0.000">     R3C20B.FCO to R3C20C.FCI    </A> <A href="#@net:n1337">n1337</A>
+FCITOFCO_D  ---     0.056     R3C20C.FCI to     R3C20C.FCO <A href="#@comp:SLICE_2">SLICE_2</A>
+ROUTE         1     0.000<A href="#@net:n1338:R3C20C.FCO:R3C20D.FCI:0.000">     R3C20C.FCO to R3C20D.FCI    </A> <A href="#@net:n1338">n1338</A>
+FCITOFCO_D  ---     0.056     R3C20D.FCI to     R3C20D.FCO <A href="#@comp:SLICE_1">SLICE_1</A>
+ROUTE         1     0.000<A href="#@net:n1339:R3C20D.FCO:R3C21A.FCI:0.000">     R3C20D.FCO to R3C21A.FCI    </A> <A href="#@net:n1339">n1339</A>
+FCITOFCO_D  ---     0.056     R3C21A.FCI to     R3C21A.FCO <A href="#@comp:SLICE_0">SLICE_0</A>
+ROUTE         1     0.000<A href="#@net:n1340:R3C21A.FCO:R3C21B.FCI:0.000">     R3C21A.FCO to R3C21B.FCI    </A> <A href="#@net:n1340">n1340</A>
+FCITOFCO_D  ---     0.056     R3C21B.FCI to     R3C21B.FCO <A href="#@comp:SLICE_9">SLICE_9</A>
+ROUTE         1     0.000<A href="#@net:n1341:R3C21B.FCO:R3C21C.FCI:0.000">     R3C21B.FCO to R3C21C.FCI    </A> <A href="#@net:n1341">n1341</A>
+FCITOFCO_D  ---     0.056     R3C21C.FCI to     R3C21C.FCO <A href="#@comp:SLICE_12">SLICE_12</A>
+ROUTE         1     0.000<A href="#@net:n1342:R3C21C.FCO:R3C21D.FCI:0.000">     R3C21C.FCO to R3C21D.FCI    </A> <A href="#@net:n1342">n1342</A>
+FCITOF0_DE  ---     0.351     R3C21D.FCI to      R3C21D.F0 <A href="#@comp:SLICE_11">SLICE_11</A>
 ROUTE         1     0.000<A href="#@net:n104:R3C21D.F0:R3C21D.DI0:0.000">      R3C21D.F0 to R3C21D.DI0    </A> <A href="#@net:n104">n104</A> (to <A href="#@net:i_clk16_c">i_clk16_c</A>)
                   --------
                     2.284   (71.1% logic, 28.9% route), 12 logic levels.
 
  Clock Skew Details: 
 
-      <A href="#@path:FREQUENCY PORT 'i_clk16' 16.000000 MHz ;:ROUTE, 2.142,G3.PADDI,R3C19B.CLK,i_clk16_c">Source Clock Path</A> i_clk16 to SLICE_11:
+      <A href="#@path:FREQUENCY PORT 'i_clk16' 16.000000 MHz ;:ROUTE, 2.142,G3.PADDI,R3C19B.CLK,i_clk16_c">Source Clock Path</A> i_clk16 to SLICE_7:
 
    Name    Fanout   Delay (ns)          Site               Resource
 ROUTE        16     2.142<A href="#@net:i_clk16_c:G3.PADDI:R3C19B.CLK:2.142">       G3.PADDI to R3C19B.CLK    </A> <A href="#@net:i_clk16_c">i_clk16_c</A>
                   --------
                     2.142   (0.0% logic, 100.0% route), 0 logic levels.
 
-      <A href="#@path:FREQUENCY PORT 'i_clk16' 16.000000 MHz ;:ROUTE, 2.142,G3.PADDI,R3C21D.CLK,i_clk16_c">Destination Clock Path</A> i_clk16 to SLICE_1:
+      <A href="#@path:FREQUENCY PORT 'i_clk16' 16.000000 MHz ;:ROUTE, 2.142,G3.PADDI,R3C21D.CLK,i_clk16_c">Destination Clock Path</A> i_clk16 to SLICE_11:
 
    Name    Fanout   Delay (ns)          Site               Resource
 ROUTE        16     2.142<A href="#@net:i_clk16_c:G3.PADDI:R3C21D.CLK:2.142">       G3.PADDI to R3C21D.CLK    </A> <A href="#@net:i_clk16_c">i_clk16_c</A>
@@ -391,58 +797,58 @@ Passed: The following path meets requirements by 60.458ns
  </font>
  Logical Details:  Cell type  Pin type       Cell/ASIC name  (clock net +/-)
 
-   Source:         FF         Q              <A href="#@comp:SLICE_10">counter_32_33__i3</A>  (from <A href="#@net:i_clk16_c">i_clk16_c</A> +)
-   Destination:    FF         Data in        <A href="#@comp:SLICE_1">counter_32_33__i22</A>  (to <A href="#@net:i_clk16_c">i_clk16_c</A> +)
+   Source:         FF         Q              <A href="#@comp:SLICE_6">counter_296_302__i3</A>  (from <A href="#@net:i_clk16_c">i_clk16_c</A> +)
+   Destination:    FF         Data in        <A href="#@comp:SLICE_11">counter_296_302__i22</A>  (to <A href="#@net:i_clk16_c">i_clk16_c</A> +)
 
    Delay:               2.253ns  (70.8% logic, 29.2% route), 11 logic levels.
 
  Constraint Details:
 
-      2.253ns physical path delay SLICE_10 to SLICE_1 meets
+      2.253ns physical path delay SLICE_6 to SLICE_11 meets
      62.500ns delay constraint less
       0.000ns skew and
      -0.211ns DIN_SET requirement (totaling 62.711ns) by 60.458ns
 
  Physical Path Details:
 
-      <A href="#@path:FREQUENCY PORT 'i_clk16' 16.000000 MHz ;:REG_DEL, 0.416,R3C19C.CLK,R3C19C.Q0,SLICE_10:ROUTE, 0.659,R3C19C.Q0,R3C19C.B0,n21:C0TOFCO_DEL, 0.354,R3C19C.B0,R3C19C.FCO,SLICE_10:ROUTE, 0.000,R3C19C.FCO,R3C19D.FCI,n194:FCITOFCO_DEL, 0.056,R3C19D.FCI,R3C19D.FCO,SLICE_9:ROUTE, 0.000,R3C19D.FCO,R3C20A.FCI,n195:FCITOFCO_DEL, 0.056,R3C20A.FCI,R3C20A.FCO,SLICE_8:ROUTE, 0.000,R3C20A.FCO,R3C20B.FCI,n196:FCITOFCO_DEL, 0.056,R3C20B.FCI,R3C20B.FCO,SLICE_7:ROUTE, 0.000,R3C20B.FCO,R3C20C.FCI,n197:FCITOFCO_DEL, 0.056,R3C20C.FCI,R3C20C.FCO,SLICE_6:ROUTE, 0.000,R3C20C.FCO,R3C20D.FCI,n198:FCITOFCO_DEL, 0.056,R3C20D.FCI,R3C20D.FCO,SLICE_5:ROUTE, 0.000,R3C20D.FCO,R3C21A.FCI,n199:FCITOFCO_DEL, 0.056,R3C21A.FCI,R3C21A.FCO,SLICE_4:ROUTE, 0.000,R3C21A.FCO,R3C21B.FCI,n200:FCITOFCO_DEL, 0.056,R3C21B.FCI,R3C21B.FCO,SLICE_3:ROUTE, 0.000,R3C21B.FCO,R3C21C.FCI,n201:FCITOFCO_DEL, 0.056,R3C21C.FCI,R3C21C.FCO,SLICE_2:ROUTE, 0.000,R3C21C.FCO,R3C21D.FCI,n202:FCITOF1_DEL, 0.376,R3C21D.FCI,R3C21D.F1,SLICE_1:ROUTE, 0.000,R3C21D.F1,R3C21D.DI1,n103">Data path</A> SLICE_10 to SLICE_1:
+      <A href="#@path:FREQUENCY PORT 'i_clk16' 16.000000 MHz ;:REG_DEL, 0.416,R3C19C.CLK,R3C19C.Q0,SLICE_6:ROUTE, 0.659,R3C19C.Q0,R3C19C.B0,n21:C0TOFCO_DEL, 0.354,R3C19C.B0,R3C19C.FCO,SLICE_6:ROUTE, 0.000,R3C19C.FCO,R3C19D.FCI,n1334:FCITOFCO_DEL, 0.056,R3C19D.FCI,R3C19D.FCO,SLICE_5:ROUTE, 0.000,R3C19D.FCO,R3C20A.FCI,n1335:FCITOFCO_DEL, 0.056,R3C20A.FCI,R3C20A.FCO,SLICE_4:ROUTE, 0.000,R3C20A.FCO,R3C20B.FCI,n1336:FCITOFCO_DEL, 0.056,R3C20B.FCI,R3C20B.FCO,SLICE_3:ROUTE, 0.000,R3C20B.FCO,R3C20C.FCI,n1337:FCITOFCO_DEL, 0.056,R3C20C.FCI,R3C20C.FCO,SLICE_2:ROUTE, 0.000,R3C20C.FCO,R3C20D.FCI,n1338:FCITOFCO_DEL, 0.056,R3C20D.FCI,R3C20D.FCO,SLICE_1:ROUTE, 0.000,R3C20D.FCO,R3C21A.FCI,n1339:FCITOFCO_DEL, 0.056,R3C21A.FCI,R3C21A.FCO,SLICE_0:ROUTE, 0.000,R3C21A.FCO,R3C21B.FCI,n1340:FCITOFCO_DEL, 0.056,R3C21B.FCI,R3C21B.FCO,SLICE_9:ROUTE, 0.000,R3C21B.FCO,R3C21C.FCI,n1341:FCITOFCO_DEL, 0.056,R3C21C.FCI,R3C21C.FCO,SLICE_12:ROUTE, 0.000,R3C21C.FCO,R3C21D.FCI,n1342:FCITOF1_DEL, 0.376,R3C21D.FCI,R3C21D.F1,SLICE_11:ROUTE, 0.000,R3C21D.F1,R3C21D.DI1,n103">Data path</A> SLICE_6 to SLICE_11:
 
    Name    Fanout   Delay (ns)          Site               Resource
-REG_DEL     ---     0.416     R3C19C.CLK to      R3C19C.Q0 <A href="#@comp:SLICE_10">SLICE_10</A> (from <A href="#@net:i_clk16_c">i_clk16_c</A>)
+REG_DEL     ---     0.416     R3C19C.CLK to      R3C19C.Q0 <A href="#@comp:SLICE_6">SLICE_6</A> (from <A href="#@net:i_clk16_c">i_clk16_c</A>)
 ROUTE         1     0.659<A href="#@net:n21:R3C19C.Q0:R3C19C.B0:0.659">      R3C19C.Q0 to R3C19C.B0     </A> <A href="#@net:n21">n21</A>
-C0TOFCO_DE  ---     0.354      R3C19C.B0 to     R3C19C.FCO <A href="#@comp:SLICE_10">SLICE_10</A>
-ROUTE         1     0.000<A href="#@net:n194:R3C19C.FCO:R3C19D.FCI:0.000">     R3C19C.FCO to R3C19D.FCI    </A> <A href="#@net:n194">n194</A>
-FCITOFCO_D  ---     0.056     R3C19D.FCI to     R3C19D.FCO <A href="#@comp:SLICE_9">SLICE_9</A>
-ROUTE         1     0.000<A href="#@net:n195:R3C19D.FCO:R3C20A.FCI:0.000">     R3C19D.FCO to R3C20A.FCI    </A> <A href="#@net:n195">n195</A>
-FCITOFCO_D  ---     0.056     R3C20A.FCI to     R3C20A.FCO <A href="#@comp:SLICE_8">SLICE_8</A>
-ROUTE         1     0.000<A href="#@net:n196:R3C20A.FCO:R3C20B.FCI:0.000">     R3C20A.FCO to R3C20B.FCI    </A> <A href="#@net:n196">n196</A>
-FCITOFCO_D  ---     0.056     R3C20B.FCI to     R3C20B.FCO <A href="#@comp:SLICE_7">SLICE_7</A>
-ROUTE         1     0.000<A href="#@net:n197:R3C20B.FCO:R3C20C.FCI:0.000">     R3C20B.FCO to R3C20C.FCI    </A> <A href="#@net:n197">n197</A>
-FCITOFCO_D  ---     0.056     R3C20C.FCI to     R3C20C.FCO <A href="#@comp:SLICE_6">SLICE_6</A>
-ROUTE         1     0.000<A href="#@net:n198:R3C20C.FCO:R3C20D.FCI:0.000">     R3C20C.FCO to R3C20D.FCI    </A> <A href="#@net:n198">n198</A>
-FCITOFCO_D  ---     0.056     R3C20D.FCI to     R3C20D.FCO <A href="#@comp:SLICE_5">SLICE_5</A>
-ROUTE         1     0.000<A href="#@net:n199:R3C20D.FCO:R3C21A.FCI:0.000">     R3C20D.FCO to R3C21A.FCI    </A> <A href="#@net:n199">n199</A>
-FCITOFCO_D  ---     0.056     R3C21A.FCI to     R3C21A.FCO <A href="#@comp:SLICE_4">SLICE_4</A>
-ROUTE         1     0.000<A href="#@net:n200:R3C21A.FCO:R3C21B.FCI:0.000">     R3C21A.FCO to R3C21B.FCI    </A> <A href="#@net:n200">n200</A>
-FCITOFCO_D  ---     0.056     R3C21B.FCI to     R3C21B.FCO <A href="#@comp:SLICE_3">SLICE_3</A>
-ROUTE         1     0.000<A href="#@net:n201:R3C21B.FCO:R3C21C.FCI:0.000">     R3C21B.FCO to R3C21C.FCI    </A> <A href="#@net:n201">n201</A>
-FCITOFCO_D  ---     0.056     R3C21C.FCI to     R3C21C.FCO <A href="#@comp:SLICE_2">SLICE_2</A>
-ROUTE         1     0.000<A href="#@net:n202:R3C21C.FCO:R3C21D.FCI:0.000">     R3C21C.FCO to R3C21D.FCI    </A> <A href="#@net:n202">n202</A>
-FCITOF1_DE  ---     0.376     R3C21D.FCI to      R3C21D.F1 <A href="#@comp:SLICE_1">SLICE_1</A>
+C0TOFCO_DE  ---     0.354      R3C19C.B0 to     R3C19C.FCO <A href="#@comp:SLICE_6">SLICE_6</A>
+ROUTE         1     0.000<A href="#@net:n1334:R3C19C.FCO:R3C19D.FCI:0.000">     R3C19C.FCO to R3C19D.FCI    </A> <A href="#@net:n1334">n1334</A>
+FCITOFCO_D  ---     0.056     R3C19D.FCI to     R3C19D.FCO <A href="#@comp:SLICE_5">SLICE_5</A>
+ROUTE         1     0.000<A href="#@net:n1335:R3C19D.FCO:R3C20A.FCI:0.000">     R3C19D.FCO to R3C20A.FCI    </A> <A href="#@net:n1335">n1335</A>
+FCITOFCO_D  ---     0.056     R3C20A.FCI to     R3C20A.FCO <A href="#@comp:SLICE_4">SLICE_4</A>
+ROUTE         1     0.000<A href="#@net:n1336:R3C20A.FCO:R3C20B.FCI:0.000">     R3C20A.FCO to R3C20B.FCI    </A> <A href="#@net:n1336">n1336</A>
+FCITOFCO_D  ---     0.056     R3C20B.FCI to     R3C20B.FCO <A href="#@comp:SLICE_3">SLICE_3</A>
+ROUTE         1     0.000<A href="#@net:n1337:R3C20B.FCO:R3C20C.FCI:0.000">     R3C20B.FCO to R3C20C.FCI    </A> <A href="#@net:n1337">n1337</A>
+FCITOFCO_D  ---     0.056     R3C20C.FCI to     R3C20C.FCO <A href="#@comp:SLICE_2">SLICE_2</A>
+ROUTE         1     0.000<A href="#@net:n1338:R3C20C.FCO:R3C20D.FCI:0.000">     R3C20C.FCO to R3C20D.FCI    </A> <A href="#@net:n1338">n1338</A>
+FCITOFCO_D  ---     0.056     R3C20D.FCI to     R3C20D.FCO <A href="#@comp:SLICE_1">SLICE_1</A>
+ROUTE         1     0.000<A href="#@net:n1339:R3C20D.FCO:R3C21A.FCI:0.000">     R3C20D.FCO to R3C21A.FCI    </A> <A href="#@net:n1339">n1339</A>
+FCITOFCO_D  ---     0.056     R3C21A.FCI to     R3C21A.FCO <A href="#@comp:SLICE_0">SLICE_0</A>
+ROUTE         1     0.000<A href="#@net:n1340:R3C21A.FCO:R3C21B.FCI:0.000">     R3C21A.FCO to R3C21B.FCI    </A> <A href="#@net:n1340">n1340</A>
+FCITOFCO_D  ---     0.056     R3C21B.FCI to     R3C21B.FCO <A href="#@comp:SLICE_9">SLICE_9</A>
+ROUTE         1     0.000<A href="#@net:n1341:R3C21B.FCO:R3C21C.FCI:0.000">     R3C21B.FCO to R3C21C.FCI    </A> <A href="#@net:n1341">n1341</A>
+FCITOFCO_D  ---     0.056     R3C21C.FCI to     R3C21C.FCO <A href="#@comp:SLICE_12">SLICE_12</A>
+ROUTE         1     0.000<A href="#@net:n1342:R3C21C.FCO:R3C21D.FCI:0.000">     R3C21C.FCO to R3C21D.FCI    </A> <A href="#@net:n1342">n1342</A>
+FCITOF1_DE  ---     0.376     R3C21D.FCI to      R3C21D.F1 <A href="#@comp:SLICE_11">SLICE_11</A>
 ROUTE         1     0.000<A href="#@net:n103:R3C21D.F1:R3C21D.DI1:0.000">      R3C21D.F1 to R3C21D.DI1    </A> <A href="#@net:n103">n103</A> (to <A href="#@net:i_clk16_c">i_clk16_c</A>)
                   --------
                     2.253   (70.8% logic, 29.2% route), 11 logic levels.
 
  Clock Skew Details: 
 
-      <A href="#@path:FREQUENCY PORT 'i_clk16' 16.000000 MHz ;:ROUTE, 2.142,G3.PADDI,R3C19C.CLK,i_clk16_c">Source Clock Path</A> i_clk16 to SLICE_10:
+      <A href="#@path:FREQUENCY PORT 'i_clk16' 16.000000 MHz ;:ROUTE, 2.142,G3.PADDI,R3C19C.CLK,i_clk16_c">Source Clock Path</A> i_clk16 to SLICE_6:
 
    Name    Fanout   Delay (ns)          Site               Resource
 ROUTE        16     2.142<A href="#@net:i_clk16_c:G3.PADDI:R3C19C.CLK:2.142">       G3.PADDI to R3C19C.CLK    </A> <A href="#@net:i_clk16_c">i_clk16_c</A>
                   --------
                     2.142   (0.0% logic, 100.0% route), 0 logic levels.
 
-      <A href="#@path:FREQUENCY PORT 'i_clk16' 16.000000 MHz ;:ROUTE, 2.142,G3.PADDI,R3C21D.CLK,i_clk16_c">Destination Clock Path</A> i_clk16 to SLICE_1:
+      <A href="#@path:FREQUENCY PORT 'i_clk16' 16.000000 MHz ;:ROUTE, 2.142,G3.PADDI,R3C21D.CLK,i_clk16_c">Destination Clock Path</A> i_clk16 to SLICE_11:
 
    Name    Fanout   Delay (ns)          Site               Resource
 ROUTE        16     2.142<A href="#@net:i_clk16_c:G3.PADDI:R3C21D.CLK:2.142">       G3.PADDI to R3C21D.CLK    </A> <A href="#@net:i_clk16_c">i_clk16_c</A>
@@ -454,58 +860,58 @@ Passed: The following path meets requirements by 60.458ns
  </font>
  Logical Details:  Cell type  Pin type       Cell/ASIC name  (clock net +/-)
 
-   Source:         FF         Q              <A href="#@comp:SLICE_11">counter_32_33__i1</A>  (from <A href="#@net:i_clk16_c">i_clk16_c</A> +)
-   Destination:    FF         Data in        <A href="#@comp:SLICE_2">counter_32_33__i20</A>  (to <A href="#@net:i_clk16_c">i_clk16_c</A> +)
+   Source:         FF         Q              <A href="#@comp:SLICE_7">counter_296_302__i1</A>  (from <A href="#@net:i_clk16_c">i_clk16_c</A> +)
+   Destination:    FF         Data in        <A href="#@comp:SLICE_12">counter_296_302__i20</A>  (to <A href="#@net:i_clk16_c">i_clk16_c</A> +)
 
    Delay:               2.253ns  (70.8% logic, 29.2% route), 11 logic levels.
 
  Constraint Details:
 
-      2.253ns physical path delay SLICE_11 to SLICE_2 meets
+      2.253ns physical path delay SLICE_7 to SLICE_12 meets
      62.500ns delay constraint less
       0.000ns skew and
      -0.211ns DIN_SET requirement (totaling 62.711ns) by 60.458ns
 
  Physical Path Details:
 
-      <A href="#@path:FREQUENCY PORT 'i_clk16' 16.000000 MHz ;:REG_DEL, 0.416,R3C19B.CLK,R3C19B.Q0,SLICE_11:ROUTE, 0.659,R3C19B.Q0,R3C19B.B0,n23:C0TOFCO_DEL, 0.354,R3C19B.B0,R3C19B.FCO,SLICE_11:ROUTE, 0.000,R3C19B.FCO,R3C19C.FCI,n193:FCITOFCO_DEL, 0.056,R3C19C.FCI,R3C19C.FCO,SLICE_10:ROUTE, 0.000,R3C19C.FCO,R3C19D.FCI,n194:FCITOFCO_DEL, 0.056,R3C19D.FCI,R3C19D.FCO,SLICE_9:ROUTE, 0.000,R3C19D.FCO,R3C20A.FCI,n195:FCITOFCO_DEL, 0.056,R3C20A.FCI,R3C20A.FCO,SLICE_8:ROUTE, 0.000,R3C20A.FCO,R3C20B.FCI,n196:FCITOFCO_DEL, 0.056,R3C20B.FCI,R3C20B.FCO,SLICE_7:ROUTE, 0.000,R3C20B.FCO,R3C20C.FCI,n197:FCITOFCO_DEL, 0.056,R3C20C.FCI,R3C20C.FCO,SLICE_6:ROUTE, 0.000,R3C20C.FCO,R3C20D.FCI,n198:FCITOFCO_DEL, 0.056,R3C20D.FCI,R3C20D.FCO,SLICE_5:ROUTE, 0.000,R3C20D.FCO,R3C21A.FCI,n199:FCITOFCO_DEL, 0.056,R3C21A.FCI,R3C21A.FCO,SLICE_4:ROUTE, 0.000,R3C21A.FCO,R3C21B.FCI,n200:FCITOFCO_DEL, 0.056,R3C21B.FCI,R3C21B.FCO,SLICE_3:ROUTE, 0.000,R3C21B.FCO,R3C21C.FCI,n201:FCITOF1_DEL, 0.376,R3C21C.FCI,R3C21C.F1,SLICE_2:ROUTE, 0.000,R3C21C.F1,R3C21C.DI1,n105">Data path</A> SLICE_11 to SLICE_2:
+      <A href="#@path:FREQUENCY PORT 'i_clk16' 16.000000 MHz ;:REG_DEL, 0.416,R3C19B.CLK,R3C19B.Q0,SLICE_7:ROUTE, 0.659,R3C19B.Q0,R3C19B.B0,n23:C0TOFCO_DEL, 0.354,R3C19B.B0,R3C19B.FCO,SLICE_7:ROUTE, 0.000,R3C19B.FCO,R3C19C.FCI,n1333:FCITOFCO_DEL, 0.056,R3C19C.FCI,R3C19C.FCO,SLICE_6:ROUTE, 0.000,R3C19C.FCO,R3C19D.FCI,n1334:FCITOFCO_DEL, 0.056,R3C19D.FCI,R3C19D.FCO,SLICE_5:ROUTE, 0.000,R3C19D.FCO,R3C20A.FCI,n1335:FCITOFCO_DEL, 0.056,R3C20A.FCI,R3C20A.FCO,SLICE_4:ROUTE, 0.000,R3C20A.FCO,R3C20B.FCI,n1336:FCITOFCO_DEL, 0.056,R3C20B.FCI,R3C20B.FCO,SLICE_3:ROUTE, 0.000,R3C20B.FCO,R3C20C.FCI,n1337:FCITOFCO_DEL, 0.056,R3C20C.FCI,R3C20C.FCO,SLICE_2:ROUTE, 0.000,R3C20C.FCO,R3C20D.FCI,n1338:FCITOFCO_DEL, 0.056,R3C20D.FCI,R3C20D.FCO,SLICE_1:ROUTE, 0.000,R3C20D.FCO,R3C21A.FCI,n1339:FCITOFCO_DEL, 0.056,R3C21A.FCI,R3C21A.FCO,SLICE_0:ROUTE, 0.000,R3C21A.FCO,R3C21B.FCI,n1340:FCITOFCO_DEL, 0.056,R3C21B.FCI,R3C21B.FCO,SLICE_9:ROUTE, 0.000,R3C21B.FCO,R3C21C.FCI,n1341:FCITOF1_DEL, 0.376,R3C21C.FCI,R3C21C.F1,SLICE_12:ROUTE, 0.000,R3C21C.F1,R3C21C.DI1,n105">Data path</A> SLICE_7 to SLICE_12:
 
    Name    Fanout   Delay (ns)          Site               Resource
-REG_DEL     ---     0.416     R3C19B.CLK to      R3C19B.Q0 <A href="#@comp:SLICE_11">SLICE_11</A> (from <A href="#@net:i_clk16_c">i_clk16_c</A>)
+REG_DEL     ---     0.416     R3C19B.CLK to      R3C19B.Q0 <A href="#@comp:SLICE_7">SLICE_7</A> (from <A href="#@net:i_clk16_c">i_clk16_c</A>)
 ROUTE         1     0.659<A href="#@net:n23:R3C19B.Q0:R3C19B.B0:0.659">      R3C19B.Q0 to R3C19B.B0     </A> <A href="#@net:n23">n23</A>
-C0TOFCO_DE  ---     0.354      R3C19B.B0 to     R3C19B.FCO <A href="#@comp:SLICE_11">SLICE_11</A>
-ROUTE         1     0.000<A href="#@net:n193:R3C19B.FCO:R3C19C.FCI:0.000">     R3C19B.FCO to R3C19C.FCI    </A> <A href="#@net:n193">n193</A>
-FCITOFCO_D  ---     0.056     R3C19C.FCI to     R3C19C.FCO <A href="#@comp:SLICE_10">SLICE_10</A>
-ROUTE         1     0.000<A href="#@net:n194:R3C19C.FCO:R3C19D.FCI:0.000">     R3C19C.FCO to R3C19D.FCI    </A> <A href="#@net:n194">n194</A>
-FCITOFCO_D  ---     0.056     R3C19D.FCI to     R3C19D.FCO <A href="#@comp:SLICE_9">SLICE_9</A>
-ROUTE         1     0.000<A href="#@net:n195:R3C19D.FCO:R3C20A.FCI:0.000">     R3C19D.FCO to R3C20A.FCI    </A> <A href="#@net:n195">n195</A>
-FCITOFCO_D  ---     0.056     R3C20A.FCI to     R3C20A.FCO <A href="#@comp:SLICE_8">SLICE_8</A>
-ROUTE         1     0.000<A href="#@net:n196:R3C20A.FCO:R3C20B.FCI:0.000">     R3C20A.FCO to R3C20B.FCI    </A> <A href="#@net:n196">n196</A>
-FCITOFCO_D  ---     0.056     R3C20B.FCI to     R3C20B.FCO <A href="#@comp:SLICE_7">SLICE_7</A>
-ROUTE         1     0.000<A href="#@net:n197:R3C20B.FCO:R3C20C.FCI:0.000">     R3C20B.FCO to R3C20C.FCI    </A> <A href="#@net:n197">n197</A>
-FCITOFCO_D  ---     0.056     R3C20C.FCI to     R3C20C.FCO <A href="#@comp:SLICE_6">SLICE_6</A>
-ROUTE         1     0.000<A href="#@net:n198:R3C20C.FCO:R3C20D.FCI:0.000">     R3C20C.FCO to R3C20D.FCI    </A> <A href="#@net:n198">n198</A>
-FCITOFCO_D  ---     0.056     R3C20D.FCI to     R3C20D.FCO <A href="#@comp:SLICE_5">SLICE_5</A>
-ROUTE         1     0.000<A href="#@net:n199:R3C20D.FCO:R3C21A.FCI:0.000">     R3C20D.FCO to R3C21A.FCI    </A> <A href="#@net:n199">n199</A>
-FCITOFCO_D  ---     0.056     R3C21A.FCI to     R3C21A.FCO <A href="#@comp:SLICE_4">SLICE_4</A>
-ROUTE         1     0.000<A href="#@net:n200:R3C21A.FCO:R3C21B.FCI:0.000">     R3C21A.FCO to R3C21B.FCI    </A> <A href="#@net:n200">n200</A>
-FCITOFCO_D  ---     0.056     R3C21B.FCI to     R3C21B.FCO <A href="#@comp:SLICE_3">SLICE_3</A>
-ROUTE         1     0.000<A href="#@net:n201:R3C21B.FCO:R3C21C.FCI:0.000">     R3C21B.FCO to R3C21C.FCI    </A> <A href="#@net:n201">n201</A>
-FCITOF1_DE  ---     0.376     R3C21C.FCI to      R3C21C.F1 <A href="#@comp:SLICE_2">SLICE_2</A>
+C0TOFCO_DE  ---     0.354      R3C19B.B0 to     R3C19B.FCO <A href="#@comp:SLICE_7">SLICE_7</A>
+ROUTE         1     0.000<A href="#@net:n1333:R3C19B.FCO:R3C19C.FCI:0.000">     R3C19B.FCO to R3C19C.FCI    </A> <A href="#@net:n1333">n1333</A>
+FCITOFCO_D  ---     0.056     R3C19C.FCI to     R3C19C.FCO <A href="#@comp:SLICE_6">SLICE_6</A>
+ROUTE         1     0.000<A href="#@net:n1334:R3C19C.FCO:R3C19D.FCI:0.000">     R3C19C.FCO to R3C19D.FCI    </A> <A href="#@net:n1334">n1334</A>
+FCITOFCO_D  ---     0.056     R3C19D.FCI to     R3C19D.FCO <A href="#@comp:SLICE_5">SLICE_5</A>
+ROUTE         1     0.000<A href="#@net:n1335:R3C19D.FCO:R3C20A.FCI:0.000">     R3C19D.FCO to R3C20A.FCI    </A> <A href="#@net:n1335">n1335</A>
+FCITOFCO_D  ---     0.056     R3C20A.FCI to     R3C20A.FCO <A href="#@comp:SLICE_4">SLICE_4</A>
+ROUTE         1     0.000<A href="#@net:n1336:R3C20A.FCO:R3C20B.FCI:0.000">     R3C20A.FCO to R3C20B.FCI    </A> <A href="#@net:n1336">n1336</A>
+FCITOFCO_D  ---     0.056     R3C20B.FCI to     R3C20B.FCO <A href="#@comp:SLICE_3">SLICE_3</A>
+ROUTE         1     0.000<A href="#@net:n1337:R3C20B.FCO:R3C20C.FCI:0.000">     R3C20B.FCO to R3C20C.FCI    </A> <A href="#@net:n1337">n1337</A>
+FCITOFCO_D  ---     0.056     R3C20C.FCI to     R3C20C.FCO <A href="#@comp:SLICE_2">SLICE_2</A>
+ROUTE         1     0.000<A href="#@net:n1338:R3C20C.FCO:R3C20D.FCI:0.000">     R3C20C.FCO to R3C20D.FCI    </A> <A href="#@net:n1338">n1338</A>
+FCITOFCO_D  ---     0.056     R3C20D.FCI to     R3C20D.FCO <A href="#@comp:SLICE_1">SLICE_1</A>
+ROUTE         1     0.000<A href="#@net:n1339:R3C20D.FCO:R3C21A.FCI:0.000">     R3C20D.FCO to R3C21A.FCI    </A> <A href="#@net:n1339">n1339</A>
+FCITOFCO_D  ---     0.056     R3C21A.FCI to     R3C21A.FCO <A href="#@comp:SLICE_0">SLICE_0</A>
+ROUTE         1     0.000<A href="#@net:n1340:R3C21A.FCO:R3C21B.FCI:0.000">     R3C21A.FCO to R3C21B.FCI    </A> <A href="#@net:n1340">n1340</A>
+FCITOFCO_D  ---     0.056     R3C21B.FCI to     R3C21B.FCO <A href="#@comp:SLICE_9">SLICE_9</A>
+ROUTE         1     0.000<A href="#@net:n1341:R3C21B.FCO:R3C21C.FCI:0.000">     R3C21B.FCO to R3C21C.FCI    </A> <A href="#@net:n1341">n1341</A>
+FCITOF1_DE  ---     0.376     R3C21C.FCI to      R3C21C.F1 <A href="#@comp:SLICE_12">SLICE_12</A>
 ROUTE         1     0.000<A href="#@net:n105:R3C21C.F1:R3C21C.DI1:0.000">      R3C21C.F1 to R3C21C.DI1    </A> <A href="#@net:n105">n105</A> (to <A href="#@net:i_clk16_c">i_clk16_c</A>)
                   --------
                     2.253   (70.8% logic, 29.2% route), 11 logic levels.
 
  Clock Skew Details: 
 
-      <A href="#@path:FREQUENCY PORT 'i_clk16' 16.000000 MHz ;:ROUTE, 2.142,G3.PADDI,R3C19B.CLK,i_clk16_c">Source Clock Path</A> i_clk16 to SLICE_11:
+      <A href="#@path:FREQUENCY PORT 'i_clk16' 16.000000 MHz ;:ROUTE, 2.142,G3.PADDI,R3C19B.CLK,i_clk16_c">Source Clock Path</A> i_clk16 to SLICE_7:
 
    Name    Fanout   Delay (ns)          Site               Resource
 ROUTE        16     2.142<A href="#@net:i_clk16_c:G3.PADDI:R3C19B.CLK:2.142">       G3.PADDI to R3C19B.CLK    </A> <A href="#@net:i_clk16_c">i_clk16_c</A>
                   --------
                     2.142   (0.0% logic, 100.0% route), 0 logic levels.
 
-      <A href="#@path:FREQUENCY PORT 'i_clk16' 16.000000 MHz ;:ROUTE, 2.142,G3.PADDI,R3C21C.CLK,i_clk16_c">Destination Clock Path</A> i_clk16 to SLICE_2:
+      <A href="#@path:FREQUENCY PORT 'i_clk16' 16.000000 MHz ;:ROUTE, 2.142,G3.PADDI,R3C21C.CLK,i_clk16_c">Destination Clock Path</A> i_clk16 to SLICE_12:
 
    Name    Fanout   Delay (ns)          Site               Resource
 ROUTE        16     2.142<A href="#@net:i_clk16_c:G3.PADDI:R3C21C.CLK:2.142">       G3.PADDI to R3C21C.CLK    </A> <A href="#@net:i_clk16_c">i_clk16_c</A>
@@ -517,64 +923,64 @@ Passed: The following path meets requirements by 60.473ns
  </font>
  Logical Details:  Cell type  Pin type       Cell/ASIC name  (clock net +/-)
 
-   Source:         FF         Q              <A href="#@comp:SLICE_12">counter_32_33__i0</A>  (from <A href="#@net:i_clk16_c">i_clk16_c</A> +)
-   Destination:    FF         Data in        <A href="#@comp:SLICE_0">counter_32_33__i23</A>  (to <A href="#@net:i_clk16_c">i_clk16_c</A> +)
+   Source:         FF         Q              <A href="#@comp:SLICE_8">counter_296_302__i0</A>  (from <A href="#@net:i_clk16_c">i_clk16_c</A> +)
+   Destination:    FF         Data in        <A href="#@comp:SLICE_10">counter_296_302__i23</A>  (to <A href="#@net:i_clk16_c">i_clk16_c</A> +)
 
    Delay:               2.233ns  (77.7% logic, 22.3% route), 14 logic levels.
 
  Constraint Details:
 
-      2.233ns physical path delay SLICE_12 to SLICE_0 meets
+      2.233ns physical path delay SLICE_8 to SLICE_10 meets
      62.500ns delay constraint less
       0.000ns skew and
      -0.206ns DIN_SET requirement (totaling 62.706ns) by 60.473ns
 
  Physical Path Details:
 
-      <A href="#@path:FREQUENCY PORT 'i_clk16' 16.000000 MHz ;:REG_DEL, 0.414,R3C19A.CLK,R3C19A.Q1,SLICE_12:ROUTE, 0.498,R3C19A.Q1,R3C19A.B1,n24:C1TOFCO_DEL, 0.354,R3C19A.B1,R3C19A.FCO,SLICE_12:ROUTE, 0.000,R3C19A.FCO,R3C19B.FCI,n192:FCITOFCO_DEL, 0.056,R3C19B.FCI,R3C19B.FCO,SLICE_11:ROUTE, 0.000,R3C19B.FCO,R3C19C.FCI,n193:FCITOFCO_DEL, 0.056,R3C19C.FCI,R3C19C.FCO,SLICE_10:ROUTE, 0.000,R3C19C.FCO,R3C19D.FCI,n194:FCITOFCO_DEL, 0.056,R3C19D.FCI,R3C19D.FCO,SLICE_9:ROUTE, 0.000,R3C19D.FCO,R3C20A.FCI,n195:FCITOFCO_DEL, 0.056,R3C20A.FCI,R3C20A.FCO,SLICE_8:ROUTE, 0.000,R3C20A.FCO,R3C20B.FCI,n196:FCITOFCO_DEL, 0.056,R3C20B.FCI,R3C20B.FCO,SLICE_7:ROUTE, 0.000,R3C20B.FCO,R3C20C.FCI,n197:FCITOFCO_DEL, 0.056,R3C20C.FCI,R3C20C.FCO,SLICE_6:ROUTE, 0.000,R3C20C.FCO,R3C20D.FCI,n198:FCITOFCO_DEL, 0.056,R3C20D.FCI,R3C20D.FCO,SLICE_5:ROUTE, 0.000,R3C20D.FCO,R3C21A.FCI,n199:FCITOFCO_DEL, 0.056,R3C21A.FCI,R3C21A.FCO,SLICE_4:ROUTE, 0.000,R3C21A.FCO,R3C21B.FCI,n200:FCITOFCO_DEL, 0.056,R3C21B.FCI,R3C21B.FCO,SLICE_3:ROUTE, 0.000,R3C21B.FCO,R3C21C.FCI,n201:FCITOFCO_DEL, 0.056,R3C21C.FCI,R3C21C.FCO,SLICE_2:ROUTE, 0.000,R3C21C.FCO,R3C21D.FCI,n202:FCITOFCO_DEL, 0.056,R3C21D.FCI,R3C21D.FCO,SLICE_1:ROUTE, 0.000,R3C21D.FCO,R3C22A.FCI,n203:FCITOF0_DEL, 0.351,R3C22A.FCI,R3C22A.F0,SLICE_0:ROUTE, 0.000,R3C22A.F0,R3C22A.DI0,n102">Data path</A> SLICE_12 to SLICE_0:
+      <A href="#@path:FREQUENCY PORT 'i_clk16' 16.000000 MHz ;:REG_DEL, 0.414,R3C19A.CLK,R3C19A.Q1,SLICE_8:ROUTE, 0.498,R3C19A.Q1,R3C19A.B1,n24:C1TOFCO_DEL, 0.354,R3C19A.B1,R3C19A.FCO,SLICE_8:ROUTE, 0.000,R3C19A.FCO,R3C19B.FCI,n1332:FCITOFCO_DEL, 0.056,R3C19B.FCI,R3C19B.FCO,SLICE_7:ROUTE, 0.000,R3C19B.FCO,R3C19C.FCI,n1333:FCITOFCO_DEL, 0.056,R3C19C.FCI,R3C19C.FCO,SLICE_6:ROUTE, 0.000,R3C19C.FCO,R3C19D.FCI,n1334:FCITOFCO_DEL, 0.056,R3C19D.FCI,R3C19D.FCO,SLICE_5:ROUTE, 0.000,R3C19D.FCO,R3C20A.FCI,n1335:FCITOFCO_DEL, 0.056,R3C20A.FCI,R3C20A.FCO,SLICE_4:ROUTE, 0.000,R3C20A.FCO,R3C20B.FCI,n1336:FCITOFCO_DEL, 0.056,R3C20B.FCI,R3C20B.FCO,SLICE_3:ROUTE, 0.000,R3C20B.FCO,R3C20C.FCI,n1337:FCITOFCO_DEL, 0.056,R3C20C.FCI,R3C20C.FCO,SLICE_2:ROUTE, 0.000,R3C20C.FCO,R3C20D.FCI,n1338:FCITOFCO_DEL, 0.056,R3C20D.FCI,R3C20D.FCO,SLICE_1:ROUTE, 0.000,R3C20D.FCO,R3C21A.FCI,n1339:FCITOFCO_DEL, 0.056,R3C21A.FCI,R3C21A.FCO,SLICE_0:ROUTE, 0.000,R3C21A.FCO,R3C21B.FCI,n1340:FCITOFCO_DEL, 0.056,R3C21B.FCI,R3C21B.FCO,SLICE_9:ROUTE, 0.000,R3C21B.FCO,R3C21C.FCI,n1341:FCITOFCO_DEL, 0.056,R3C21C.FCI,R3C21C.FCO,SLICE_12:ROUTE, 0.000,R3C21C.FCO,R3C21D.FCI,n1342:FCITOFCO_DEL, 0.056,R3C21D.FCI,R3C21D.FCO,SLICE_11:ROUTE, 0.000,R3C21D.FCO,R3C22A.FCI,n1343:FCITOF0_DEL, 0.351,R3C22A.FCI,R3C22A.F0,SLICE_10:ROUTE, 0.000,R3C22A.F0,R3C22A.DI0,n102">Data path</A> SLICE_8 to SLICE_10:
 
    Name    Fanout   Delay (ns)          Site               Resource
-REG_DEL     ---     0.414     R3C19A.CLK to      R3C19A.Q1 <A href="#@comp:SLICE_12">SLICE_12</A> (from <A href="#@net:i_clk16_c">i_clk16_c</A>)
+REG_DEL     ---     0.414     R3C19A.CLK to      R3C19A.Q1 <A href="#@comp:SLICE_8">SLICE_8</A> (from <A href="#@net:i_clk16_c">i_clk16_c</A>)
 ROUTE         1     0.498<A href="#@net:n24:R3C19A.Q1:R3C19A.B1:0.498">      R3C19A.Q1 to R3C19A.B1     </A> <A href="#@net:n24">n24</A>
-C1TOFCO_DE  ---     0.354      R3C19A.B1 to     R3C19A.FCO <A href="#@comp:SLICE_12">SLICE_12</A>
-ROUTE         1     0.000<A href="#@net:n192:R3C19A.FCO:R3C19B.FCI:0.000">     R3C19A.FCO to R3C19B.FCI    </A> <A href="#@net:n192">n192</A>
-FCITOFCO_D  ---     0.056     R3C19B.FCI to     R3C19B.FCO <A href="#@comp:SLICE_11">SLICE_11</A>
-ROUTE         1     0.000<A href="#@net:n193:R3C19B.FCO:R3C19C.FCI:0.000">     R3C19B.FCO to R3C19C.FCI    </A> <A href="#@net:n193">n193</A>
-FCITOFCO_D  ---     0.056     R3C19C.FCI to     R3C19C.FCO <A href="#@comp:SLICE_10">SLICE_10</A>
-ROUTE         1     0.000<A href="#@net:n194:R3C19C.FCO:R3C19D.FCI:0.000">     R3C19C.FCO to R3C19D.FCI    </A> <A href="#@net:n194">n194</A>
-FCITOFCO_D  ---     0.056     R3C19D.FCI to     R3C19D.FCO <A href="#@comp:SLICE_9">SLICE_9</A>
-ROUTE         1     0.000<A href="#@net:n195:R3C19D.FCO:R3C20A.FCI:0.000">     R3C19D.FCO to R3C20A.FCI    </A> <A href="#@net:n195">n195</A>
-FCITOFCO_D  ---     0.056     R3C20A.FCI to     R3C20A.FCO <A href="#@comp:SLICE_8">SLICE_8</A>
-ROUTE         1     0.000<A href="#@net:n196:R3C20A.FCO:R3C20B.FCI:0.000">     R3C20A.FCO to R3C20B.FCI    </A> <A href="#@net:n196">n196</A>
-FCITOFCO_D  ---     0.056     R3C20B.FCI to     R3C20B.FCO <A href="#@comp:SLICE_7">SLICE_7</A>
-ROUTE         1     0.000<A href="#@net:n197:R3C20B.FCO:R3C20C.FCI:0.000">     R3C20B.FCO to R3C20C.FCI    </A> <A href="#@net:n197">n197</A>
-FCITOFCO_D  ---     0.056     R3C20C.FCI to     R3C20C.FCO <A href="#@comp:SLICE_6">SLICE_6</A>
-ROUTE         1     0.000<A href="#@net:n198:R3C20C.FCO:R3C20D.FCI:0.000">     R3C20C.FCO to R3C20D.FCI    </A> <A href="#@net:n198">n198</A>
-FCITOFCO_D  ---     0.056     R3C20D.FCI to     R3C20D.FCO <A href="#@comp:SLICE_5">SLICE_5</A>
-ROUTE         1     0.000<A href="#@net:n199:R3C20D.FCO:R3C21A.FCI:0.000">     R3C20D.FCO to R3C21A.FCI    </A> <A href="#@net:n199">n199</A>
-FCITOFCO_D  ---     0.056     R3C21A.FCI to     R3C21A.FCO <A href="#@comp:SLICE_4">SLICE_4</A>
-ROUTE         1     0.000<A href="#@net:n200:R3C21A.FCO:R3C21B.FCI:0.000">     R3C21A.FCO to R3C21B.FCI    </A> <A href="#@net:n200">n200</A>
-FCITOFCO_D  ---     0.056     R3C21B.FCI to     R3C21B.FCO <A href="#@comp:SLICE_3">SLICE_3</A>
-ROUTE         1     0.000<A href="#@net:n201:R3C21B.FCO:R3C21C.FCI:0.000">     R3C21B.FCO to R3C21C.FCI    </A> <A href="#@net:n201">n201</A>
-FCITOFCO_D  ---     0.056     R3C21C.FCI to     R3C21C.FCO <A href="#@comp:SLICE_2">SLICE_2</A>
-ROUTE         1     0.000<A href="#@net:n202:R3C21C.FCO:R3C21D.FCI:0.000">     R3C21C.FCO to R3C21D.FCI    </A> <A href="#@net:n202">n202</A>
-FCITOFCO_D  ---     0.056     R3C21D.FCI to     R3C21D.FCO <A href="#@comp:SLICE_1">SLICE_1</A>
-ROUTE         1     0.000<A href="#@net:n203:R3C21D.FCO:R3C22A.FCI:0.000">     R3C21D.FCO to R3C22A.FCI    </A> <A href="#@net:n203">n203</A>
-FCITOF0_DE  ---     0.351     R3C22A.FCI to      R3C22A.F0 <A href="#@comp:SLICE_0">SLICE_0</A>
+C1TOFCO_DE  ---     0.354      R3C19A.B1 to     R3C19A.FCO <A href="#@comp:SLICE_8">SLICE_8</A>
+ROUTE         1     0.000<A href="#@net:n1332:R3C19A.FCO:R3C19B.FCI:0.000">     R3C19A.FCO to R3C19B.FCI    </A> <A href="#@net:n1332">n1332</A>
+FCITOFCO_D  ---     0.056     R3C19B.FCI to     R3C19B.FCO <A href="#@comp:SLICE_7">SLICE_7</A>
+ROUTE         1     0.000<A href="#@net:n1333:R3C19B.FCO:R3C19C.FCI:0.000">     R3C19B.FCO to R3C19C.FCI    </A> <A href="#@net:n1333">n1333</A>
+FCITOFCO_D  ---     0.056     R3C19C.FCI to     R3C19C.FCO <A href="#@comp:SLICE_6">SLICE_6</A>
+ROUTE         1     0.000<A href="#@net:n1334:R3C19C.FCO:R3C19D.FCI:0.000">     R3C19C.FCO to R3C19D.FCI    </A> <A href="#@net:n1334">n1334</A>
+FCITOFCO_D  ---     0.056     R3C19D.FCI to     R3C19D.FCO <A href="#@comp:SLICE_5">SLICE_5</A>
+ROUTE         1     0.000<A href="#@net:n1335:R3C19D.FCO:R3C20A.FCI:0.000">     R3C19D.FCO to R3C20A.FCI    </A> <A href="#@net:n1335">n1335</A>
+FCITOFCO_D  ---     0.056     R3C20A.FCI to     R3C20A.FCO <A href="#@comp:SLICE_4">SLICE_4</A>
+ROUTE         1     0.000<A href="#@net:n1336:R3C20A.FCO:R3C20B.FCI:0.000">     R3C20A.FCO to R3C20B.FCI    </A> <A href="#@net:n1336">n1336</A>
+FCITOFCO_D  ---     0.056     R3C20B.FCI to     R3C20B.FCO <A href="#@comp:SLICE_3">SLICE_3</A>
+ROUTE         1     0.000<A href="#@net:n1337:R3C20B.FCO:R3C20C.FCI:0.000">     R3C20B.FCO to R3C20C.FCI    </A> <A href="#@net:n1337">n1337</A>
+FCITOFCO_D  ---     0.056     R3C20C.FCI to     R3C20C.FCO <A href="#@comp:SLICE_2">SLICE_2</A>
+ROUTE         1     0.000<A href="#@net:n1338:R3C20C.FCO:R3C20D.FCI:0.000">     R3C20C.FCO to R3C20D.FCI    </A> <A href="#@net:n1338">n1338</A>
+FCITOFCO_D  ---     0.056     R3C20D.FCI to     R3C20D.FCO <A href="#@comp:SLICE_1">SLICE_1</A>
+ROUTE         1     0.000<A href="#@net:n1339:R3C20D.FCO:R3C21A.FCI:0.000">     R3C20D.FCO to R3C21A.FCI    </A> <A href="#@net:n1339">n1339</A>
+FCITOFCO_D  ---     0.056     R3C21A.FCI to     R3C21A.FCO <A href="#@comp:SLICE_0">SLICE_0</A>
+ROUTE         1     0.000<A href="#@net:n1340:R3C21A.FCO:R3C21B.FCI:0.000">     R3C21A.FCO to R3C21B.FCI    </A> <A href="#@net:n1340">n1340</A>
+FCITOFCO_D  ---     0.056     R3C21B.FCI to     R3C21B.FCO <A href="#@comp:SLICE_9">SLICE_9</A>
+ROUTE         1     0.000<A href="#@net:n1341:R3C21B.FCO:R3C21C.FCI:0.000">     R3C21B.FCO to R3C21C.FCI    </A> <A href="#@net:n1341">n1341</A>
+FCITOFCO_D  ---     0.056     R3C21C.FCI to     R3C21C.FCO <A href="#@comp:SLICE_12">SLICE_12</A>
+ROUTE         1     0.000<A href="#@net:n1342:R3C21C.FCO:R3C21D.FCI:0.000">     R3C21C.FCO to R3C21D.FCI    </A> <A href="#@net:n1342">n1342</A>
+FCITOFCO_D  ---     0.056     R3C21D.FCI to     R3C21D.FCO <A href="#@comp:SLICE_11">SLICE_11</A>
+ROUTE         1     0.000<A href="#@net:n1343:R3C21D.FCO:R3C22A.FCI:0.000">     R3C21D.FCO to R3C22A.FCI    </A> <A href="#@net:n1343">n1343</A>
+FCITOF0_DE  ---     0.351     R3C22A.FCI to      R3C22A.F0 <A href="#@comp:SLICE_10">SLICE_10</A>
 ROUTE         1     0.000<A href="#@net:n102:R3C22A.F0:R3C22A.DI0:0.000">      R3C22A.F0 to R3C22A.DI0    </A> <A href="#@net:n102">n102</A> (to <A href="#@net:i_clk16_c">i_clk16_c</A>)
                   --------
                     2.233   (77.7% logic, 22.3% route), 14 logic levels.
 
  Clock Skew Details: 
 
-      <A href="#@path:FREQUENCY PORT 'i_clk16' 16.000000 MHz ;:ROUTE, 2.142,G3.PADDI,R3C19A.CLK,i_clk16_c">Source Clock Path</A> i_clk16 to SLICE_12:
+      <A href="#@path:FREQUENCY PORT 'i_clk16' 16.000000 MHz ;:ROUTE, 2.142,G3.PADDI,R3C19A.CLK,i_clk16_c">Source Clock Path</A> i_clk16 to SLICE_8:
 
    Name    Fanout   Delay (ns)          Site               Resource
 ROUTE        16     2.142<A href="#@net:i_clk16_c:G3.PADDI:R3C19A.CLK:2.142">       G3.PADDI to R3C19A.CLK    </A> <A href="#@net:i_clk16_c">i_clk16_c</A>
                   --------
                     2.142   (0.0% logic, 100.0% route), 0 logic levels.
 
-      <A href="#@path:FREQUENCY PORT 'i_clk16' 16.000000 MHz ;:ROUTE, 2.142,G3.PADDI,R3C22A.CLK,i_clk16_c">Destination Clock Path</A> i_clk16 to SLICE_0:
+      <A href="#@path:FREQUENCY PORT 'i_clk16' 16.000000 MHz ;:ROUTE, 2.142,G3.PADDI,R3C22A.CLK,i_clk16_c">Destination Clock Path</A> i_clk16 to SLICE_10:
 
    Name    Fanout   Delay (ns)          Site               Resource
 ROUTE        16     2.142<A href="#@net:i_clk16_c:G3.PADDI:R3C22A.CLK:2.142">       G3.PADDI to R3C22A.CLK    </A> <A href="#@net:i_clk16_c">i_clk16_c</A>
@@ -586,58 +992,121 @@ Passed: The following path meets requirements by 60.478ns
  </font>
  Logical Details:  Cell type  Pin type       Cell/ASIC name  (clock net +/-)
 
-   Source:         FF         Q              <A href="#@comp:SLICE_10">counter_32_33__i3</A>  (from <A href="#@net:i_clk16_c">i_clk16_c</A> +)
-   Destination:    FF         Data in        <A href="#@comp:SLICE_1">counter_32_33__i21</A>  (to <A href="#@net:i_clk16_c">i_clk16_c</A> +)
+   Source:         FF         Q              <A href="#@comp:SLICE_5">counter_296_302__i5</A>  (from <A href="#@net:i_clk16_c">i_clk16_c</A> +)
+   Destination:    FF         Data in        <A href="#@comp:SLICE_10">counter_296_302__i23</A>  (to <A href="#@net:i_clk16_c">i_clk16_c</A> +)
 
    Delay:               2.228ns  (70.4% logic, 29.6% route), 11 logic levels.
 
  Constraint Details:
 
-      2.228ns physical path delay SLICE_10 to SLICE_1 meets
+      2.228ns physical path delay SLICE_5 to SLICE_10 meets
      62.500ns delay constraint less
       0.000ns skew and
      -0.206ns DIN_SET requirement (totaling 62.706ns) by 60.478ns
 
  Physical Path Details:
 
-      <A href="#@path:FREQUENCY PORT 'i_clk16' 16.000000 MHz ;:REG_DEL, 0.416,R3C19C.CLK,R3C19C.Q0,SLICE_10:ROUTE, 0.659,R3C19C.Q0,R3C19C.B0,n21:C0TOFCO_DEL, 0.354,R3C19C.B0,R3C19C.FCO,SLICE_10:ROUTE, 0.000,R3C19C.FCO,R3C19D.FCI,n194:FCITOFCO_DEL, 0.056,R3C19D.FCI,R3C19D.FCO,SLICE_9:ROUTE, 0.000,R3C19D.FCO,R3C20A.FCI,n195:FCITOFCO_DEL, 0.056,R3C20A.FCI,R3C20A.FCO,SLICE_8:ROUTE, 0.000,R3C20A.FCO,R3C20B.FCI,n196:FCITOFCO_DEL, 0.056,R3C20B.FCI,R3C20B.FCO,SLICE_7:ROUTE, 0.000,R3C20B.FCO,R3C20C.FCI,n197:FCITOFCO_DEL, 0.056,R3C20C.FCI,R3C20C.FCO,SLICE_6:ROUTE, 0.000,R3C20C.FCO,R3C20D.FCI,n198:FCITOFCO_DEL, 0.056,R3C20D.FCI,R3C20D.FCO,SLICE_5:ROUTE, 0.000,R3C20D.FCO,R3C21A.FCI,n199:FCITOFCO_DEL, 0.056,R3C21A.FCI,R3C21A.FCO,SLICE_4:ROUTE, 0.000,R3C21A.FCO,R3C21B.FCI,n200:FCITOFCO_DEL, 0.056,R3C21B.FCI,R3C21B.FCO,SLICE_3:ROUTE, 0.000,R3C21B.FCO,R3C21C.FCI,n201:FCITOFCO_DEL, 0.056,R3C21C.FCI,R3C21C.FCO,SLICE_2:ROUTE, 0.000,R3C21C.FCO,R3C21D.FCI,n202:FCITOF0_DEL, 0.351,R3C21D.FCI,R3C21D.F0,SLICE_1:ROUTE, 0.000,R3C21D.F0,R3C21D.DI0,n104">Data path</A> SLICE_10 to SLICE_1:
+      <A href="#@path:FREQUENCY PORT 'i_clk16' 16.000000 MHz ;:REG_DEL, 0.416,R3C19D.CLK,R3C19D.Q0,SLICE_5:ROUTE, 0.659,R3C19D.Q0,R3C19D.B0,n19:C0TOFCO_DEL, 0.354,R3C19D.B0,R3C19D.FCO,SLICE_5:ROUTE, 0.000,R3C19D.FCO,R3C20A.FCI,n1335:FCITOFCO_DEL, 0.056,R3C20A.FCI,R3C20A.FCO,SLICE_4:ROUTE, 0.000,R3C20A.FCO,R3C20B.FCI,n1336:FCITOFCO_DEL, 0.056,R3C20B.FCI,R3C20B.FCO,SLICE_3:ROUTE, 0.000,R3C20B.FCO,R3C20C.FCI,n1337:FCITOFCO_DEL, 0.056,R3C20C.FCI,R3C20C.FCO,SLICE_2:ROUTE, 0.000,R3C20C.FCO,R3C20D.FCI,n1338:FCITOFCO_DEL, 0.056,R3C20D.FCI,R3C20D.FCO,SLICE_1:ROUTE, 0.000,R3C20D.FCO,R3C21A.FCI,n1339:FCITOFCO_DEL, 0.056,R3C21A.FCI,R3C21A.FCO,SLICE_0:ROUTE, 0.000,R3C21A.FCO,R3C21B.FCI,n1340:FCITOFCO_DEL, 0.056,R3C21B.FCI,R3C21B.FCO,SLICE_9:ROUTE, 0.000,R3C21B.FCO,R3C21C.FCI,n1341:FCITOFCO_DEL, 0.056,R3C21C.FCI,R3C21C.FCO,SLICE_12:ROUTE, 0.000,R3C21C.FCO,R3C21D.FCI,n1342:FCITOFCO_DEL, 0.056,R3C21D.FCI,R3C21D.FCO,SLICE_11:ROUTE, 0.000,R3C21D.FCO,R3C22A.FCI,n1343:FCITOF0_DEL, 0.351,R3C22A.FCI,R3C22A.F0,SLICE_10:ROUTE, 0.000,R3C22A.F0,R3C22A.DI0,n102">Data path</A> SLICE_5 to SLICE_10:
 
    Name    Fanout   Delay (ns)          Site               Resource
-REG_DEL     ---     0.416     R3C19C.CLK to      R3C19C.Q0 <A href="#@comp:SLICE_10">SLICE_10</A> (from <A href="#@net:i_clk16_c">i_clk16_c</A>)
+REG_DEL     ---     0.416     R3C19D.CLK to      R3C19D.Q0 <A href="#@comp:SLICE_5">SLICE_5</A> (from <A href="#@net:i_clk16_c">i_clk16_c</A>)
+ROUTE         1     0.659<A href="#@net:n19:R3C19D.Q0:R3C19D.B0:0.659">      R3C19D.Q0 to R3C19D.B0     </A> <A href="#@net:n19">n19</A>
+C0TOFCO_DE  ---     0.354      R3C19D.B0 to     R3C19D.FCO <A href="#@comp:SLICE_5">SLICE_5</A>
+ROUTE         1     0.000<A href="#@net:n1335:R3C19D.FCO:R3C20A.FCI:0.000">     R3C19D.FCO to R3C20A.FCI    </A> <A href="#@net:n1335">n1335</A>
+FCITOFCO_D  ---     0.056     R3C20A.FCI to     R3C20A.FCO <A href="#@comp:SLICE_4">SLICE_4</A>
+ROUTE         1     0.000<A href="#@net:n1336:R3C20A.FCO:R3C20B.FCI:0.000">     R3C20A.FCO to R3C20B.FCI    </A> <A href="#@net:n1336">n1336</A>
+FCITOFCO_D  ---     0.056     R3C20B.FCI to     R3C20B.FCO <A href="#@comp:SLICE_3">SLICE_3</A>
+ROUTE         1     0.000<A href="#@net:n1337:R3C20B.FCO:R3C20C.FCI:0.000">     R3C20B.FCO to R3C20C.FCI    </A> <A href="#@net:n1337">n1337</A>
+FCITOFCO_D  ---     0.056     R3C20C.FCI to     R3C20C.FCO <A href="#@comp:SLICE_2">SLICE_2</A>
+ROUTE         1     0.000<A href="#@net:n1338:R3C20C.FCO:R3C20D.FCI:0.000">     R3C20C.FCO to R3C20D.FCI    </A> <A href="#@net:n1338">n1338</A>
+FCITOFCO_D  ---     0.056     R3C20D.FCI to     R3C20D.FCO <A href="#@comp:SLICE_1">SLICE_1</A>
+ROUTE         1     0.000<A href="#@net:n1339:R3C20D.FCO:R3C21A.FCI:0.000">     R3C20D.FCO to R3C21A.FCI    </A> <A href="#@net:n1339">n1339</A>
+FCITOFCO_D  ---     0.056     R3C21A.FCI to     R3C21A.FCO <A href="#@comp:SLICE_0">SLICE_0</A>
+ROUTE         1     0.000<A href="#@net:n1340:R3C21A.FCO:R3C21B.FCI:0.000">     R3C21A.FCO to R3C21B.FCI    </A> <A href="#@net:n1340">n1340</A>
+FCITOFCO_D  ---     0.056     R3C21B.FCI to     R3C21B.FCO <A href="#@comp:SLICE_9">SLICE_9</A>
+ROUTE         1     0.000<A href="#@net:n1341:R3C21B.FCO:R3C21C.FCI:0.000">     R3C21B.FCO to R3C21C.FCI    </A> <A href="#@net:n1341">n1341</A>
+FCITOFCO_D  ---     0.056     R3C21C.FCI to     R3C21C.FCO <A href="#@comp:SLICE_12">SLICE_12</A>
+ROUTE         1     0.000<A href="#@net:n1342:R3C21C.FCO:R3C21D.FCI:0.000">     R3C21C.FCO to R3C21D.FCI    </A> <A href="#@net:n1342">n1342</A>
+FCITOFCO_D  ---     0.056     R3C21D.FCI to     R3C21D.FCO <A href="#@comp:SLICE_11">SLICE_11</A>
+ROUTE         1     0.000<A href="#@net:n1343:R3C21D.FCO:R3C22A.FCI:0.000">     R3C21D.FCO to R3C22A.FCI    </A> <A href="#@net:n1343">n1343</A>
+FCITOF0_DE  ---     0.351     R3C22A.FCI to      R3C22A.F0 <A href="#@comp:SLICE_10">SLICE_10</A>
+ROUTE         1     0.000<A href="#@net:n102:R3C22A.F0:R3C22A.DI0:0.000">      R3C22A.F0 to R3C22A.DI0    </A> <A href="#@net:n102">n102</A> (to <A href="#@net:i_clk16_c">i_clk16_c</A>)
+                  --------
+                    2.228   (70.4% logic, 29.6% route), 11 logic levels.
+
+ Clock Skew Details: 
+
+      <A href="#@path:FREQUENCY PORT 'i_clk16' 16.000000 MHz ;:ROUTE, 2.142,G3.PADDI,R3C19D.CLK,i_clk16_c">Source Clock Path</A> i_clk16 to SLICE_5:
+
+   Name    Fanout   Delay (ns)          Site               Resource
+ROUTE        16     2.142<A href="#@net:i_clk16_c:G3.PADDI:R3C19D.CLK:2.142">       G3.PADDI to R3C19D.CLK    </A> <A href="#@net:i_clk16_c">i_clk16_c</A>
+                  --------
+                    2.142   (0.0% logic, 100.0% route), 0 logic levels.
+
+      <A href="#@path:FREQUENCY PORT 'i_clk16' 16.000000 MHz ;:ROUTE, 2.142,G3.PADDI,R3C22A.CLK,i_clk16_c">Destination Clock Path</A> i_clk16 to SLICE_10:
+
+   Name    Fanout   Delay (ns)          Site               Resource
+ROUTE        16     2.142<A href="#@net:i_clk16_c:G3.PADDI:R3C22A.CLK:2.142">       G3.PADDI to R3C22A.CLK    </A> <A href="#@net:i_clk16_c">i_clk16_c</A>
+                  --------
+                    2.142   (0.0% logic, 100.0% route), 0 logic levels.
+<font color=#000000> 
+
+Passed: The following path meets requirements by 60.478ns
+ </font>
+ Logical Details:  Cell type  Pin type       Cell/ASIC name  (clock net +/-)
+
+   Source:         FF         Q              <A href="#@comp:SLICE_6">counter_296_302__i3</A>  (from <A href="#@net:i_clk16_c">i_clk16_c</A> +)
+   Destination:    FF         Data in        <A href="#@comp:SLICE_11">counter_296_302__i21</A>  (to <A href="#@net:i_clk16_c">i_clk16_c</A> +)
+
+   Delay:               2.228ns  (70.4% logic, 29.6% route), 11 logic levels.
+
+ Constraint Details:
+
+      2.228ns physical path delay SLICE_6 to SLICE_11 meets
+     62.500ns delay constraint less
+      0.000ns skew and
+     -0.206ns DIN_SET requirement (totaling 62.706ns) by 60.478ns
+
+ Physical Path Details:
+
+      <A href="#@path:FREQUENCY PORT 'i_clk16' 16.000000 MHz ;:REG_DEL, 0.416,R3C19C.CLK,R3C19C.Q0,SLICE_6:ROUTE, 0.659,R3C19C.Q0,R3C19C.B0,n21:C0TOFCO_DEL, 0.354,R3C19C.B0,R3C19C.FCO,SLICE_6:ROUTE, 0.000,R3C19C.FCO,R3C19D.FCI,n1334:FCITOFCO_DEL, 0.056,R3C19D.FCI,R3C19D.FCO,SLICE_5:ROUTE, 0.000,R3C19D.FCO,R3C20A.FCI,n1335:FCITOFCO_DEL, 0.056,R3C20A.FCI,R3C20A.FCO,SLICE_4:ROUTE, 0.000,R3C20A.FCO,R3C20B.FCI,n1336:FCITOFCO_DEL, 0.056,R3C20B.FCI,R3C20B.FCO,SLICE_3:ROUTE, 0.000,R3C20B.FCO,R3C20C.FCI,n1337:FCITOFCO_DEL, 0.056,R3C20C.FCI,R3C20C.FCO,SLICE_2:ROUTE, 0.000,R3C20C.FCO,R3C20D.FCI,n1338:FCITOFCO_DEL, 0.056,R3C20D.FCI,R3C20D.FCO,SLICE_1:ROUTE, 0.000,R3C20D.FCO,R3C21A.FCI,n1339:FCITOFCO_DEL, 0.056,R3C21A.FCI,R3C21A.FCO,SLICE_0:ROUTE, 0.000,R3C21A.FCO,R3C21B.FCI,n1340:FCITOFCO_DEL, 0.056,R3C21B.FCI,R3C21B.FCO,SLICE_9:ROUTE, 0.000,R3C21B.FCO,R3C21C.FCI,n1341:FCITOFCO_DEL, 0.056,R3C21C.FCI,R3C21C.FCO,SLICE_12:ROUTE, 0.000,R3C21C.FCO,R3C21D.FCI,n1342:FCITOF0_DEL, 0.351,R3C21D.FCI,R3C21D.F0,SLICE_11:ROUTE, 0.000,R3C21D.F0,R3C21D.DI0,n104">Data path</A> SLICE_6 to SLICE_11:
+
+   Name    Fanout   Delay (ns)          Site               Resource
+REG_DEL     ---     0.416     R3C19C.CLK to      R3C19C.Q0 <A href="#@comp:SLICE_6">SLICE_6</A> (from <A href="#@net:i_clk16_c">i_clk16_c</A>)
 ROUTE         1     0.659<A href="#@net:n21:R3C19C.Q0:R3C19C.B0:0.659">      R3C19C.Q0 to R3C19C.B0     </A> <A href="#@net:n21">n21</A>
-C0TOFCO_DE  ---     0.354      R3C19C.B0 to     R3C19C.FCO <A href="#@comp:SLICE_10">SLICE_10</A>
-ROUTE         1     0.000<A href="#@net:n194:R3C19C.FCO:R3C19D.FCI:0.000">     R3C19C.FCO to R3C19D.FCI    </A> <A href="#@net:n194">n194</A>
-FCITOFCO_D  ---     0.056     R3C19D.FCI to     R3C19D.FCO <A href="#@comp:SLICE_9">SLICE_9</A>
-ROUTE         1     0.000<A href="#@net:n195:R3C19D.FCO:R3C20A.FCI:0.000">     R3C19D.FCO to R3C20A.FCI    </A> <A href="#@net:n195">n195</A>
-FCITOFCO_D  ---     0.056     R3C20A.FCI to     R3C20A.FCO <A href="#@comp:SLICE_8">SLICE_8</A>
-ROUTE         1     0.000<A href="#@net:n196:R3C20A.FCO:R3C20B.FCI:0.000">     R3C20A.FCO to R3C20B.FCI    </A> <A href="#@net:n196">n196</A>
-FCITOFCO_D  ---     0.056     R3C20B.FCI to     R3C20B.FCO <A href="#@comp:SLICE_7">SLICE_7</A>
-ROUTE         1     0.000<A href="#@net:n197:R3C20B.FCO:R3C20C.FCI:0.000">     R3C20B.FCO to R3C20C.FCI    </A> <A href="#@net:n197">n197</A>
-FCITOFCO_D  ---     0.056     R3C20C.FCI to     R3C20C.FCO <A href="#@comp:SLICE_6">SLICE_6</A>
-ROUTE         1     0.000<A href="#@net:n198:R3C20C.FCO:R3C20D.FCI:0.000">     R3C20C.FCO to R3C20D.FCI    </A> <A href="#@net:n198">n198</A>
-FCITOFCO_D  ---     0.056     R3C20D.FCI to     R3C20D.FCO <A href="#@comp:SLICE_5">SLICE_5</A>
-ROUTE         1     0.000<A href="#@net:n199:R3C20D.FCO:R3C21A.FCI:0.000">     R3C20D.FCO to R3C21A.FCI    </A> <A href="#@net:n199">n199</A>
-FCITOFCO_D  ---     0.056     R3C21A.FCI to     R3C21A.FCO <A href="#@comp:SLICE_4">SLICE_4</A>
-ROUTE         1     0.000<A href="#@net:n200:R3C21A.FCO:R3C21B.FCI:0.000">     R3C21A.FCO to R3C21B.FCI    </A> <A href="#@net:n200">n200</A>
-FCITOFCO_D  ---     0.056     R3C21B.FCI to     R3C21B.FCO <A href="#@comp:SLICE_3">SLICE_3</A>
-ROUTE         1     0.000<A href="#@net:n201:R3C21B.FCO:R3C21C.FCI:0.000">     R3C21B.FCO to R3C21C.FCI    </A> <A href="#@net:n201">n201</A>
-FCITOFCO_D  ---     0.056     R3C21C.FCI to     R3C21C.FCO <A href="#@comp:SLICE_2">SLICE_2</A>
-ROUTE         1     0.000<A href="#@net:n202:R3C21C.FCO:R3C21D.FCI:0.000">     R3C21C.FCO to R3C21D.FCI    </A> <A href="#@net:n202">n202</A>
-FCITOF0_DE  ---     0.351     R3C21D.FCI to      R3C21D.F0 <A href="#@comp:SLICE_1">SLICE_1</A>
+C0TOFCO_DE  ---     0.354      R3C19C.B0 to     R3C19C.FCO <A href="#@comp:SLICE_6">SLICE_6</A>
+ROUTE         1     0.000<A href="#@net:n1334:R3C19C.FCO:R3C19D.FCI:0.000">     R3C19C.FCO to R3C19D.FCI    </A> <A href="#@net:n1334">n1334</A>
+FCITOFCO_D  ---     0.056     R3C19D.FCI to     R3C19D.FCO <A href="#@comp:SLICE_5">SLICE_5</A>
+ROUTE         1     0.000<A href="#@net:n1335:R3C19D.FCO:R3C20A.FCI:0.000">     R3C19D.FCO to R3C20A.FCI    </A> <A href="#@net:n1335">n1335</A>
+FCITOFCO_D  ---     0.056     R3C20A.FCI to     R3C20A.FCO <A href="#@comp:SLICE_4">SLICE_4</A>
+ROUTE         1     0.000<A href="#@net:n1336:R3C20A.FCO:R3C20B.FCI:0.000">     R3C20A.FCO to R3C20B.FCI    </A> <A href="#@net:n1336">n1336</A>
+FCITOFCO_D  ---     0.056     R3C20B.FCI to     R3C20B.FCO <A href="#@comp:SLICE_3">SLICE_3</A>
+ROUTE         1     0.000<A href="#@net:n1337:R3C20B.FCO:R3C20C.FCI:0.000">     R3C20B.FCO to R3C20C.FCI    </A> <A href="#@net:n1337">n1337</A>
+FCITOFCO_D  ---     0.056     R3C20C.FCI to     R3C20C.FCO <A href="#@comp:SLICE_2">SLICE_2</A>
+ROUTE         1     0.000<A href="#@net:n1338:R3C20C.FCO:R3C20D.FCI:0.000">     R3C20C.FCO to R3C20D.FCI    </A> <A href="#@net:n1338">n1338</A>
+FCITOFCO_D  ---     0.056     R3C20D.FCI to     R3C20D.FCO <A href="#@comp:SLICE_1">SLICE_1</A>
+ROUTE         1     0.000<A href="#@net:n1339:R3C20D.FCO:R3C21A.FCI:0.000">     R3C20D.FCO to R3C21A.FCI    </A> <A href="#@net:n1339">n1339</A>
+FCITOFCO_D  ---     0.056     R3C21A.FCI to     R3C21A.FCO <A href="#@comp:SLICE_0">SLICE_0</A>
+ROUTE         1     0.000<A href="#@net:n1340:R3C21A.FCO:R3C21B.FCI:0.000">     R3C21A.FCO to R3C21B.FCI    </A> <A href="#@net:n1340">n1340</A>
+FCITOFCO_D  ---     0.056     R3C21B.FCI to     R3C21B.FCO <A href="#@comp:SLICE_9">SLICE_9</A>
+ROUTE         1     0.000<A href="#@net:n1341:R3C21B.FCO:R3C21C.FCI:0.000">     R3C21B.FCO to R3C21C.FCI    </A> <A href="#@net:n1341">n1341</A>
+FCITOFCO_D  ---     0.056     R3C21C.FCI to     R3C21C.FCO <A href="#@comp:SLICE_12">SLICE_12</A>
+ROUTE         1     0.000<A href="#@net:n1342:R3C21C.FCO:R3C21D.FCI:0.000">     R3C21C.FCO to R3C21D.FCI    </A> <A href="#@net:n1342">n1342</A>
+FCITOF0_DE  ---     0.351     R3C21D.FCI to      R3C21D.F0 <A href="#@comp:SLICE_11">SLICE_11</A>
 ROUTE         1     0.000<A href="#@net:n104:R3C21D.F0:R3C21D.DI0:0.000">      R3C21D.F0 to R3C21D.DI0    </A> <A href="#@net:n104">n104</A> (to <A href="#@net:i_clk16_c">i_clk16_c</A>)
                   --------
                     2.228   (70.4% logic, 29.6% route), 11 logic levels.
 
  Clock Skew Details: 
 
-      <A href="#@path:FREQUENCY PORT 'i_clk16' 16.000000 MHz ;:ROUTE, 2.142,G3.PADDI,R3C19C.CLK,i_clk16_c">Source Clock Path</A> i_clk16 to SLICE_10:
+      <A href="#@path:FREQUENCY PORT 'i_clk16' 16.000000 MHz ;:ROUTE, 2.142,G3.PADDI,R3C19C.CLK,i_clk16_c">Source Clock Path</A> i_clk16 to SLICE_6:
 
    Name    Fanout   Delay (ns)          Site               Resource
 ROUTE        16     2.142<A href="#@net:i_clk16_c:G3.PADDI:R3C19C.CLK:2.142">       G3.PADDI to R3C19C.CLK    </A> <A href="#@net:i_clk16_c">i_clk16_c</A>
                   --------
                     2.142   (0.0% logic, 100.0% route), 0 logic levels.
 
-      <A href="#@path:FREQUENCY PORT 'i_clk16' 16.000000 MHz ;:ROUTE, 2.142,G3.PADDI,R3C21D.CLK,i_clk16_c">Destination Clock Path</A> i_clk16 to SLICE_1:
+      <A href="#@path:FREQUENCY PORT 'i_clk16' 16.000000 MHz ;:ROUTE, 2.142,G3.PADDI,R3C21D.CLK,i_clk16_c">Destination Clock Path</A> i_clk16 to SLICE_11:
 
    Name    Fanout   Delay (ns)          Site               Resource
 ROUTE        16     2.142<A href="#@net:i_clk16_c:G3.PADDI:R3C21D.CLK:2.142">       G3.PADDI to R3C21D.CLK    </A> <A href="#@net:i_clk16_c">i_clk16_c</A>
@@ -649,124 +1118,61 @@ Passed: The following path meets requirements by 60.478ns
  </font>
  Logical Details:  Cell type  Pin type       Cell/ASIC name  (clock net +/-)
 
-   Source:         FF         Q              <A href="#@comp:SLICE_11">counter_32_33__i1</A>  (from <A href="#@net:i_clk16_c">i_clk16_c</A> +)
-   Destination:    FF         Data in        <A href="#@comp:SLICE_2">counter_32_33__i19</A>  (to <A href="#@net:i_clk16_c">i_clk16_c</A> +)
+   Source:         FF         Q              <A href="#@comp:SLICE_7">counter_296_302__i1</A>  (from <A href="#@net:i_clk16_c">i_clk16_c</A> +)
+   Destination:    FF         Data in        <A href="#@comp:SLICE_12">counter_296_302__i19</A>  (to <A href="#@net:i_clk16_c">i_clk16_c</A> +)
 
    Delay:               2.228ns  (70.4% logic, 29.6% route), 11 logic levels.
 
  Constraint Details:
 
-      2.228ns physical path delay SLICE_11 to SLICE_2 meets
+      2.228ns physical path delay SLICE_7 to SLICE_12 meets
      62.500ns delay constraint less
       0.000ns skew and
      -0.206ns DIN_SET requirement (totaling 62.706ns) by 60.478ns
 
  Physical Path Details:
 
-      <A href="#@path:FREQUENCY PORT 'i_clk16' 16.000000 MHz ;:REG_DEL, 0.416,R3C19B.CLK,R3C19B.Q0,SLICE_11:ROUTE, 0.659,R3C19B.Q0,R3C19B.B0,n23:C0TOFCO_DEL, 0.354,R3C19B.B0,R3C19B.FCO,SLICE_11:ROUTE, 0.000,R3C19B.FCO,R3C19C.FCI,n193:FCITOFCO_DEL, 0.056,R3C19C.FCI,R3C19C.FCO,SLICE_10:ROUTE, 0.000,R3C19C.FCO,R3C19D.FCI,n194:FCITOFCO_DEL, 0.056,R3C19D.FCI,R3C19D.FCO,SLICE_9:ROUTE, 0.000,R3C19D.FCO,R3C20A.FCI,n195:FCITOFCO_DEL, 0.056,R3C20A.FCI,R3C20A.FCO,SLICE_8:ROUTE, 0.000,R3C20A.FCO,R3C20B.FCI,n196:FCITOFCO_DEL, 0.056,R3C20B.FCI,R3C20B.FCO,SLICE_7:ROUTE, 0.000,R3C20B.FCO,R3C20C.FCI,n197:FCITOFCO_DEL, 0.056,R3C20C.FCI,R3C20C.FCO,SLICE_6:ROUTE, 0.000,R3C20C.FCO,R3C20D.FCI,n198:FCITOFCO_DEL, 0.056,R3C20D.FCI,R3C20D.FCO,SLICE_5:ROUTE, 0.000,R3C20D.FCO,R3C21A.FCI,n199:FCITOFCO_DEL, 0.056,R3C21A.FCI,R3C21A.FCO,SLICE_4:ROUTE, 0.000,R3C21A.FCO,R3C21B.FCI,n200:FCITOFCO_DEL, 0.056,R3C21B.FCI,R3C21B.FCO,SLICE_3:ROUTE, 0.000,R3C21B.FCO,R3C21C.FCI,n201:FCITOF0_DEL, 0.351,R3C21C.FCI,R3C21C.F0,SLICE_2:ROUTE, 0.000,R3C21C.F0,R3C21C.DI0,n106">Data path</A> SLICE_11 to SLICE_2:
+      <A href="#@path:FREQUENCY PORT 'i_clk16' 16.000000 MHz ;:REG_DEL, 0.416,R3C19B.CLK,R3C19B.Q0,SLICE_7:ROUTE, 0.659,R3C19B.Q0,R3C19B.B0,n23:C0TOFCO_DEL, 0.354,R3C19B.B0,R3C19B.FCO,SLICE_7:ROUTE, 0.000,R3C19B.FCO,R3C19C.FCI,n1333:FCITOFCO_DEL, 0.056,R3C19C.FCI,R3C19C.FCO,SLICE_6:ROUTE, 0.000,R3C19C.FCO,R3C19D.FCI,n1334:FCITOFCO_DEL, 0.056,R3C19D.FCI,R3C19D.FCO,SLICE_5:ROUTE, 0.000,R3C19D.FCO,R3C20A.FCI,n1335:FCITOFCO_DEL, 0.056,R3C20A.FCI,R3C20A.FCO,SLICE_4:ROUTE, 0.000,R3C20A.FCO,R3C20B.FCI,n1336:FCITOFCO_DEL, 0.056,R3C20B.FCI,R3C20B.FCO,SLICE_3:ROUTE, 0.000,R3C20B.FCO,R3C20C.FCI,n1337:FCITOFCO_DEL, 0.056,R3C20C.FCI,R3C20C.FCO,SLICE_2:ROUTE, 0.000,R3C20C.FCO,R3C20D.FCI,n1338:FCITOFCO_DEL, 0.056,R3C20D.FCI,R3C20D.FCO,SLICE_1:ROUTE, 0.000,R3C20D.FCO,R3C21A.FCI,n1339:FCITOFCO_DEL, 0.056,R3C21A.FCI,R3C21A.FCO,SLICE_0:ROUTE, 0.000,R3C21A.FCO,R3C21B.FCI,n1340:FCITOFCO_DEL, 0.056,R3C21B.FCI,R3C21B.FCO,SLICE_9:ROUTE, 0.000,R3C21B.FCO,R3C21C.FCI,n1341:FCITOF0_DEL, 0.351,R3C21C.FCI,R3C21C.F0,SLICE_12:ROUTE, 0.000,R3C21C.F0,R3C21C.DI0,n106">Data path</A> SLICE_7 to SLICE_12:
 
    Name    Fanout   Delay (ns)          Site               Resource
-REG_DEL     ---     0.416     R3C19B.CLK to      R3C19B.Q0 <A href="#@comp:SLICE_11">SLICE_11</A> (from <A href="#@net:i_clk16_c">i_clk16_c</A>)
+REG_DEL     ---     0.416     R3C19B.CLK to      R3C19B.Q0 <A href="#@comp:SLICE_7">SLICE_7</A> (from <A href="#@net:i_clk16_c">i_clk16_c</A>)
 ROUTE         1     0.659<A href="#@net:n23:R3C19B.Q0:R3C19B.B0:0.659">      R3C19B.Q0 to R3C19B.B0     </A> <A href="#@net:n23">n23</A>
-C0TOFCO_DE  ---     0.354      R3C19B.B0 to     R3C19B.FCO <A href="#@comp:SLICE_11">SLICE_11</A>
-ROUTE         1     0.000<A href="#@net:n193:R3C19B.FCO:R3C19C.FCI:0.000">     R3C19B.FCO to R3C19C.FCI    </A> <A href="#@net:n193">n193</A>
-FCITOFCO_D  ---     0.056     R3C19C.FCI to     R3C19C.FCO <A href="#@comp:SLICE_10">SLICE_10</A>
-ROUTE         1     0.000<A href="#@net:n194:R3C19C.FCO:R3C19D.FCI:0.000">     R3C19C.FCO to R3C19D.FCI    </A> <A href="#@net:n194">n194</A>
-FCITOFCO_D  ---     0.056     R3C19D.FCI to     R3C19D.FCO <A href="#@comp:SLICE_9">SLICE_9</A>
-ROUTE         1     0.000<A href="#@net:n195:R3C19D.FCO:R3C20A.FCI:0.000">     R3C19D.FCO to R3C20A.FCI    </A> <A href="#@net:n195">n195</A>
-FCITOFCO_D  ---     0.056     R3C20A.FCI to     R3C20A.FCO <A href="#@comp:SLICE_8">SLICE_8</A>
-ROUTE         1     0.000<A href="#@net:n196:R3C20A.FCO:R3C20B.FCI:0.000">     R3C20A.FCO to R3C20B.FCI    </A> <A href="#@net:n196">n196</A>
-FCITOFCO_D  ---     0.056     R3C20B.FCI to     R3C20B.FCO <A href="#@comp:SLICE_7">SLICE_7</A>
-ROUTE         1     0.000<A href="#@net:n197:R3C20B.FCO:R3C20C.FCI:0.000">     R3C20B.FCO to R3C20C.FCI    </A> <A href="#@net:n197">n197</A>
-FCITOFCO_D  ---     0.056     R3C20C.FCI to     R3C20C.FCO <A href="#@comp:SLICE_6">SLICE_6</A>
-ROUTE         1     0.000<A href="#@net:n198:R3C20C.FCO:R3C20D.FCI:0.000">     R3C20C.FCO to R3C20D.FCI    </A> <A href="#@net:n198">n198</A>
-FCITOFCO_D  ---     0.056     R3C20D.FCI to     R3C20D.FCO <A href="#@comp:SLICE_5">SLICE_5</A>
-ROUTE         1     0.000<A href="#@net:n199:R3C20D.FCO:R3C21A.FCI:0.000">     R3C20D.FCO to R3C21A.FCI    </A> <A href="#@net:n199">n199</A>
-FCITOFCO_D  ---     0.056     R3C21A.FCI to     R3C21A.FCO <A href="#@comp:SLICE_4">SLICE_4</A>
-ROUTE         1     0.000<A href="#@net:n200:R3C21A.FCO:R3C21B.FCI:0.000">     R3C21A.FCO to R3C21B.FCI    </A> <A href="#@net:n200">n200</A>
-FCITOFCO_D  ---     0.056     R3C21B.FCI to     R3C21B.FCO <A href="#@comp:SLICE_3">SLICE_3</A>
-ROUTE         1     0.000<A href="#@net:n201:R3C21B.FCO:R3C21C.FCI:0.000">     R3C21B.FCO to R3C21C.FCI    </A> <A href="#@net:n201">n201</A>
-FCITOF0_DE  ---     0.351     R3C21C.FCI to      R3C21C.F0 <A href="#@comp:SLICE_2">SLICE_2</A>
+C0TOFCO_DE  ---     0.354      R3C19B.B0 to     R3C19B.FCO <A href="#@comp:SLICE_7">SLICE_7</A>
+ROUTE         1     0.000<A href="#@net:n1333:R3C19B.FCO:R3C19C.FCI:0.000">     R3C19B.FCO to R3C19C.FCI    </A> <A href="#@net:n1333">n1333</A>
+FCITOFCO_D  ---     0.056     R3C19C.FCI to     R3C19C.FCO <A href="#@comp:SLICE_6">SLICE_6</A>
+ROUTE         1     0.000<A href="#@net:n1334:R3C19C.FCO:R3C19D.FCI:0.000">     R3C19C.FCO to R3C19D.FCI    </A> <A href="#@net:n1334">n1334</A>
+FCITOFCO_D  ---     0.056     R3C19D.FCI to     R3C19D.FCO <A href="#@comp:SLICE_5">SLICE_5</A>
+ROUTE         1     0.000<A href="#@net:n1335:R3C19D.FCO:R3C20A.FCI:0.000">     R3C19D.FCO to R3C20A.FCI    </A> <A href="#@net:n1335">n1335</A>
+FCITOFCO_D  ---     0.056     R3C20A.FCI to     R3C20A.FCO <A href="#@comp:SLICE_4">SLICE_4</A>
+ROUTE         1     0.000<A href="#@net:n1336:R3C20A.FCO:R3C20B.FCI:0.000">     R3C20A.FCO to R3C20B.FCI    </A> <A href="#@net:n1336">n1336</A>
+FCITOFCO_D  ---     0.056     R3C20B.FCI to     R3C20B.FCO <A href="#@comp:SLICE_3">SLICE_3</A>
+ROUTE         1     0.000<A href="#@net:n1337:R3C20B.FCO:R3C20C.FCI:0.000">     R3C20B.FCO to R3C20C.FCI    </A> <A href="#@net:n1337">n1337</A>
+FCITOFCO_D  ---     0.056     R3C20C.FCI to     R3C20C.FCO <A href="#@comp:SLICE_2">SLICE_2</A>
+ROUTE         1     0.000<A href="#@net:n1338:R3C20C.FCO:R3C20D.FCI:0.000">     R3C20C.FCO to R3C20D.FCI    </A> <A href="#@net:n1338">n1338</A>
+FCITOFCO_D  ---     0.056     R3C20D.FCI to     R3C20D.FCO <A href="#@comp:SLICE_1">SLICE_1</A>
+ROUTE         1     0.000<A href="#@net:n1339:R3C20D.FCO:R3C21A.FCI:0.000">     R3C20D.FCO to R3C21A.FCI    </A> <A href="#@net:n1339">n1339</A>
+FCITOFCO_D  ---     0.056     R3C21A.FCI to     R3C21A.FCO <A href="#@comp:SLICE_0">SLICE_0</A>
+ROUTE         1     0.000<A href="#@net:n1340:R3C21A.FCO:R3C21B.FCI:0.000">     R3C21A.FCO to R3C21B.FCI    </A> <A href="#@net:n1340">n1340</A>
+FCITOFCO_D  ---     0.056     R3C21B.FCI to     R3C21B.FCO <A href="#@comp:SLICE_9">SLICE_9</A>
+ROUTE         1     0.000<A href="#@net:n1341:R3C21B.FCO:R3C21C.FCI:0.000">     R3C21B.FCO to R3C21C.FCI    </A> <A href="#@net:n1341">n1341</A>
+FCITOF0_DE  ---     0.351     R3C21C.FCI to      R3C21C.F0 <A href="#@comp:SLICE_12">SLICE_12</A>
 ROUTE         1     0.000<A href="#@net:n106:R3C21C.F0:R3C21C.DI0:0.000">      R3C21C.F0 to R3C21C.DI0    </A> <A href="#@net:n106">n106</A> (to <A href="#@net:i_clk16_c">i_clk16_c</A>)
                   --------
                     2.228   (70.4% logic, 29.6% route), 11 logic levels.
 
  Clock Skew Details: 
 
-      <A href="#@path:FREQUENCY PORT 'i_clk16' 16.000000 MHz ;:ROUTE, 2.142,G3.PADDI,R3C19B.CLK,i_clk16_c">Source Clock Path</A> i_clk16 to SLICE_11:
+      <A href="#@path:FREQUENCY PORT 'i_clk16' 16.000000 MHz ;:ROUTE, 2.142,G3.PADDI,R3C19B.CLK,i_clk16_c">Source Clock Path</A> i_clk16 to SLICE_7:
 
    Name    Fanout   Delay (ns)          Site               Resource
 ROUTE        16     2.142<A href="#@net:i_clk16_c:G3.PADDI:R3C19B.CLK:2.142">       G3.PADDI to R3C19B.CLK    </A> <A href="#@net:i_clk16_c">i_clk16_c</A>
                   --------
                     2.142   (0.0% logic, 100.0% route), 0 logic levels.
 
-      <A href="#@path:FREQUENCY PORT 'i_clk16' 16.000000 MHz ;:ROUTE, 2.142,G3.PADDI,R3C21C.CLK,i_clk16_c">Destination Clock Path</A> i_clk16 to SLICE_2:
+      <A href="#@path:FREQUENCY PORT 'i_clk16' 16.000000 MHz ;:ROUTE, 2.142,G3.PADDI,R3C21C.CLK,i_clk16_c">Destination Clock Path</A> i_clk16 to SLICE_12:
 
    Name    Fanout   Delay (ns)          Site               Resource
 ROUTE        16     2.142<A href="#@net:i_clk16_c:G3.PADDI:R3C21C.CLK:2.142">       G3.PADDI to R3C21C.CLK    </A> <A href="#@net:i_clk16_c">i_clk16_c</A>
-                  --------
-                    2.142   (0.0% logic, 100.0% route), 0 logic levels.
-<font color=#000000> 
-
-Passed: The following path meets requirements by 60.478ns
- </font>
- Logical Details:  Cell type  Pin type       Cell/ASIC name  (clock net +/-)
-
-   Source:         FF         Q              <A href="#@comp:SLICE_9">counter_32_33__i5</A>  (from <A href="#@net:i_clk16_c">i_clk16_c</A> +)
-   Destination:    FF         Data in        <A href="#@comp:SLICE_0">counter_32_33__i23</A>  (to <A href="#@net:i_clk16_c">i_clk16_c</A> +)
-
-   Delay:               2.228ns  (70.4% logic, 29.6% route), 11 logic levels.
-
- Constraint Details:
-
-      2.228ns physical path delay SLICE_9 to SLICE_0 meets
-     62.500ns delay constraint less
-      0.000ns skew and
-     -0.206ns DIN_SET requirement (totaling 62.706ns) by 60.478ns
-
- Physical Path Details:
-
-      <A href="#@path:FREQUENCY PORT 'i_clk16' 16.000000 MHz ;:REG_DEL, 0.416,R3C19D.CLK,R3C19D.Q0,SLICE_9:ROUTE, 0.659,R3C19D.Q0,R3C19D.B0,n19:C0TOFCO_DEL, 0.354,R3C19D.B0,R3C19D.FCO,SLICE_9:ROUTE, 0.000,R3C19D.FCO,R3C20A.FCI,n195:FCITOFCO_DEL, 0.056,R3C20A.FCI,R3C20A.FCO,SLICE_8:ROUTE, 0.000,R3C20A.FCO,R3C20B.FCI,n196:FCITOFCO_DEL, 0.056,R3C20B.FCI,R3C20B.FCO,SLICE_7:ROUTE, 0.000,R3C20B.FCO,R3C20C.FCI,n197:FCITOFCO_DEL, 0.056,R3C20C.FCI,R3C20C.FCO,SLICE_6:ROUTE, 0.000,R3C20C.FCO,R3C20D.FCI,n198:FCITOFCO_DEL, 0.056,R3C20D.FCI,R3C20D.FCO,SLICE_5:ROUTE, 0.000,R3C20D.FCO,R3C21A.FCI,n199:FCITOFCO_DEL, 0.056,R3C21A.FCI,R3C21A.FCO,SLICE_4:ROUTE, 0.000,R3C21A.FCO,R3C21B.FCI,n200:FCITOFCO_DEL, 0.056,R3C21B.FCI,R3C21B.FCO,SLICE_3:ROUTE, 0.000,R3C21B.FCO,R3C21C.FCI,n201:FCITOFCO_DEL, 0.056,R3C21C.FCI,R3C21C.FCO,SLICE_2:ROUTE, 0.000,R3C21C.FCO,R3C21D.FCI,n202:FCITOFCO_DEL, 0.056,R3C21D.FCI,R3C21D.FCO,SLICE_1:ROUTE, 0.000,R3C21D.FCO,R3C22A.FCI,n203:FCITOF0_DEL, 0.351,R3C22A.FCI,R3C22A.F0,SLICE_0:ROUTE, 0.000,R3C22A.F0,R3C22A.DI0,n102">Data path</A> SLICE_9 to SLICE_0:
-
-   Name    Fanout   Delay (ns)          Site               Resource
-REG_DEL     ---     0.416     R3C19D.CLK to      R3C19D.Q0 <A href="#@comp:SLICE_9">SLICE_9</A> (from <A href="#@net:i_clk16_c">i_clk16_c</A>)
-ROUTE         1     0.659<A href="#@net:n19:R3C19D.Q0:R3C19D.B0:0.659">      R3C19D.Q0 to R3C19D.B0     </A> <A href="#@net:n19">n19</A>
-C0TOFCO_DE  ---     0.354      R3C19D.B0 to     R3C19D.FCO <A href="#@comp:SLICE_9">SLICE_9</A>
-ROUTE         1     0.000<A href="#@net:n195:R3C19D.FCO:R3C20A.FCI:0.000">     R3C19D.FCO to R3C20A.FCI    </A> <A href="#@net:n195">n195</A>
-FCITOFCO_D  ---     0.056     R3C20A.FCI to     R3C20A.FCO <A href="#@comp:SLICE_8">SLICE_8</A>
-ROUTE         1     0.000<A href="#@net:n196:R3C20A.FCO:R3C20B.FCI:0.000">     R3C20A.FCO to R3C20B.FCI    </A> <A href="#@net:n196">n196</A>
-FCITOFCO_D  ---     0.056     R3C20B.FCI to     R3C20B.FCO <A href="#@comp:SLICE_7">SLICE_7</A>
-ROUTE         1     0.000<A href="#@net:n197:R3C20B.FCO:R3C20C.FCI:0.000">     R3C20B.FCO to R3C20C.FCI    </A> <A href="#@net:n197">n197</A>
-FCITOFCO_D  ---     0.056     R3C20C.FCI to     R3C20C.FCO <A href="#@comp:SLICE_6">SLICE_6</A>
-ROUTE         1     0.000<A href="#@net:n198:R3C20C.FCO:R3C20D.FCI:0.000">     R3C20C.FCO to R3C20D.FCI    </A> <A href="#@net:n198">n198</A>
-FCITOFCO_D  ---     0.056     R3C20D.FCI to     R3C20D.FCO <A href="#@comp:SLICE_5">SLICE_5</A>
-ROUTE         1     0.000<A href="#@net:n199:R3C20D.FCO:R3C21A.FCI:0.000">     R3C20D.FCO to R3C21A.FCI    </A> <A href="#@net:n199">n199</A>
-FCITOFCO_D  ---     0.056     R3C21A.FCI to     R3C21A.FCO <A href="#@comp:SLICE_4">SLICE_4</A>
-ROUTE         1     0.000<A href="#@net:n200:R3C21A.FCO:R3C21B.FCI:0.000">     R3C21A.FCO to R3C21B.FCI    </A> <A href="#@net:n200">n200</A>
-FCITOFCO_D  ---     0.056     R3C21B.FCI to     R3C21B.FCO <A href="#@comp:SLICE_3">SLICE_3</A>
-ROUTE         1     0.000<A href="#@net:n201:R3C21B.FCO:R3C21C.FCI:0.000">     R3C21B.FCO to R3C21C.FCI    </A> <A href="#@net:n201">n201</A>
-FCITOFCO_D  ---     0.056     R3C21C.FCI to     R3C21C.FCO <A href="#@comp:SLICE_2">SLICE_2</A>
-ROUTE         1     0.000<A href="#@net:n202:R3C21C.FCO:R3C21D.FCI:0.000">     R3C21C.FCO to R3C21D.FCI    </A> <A href="#@net:n202">n202</A>
-FCITOFCO_D  ---     0.056     R3C21D.FCI to     R3C21D.FCO <A href="#@comp:SLICE_1">SLICE_1</A>
-ROUTE         1     0.000<A href="#@net:n203:R3C21D.FCO:R3C22A.FCI:0.000">     R3C21D.FCO to R3C22A.FCI    </A> <A href="#@net:n203">n203</A>
-FCITOF0_DE  ---     0.351     R3C22A.FCI to      R3C22A.F0 <A href="#@comp:SLICE_0">SLICE_0</A>
-ROUTE         1     0.000<A href="#@net:n102:R3C22A.F0:R3C22A.DI0:0.000">      R3C22A.F0 to R3C22A.DI0    </A> <A href="#@net:n102">n102</A> (to <A href="#@net:i_clk16_c">i_clk16_c</A>)
-                  --------
-                    2.228   (70.4% logic, 29.6% route), 11 logic levels.
-
- Clock Skew Details: 
-
-      <A href="#@path:FREQUENCY PORT 'i_clk16' 16.000000 MHz ;:ROUTE, 2.142,G3.PADDI,R3C19D.CLK,i_clk16_c">Source Clock Path</A> i_clk16 to SLICE_9:
-
-   Name    Fanout   Delay (ns)          Site               Resource
-ROUTE        16     2.142<A href="#@net:i_clk16_c:G3.PADDI:R3C19D.CLK:2.142">       G3.PADDI to R3C19D.CLK    </A> <A href="#@net:i_clk16_c">i_clk16_c</A>
-                  --------
-                    2.142   (0.0% logic, 100.0% route), 0 logic levels.
-
-      <A href="#@path:FREQUENCY PORT 'i_clk16' 16.000000 MHz ;:ROUTE, 2.142,G3.PADDI,R3C22A.CLK,i_clk16_c">Destination Clock Path</A> i_clk16 to SLICE_0:
-
-   Name    Fanout   Delay (ns)          Site               Resource
-ROUTE        16     2.142<A href="#@net:i_clk16_c:G3.PADDI:R3C22A.CLK:2.142">       G3.PADDI to R3C22A.CLK    </A> <A href="#@net:i_clk16_c">i_clk16_c</A>
                   --------
                     2.142   (0.0% logic, 100.0% route), 0 logic levels.
 
@@ -795,7 +1201,7 @@ All preferences were met.
 
 Found 2 clocks:
 
-Clock Domain: <A href="#@net:i_ft_clk_c">i_ft_clk_c</A>   Source: i_ft_clk.PAD   Loads: 2
+Clock Domain: <A href="#@net:i_ft_clk_c">i_ft_clk_c</A>   Source: i_ft_clk.PAD   Loads: 11
    Covered under: FREQUENCY PORT "i_ft_clk" 100.000000 MHz ;
 
 Clock Domain: <A href="#@net:i_clk16_c">i_clk16_c</A>   Source: i_clk16.PAD   Loads: 16
@@ -814,5 +1220,5 @@ Timing summary (Setup):
 Timing errors: 0  Score: 0
 Cumulative negative slack: 0
 
-Constraints cover 302 paths, 2 nets, and 81 connections (67.50% coverage)
+Constraints cover 359 paths, 2 nets, and 152 connections (75.25% coverage)
 

@@ -38,7 +38,7 @@ Performance Hardware Data Status:   Final          Version 55.1.
 // Package: CABGA381
 // ncd File: kilsyth_bootloader.ncd
 // Version: Diamond (64-bit) 3.10.3.144.3
-// Written on Tue Dec 11 21:40:42 2018
+// Written on Fri Dec 21 01:36:43 2018
 // M: Minimum Performance Grade
 // iotiming kilsyth_bootloader.ncd kilsyth_bootloader.prf -gui -msgset /home/konrad/dev/Kilsyth/gateware/bootloader/promote.xml
 
@@ -48,20 +48,48 @@ Worst Case Results across Performance Grades (M, 9, 8, 7, 6):
 
 // Input Setup and Hold Times
 
-Port  Clock Edge  Setup Performance_Grade  Hold Performance_Grade
+Port        Clock    Edge  Setup Performance_Grade  Hold Performance_Grade
 ----------------------------------------------------------------------
-(no input setup/hold data)
+i_ft_rxf_n  i_clk16  R    -0.187      M       1.847     6
+i_ft_rxf_n  i_ft_clk R     0.325      M       1.858     6
+i_ft_txe_n  i_clk16  R     0.002      M       1.563     6
+i_ft_txe_n  i_ft_clk R     0.398      M       1.468     6
+io_ft_be[0] i_clk16  R     0.938      6       0.326     6
+io_ft_be[1] i_clk16  R    -0.273      M       1.979     6
 
 
 // Clock to Output Delay
 
-Port    Clock Edge  Max_Delay Performance_Grade  Min_Delay Performance_Grade
+Port           Clock    Edge  Max_Delay Performance_Grade  Min_Delay Performance_Grade
 ------------------------------------------------------------------------
-leds[0] clk   R     7.432         6        3.645          M
-leds[1] clk   R     7.047         6        3.467          M
-leds[2] clk   R     6.814         6        3.369          M
-leds[3] clk   R     6.982         6        3.444          M
-leds[4] clk   R     6.814         6        3.369          M
-leds[5] clk   R     7.210         6        3.541          M
-leds[6] clk   R     6.977         6        3.443          M
-leds[7] clk   R     7.121         6        3.487          M
+io_ft_be[0]    i_ft_clk R     7.388         6        3.524          M
+io_ft_be[1]    i_ft_clk R     7.323         6        3.504          M
+io_ft_data[0]  i_ft_clk R     8.557         6        3.784          M
+io_ft_data[10] i_ft_clk R     8.314         6        3.908          M
+io_ft_data[11] i_ft_clk R     8.314         6        3.908          M
+io_ft_data[12] i_ft_clk R     8.557         6        4.017          M
+io_ft_data[13] i_ft_clk R     7.388         6        3.524          M
+io_ft_data[14] i_ft_clk R     7.126         6        3.419          M
+io_ft_data[15] i_ft_clk R     7.334         6        3.508          M
+io_ft_data[1]  i_ft_clk R     8.557         6        4.017          M
+io_ft_data[2]  i_ft_clk R     8.630         6        3.699          M
+io_ft_data[3]  i_ft_clk R     8.630         6        3.699          M
+io_ft_data[4]  i_ft_clk R     8.301         6        3.586          M
+io_ft_data[5]  i_ft_clk R     8.312         6        3.586          M
+io_ft_data[6]  i_ft_clk R     8.630         6        4.050          M
+io_ft_data[7]  i_ft_clk R     8.557         6        3.694          M
+io_ft_data[8]  i_ft_clk R     8.312         6        3.907          M
+io_ft_data[9]  i_ft_clk R     8.630         6        4.050          M
+io_ft_oe_n     i_ft_clk R     7.007         6        3.454          M
+o_ft_rd_n      i_ft_clk R     7.346         6        3.596          M
+o_ft_wr_n      i_ft_clk R     6.825         6        3.368          M
+o_leds[0]      i_clk16  R     6.974         6        3.442          M
+o_leds[1]      i_clk16  R     6.611         6        3.281          M
+o_leds[2]      i_clk16  R     8.981         6        4.330          M
+o_leds[3]      i_clk16  R     9.176         6        4.419          M
+o_leds[4]      i_clk16  R     9.156         6        4.400          M
+o_leds[5]      i_clk16  R     8.949         6        4.314          M
+o_leds[6]      i_ft_clk R     6.633         6        3.286          M
+o_leds[7]      i_ft_clk R     6.808         6        3.366          M
+WARNING: you must also run trce with hold speed: 6
+WARNING: you must also run trce with setup speed: M

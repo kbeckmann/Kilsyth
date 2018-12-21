@@ -12,7 +12,7 @@ WARNING - synthesis: input pad net 'io_ft_gpio1' has no legal load.
 WARNING - synthesis: DRC complete with 2 warnings.
 
 Design Results:
-     91 blocks expanded
+    114 blocks expanded
 completed the first expansion
 All blocks are expanded and NGD expansion is successful.
 Writing NGD file kilsyth_bootloader.ngd.

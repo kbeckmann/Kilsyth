@@ -1,0 +1,38 @@
+#Start recording tcl command: 12/21/2018 00:18:09
+#Project Location: /home/konrad/dev/Kilsyth/gateware/bootloader; Project name: kilsyth
+prj_project open "/home/konrad/dev/Kilsyth/gateware/bootloader/kilsyth.ldf"
+prj_run Export -impl bootloader -task Bitgen
+prj_run Export -impl bootloader -task Bitgen
+prj_run Export -impl bootloader -task Bitgen
+prj_run Export -impl bootloader -task Bitgen
+prj_run Map -impl bootloader
+prj_run Export -impl bootloader -task Bitgen
+prj_run Export -impl bootloader -task Bitgen
+prj_run Export -impl bootloader -task Bitgen
+prj_run Export -impl bootloader -task Bitgen
+prj_run Export -impl bootloader -task Bitgen
+prj_run Export -impl bootloader -task Bitgen
+prj_run Export -impl bootloader -task Bitgen
+prj_run Export -impl bootloader -task Bitgen
+prj_run Export -impl bootloader -task Bitgen
+prj_run Export -impl bootloader -task Bitgen
+prj_run Export -impl bootloader -task Bitgen
+prj_run Export -impl bootloader -task Bitgen
+prj_run Export -impl bootloader -task Bitgen
+prj_run Export -impl bootloader -task Bitgen
+prj_run Export -impl bootloader -task Bitgen
+prj_run Export -impl bootloader -task Bitgen
+prj_run Export -impl bootloader -task Bitgen
+prj_run Export -impl bootloader -task Bitgen
+prj_run Export -impl bootloader -task Bitgen
+prj_run Export -impl bootloader -task Bitgen
+prj_run Export -impl bootloader -task Bitgen
+prj_run Export -impl bootloader -task Bitgen
+prj_run Export -impl bootloader -task Bitgen
+prj_run Export -impl bootloader -task Promgen
+prj_run Export -impl bootloader -task Bitgen
+prj_run PAR -impl bootloader -task IOTiming
+prj_run Export -impl bootloader -task Bitgen
+prj_run Export -impl bootloader -task Bitgen
+prj_run Export -impl bootloader -task Bitgen
+#Stop recording: 12/21/2018 01:40:25

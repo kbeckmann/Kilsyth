@@ -14,7 +14,7 @@ Copyright (c) 1995 AT&T Corp.   All rights reserved.
 Copyright (c) 1995-2001 Lucent Technologies Inc.  All rights reserved.
 Copyright (c) 2001 Agere Systems   All rights reserved.
 Copyright (c) 2002-2017 Lattice Semiconductor Corporation,  All rights reserved.
-Thu Dec 20 22:41:13 2018
+Fri Dec 21 01:39:43 2018
 
 
 Command Line:  synthesis -f kilsyth_bootloader_lattice.synproj -gui -msgset /home/konrad/dev/Kilsyth/gateware/bootloader/promote.xml 
@@ -89,8 +89,9 @@ Analyzing Verilog file /home/konrad/dev/Kilsyth/gateware/bootloader/src/kilsyth_
 Analyzing Verilog file /usr/local/diamond/3.10_x64/ispfpga/userware/unix/SYNTHESIS_HEADERS/ecp5u.v. VERI-1482
 Top module name (Verilog): kilsyth_top
 INFO - synthesis: /home/konrad/dev/Kilsyth/gateware/bootloader/src/kilsyth_top.v(3): compiling module kilsyth_top. VERI-1018
-WARNING - synthesis: /home/konrad/dev/Kilsyth/gateware/bootloader/src/kilsyth_top.v(50): using initial value of ft_wr_n since it is never assigned. VERI-1220
-WARNING - synthesis: /home/konrad/dev/Kilsyth/gateware/bootloader/src/kilsyth_top.v(57): expression size 32 truncated to fit in target size 26. VERI-1209
+WARNING - synthesis: /home/konrad/dev/Kilsyth/gateware/bootloader/src/kilsyth_top.v(57): expression size 32 truncated to fit in target size 16. VERI-1209
+WARNING - synthesis: /home/konrad/dev/Kilsyth/gateware/bootloader/src/kilsyth_top.v(60): expression size 32 truncated to fit in target size 2. VERI-1209
+WARNING - synthesis: /home/konrad/dev/Kilsyth/gateware/bootloader/src/kilsyth_top.v(64): expression size 32 truncated to fit in target size 26. VERI-1209
 Loading NGL library '/usr/local/diamond/3.10_x64/ispfpga/sa5p00/data/sa5plib.ngl'...
 Loading NGL library '/usr/local/diamond/3.10_x64/ispfpga/xo2c00/data/xo2clib.ngl'...
 Loading NGL library '/usr/local/diamond/3.10_x64/ispfpga/mg5g00/data/mg5glib.ngl'...
@@ -98,29 +99,41 @@ Loading NGL library '/usr/local/diamond/3.10_x64/ispfpga/or5g00/data/orc5glib.ng
 Loading device for application map from file 'sa5p25.nph' in environment: /usr/local/diamond/3.10_x64/ispfpga.
 Package Status:                     Final          Version 1.33.
 Top-level module name = kilsyth_top.
-WARNING - synthesis: Initial value found on net pwr will be ignored due to unrecognized driver type
-######## Converting I/O port io_ft_data[15] to input.
-######## Converting I/O port io_ft_data[14] to input.
-######## Converting I/O port io_ft_data[13] to input.
-######## Converting I/O port io_ft_data[12] to input.
-######## Converting I/O port io_ft_data[11] to input.
-######## Converting I/O port io_ft_data[10] to input.
-######## Converting I/O port io_ft_data[9] to input.
-######## Converting I/O port io_ft_data[8] to input.
-######## Converting I/O port io_ft_data[7] to input.
-######## Converting I/O port io_ft_data[6] to input.
-######## Converting I/O port io_ft_data[5] to input.
-######## Converting I/O port io_ft_data[4] to input.
-######## Converting I/O port io_ft_data[3] to input.
-######## Converting I/O port io_ft_data[2] to input.
-######## Converting I/O port io_ft_data[1] to input.
-######## Converting I/O port io_ft_data[0] to input.
+######## Converting I/O port io_ft_data[15] to output.
+######## Converting I/O port io_ft_data[14] to output.
+######## Converting I/O port io_ft_data[13] to output.
+######## Converting I/O port io_ft_data[12] to output.
+######## Converting I/O port io_ft_data[11] to output.
+######## Converting I/O port io_ft_data[10] to output.
+######## Converting I/O port io_ft_data[9] to output.
+######## Converting I/O port io_ft_data[8] to output.
+######## Converting I/O port io_ft_data[7] to output.
+######## Converting I/O port io_ft_data[6] to output.
+######## Converting I/O port io_ft_data[5] to output.
+######## Converting I/O port io_ft_data[4] to output.
+######## Converting I/O port io_ft_data[3] to output.
+######## Converting I/O port io_ft_data[2] to output.
+######## Converting I/O port io_ft_data[1] to output.
+######## Converting I/O port io_ft_data[0] to output.
 ######## Converting I/O port io_ft_oe_n to output.
 ######## Converting I/O port io_ft_gpio1 to input.
 
 
 
+WARNING - synthesis: Bit 0 of Register ft_be is stuck at One
+WARNING - synthesis: Bit 1 of Register ft_be is stuck at One
+WARNING - synthesis: Bit 0 of Register ft_data_buf is stuck at Zero
+WARNING - synthesis: Bit 1 of Register ft_data_buf is stuck at Zero
+WARNING - synthesis: Bit 2 of Register ft_data_buf is stuck at Zero
+WARNING - synthesis: Bit 3 of Register ft_data_buf is stuck at Zero
+WARNING - synthesis: Bit 4 of Register ft_data_buf is stuck at Zero
+WARNING - synthesis: Bit 5 of Register ft_data_buf is stuck at Zero
+WARNING - synthesis: Bit 6 of Register ft_data_buf is stuck at Zero
+WARNING - synthesis: Bit 7 of Register ft_data_buf is stuck at Zero
+WARNING - synthesis: Bit 9 of Register ft_data_buf is stuck at One
+WARNING - synthesis: Bit 14 of Register ft_data_buf is stuck at One
 WARNING - synthesis: I/O Port io_ft_gpio1 's net has no driver and is unused.
+WARNING - synthesis: /home/konrad/dev/Kilsyth/gateware/bootloader/src/kilsyth_top.v(140): Register state_i7 is stuck at Zero. VDB-5013
 GSR will not be inferred because no asynchronous signal was found in the netlist.
 Applying 200.000000 MHz constraint to all clocks
 
@@ -137,36 +150,46 @@ All blocks are expanded and NGD expansion is successful.
 Writing NGD file kilsyth_bootloader.ngd.
 
 ################### Begin Area Report (kilsyth_top)######################
-Number of register bits => 33 of 12687 (0 % )
+Number of register bits => 44 of 12687 (0 % )
+BB => 2
 CCU2C => 13
-FD1S3AX => 32
-FD1S3AY => 1
+FD1P3AX => 4
+FD1P3AY => 2
+FD1P3IX => 3
+FD1S3AX => 35
 GSR => 1
-IB => 22
-LUT4 => 8
+IB => 4
+LUT4 => 19
 OB => 11
+OBZ => 16
+PFUMX => 1
 ################### End Area Report ##################
 
 ################### Begin Clock Report ######################
 Clock Nets
 Number of Clocks: 2
   Net : i_clk16_c, loads : 30
-  Net : i_ft_clk_c, loads : 3
+  Net : i_ft_clk_c, loads : 14
 Clock Enable Nets
-Number of Clock Enables: 0
-Top 0 highest fanout Clock Enables:
+Number of Clock Enables: 5
+Top 5 highest fanout Clock Enables:
+  Net : i_ft_clk_c_enable_9, loads : 3
+  Net : i_ft_clk_c_enable_3, loads : 3
+  Net : i_ft_clk_c_enable_6, loads : 1
+  Net : i_ft_clk_c_enable_4, loads : 1
+  Net : i_ft_clk_c_enable_7, loads : 1
 Highest fanout non-clock nets
 Top 10 highest fanout non-clock nets:
-  Net : io_ft_oe_n_c, loads : 3
-  Net : i_ft_rxf_n_c, loads : 2
-  Net : o_leds_c_6, loads : 2
-  Net : counter_23, loads : 2
-  Net : io_ft_data_c_15, loads : 1
-  Net : io_ft_data_c_14, loads : 1
-  Net : io_ft_data_c_13, loads : 1
-  Net : io_ft_data_c_12, loads : 1
-  Net : io_ft_data_c_11, loads : 1
-  Net : io_ft_data_c_10, loads : 1
+  Net : n1158, loads : 18
+  Net : state_1, loads : 13
+  Net : state_0, loads : 12
+  Net : state_2, loads : 7
+  Net : i_ft_txe_n_c, loads : 6
+  Net : i_ft_rxf_n_c, loads : 6
+  Net : ft_data_buf_7, loads : 6
+  Net : wants_to_write, loads : 6
+  Net : n1032, loads : 3
+  Net : i_ft_clk_c_enable_9, loads : 3
 ################### End Clock Report ##################
 
 <A name="lse_trs"></A><B><U><big>Timing Report Summary</big></U></B>
@@ -176,7 +199,7 @@ Constraint                              |   Constraint|       Actual|Levels
 --------------------------------------------------------------------------------
                                         |             |             |
 create_clock -period 5.000000 -name     |             |             |
-clk1 [get_nets i_ft_clk_c]              |  200.000 MHz|  379.651 MHz|     2  
+clk1 [get_nets i_ft_clk_c]              |  200.000 MHz|  247.525 MHz|     3  
                                         |             |             |
 create_clock -period 5.000000 -name     |             |             |
 clk0 [get_nets i_clk16_c]               |  200.000 MHz|  271.592 MHz|    14  
@@ -187,10 +210,10 @@ clk0 [get_nets i_clk16_c]               |  200.000 MHz|  271.592 MHz|    14
 All constraints were met.
 
 
-Peak Memory Usage: 207.609  MB
+Peak Memory Usage: 208.297  MB
 
 --------------------------------------------------------------
-Elapsed CPU time for LSE flow : 0.550  secs
+Elapsed CPU time for LSE flow : 0.557  secs
 --------------------------------------------------------------
 
 

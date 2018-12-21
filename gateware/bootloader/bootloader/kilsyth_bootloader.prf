@@ -1,18 +1,9 @@
 SCHEMATIC START ;
-# map:  version Diamond (64-bit) 3.10.3.144.3 -- WARNING: Map write only section -- Thu Dec 20 22:41:15 2018
+# map:  version Diamond (64-bit) 3.10.3.144.3 -- WARNING: Map write only section -- Fri Dec 21 01:39:44 2018
 
 SYSCONFIG SLAVE_SPI_PORT=DISABLE MASTER_SPI_PORT=DISABLE SLAVE_PARALLEL_PORT=DISABLE BACKGROUND_RECONFIG=OFF DONE_EX=OFF DONE_OD=ON DONE_PULL=ON MCCLK_FREQ=2.4 TRANSFR=OFF CONFIG_IOVOLTAGE=3.3 CONFIG_SECURE=OFF WAKE_UP=21 COMPRESS_CONFIG=OFF CONFIG_MODE=JTAG INBUF=OFF ;
-LOCATE COMP "o_ft_wr_n" SITE "J1" ;
-LOCATE COMP "o_ft_rd_n" SITE "M4" ;
-LOCATE COMP "o_leds[7]" SITE "C11" ;
-LOCATE COMP "o_leds[6]" SITE "B11" ;
-LOCATE COMP "o_leds[5]" SITE "C10" ;
-LOCATE COMP "o_leds[4]" SITE "A11" ;
-LOCATE COMP "o_leds[3]" SITE "A10" ;
-LOCATE COMP "o_leds[2]" SITE "B10" ;
-LOCATE COMP "o_leds[1]" SITE "B9" ;
-LOCATE COMP "o_leds[0]" SITE "A9" ;
-LOCATE COMP "i_clk16" SITE "G3" ;
+LOCATE COMP "io_ft_be[1]" SITE "J5" ;
+LOCATE COMP "io_ft_be[0]" SITE "K1" ;
 LOCATE COMP "io_ft_data[15]" SITE "K2" ;
 LOCATE COMP "io_ft_data[14]" SITE "K3" ;
 LOCATE COMP "io_ft_data[13]" SITE "K4" ;
@@ -29,9 +20,18 @@ LOCATE COMP "io_ft_data[3]" SITE "P1" ;
 LOCATE COMP "io_ft_data[2]" SITE "P2" ;
 LOCATE COMP "io_ft_data[1]" SITE "P3" ;
 LOCATE COMP "io_ft_data[0]" SITE "P4" ;
+LOCATE COMP "o_ft_wr_n" SITE "J1" ;
+LOCATE COMP "o_ft_rd_n" SITE "M4" ;
+LOCATE COMP "o_leds[7]" SITE "C11" ;
+LOCATE COMP "o_leds[6]" SITE "B11" ;
+LOCATE COMP "o_leds[5]" SITE "C10" ;
+LOCATE COMP "o_leds[4]" SITE "A11" ;
+LOCATE COMP "o_leds[3]" SITE "A10" ;
+LOCATE COMP "o_leds[2]" SITE "B10" ;
+LOCATE COMP "o_leds[1]" SITE "B9" ;
+LOCATE COMP "o_leds[0]" SITE "A9" ;
+LOCATE COMP "i_clk16" SITE "G3" ;
 LOCATE COMP "i_ft_clk" SITE "H2" ;
-LOCATE COMP "i_ft_be[1]" SITE "J5" ;
-LOCATE COMP "i_ft_be[0]" SITE "K1" ;
 LOCATE COMP "i_ft_txe_n" SITE "J4" ;
 LOCATE COMP "i_ft_rxf_n" SITE "J3" ;
 FREQUENCY PORT "i_ft_clk" 100.000000 MHz ;
