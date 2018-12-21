@@ -7010,8 +7010,8 @@ Wire Wire Line
 	12200 16800 11850 16800
 Text Notes 23750 4700 0    394  ~ 79
 ERRATA RevA
-Text Notes 23900 5000 0    50   ~ 0
-C9 is not a GPIO on ECP5 F12 and some other variants.\nFT_CLK is not routed to a clock pin. Can be fixed with a bodge wire on RevA! (R50 <-> R36)
+Text Notes 23900 5300 0    50   ~ 0
+- C9 is not a GPIO on ECP5 F12 and some other variants.\n\n- FT_CLK is not routed to a clock pin. Can be fixed with a bodge wire on RevA! (R50 <-> R36)\n\n- JTAG connector has a funky footprint on the PCB because CCW vs Odd/Even pinout on the symbol vs footprint.\n   PCB silk screen is accurate so don't worry - it's just a stupid pinout.
 Text Notes 15550 17050 0    50   ~ 0
 FIXME: C9 is not a GPIO on F12.\nRemove pin and move LED to C8
 Text Notes 11350 16500 0    50   ~ 0
@@ -7562,4 +7562,6 @@ Wire Bus Line
 	4550 16650 4550 21400
 Wire Bus Line
 	7050 16650 7050 21400
+Text Notes 2050 11700 0    50   ~ 0
+FIXME: Use ODD-EVEN in RevB.
 $EndSCHEMATC
