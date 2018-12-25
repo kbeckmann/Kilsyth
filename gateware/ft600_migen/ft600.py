@@ -94,8 +94,8 @@ class FT600Pipe(Module):
             # NextValue(ft_data_o, 0xCCCC),
             # NextValue(ft_data_oe, 1),
             NextValue(ft600.be, 0b11),
-            NextValue(ft600.data, 0xCCDD),
-            # NextValue(ft600.data, words_received),
+            # NextValue(ft600.data, 0xCCDD),
+            NextValue(ft600.data, words_received),
             If(
                 (ft600.txe_n == 1) | (words_received == 0),
                 NextValue(leds[6], 0),
