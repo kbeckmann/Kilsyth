@@ -1,6 +1,9 @@
 PROJ=ft600
 OPENOCD_INTERFACE:=interface/ftdi/dp_busblaster.cfg
 
+# Max frequency
+FREQ:=70
+
 ifndef TRELLIS
 $(error Set TRELLIS to Trellis git root)
 endif
@@ -11,7 +14,9 @@ all: ${PROJ}.bit
 	yosys -p "synth_ecp5 -noccu2 -nobram -nomux -json $@" $<
 
 %_out.config: %.json
-	nextpnr-ecp5 --json $< --basecfg $(TRELLIS)/misc/basecfgs/empty_lfe5u-25f.config --textcfg $@ --25k --package CABGA381 --lpf kilsyth.lpf
+	nextpnr-ecp5 --json $< --basecfg $(TRELLIS)/misc/basecfgs/empty_lfe5u-25f.config \
+	--textcfg $@ --25k --package CABGA381 --speed 6 --lpf kilsyth.lpf --freq $(FREQ) --no-tmdriv
+
 
 %.bit: %_out.config
 	# lfe5u12f: 0x21111043 = 554766403
