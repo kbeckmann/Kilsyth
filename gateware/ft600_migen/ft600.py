@@ -9,6 +9,7 @@ class FT600Pipe(Module):
             self.specials += \
                 Instance("TRELLIS_IO",
                     p_DIR="BIDIR",
+                    io_B=pin,
                     i_T=oe,
                     i_I=o,
                     o_O=i,
@@ -33,9 +34,9 @@ class FT600Pipe(Module):
         # ft_data_i = Signal(16)
         # ft_data_o = Signal(16)
         # ft_data_oe = Signal()
-        # self.build_pin_tristate(ft600.be, ft_data_oe, ft_data_o, ft_data_i)
+        # self.build_pin_tristate(ft600.data, ft_data_oe, ft_data_o, ft_data_i)
 
-        words_received = Signal(32, reset=0)
+        words_received = Signal(16, reset=0)
         buffer = [Signal(16)] * 1024
 
         self.comb += [
@@ -53,10 +54,10 @@ class FT600Pipe(Module):
             NextValue(ft600.oe_n, 1),
             NextValue(ft600.rd_n, 1),
             NextValue(ft600.wr_n, 1),
-            # NextValue(ft_be_o, 0b00),
-            # NextValue(ft_be_oe, 0),
+            # NextValue(ft_be_o, 0b11),
+            # NextValue(ft_be_oe, 1),
             # NextValue(ft_data_o, 0xFEFE),
-            # NextValue(ft_data_oe, 0),
+            # NextValue(ft_data_oe, 1),
             NextValue(ft600.be, 0b00),
             NextValue(ft600.data, 0xFEFE),
             If(
@@ -94,6 +95,7 @@ class FT600Pipe(Module):
             # NextValue(ft_data_oe, 1),
             NextValue(ft600.be, 0b11),
             NextValue(ft600.data, 0xCCDD),
+            # NextValue(ft600.data, words_received),
             If(
                 (ft600.txe_n == 1) | (words_received == 0),
                 NextValue(leds[6], 0),
@@ -104,6 +106,8 @@ class FT600Pipe(Module):
         )
 
     def testbench(self, clk, leds, ft600):
+        # yield
+        # yield
         yield ft600.txe_n.eq(1)
         yield ft600.rxf_n.eq(1)
         yield ft600.be.eq(0)
