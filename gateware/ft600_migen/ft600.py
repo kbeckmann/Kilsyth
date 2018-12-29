@@ -4,37 +4,23 @@ import sys
 is_testing = False
 
 class FT600Pipe(Module):
-    def build_pin_tristate(self, pin, oe, o, i):
-        if not is_testing:
-            self.specials += \
-                Instance("TRELLIS_IO",
-                    p_DIR="BIDIR",
-                    io_B=pin,
-                    i_T=oe,
-                    i_I=o,
-                    o_O=i,
-                )
-
     def __init__(self, clk, leds, ft600):
         self.clock_domains.cd_por = ClockDomain()
         self.clock_domains.cd_sys = ClockDomain(reset_less=False)
         self.cd_sys.clk = ft600.clk
 
+
         self.counter = Signal(32)
 
         timer = Signal(32)
 
-        # This tristate stuff seems to be sort of broken :(
+        ft_be_triple = TSTriple(2)
+        ft_be = ft_be_triple.get_tristate(ft600.be)
+        self.specials += ft_be
 
-        # ft_be_i = Signal(2)
-        # ft_be_o = Signal(2)
-        # ft_be_oe = Signal()
-        # self.build_pin_tristate(ft600.be, ft_be_oe, ft_be_o, ft_be_i)
-
-        # ft_data_i = Signal(16)
-        # ft_data_o = Signal(16)
-        # ft_data_oe = Signal()
-        # self.build_pin_tristate(ft600.data, ft_data_oe, ft_data_o, ft_data_i)
+        ft_data_triple = TSTriple(16)
+        ft_data = ft_data_triple.get_tristate(ft600.data)
+        self.specials += ft_data
 
         words_received = Signal(16, reset=0)
         buffer = [Signal(16)] * 1024
@@ -46,7 +32,14 @@ class FT600Pipe(Module):
         self.sync += [
             self.counter.eq(self.counter + 1),
         ]
- 
+
+        width = 16
+        depth = 2048
+        self.specials.mem = Memory(width, depth)
+        wrport = self.mem.get_port(write_capable=True)
+        rdport = self.mem.get_port(has_re=False)
+        self.specials += wrport, rdport
+
         self.submodules.fsm = FSM(reset_state="WAIT-INPUT")
         self.fsm.act(
             "WAIT-INPUT",
@@ -54,12 +47,11 @@ class FT600Pipe(Module):
             NextValue(ft600.oe_n, 1),
             NextValue(ft600.rd_n, 1),
             NextValue(ft600.wr_n, 1),
-            # NextValue(ft_be_o, 0b11),
-            # NextValue(ft_be_oe, 1),
-            # NextValue(ft_data_o, 0xFEFE),
-            # NextValue(ft_data_oe, 1),
-            NextValue(ft600.be, 0b00),
-            NextValue(ft600.data, 0xFEFE),
+            NextValue(ft_be.oe, 0),
+            NextValue(ft_data.oe, 0),
+
+            NextValue(wrport.we, 0),
+
             If(
                 (ft600.txe_n == 0) & (words_received != 0),
                 NextValue(leds[2], 0),
@@ -82,20 +74,24 @@ class FT600Pipe(Module):
                 NextValue(leds[4], 0),
                 NextState("WAIT-INPUT")
             ).Else(
+                # TODO: Care about ft_be
                 NextValue(words_received, words_received + 1),
+                NextValue(wrport.we, 1),
+                NextValue(wrport.adr, words_received),
+                NextValue(wrport.dat_w, ft_data.i),
             )
         )
         self.fsm.act(
             "WRITE-WORD",
             NextValue(leds[6], 1),
             NextValue(ft600.wr_n, 0),
-            # NextValue(ft_be_o, 0b11),
-            # NextValue(ft_be_oe, 1),
-            # NextValue(ft_data_o, 0xCCCC),
-            # NextValue(ft_data_oe, 1),
-            NextValue(ft600.be, 0b11),
-            # NextValue(ft600.data, 0xCCDD),
-            NextValue(ft600.data, words_received),
+
+            NextValue(rdport.adr, words_received),
+            NextValue(ft_data.o, rdport.dat_r),
+
+            NextValue(ft_data.oe, 1),
+            NextValue(ft_be.oe, 1),
+            NextValue(ft_be.o, 0b11),
             If(
                 (ft600.txe_n == 1) | (words_received == 0),
                 NextValue(leds[6], 0),

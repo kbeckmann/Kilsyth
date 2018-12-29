@@ -11,7 +11,12 @@ static const int BUFFER_LEN = 32*1024;
 static void write_test(FT_HANDLE handle)
 {
 	unique_ptr<uint8_t[]> buf(new uint8_t[BUFFER_LEN]);
-	memset(buf.get(), 0xAA, BUFFER_LEN);
+	// memset(buf.get(), 0xDD, BUFFER_LEN);
+
+	for (unsigned int i = 0; i < BUFFER_LEN / 2; i++) {
+		buf[i*2    ] = i        & 0xff;
+		buf[i*2 + 1] = (i >> 8) & 0xff;
+	}
 
 	while (!do_exit) {
 		for (uint8_t channel = 0; channel < out_ch_cnt; channel++) {
@@ -41,7 +46,7 @@ static void read_test(FT_HANDLE handle)
 			}
 #if 1
 			for (int x = 0; x < count/2; x++) {
-				if (buf[x] != 0xaa) printf("%04x ", ((uint16_t*)buf.get())[x]);
+				printf("%04x ", ((uint16_t*)buf.get())[x]);
 				// if (buf[x] != 0) printf("%02x ", buf[x]);
 				// if (x % 16 == 0)
 					// printf("\n");
