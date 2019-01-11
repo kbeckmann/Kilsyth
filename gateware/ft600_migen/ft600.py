@@ -1,6 +1,5 @@
 from migen import *
-import sys
-
+import sys, os
 is_testing = False
 
 class FT600Pipe(Module):
@@ -8,7 +7,6 @@ class FT600Pipe(Module):
         self.clock_domains.cd_por = ClockDomain()
         self.clock_domains.cd_sys = ClockDomain(reset_less=False)
         self.cd_sys.clk = ft600.clk
-
 
         self.counter = Signal(32)
 
@@ -23,7 +21,6 @@ class FT600Pipe(Module):
         self.specials += ft_data
 
         words_received = Signal(16, reset=0)
-        buffer = [Signal(16)] * 1024
 
         self.comb += [
             leds[0].eq(self.counter[0]),
@@ -156,4 +153,16 @@ if __name__ == '__main__':
         run_simulation(ft600pipe, ft600pipe.testbench(clk, leds, ft600), vcd_name="out.vcd")
         print("Passed")
     else:
-        plat.build(ft600pipe, toolchain_path='/usr/share/trellis', idcode="0x21111043")
+        target = os.environ["TARGET"] if "TARGET" in os.environ else "lfe5u12"
+        if target == "lfe5u12":
+            idcode = "0x21111043"
+        elif target == "lfe5u25":
+            idcode = "0x41111043"
+        elif target == "lfe5u45":
+            idcode = "0x41112043"
+        elif target == "lfe5u85":
+            idcode = "0x41113043"
+        else:
+            assert(not "Use supported targets.")
+        
+        plat.build(ft600pipe, toolchain_path='/usr/share/trellis', idcode=idcode)
