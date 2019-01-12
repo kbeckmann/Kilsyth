@@ -490,8 +490,22 @@ def DemoResetChipConfiguration(bDisplay=True):
     if D3XX is None:
         logging.debug("ERROR: Please check if another D3XX application is open!")
         return False
-    chipCfg = _ft.FT_60XCONFIGURATION()
-    D3XX.setChipConfiguration(chipCfg)
+
+    # Hack: Reset it to some decent config..
+    cfg = D3XX.getChipConfiguration()
+    cfg.ProductID = 0x601e
+    cfg.bInterval = 0x09
+    cfg.PowerAttributes = 0xe0
+    cfg.PowerConsumption = 0x60
+    cfg.Reserved2 = 0x00
+    cfg.FIFOClock = _ft.FT_CONFIGURATION_FIFO_CLK_40
+    cfg.FIFOMode = _ft.FT_CONFIGURATION_FIFO_MODE_245
+    cfg.ChannelConfig = _ft.FT_CONFIGURATION_CHANNEL_CONFIG_1
+    cfg.OptionalFeatureSupport = 0x03c2
+    cfg.BatteryChargingGPIOConfig = 0xe4
+    cfg.MSIO_Control = 0x00010800
+
+    D3XX.setChipConfiguration(cfg)
     D3XX.close(True)
     D3XX = 0
 
