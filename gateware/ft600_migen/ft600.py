@@ -141,7 +141,8 @@ if __name__ == '__main__':
         is_testing = True
 
     import kilsyth
-    plat = kilsyth.Platform(toolchain='trellis')
+    target = os.environ["TARGET"] if "TARGET" in os.environ else "lfe5u12"
+    plat = kilsyth.Platform(toolchain='trellis', target=target)
     plat.add_period_constraint("ft600", 10.)
     clk = plat.request("clk16")
     leds = [plat.request('user_led', i) for i in range(8)]
@@ -153,16 +154,4 @@ if __name__ == '__main__':
         run_simulation(ft600pipe, ft600pipe.testbench(clk, leds, ft600), vcd_name="out.vcd")
         print("Passed")
     else:
-        target = os.environ["TARGET"] if "TARGET" in os.environ else "lfe5u12"
-        if target == "lfe5u12":
-            idcode = "0x21111043"
-        elif target == "lfe5u25":
-            idcode = "0x41111043"
-        elif target == "lfe5u45":
-            idcode = "0x41112043"
-        elif target == "lfe5u85":
-            idcode = "0x41113043"
-        else:
-            assert(not "Use supported targets.")
-        
-        plat.build(ft600pipe, toolchain_path='/usr/share/trellis', idcode=idcode)
+        plat.build(ft600pipe, toolchain_path='/usr/share/trellis', idcode=plat.idcode)
