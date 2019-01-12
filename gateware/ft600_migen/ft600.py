@@ -1,6 +1,6 @@
 from migen import *
+import argparse
 import sys, os
-is_testing = False
 
 class FT600Pipe(Module):
     def __init__(self, clk, leds, ft600):
@@ -136,10 +136,18 @@ class FT600Pipe(Module):
         yield
 
 
-if __name__ == '__main__':
-    if len(sys.argv) == 2 and sys.argv[1] == "test":
-        is_testing = True
+def run_applet(applet):
+    # Ignore applet for now
+    import FT600Driver
+    driver = FT600Driver.FT600Driver()
 
+    print(driver.FT_GetDriverVersion())
+    print(driver.FT_GetLibraryVersion())
+    print(driver.get_device_lists())
+
+
+
+def build_gateware(test):
     import kilsyth
     target = os.environ["TARGET"] if "TARGET" in os.environ else "lfe5u12"
     plat = kilsyth.Platform(toolchain='trellis', target=target)
@@ -150,8 +158,24 @@ if __name__ == '__main__':
  
     ft600pipe = FT600Pipe(clk, leds, ft600)
 
-    if is_testing:
+    if test:
         run_simulation(ft600pipe, ft600pipe.testbench(clk, leds, ft600), vcd_name="out.vcd")
         print("Passed")
     else:
         plat.build(ft600pipe, toolchain_path='/usr/share/trellis', idcode=plat.idcode)
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description='Kilsyth FT600 integration')
+    parser.add_argument('--test', action='store_true', help='Run gateware tests')
+    parser.add_argument('--build', action='store_true', help='Builds gateware')
+    parser.add_argument('--run', help='Runs applet')
+
+    args = parser.parse_args()
+    # print(args)
+    
+    if args.test:
+        build_gateware(True)
+    elif args.build:
+        build_gateware(False)
+    elif args.run:
+        run_applet(args.run)
