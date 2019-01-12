@@ -403,7 +403,7 @@ def DisplayChipConfiguration(cfg):
     logging.debug("\tPowerConsumption = %#04x" % cfg.PowerConsumption)
     logging.debug("\tReserved2 = %#04x" % cfg.Reserved2)
 
-    fifoClock = ["100 MHz", "66 MHz"]	
+    fifoClock = ["100 MHz", "66 MHz", "50 MHz", "40 MHz"]
     logging.debug("\tFIFOClock = %#04x (%s)" % (cfg.FIFOClock, fifoClock[cfg.FIFOClock]))
 	
     fifoMode = ["245 Mode", "600 Mode"]
