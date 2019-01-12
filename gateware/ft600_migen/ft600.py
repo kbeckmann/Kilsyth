@@ -143,7 +143,8 @@ def run_applet(applet):
 
     print(driver.FT_GetDriverVersion())
     print(driver.FT_GetLibraryVersion())
-    print(driver.get_device_lists())
+    driver.get_device_lists()
+    driver.set_channel_config(False, FT600Driver.CONFIGURATION_FIFO_CLK_100)
 
 
 
