@@ -208,7 +208,7 @@ class FTD3XX(object):
     def getStringDescriptor(self, index):
         """Returns a string descriptor. """
         strDesc = _ft.FT_STRING_DESCRIPTOR()
-        lenTransferred = _ft.DWORD()
+        lenTransferred = _ft.ULONG()
         self.status = call_ft(_ft.FT_GetDescriptor, self.handle, _ft.UCHAR(FT_STRING_DESCRIPTOR_TYPE), _ft.UCHAR(index), c.pointer(strDesc), c.sizeof(strDesc), c.byref(lenTransferred))
         return strDesc
 
