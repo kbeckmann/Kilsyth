@@ -1,7 +1,7 @@
 import sys
 if sys.platform == 'win32':
     import _ftd3xx_win32 as _ft
-elif sys.platform == 'linux2':
+elif sys.platform == 'linux':
     import _ftd3xx_linux as _ft	
 import ctypes as c
 import threading
@@ -136,7 +136,7 @@ def getDeviceInfoDetail(devnum=0):
     d = c.c_buffer(FT_MAX_DESCRIPTION_SIZE)
     call_ft(_ft.FT_GetDeviceInfoDetail, _ft.DWORD(devnum),
         c.byref(f), c.byref(t), c.byref(i), c.byref(l), n, d, c.byref(h))
-    if sys.platform == 'linux2':
+    if sys.platform == 'linux':
         """Linux creates a handle to the device so close it. D3XX Linux driver issue."""
         call_ft(_ft.FT_Close, h)
     return {'Flags': f.value, 
@@ -157,7 +157,7 @@ def create(id_str, flags=FT_OPEN_BY_INDEX):
 
 def setTransferParams(conf, fifo):
     """Set transfer parameters for Linux only"""
-    if sys.platform == 'linux2':
+    if sys.platform == 'linux':
         call_ft(_ft.FT_SetTransferParams, c.byref(conf), fifo)
     return None	
 
@@ -360,7 +360,7 @@ class FTD3XX(object):
 		
     # OS-dependent functions
     # If Linux
-    elif sys.platform == 'linux2':
+    elif sys.platform == 'linux':
 	
         def writePipe(self, channel, data, datalen, timeout=1000):
             """Send the data to the device."""

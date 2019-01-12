@@ -2,7 +2,7 @@ import ftd3xx
 import sys
 if sys.platform == 'win32':
     import ftd3xx._ftd3xx_win32 as _ft
-elif sys.platform == 'linux2':
+elif sys.platform == 'linux':
     import ftd3xx._ftd3xx_linux as _ft
 import datetime
 import time
@@ -36,7 +36,7 @@ def DemoWaitForDeviceReenumeration():
     time.sleep(1)
     ftd3xx.raiseExceptionOnError(origValue)
 
-    if sys.platform == 'linux2':
+    if sys.platform == 'linux':
         count = 0
         while count == 0:
             count = ftd3xx.createDeviceInfoList()
@@ -48,7 +48,7 @@ def DemoTurnOffPipeThreads():
     # Only needed for RevA chip (Firmware 1.0.2)
     # Not necessary starting RevB chip (Firmware 1.0.9)
 
-    if sys.platform == 'linux2':
+    if sys.platform == 'linux':
 
         conf = _ft.FT_TRANSFER_CONF();
         conf.wStructSize = ctypes.sizeof(_ft.FT_TRANSFER_CONF);
@@ -125,7 +125,7 @@ def DemoEnumerateDevices():
 
 def DemoOpenDeviceBy():
 
-    if sys.platform == 'linux2':
+    if sys.platform == 'linux':
         DemoTurnOffPipeThreads()
 
     # get description and serial number of device at index 0
@@ -143,7 +143,7 @@ def DemoOpenDeviceBy():
     D3XX = 0
 
     # open device by description
-    if sys.platform == 'linux2':
+    if sys.platform == 'linux':
         DemoTurnOffPipeThreads()
         ftd3xx.createDeviceInfoList()
         DEVICELIST = ftd3xx.getDeviceInfoList()
@@ -157,7 +157,7 @@ def DemoOpenDeviceBy():
     D3XX = 0
 
     # open device by serial number
-    if sys.platform == 'linux2':
+    if sys.platform == 'linux':
         DemoTurnOffPipeThreads()
         ftd3xx.createDeviceInfoList()
         DEVICELIST = ftd3xx.getDeviceInfoList()
@@ -175,7 +175,7 @@ def DemoOpenDeviceBy():
 
 def DemoVersions():
 
-    if sys.platform == 'linux2':
+    if sys.platform == 'linux':
         DemoTurnOffPipeThreads()
 
     D3XX = ftd3xx.create(0, _ft.FT_OPEN_BY_INDEX)
@@ -209,7 +209,7 @@ def DemoVersions():
 	
 def DemoDescriptors():
 
-    if sys.platform == 'linux2':
+    if sys.platform == 'linux':
         DemoTurnOffPipeThreads()
 
     D3XX = ftd3xx.create(0, _ft.FT_OPEN_BY_INDEX)
@@ -458,7 +458,7 @@ def DisplayChipConfiguration(cfg):
 
 def DemoGetChipConfiguration(bDisplay=True):
 
-    if sys.platform == 'linux2':
+    if sys.platform == 'linux':
         DemoTurnOffPipeThreads()
 
     D3XX = ftd3xx.create(0, _ft.FT_OPEN_BY_INDEX)
@@ -482,7 +482,7 @@ def DemoResetChipConfiguration(bDisplay=True):
     if bDisplay == True:
         logging.debug("reset chip configuration")
 
-    if sys.platform == 'linux2':
+    if sys.platform == 'linux':
         DemoTurnOffPipeThreads()
 	
     # set default chip configuration
@@ -499,7 +499,7 @@ def DemoResetChipConfiguration(bDisplay=True):
 		
     # reopen to display chip configuration
     if bDisplay == True:
-        if sys.platform == 'linux2':
+        if sys.platform == 'linux':
             DemoTurnOffPipeThreads()
         D3XX = ftd3xx.create(0, _ft.FT_OPEN_BY_INDEX)
         if D3XX is None:
@@ -515,7 +515,7 @@ def DemoResetChipConfiguration(bDisplay=True):
 	
 def DemoModifyChipConfiguration():
 
-    if sys.platform == 'linux2':
+    if sys.platform == 'linux':
         DemoTurnOffPipeThreads()
 
     D3XX = ftd3xx.create(0, _ft.FT_OPEN_BY_INDEX)
@@ -543,7 +543,7 @@ def DemoModifyChipConfiguration():
 	
     # reopen to display current chip configuration
     logging.debug("get new chip configuration")
-    if sys.platform == 'linux2':
+    if sys.platform == 'linux':
         DemoTurnOffPipeThreads()
     D3XX = ftd3xx.create(0, _ft.FT_OPEN_BY_INDEX)
     if D3XX is None:
@@ -561,7 +561,7 @@ def DemoModifyChipConfiguration():
 	
 def DemoSetChipConfiguration():
 
-    if sys.platform == 'linux2':
+    if sys.platform == 'linux':
         DemoTurnOffPipeThreads()
 
     D3XX = ftd3xx.create(0, _ft.FT_OPEN_BY_INDEX)
@@ -603,7 +603,7 @@ def DemoSetChipConfiguration():
 	
     # reopen to display current chip configuration
     logging.debug("get new chip configuration")
-    if sys.platform == 'linux2':
+    if sys.platform == 'linux':
         DemoTurnOffPipeThreads()
     D3XX = ftd3xx.create(0, _ft.FT_OPEN_BY_INDEX)
     if D3XX is None:
@@ -649,7 +649,7 @@ def DemoTransfer():
         if result == True:
             result = DemoLoopback(False)
 
-    elif sys.platform == 'linux2':
+    elif sys.platform == 'linux':
 
         result = DemoLoopback()
 
@@ -660,7 +660,7 @@ def DemoLoopback(bStreamingMode=False):
 
     result = True
     channel = 0
-    if sys.platform == 'linux2':
+    if sys.platform == 'linux':
         epout = channel	
         epin = channel	
     else:
@@ -675,7 +675,7 @@ def DemoLoopback(bStreamingMode=False):
         return False
 	
     # enable streaming mode
-    if bStreamingMode and sys.platform == 'linux2':
+    if bStreamingMode and sys.platform == 'linux':
         D3XX.setStreamPipe(epout, size)
         D3XX.setStreamPipe(epin, size)	
 
@@ -733,7 +733,7 @@ def DemoLoopback(bStreamingMode=False):
                 break
 				
     # disable streaming mode
-    if bStreamingMode and sys.platform == 'linux2':
+    if bStreamingMode and sys.platform == 'linux':
         D3XX.clearStreamPipe(epout)
         D3XX.clearStreamPipe(epin)
 	
@@ -872,7 +872,7 @@ def DemoNotificationTransfer():
 
 def DemoPipeTimeout():
 
-    if sys.platform == 'linux2':
+    if sys.platform == 'linux':
         return True
 
     logging.debug("Get set pipe timeout")
@@ -909,7 +909,7 @@ def DemoPipeTimeout():
 	
 def DemoSuspendTimeout():
 
-    if sys.platform == 'linux2':
+    if sys.platform == 'linux':
         return True
 
     logging.debug("Get set suspend timeout")
@@ -1061,7 +1061,7 @@ def DemoGpioBatteryCharging():
 
 def DemoGpioSetGet():
 
-    if sys.platform == 'linux2':
+    if sys.platform == 'linux':
         DemoTurnOffPipeThreads()
 
     D3XX = ftd3xx.create(0, _ft.FT_OPEN_BY_INDEX)

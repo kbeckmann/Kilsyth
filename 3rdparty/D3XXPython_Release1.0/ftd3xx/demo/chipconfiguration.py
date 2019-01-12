@@ -2,7 +2,7 @@ import ftd3xx
 import sys
 if sys.platform == 'win32':
     import ftd3xx._ftd3xx_win32 as _ft
-elif sys.platform == 'linux2':
+elif sys.platform == 'linux':
     import ftd3xx._ftd3xx_linux as _ft
 import datetime
 import time
@@ -198,7 +198,7 @@ def DisplayChipConfiguration(cfg):
 
 def GetChipConfiguration(bDisplay=True):
 
-    if sys.platform == 'linux2':
+    if sys.platform == 'linux':
         TurnOffPipeThreads()
         ftd3xx.createDeviceInfoList()
         ftd3xx.getDeviceInfoList()
@@ -221,7 +221,7 @@ def GetChipConfiguration(bDisplay=True):
 
 def SetChipConfiguration(cfg=None, bDisplay=False):
 
-    if sys.platform == 'linux2':
+    if sys.platform == 'linux':
         TurnOffPipeThreads()
         ftd3xx.createDeviceInfoList()
         ftd3xx.getDeviceInfoList()
@@ -245,7 +245,7 @@ def SetChipConfiguration(cfg=None, bDisplay=False):
 def GetLogPath(fileName):
 
     logPath = ""
-    if sys.platform == 'linux2':
+    if sys.platform == 'linux':
         logPath = os.path.dirname(__file__) + "/" + fileName
     elif sys.platform == 'win32':
         logPath = os.path.dirname(__file__) + "\\" + fileName

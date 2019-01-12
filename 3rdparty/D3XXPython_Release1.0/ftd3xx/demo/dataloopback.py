@@ -2,7 +2,7 @@ import ftd3xx
 import sys
 if sys.platform == 'win32':
     import ftd3xx._ftd3xx_win32 as _ft
-elif sys.platform == 'linux2':
+elif sys.platform == 'linux':
     import ftd3xx._ftd3xx_linux as _ft
 if sys.version_info.major == 3:
     import queue
@@ -33,7 +33,7 @@ def CreateLogFile(logFile, logBuffer, bAppend=False):
 
 def CreateLogDirectory():
 
-    if sys.platform == 'linux2':
+    if sys.platform == 'linux':
         logDirectory = os.path.dirname(__file__) + "/dataloopback_output/"
     elif sys.platform == 'win32':
         logDirectory = os.path.dirname(__file__) + "\\dataloopback_output\\"	
@@ -150,7 +150,7 @@ def DemoTurnOffPipeThreads():
     # Only needed for RevA chip (Firmware 1.0.2)
     # Not necessary starting RevB chip (Firmware 1.0.9)
 
-    if sys.platform == 'linux2':
+    if sys.platform == 'linux':
 
         conf = _ft.FT_TRANSFER_CONF();
         conf.wStructSize = ctypes.sizeof(_ft.FT_TRANSFER_CONF);
@@ -259,7 +259,7 @@ def GetUsername():
 
 def WritePipe(D3XX, pipe, buffer, size):
 
-    if sys.platform == 'linux2':
+    if sys.platform == 'linux':
         pipe -= 0x02
 
     return D3XX.writePipe(pipe, buffer, size)
@@ -267,7 +267,7 @@ def WritePipe(D3XX, pipe, buffer, size):
 
 def ReadPipe(D3XX, pipe, size):
 
-    if sys.platform == 'linux2':
+    if sys.platform == 'linux':
         pipe -= 0x82
 
     return D3XX.readPipeEx(pipe, size)
@@ -275,7 +275,7 @@ def ReadPipe(D3XX, pipe, size):
 
 def CancelPipe(D3XX, pipe):
 
-    if sys.platform == 'linux2':
+    if sys.platform == 'linux':
         return D3XX.flushPipe(pipe)
 
     return D3XX.abortPipe(pipe)
@@ -453,7 +453,7 @@ def main(channelsToTest=[0,1,2,3], transferSize=0, bStressTest=True):
     # raise exception on error
     # ftd3xx.raiseExceptionOnError(True)
 
-    if sys.platform == 'linux2':
+    if sys.platform == 'linux':
         DemoTurnOffPipeThreads()
 	
     # check connected devices

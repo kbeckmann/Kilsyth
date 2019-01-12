@@ -2,7 +2,7 @@ import ftd3xx
 import sys
 if sys.platform == 'win32':
     import ftd3xx._ftd3xx_win32 as _ft
-elif sys.platform == 'linux2':
+elif sys.platform == 'linux':
     import ftd3xx._ftd3xx_linux as _ft
 if sys.version_info.major == 3:
     import queue
@@ -33,7 +33,7 @@ def CreateLogFile(logFile, logBuffer, bAppend=False):
 
 def CreateLogDirectory():
 
-    if sys.platform == 'linux2':
+    if sys.platform == 'linux':
         logDirectory = os.path.dirname(__file__) + "/dataloopback_output/"
     elif sys.platform == 'win32':
         logDirectory = os.path.dirname(__file__) + "\\dataloopback_output\\"	
@@ -150,7 +150,7 @@ def DemoTurnOffPipeThreads():
     # Only needed for RevA chip (Firmware 1.0.2)
     # Not necessary starting RevB chip (Firmware 1.0.9)
 
-    if sys.platform == 'linux2':
+    if sys.platform == 'linux':
 
         conf = _ft.FT_TRANSFER_CONF();
         conf.wStructSize = ctypes.sizeof(_ft.FT_TRANSFER_CONF);
@@ -259,7 +259,7 @@ def GetUsername():
 
 def CancelPipe(D3XX, pipe):
 
-    if sys.platform == 'linux2':
+    if sys.platform == 'linux':
         return D3XX.flushPipe(pipe)
 
     return D3XX.abortPipe(pipe)
@@ -268,7 +268,7 @@ def CancelPipe(D3XX, pipe):
 def WriterThreadFunc(D3XX, pipe, buffer, size, iteration, qoutput):
 
     result = True
-    if sys.platform == 'linux2':
+    if sys.platform == 'linux':
         pipe -= 0x02
     start = timeit.default_timer()	
     for iter in range(iteration):
@@ -295,14 +295,14 @@ def WriterThreadFunc(D3XX, pipe, buffer, size, iteration, qoutput):
 
     elapsed = timeit.default_timer() - start	
     logging.debug("W[%d] Transferring %d(%dx%d) bytes took %.2f sec. Rate is %d MBps." % 
-        (pipe if sys.platform == 'linux2' else pipe-0x02, size*iteration, size, iteration, elapsed, size*iteration/(elapsed)/1024/1024))
+        (pipe if sys.platform == 'linux' else pipe-0x02, size*iteration, size, iteration, elapsed, size*iteration/(elapsed)/1024/1024))
     qoutput.put(result)
 
 
 def ReaderThreadFunc(D3XX, pipe, buffer, size, iteration, qoutput):
 
     result = True
-    if sys.platform == 'linux2':
+    if sys.platform == 'linux':
         pipe -= 0x82
     data = ctypes.c_buffer(size)		
     start = timeit.default_timer()	
@@ -334,7 +334,7 @@ def ReaderThreadFunc(D3XX, pipe, buffer, size, iteration, qoutput):
 
     elapsed = timeit.default_timer() - start
     logging.debug("R[%d] Transferring %d(%dx%d) bytes took %.2f sec. Rate is %d MBps." % 
-        (pipe if sys.platform == 'linux2' else pipe-0x82, size*iteration, size, iteration, elapsed, size*iteration/(elapsed)/1024/1024))
+        (pipe if sys.platform == 'linux' else pipe-0x82, size*iteration, size, iteration, elapsed, size*iteration/(elapsed)/1024/1024))
     qoutput.put(result)
 
 
@@ -428,7 +428,7 @@ def main(channelsToTest=[0], transferSize=0, transferIteration=16, bWrite=False,
     # raise exception on error
     # ftd3xx.raiseExceptionOnError(True)
 
-    if sys.platform == 'linux2':
+    if sys.platform == 'linux':
         DemoTurnOffPipeThreads()
 	
     # check connected devices
