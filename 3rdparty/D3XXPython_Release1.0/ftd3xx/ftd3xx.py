@@ -236,9 +236,9 @@ class FTD3XX(object):
         self.status = call_ft(_ft.FT_GetChipConfiguration, self.handle, c.byref(chipCfg))
         return chipCfg
 	
-    def setChipConfiguration(self, chipCfg=None):
+    def setChipConfiguration(self, chipCfg):
         """Sets a chip configuration. """
-        self.status = call_ft(_ft.FT_SetChipConfiguration, self.handle, c.byref(chipCfg) if chipCfg is not None else None)
+        self.status = call_ft(_ft.FT_SetChipConfiguration, self.handle, c.byref(chipCfg))
         return None
 	
     def getVIDPID(self):
