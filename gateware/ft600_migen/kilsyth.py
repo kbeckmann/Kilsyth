@@ -126,22 +126,21 @@ class Platform(LatticePlatform):
     default_clk_period = 62.5
 
     def __init__(self, *args, **kwargs):
-        if kwargs['target'] == "lfe5u12":
+        target = kwargs.pop('target')
+        if target == "lfe5u12":
             self.idcode = "0x21111043"
             self.device = "LFE5U-25F-6BG381C"
-        elif kwargs['target'] == "lfe5u25":
+        elif target == "lfe5u25":
             self.idcode = "0x41111043"
             self.device = "LFE5U-25F-6BG381C"
-        elif kwargs['target'] == "lfe5u45":
+        elif target == "lfe5u45":
             self.idcode = "0x41112043"
             self.device = "LFE5U-45F-6BG381C"
-        elif kwargs['target'] == "lfe5u85":
+        elif target == "lfe5u85":
             self.idcode = "0x41113043"
             self.device = "LFE5U-85F-6BG381C"
         else:
             assert(not "Use supported targets.")
-
-        kwargs.pop('target', None)
 
         LatticePlatform.__init__(self, self.device, _io, _connectors,
                                     *args, **kwargs)
