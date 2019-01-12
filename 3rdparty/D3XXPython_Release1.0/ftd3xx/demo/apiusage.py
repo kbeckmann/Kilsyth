@@ -489,8 +489,9 @@ def DemoResetChipConfiguration(bDisplay=True):
     D3XX = ftd3xx.create(0, _ft.FT_OPEN_BY_INDEX)
     if D3XX is None:
         logging.debug("ERROR: Please check if another D3XX application is open!")
-        return False	
-    D3XX.setChipConfiguration()
+        return False
+    chipCfg = _ft.FT_60XCONFIGURATION()
+    D3XX.setChipConfiguration(chipCfg)
     D3XX.close(True)
     D3XX = 0
 
