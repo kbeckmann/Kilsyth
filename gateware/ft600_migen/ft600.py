@@ -20,12 +20,21 @@ class FT600Pipe(Module):
         ft_data = ft_data_triple.get_tristate(ft600.data)
         self.specials += ft_data
 
+        width = 16
+        depth = 2048
+        self.specials.mem = Memory(width, depth)
+        wrport = self.mem.get_port(write_capable=True)
+        rdport = self.mem.get_port(has_re=False)
+        self.specials += wrport, rdport
+
         words_received = Signal(16, reset=0)
         words_received_1 = Signal(16, reset=0) # store (words_received - 1) separately
         read_word_at = Signal(16, reset=0)
 
         self.comb += [
             leds[0].eq(self.counter[0]),
+            # rdport.adr.eq(0), # To read a constant address..
+            rdport.adr.eq(read_word_at),
         ]
  
         txe_n_r = Signal(reset=1)
@@ -35,13 +44,6 @@ class FT600Pipe(Module):
             txe_n_r.eq(ft600.txe_n),
             rxf_n_r.eq(ft600.rxf_n),
         ]
-
-        width = 16
-        depth = 2048
-        self.specials.mem = Memory(width, depth)
-        wrport = self.mem.get_port(write_capable=True)
-        rdport = self.mem.get_port(has_re=False)
-        self.specials += wrport, rdport
 
         self.submodules.fsm = FSM(reset_state="WAIT-INPUT")
         self.fsm.act(
@@ -57,12 +59,16 @@ class FT600Pipe(Module):
             If(
                 (ft600.txe_n == 0) & (words_received != 0) & (read_word_at != words_received_1),
                 NextValue(leds[2], 0),
-                NextValue(rdport.adr, read_word_at + 2),
+
+                # Just a safegueard to see if we leak data
+                NextValue(ft_data.o, 0xdead),
+                NextValue(ft_data.oe, 1),
+
                 NextState("WRITE-WORD"),
             ).Elif(
-                # (ft600.rxf_n == 0), # using this line makes it faster but uhm.. we shouldn't do that.
                 (ft600.rxf_n == 0) & (words_received == 0),
-                NextValue(words_received, 0),
+                NextValue(ft600.oe_n, 0), # This must happen 1 clk before rd_n<=0
+
                 NextValue(read_word_at, 0),
                 NextValue(leds[2], 0),
                 NextState("READ-WORD"),
@@ -80,7 +86,6 @@ class FT600Pipe(Module):
                 NextValue(wrport.we, 0),
                 NextState("WAIT-INPUT")
             ).Else(
-                # TODO: Care about ft_be
                 NextValue(words_received, words_received + 1),
                 NextValue(wrport.we, 1),
                 NextValue(wrport.adr, words_received),
@@ -92,11 +97,10 @@ class FT600Pipe(Module):
             NextValue(leds[6], 1),
             NextValue(ft600.wr_n, 0),
 
-            # TODO: eehh figure this out.... Still off by one
-            NextValue(rdport.adr, read_word_at + 3),
+            # NextValue(rdport.adr, read_word_at), # This happens in self.comb
             NextValue(ft_data.o, rdport.dat_r),
-
             NextValue(ft_data.oe, 1),
+
             NextValue(ft_be.oe, 1),
             NextValue(ft_be.o, 0b11),
             If(
