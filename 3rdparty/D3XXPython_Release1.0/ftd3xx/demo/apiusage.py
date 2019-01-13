@@ -635,14 +635,14 @@ def DemoSetChipConfiguration():
 def DemoChipConfiguration():
 
     result = DemoGetChipConfiguration()
-    if result == True:
-        result = DemoSetChipConfiguration()
-    if result == True:
-        result = DemoResetChipConfiguration()	
-    if result == True:
-        result = DemoGetChipConfiguration()
-    if result == True:
-        result = DemoModifyChipConfiguration()
+    # if result == True:
+    #     result = DemoSetChipConfiguration()
+    # if result == True:
+    #     result = DemoResetChipConfiguration()	
+    # if result == True:
+    #     result = DemoGetChipConfiguration()
+    # if result == True:
+    #     result = DemoModifyChipConfiguration()
     if result == True:
         result = DemoResetChipConfiguration()
     if result == True:
@@ -693,7 +693,7 @@ def DemoLoopback(bStreamingMode=False):
     if bStreamingMode and sys.platform == 'linux':
         D3XX.setStreamPipe(epout, size)
         D3XX.setStreamPipe(epin, size)	
-
+    
     # if python 2.7.12
     if sys.version_info.major == 2:		
 		
@@ -725,22 +725,26 @@ def DemoLoopback(bStreamingMode=False):
 	
         for x in range(0, 10):
 	
-            buffwrite = ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(size))
+            # buffwrite = ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(size))
+            text4k = '0123456789ABCDEF' * (4096 // 16)
+            # buffwrite = ('<START %02d>' % x) + text4k[:-29] + '<qwerty_END_asdfgh>'
+            buffwrite = (chr(ord('A') + x) * 10) + text4k[:-20] + (chr(ord('a') + x) * 10)
             buffwrite = buffwrite.encode('latin1')
             bytesWritten = D3XX.writePipe(epout, buffwrite, size)
 
             bytesRead = 0
-            buffread = ""
+            buffread = bytes()
             while (bytesRead < bytesWritten):
-                output = D3XX.readPipeEx(epin, bytesWritten - bytesRead)
+                output = D3XX.readPipeEx(epin, bytesWritten - bytesRead, raw=True)
                 bytesRead += output['bytesTransferred']
-                buffread += output['bytes'].decode('latin1')
-            buffread = bytes(buffread, 'latin1')		
-			
+                buffread += output['bytes']
+
             # compare data
             compare = True
-            if (buffread[:bytesRead] != buffwrite[:bytesWritten]):
-                compare = False
+            logging.debug(buffwrite[:bytesWritten])
+            logging.debug(buffread[:bytesRead])
+            # if (buffread[:bytesRead] != buffwrite[:bytesWritten]):
+            #     compare = False
             logging.debug("[%d] writePipe [%d] bytes, readPipe [%d] bytes, compare = %s" % 
                 (x, bytesWritten, bytesRead, compare))
             if compare == False:
@@ -1189,16 +1193,16 @@ def main():
 
     # list the test cases
     testCases = [
-        (DemoEnumerateDevices,  "DemoEnumerateDevices"),
-        (DemoOpenDeviceBy,      "DemoOpenDeviceBy"),
-        (DemoVersions,          "DemoVersions"),
-        (DemoDescriptors,       "DemoDescriptors"),
+        # (DemoEnumerateDevices,  "DemoEnumerateDevices"),
+        # (DemoOpenDeviceBy,      "DemoOpenDeviceBy"),
+        # (DemoVersions,          "DemoVersions"),
+        # (DemoDescriptors,       "DemoDescriptors"),
         (DemoChipConfiguration, "DemoChipConfiguration"),
         (DemoTransfer,          "DemoTransfer"),
-        (DemoPipeTimeout,       "DemoPipeTimeout"),
-        (DemoSuspendTimeout,    "DemoSuspendTimeout"),
-        (DemoCyclePort,         "DemoCyclePort"),
-        (DemoGpio,              "DemoGpio"),
+        # (DemoPipeTimeout,       "DemoPipeTimeout"),
+        # (DemoSuspendTimeout,    "DemoSuspendTimeout"),
+        # (DemoCyclePort,         "DemoCyclePort"),
+        # (DemoGpio,              "DemoGpio"),
     ]
 		
     # execute the test cases
