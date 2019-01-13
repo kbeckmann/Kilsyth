@@ -725,10 +725,11 @@ def DemoLoopback(bStreamingMode=False):
 	
         for x in range(0, 10):
 	
-            # buffwrite = ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(size))
-            text4k = '0123456789ABCDEF' * (4096 // 16)
+            buffwrite = ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(size))
+            # text4k = '0123456789ABCDEF' * (4096 // 16)
             # buffwrite = ('<START %02d>' % x) + text4k[:-29] + '<qwerty_END_asdfgh>'
-            buffwrite = (chr(ord('A') + x) * 10) + text4k[:-20] + (chr(ord('a') + x) * 10)
+            # buffwrite = (chr(ord('A') + x) * 10) + text4k[:-20] + (chr(ord('a') + x) * 10)
+            # buffwrite = (chr(ord('A') + x) * 10) + text4k[:-20] + (chr(ord('a') + x) * 10)
             buffwrite = buffwrite.encode('latin1')
             bytesWritten = D3XX.writePipe(epout, buffwrite, size)
 
