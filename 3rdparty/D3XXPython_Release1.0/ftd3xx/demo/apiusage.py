@@ -634,7 +634,7 @@ def DemoSetChipConfiguration():
 
 def DemoChipConfiguration():
 
-    result = DemoGetChipConfiguration()
+    # result = DemoGetChipConfiguration()
     # if result == True:
     #     result = DemoSetChipConfiguration()
     # if result == True:
@@ -643,10 +643,10 @@ def DemoChipConfiguration():
     #     result = DemoGetChipConfiguration()
     # if result == True:
     #     result = DemoModifyChipConfiguration()
-    if result == True:
-        result = DemoResetChipConfiguration()
-    if result == True:
-        result = DemoGetChipConfiguration()
+    # if result == True:
+    result = DemoResetChipConfiguration()
+    # if result == True:
+        # result = DemoGetChipConfiguration()
 
     return result
 
@@ -723,6 +723,9 @@ def DemoLoopback(bStreamingMode=False):
     # version 3 does not support implicit bytes to string conversion	
     elif sys.version_info.major == 3:
 	
+        # flush old crap out first
+        D3XX.readPipeEx(epin, size, raw=True, timeout=0)
+
         for x in range(0, 10):
 	
             buffwrite = ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(size))
@@ -736,7 +739,7 @@ def DemoLoopback(bStreamingMode=False):
             bytesRead = 0
             buffread = bytes()
             while (bytesRead < bytesWritten):
-                output = D3XX.readPipeEx(epin, bytesWritten - bytesRead, raw=True)
+                output = D3XX.readPipeEx(epin, bytesWritten - bytesRead, raw=True, timeout=0)
                 bytesRead += output['bytesTransferred']
                 buffread += output['bytes']
 
