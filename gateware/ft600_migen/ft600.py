@@ -2,6 +2,14 @@ from migen import *
 import argparse
 import sys, os
 
+TESTING = False
+
+class TSTripleFake():
+    def __init__(self, width):
+        self.oe = Signal()
+        self.o = Signal(width)
+        self.i = Signal(width)
+
 class FT600Pipe(Module):
     def __init__(self, clk, leds, ft600):
         self.clock_domains.cd_por = ClockDomain()
@@ -12,13 +20,20 @@ class FT600Pipe(Module):
 
         timer = Signal(32)
 
-        ft_be_triple = TSTriple(2)
-        ft_be = ft_be_triple.get_tristate(ft600.be)
-        self.specials += ft_be
+        print(TESTING)
+        if TESTING:
+            ft_be = TSTripleFake(2)
+        else:
+            ft_be_triple = TSTriple(2)
+            ft_be = ft_be_triple.get_tristate(ft600.be)
+            self.specials += ft_be
 
-        ft_data_triple = TSTriple(16)
-        ft_data = ft_data_triple.get_tristate(ft600.data)
-        self.specials += ft_data
+        if TESTING:
+            ft_data = TSTripleFake(16)
+        else:
+            ft_data_triple = TSTriple(16)
+            ft_data = ft_data_triple.get_tristate(ft600.data)
+            self.specials += ft_data
 
         width = 16
         depth = 2048
@@ -163,7 +178,11 @@ def run_applet(applet):
 
 
 
-def build_gateware(test):
+def build_gateware(testing):
+    # So ugly but I don't care
+    global TESTING
+    TESTING = testing
+
     import kilsyth
     target = os.environ["TARGET"] if "TARGET" in os.environ else "lfe5u12"
     plat = kilsyth.Platform(toolchain='trellis', target=target)
@@ -174,7 +193,7 @@ def build_gateware(test):
  
     ft600pipe = FT600Pipe(clk, leds, ft600)
 
-    if test:
+    if TESTING:
         run_simulation(ft600pipe, ft600pipe.testbench(clk, leds, ft600), vcd_name="out.vcd")
         print("Passed")
     else:
