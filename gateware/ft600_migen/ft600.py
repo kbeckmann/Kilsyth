@@ -162,16 +162,19 @@ class FT600Pipe(Module):
 
         # clk 0
         yield self.ft_be.i.eq(0b11)
-        yield self.ft_data.i.eq(0xc0de)
+        yield self.ft_data.i.eq(0x1122)
         yield
         # clk 1
-        yield self.ft_data.i.eq(0xf00d)
+        yield self.ft_data.i.eq(0x3344)
         yield
         # clk 2
-        yield self.ft_data.i.eq(0xcafe)
+        yield self.ft_data.i.eq(0x5566)
         yield
         # clk 3
-        yield self.ft_data.i.eq(0xfaac)
+        yield self.ft_data.i.eq(0x7788)
+        yield
+        # clk 4
+        yield self.ft_data.i.eq(0x99AA)
         yield
         # clk 4
         yield ft600.rxf_n.eq(1)
@@ -208,9 +211,12 @@ def build_gateware(testing):
     TESTING = testing
 
     import kilsyth
+
+    target_clock_mhz = 100
+
     target = os.environ["TARGET"] if "TARGET" in os.environ else "lfe5u12"
     plat = kilsyth.Platform(toolchain='trellis', target=target)
-    plat.add_period_constraint("ft600", 10.)
+    plat.add_period_constraint("ft600", 1000. / target_clock_mhz)
     clk = plat.request("clk16")
     leds = [plat.request('user_led', i) for i in range(8)]
     ft600 = plat.request('ft600')
