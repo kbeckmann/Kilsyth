@@ -22,14 +22,12 @@ class FT600Pipe(Module):
 
         if TESTING:
             self.ft_be = TSTripleFake(2)
+            self.ft_data = TSTripleFake(16)
         else:
             ft_be_triple = TSTriple(2)
             self.ft_be = ft_be_triple.get_tristate(ft600.be)
             self.specials += self.ft_be
 
-        if TESTING:
-            self.ft_data = TSTripleFake(16)
-        else:
             ft_data_triple = TSTriple(16)
             self.ft_data = ft_data_triple.get_tristate(ft600.data)
             self.specials += self.ft_data
@@ -41,7 +39,9 @@ class FT600Pipe(Module):
         rdport = self.mem.get_port(has_re=False)
         self.specials += wrport, rdport
 
+        # words_received = Signal(max=depth+1, reset=0)
         words_received = Signal(16, reset=0)
+        # read_word_at = Signal(max=depth, reset=0)
         read_word_at = Signal(16, reset=0)
 
         self.comb += [
@@ -123,7 +123,6 @@ class FT600Pipe(Module):
             NextValue(leds[6], 1),
             NextValue(ft600.wr_n, 0),
 
-            # NextValue(rdport.adr, read_word_at),
             NextValue(self.ft_data.o, rdport.dat_r),
             NextValue(self.ft_data.oe, 1),
 
@@ -187,6 +186,12 @@ class FT600Pipe(Module):
         yield
         yield
         yield ft600.txe_n.eq(1)
+        yield
+        yield
+        yield
+        yield
+        yield
+        yield
         yield
         yield
         yield
