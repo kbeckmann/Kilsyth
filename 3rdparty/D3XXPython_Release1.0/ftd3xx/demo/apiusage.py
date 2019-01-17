@@ -498,8 +498,8 @@ def DemoResetChipConfiguration(bDisplay=True):
     cfg.PowerAttributes = 0xe0
     cfg.PowerConsumption = 0x60
     cfg.Reserved2 = 0x00
-    # cfg.FIFOClock = _ft.FT_CONFIGURATION_FIFO_CLK_100
-    cfg.FIFOClock = _ft.FT_CONFIGURATION_FIFO_CLK_66
+    cfg.FIFOClock = _ft.FT_CONFIGURATION_FIFO_CLK_100
+    # cfg.FIFOClock = _ft.FT_CONFIGURATION_FIFO_CLK_66
     # cfg.FIFOClock = _ft.FT_CONFIGURATION_FIFO_CLK_50
     # cfg.FIFOClock = _ft.FT_CONFIGURATION_FIFO_CLK_40
     cfg.FIFOMode = _ft.FT_CONFIGURATION_FIFO_MODE_245
@@ -750,8 +750,8 @@ def DemoLoopback(bStreamingMode=False):
             compare = True
             logging.debug(buffwrite[:bytesWritten])
             logging.debug(buffread[:bytesRead])
-            # if (buffread[:bytesRead] != buffwrite[:bytesWritten]):
-            #     compare = False
+            if (buffread[:bytesRead] != buffwrite[:bytesWritten]):
+                compare = False
             logging.debug("[%d] writePipe [%d] bytes, readPipe [%d] bytes, compare = %s" % 
                 (x, bytesWritten, bytesRead, compare))
             if compare == False:

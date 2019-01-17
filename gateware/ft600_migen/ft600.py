@@ -18,6 +18,7 @@ class FT600Pipe(Module):
 
         counter = Signal(32)
         timer = Signal(32)
+        prefetch_cnt = Signal(max=2)
 
         if TESTING:
             self.ft_be = TSTripleFake(2)
@@ -41,21 +42,15 @@ class FT600Pipe(Module):
         self.specials += wrport, rdport
 
         words_received = Signal(16, reset=0)
-        words_received_1 = Signal(16, reset=0) # store (words_received - 1) separately
         read_word_at = Signal(16, reset=0)
 
         self.comb += [
             leds[0].eq(counter[0]),
-            # rdport.adr.eq(0), # To read a constant address..
             rdport.adr.eq(read_word_at),
         ]
  
-        txe_n_r = Signal(reset=1)
-        rxf_n_r = Signal(reset=1)
         self.sync += [
             counter.eq(counter + 1),
-            txe_n_r.eq(ft600.txe_n),
-            rxf_n_r.eq(ft600.rxf_n),
         ]
 
         self.submodules.fsm = FSM(reset_state="INIT")
@@ -84,14 +79,10 @@ class FT600Pipe(Module):
             NextValue(wrport.we, 0),
 
             If(
-                (ft600.txe_n == 0) & (words_received != 0) & (read_word_at != words_received_1),
+                (ft600.txe_n == 0) & (words_received != 0),
                 NextValue(leds[2], 0),
-
-                # Just a safegueard to see if we leak data
-                NextValue(self.ft_data.o, 0xdead),
-                NextValue(self.ft_data.oe, 1),
-
-                NextState("WRITE-WORD"),
+                NextValue(prefetch_cnt, 0),
+                NextState("WRITE-WORD-PREFETCH"),
             ).Elif(
                 (ft600.rxf_n == 0) & (words_received == 0),
                 NextValue(ft600.oe_n, 0), # This must happen 1 clk before rd_n<=0
@@ -109,7 +100,6 @@ class FT600Pipe(Module):
             If(
                 (ft600.rxf_n == 1),
                 NextValue(leds[4], 0),
-                NextValue(words_received_1, words_received - 1),
                 NextValue(wrport.we, 0),
                 NextState("WAIT-INPUT")
             ).Else(
@@ -120,18 +110,27 @@ class FT600Pipe(Module):
             )
         )
         self.fsm.act(
+            "WRITE-WORD-PREFETCH",
+            # This state makes sure the BRAM fetch is getting started. Ignoring words_received currently though..
+            NextValue(read_word_at, read_word_at + 1),
+            NextValue(prefetch_cnt, prefetch_cnt + 1),
+            If (prefetch_cnt == 1,
+                NextState("WRITE-WORD"),
+            )
+        )
+        self.fsm.act(
             "WRITE-WORD",
             NextValue(leds[6], 1),
             NextValue(ft600.wr_n, 0),
 
-            # NextValue(rdport.adr, read_word_at), # This happens in self.comb
+            # NextValue(rdport.adr, read_word_at),
             NextValue(self.ft_data.o, rdport.dat_r),
             NextValue(self.ft_data.oe, 1),
 
             NextValue(self.ft_be.oe, 1),
             NextValue(self.ft_be.o, 0b11),
             If(
-                (ft600.txe_n == 1) | (read_word_at == words_received_1),
+                (ft600.txe_n == 1) | (read_word_at == words_received),
                 NextValue(leds[6], 0),
                 NextValue(words_received, 0),
                 NextState("WAIT-INPUT")
