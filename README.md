@@ -25,6 +25,20 @@ Ideas for RevB are still being collected. Feel free to suggest changes in an iss
 
 - Add support for reversible USB-C connector using [PI5USB30213A](https://www.diodes.com/products/connectivity-and-timing/switches-mux/protocol-switches/usb-switches/part/PI5USB30213A).
 
+
+## Software usage (TODO)
+
+Requires a patched migen and a patched ftdi library.. Nasty, I know, sorry.
+
+```
+Help:
+$ python -m software.kilsyth -h
+
+Run blinky:
+$ python -m software.kilsyth run blinky
+
+```
+
 # Contact
 
 Reach out to [@kbeckmann](https://twitter.com/kbeckmann) on Twitter or IRC/Freenode.
