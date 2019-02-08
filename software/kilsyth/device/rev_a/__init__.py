@@ -6,14 +6,16 @@ _io = [
     ("clk16", 0, Pins("G3"), IOStandard("LVCMOS33")),
     # user_led 0 is actually connected to WIDE:33, but it's N/C.
     # Place jumper between 33 and 31 to use user led 0
-    ("user_led", 0, Pins("WIDE:31"), IOStandard("LVCMOS33")),
-    ("user_led", 1, Pins("WIDE:34"), IOStandard("LVCMOS33")),
-    ("user_led", 2, Pins("WIDE:35"), IOStandard("LVCMOS33")),
-    ("user_led", 3, Pins("WIDE:36"), IOStandard("LVCMOS33")),
-    ("user_led", 4, Pins("WIDE:37"), IOStandard("LVCMOS33")),
-    ("user_led", 5, Pins("WIDE:38"), IOStandard("LVCMOS33")),
-    ("user_led", 6, Pins("WIDE:39"), IOStandard("LVCMOS33")),
-    ("user_led", 7, Pins("WIDE:40"), IOStandard("LVCMOS33")),
+    ("user_led", 0, Pins(
+        "WIDE:31",
+        "WIDE:34",
+        "WIDE:35",
+        "WIDE:36",
+        "WIDE:37",
+        "WIDE:38",
+        "WIDE:39",
+        "WIDE:40",
+    ), IOStandard("LVCMOS33")),
 
     ("ft600", 0,
         Subsignal("clk", Pins("H2")),
@@ -25,7 +27,29 @@ _io = [
         Subsignal("txe_n", Pins("J4")),
         Subsignal("rxf_n", Pins("J3")),
         Subsignal("oe_n", Pins("H1")),
-    )
+    ),
+
+    ("pmod0", 0, 
+        Subsignal("pin1", Pins("PMOD0:1")),
+        Subsignal("pin2", Pins("PMOD0:2")),
+        Subsignal("pin3", Pins("PMOD0:3")),
+        Subsignal("pin4", Pins("PMOD0:4")),
+        Subsignal("pin5", Pins("PMOD0:7")),
+        Subsignal("pin6", Pins("PMOD0:8")),
+        Subsignal("pin7", Pins("PMOD0:9")),
+        Subsignal("pin8", Pins("PMOD0:10")),
+    ),
+
+    # ("pmod0", 0, Pins(
+    #     "PMOD0:1",
+    #     "PMOD0:2",
+    #     "PMOD0:3",
+    #     "PMOD0:4",
+    #     "PMOD0:7",
+    #     "PMOD0:8",
+    #     "PMOD0:9",
+    #     "PMOD0:10",
+    # ), IOStandard("LVCMOS33")),
 ]
 
 _connectors = [
