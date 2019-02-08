@@ -20,3 +20,4 @@ class KilsythApplet(Module):
         raise NotImplementedError
 
 from . import blinky
+from . import sx1257
