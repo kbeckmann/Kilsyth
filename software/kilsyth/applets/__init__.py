@@ -20,4 +20,5 @@ class KilsythApplet(Module):
         raise NotImplementedError
 
 from . import blinky
+from . import spi_flash_mitm
 from . import sx1257
