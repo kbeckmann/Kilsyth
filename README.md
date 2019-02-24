@@ -19,6 +19,7 @@ Errata:
 - C9 is not a GPIO on ECP5 F12 and some other variants. To get the LED working put a jumper on pin 31 and 33 on the Wide connector.
 - FT_CLK is not routed to a clock pin. Can be fixed with a bodge wire! Remove R50 and R36, swap their paths.
 - JTAG connector has a funky footprint on the PCB because CCW vs Odd/Even pinout on the symbol vs footprint. But the PCB silk screen is accurate so don't worry - it's just a stupid pinout.
+- Need to add pull-ups for the SPI flash.
 
 ### RevB
 Ideas for RevB are still being collected. Feel free to suggest changes in an issue.
