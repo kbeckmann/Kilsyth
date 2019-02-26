@@ -40,6 +40,17 @@ _io = [
         Subsignal("pin8", Pins("PMOD0:10")),
     ),
 
+    ("spi_flash", 0, 
+        Subsignal("pin1", Pins("WIDE:1")),
+        Subsignal("pin2", Pins("WIDE:2")),
+        Subsignal("pin3", Pins("WIDE:3")),
+        Subsignal("pin4", Pins("WIDE:4")),
+        Subsignal("pin5", Pins("WIDE:5")),
+        Subsignal("pin6", Pins("WIDE:6")),
+        Subsignal("pin7", Pins("WIDE:7")),
+        Subsignal("pin8", Pins("WIDE:8")),
+    ),
+
     # ("pmod0", 0, Pins(
     #     "PMOD0:1",
     #     "PMOD0:2",
