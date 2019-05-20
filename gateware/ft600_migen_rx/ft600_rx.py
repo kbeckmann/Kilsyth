@@ -1,4 +1,5 @@
 from migen import *
+from migen.genlib.fifo import _FIFOInterface, AsyncFIFO, SyncFIFOBuffered
 import argparse
 import sys, os
 
@@ -18,41 +19,65 @@ class TSTripleFake():
 # gqrx config: file=/home/konrad/dev/Kilsyth/software/ft600_test/linux-x86_64/out.raw,freq=868e6,rate=500e3,repeat=true,throttle=true
 #
 
-class RXSampler(Module):
+class IQSampler(Module):
     # pmod0.pin2 => CLK_OUT
     # pmod0.pin5 => I_OUT
     # pmod0.pin6 => Q_OUT
-    # out_i = Signal(8)
-    # out_q = Signal(8)
-    # data_ready = out Signal()
-    # data_consumed = input Signal()
-    def __init__(self, pmod0, out_i, out_q, data_ready, data_consumed):
+    # fifo = AsyncFifo()
+    def __init__(self, pmod0, fifo):
+        # Sample with 150kHz bandwidth assuming a 36MHz clock
+        # 150kHz leads to a cnt_max of 240, samples are still <256
+        cnt_max = 36000000 // 150000
+
+        counter = Signal(max=cnt_max+1)
         sample_i = Signal(8)
         sample_q = Signal(8)
-        counter = Signal(16)
 
-        # TODO: fix clock domain crossing properly...
         self.comb += [
-            If (counter == 0,
-                data_ready.eq(1)
+            fifo.din.eq(((sample_q) << 8) | sample_i),
+            If((counter == cnt_max) & fifo.writable,
+                # if fifo.writable is false we will drop a sample
+                fifo.we.eq(1),
             ).Else(
-                data_ready.eq(0)
-            )
+                fifo.we.eq(0),
+            ),
         ]
- 
+
         self.sync += [
-            If (counter == 72, # gives 500kHz bandwidth with a 36MHz clock
+            If (counter == cnt_max,
                 sample_i.eq(pmod0.pin5),
                 sample_q.eq(pmod0.pin6),
-                out_i.eq(sample_i),
-                out_q.eq(sample_q),
                 counter.eq(0),
             ).Else(
                 sample_i.eq(sample_i + pmod0.pin5),
                 sample_q.eq(sample_q + pmod0.pin6),
                 counter.eq(counter + 1),
             )
+        ]
 
+class IQSamplerFake(Module):
+    # Use this to test that we can count properly and not drop samples.
+    def __init__(self, pmod0, fifo):
+        counter = Signal(16)
+        counter2 = Signal(8)
+
+        self.comb += [
+            fifo.din.eq(((counter2+1) << 8) | counter2),
+            If((counter == 0) & fifo.writable,
+                fifo.we.eq(1),
+            ).Else(
+                fifo.we.eq(0),
+            ),
+        ]
+
+        self.sync += [
+            # 72 = 500kHz bandwidth with a 36MHz clock
+            If (counter == 72,
+                counter.eq(0),
+                counter2.eq(counter2 + 2)
+            ).Else(
+                counter.eq(counter + 1)
+            )
         ]
 
 class FT600Pipe(Module):
@@ -63,11 +88,16 @@ class FT600Pipe(Module):
         self.cd_sys.clk = ft600.clk
         self.cd_sx1257.clk = pmod0.pin2
 
-        out_i = Signal(8)
-        out_q = Signal(8)
-        data_ready = Signal()
-        data_consumed = Signal()
-        rxsamples = ClockDomainsRenamer({"sys": "sx1257"})(RXSampler(pmod0, out_i, out_q, data_ready, data_consumed))
+        # This can probably be a lot smaller
+        depth = 256
+        fifo = ClockDomainsRenamer({
+            "write": "sx1257",
+            "read":  "sys",
+        })(AsyncFIFO(16, depth))
+        self.submodules += fifo
+
+        rxsamples = ClockDomainsRenamer({"sys": "sx1257"})(IQSampler(pmod0, fifo))
+        # rxsamples = ClockDomainsRenamer({"sys": "sx1257"})(IQSamplerFake(pmod0, fifo))
         self.submodules += rxsamples
 
         counter = Signal(32)
@@ -103,11 +133,11 @@ class FT600Pipe(Module):
             NextValue(leds[5], 1),
             NextValue(leds[6], 0),
             NextValue(leds[7], 0),
-            NextState("WAIT-FOR-SAMPLE")
+            NextState("WAIT")
         )
 
         self.fsm.act(
-            "WAIT-FOR-SAMPLE",
+            "WAIT",
             NextValue(leds[5], 0),
             NextValue(leds[6], 1),
             NextValue(leds[7], 0),
@@ -117,97 +147,33 @@ class FT600Pipe(Module):
             NextValue(self.ft_be.oe, 0),
             NextValue(self.ft_be.o, 0b00),
 
-            If (data_ready,
-                data_consumed.eq(1),
-                NextState("WRITE-WORD")
+            If ((fifo.readable) & (~ft600.txe_n),
+                NextValue(fifo.re, 1),
+                NextState("WRITE")
             )
         )
 
         self.fsm.act(
-            "WRITE-WORD",
+            "WRITE",
             NextValue(leds[5], 0),
             NextValue(leds[6], 0),
             NextValue(leds[7], 1),
             NextValue(ft600.wr_n, 0),
 
-            NextValue(self.ft_data.o, (out_i << 8) | out_q),
+            NextValue(self.ft_data.o, fifo.dout),
             NextValue(self.ft_data.oe, 1),
 
             NextValue(self.ft_be.oe, 1),
             NextValue(self.ft_be.o, 0b11),
-            NextState("WAIT-FOR-SAMPLE")
+
+            If ((~fifo.readable) | (ft600.txe_n),
+                # There is nothing to read
+                # or we are not allowed to write to ft600.
+                # Time to wait.
+                NextValue(fifo.re, 0),
+                NextState("WAIT")
+            )
         )
-
-    def testbench(self, leds, ft600):
-        # yield
-        # yield
-        yield ft600.txe_n.eq(1)
-        yield ft600.rxf_n.eq(1)
-        yield self.ft_be.i.eq(0)
-        yield
-        yield
-        yield
-        yield
-        yield
-
-        # FT will write 4 words to the bus master (fpga)
-        # This should immitate Figure 4.6 in the datasheet as close as possible.
-        yield ft600.rxf_n.eq(0)
-
-        # Simulate hardware waiting for both oe_n and rd_n going low
-        while ((yield ft600.oe_n) or (yield ft600.rd_n)):
-            yield
-
-        # clk 0
-        yield self.ft_be.i.eq(0b11)
-        yield self.ft_data.i.eq(0x1122)
-        yield
-        # clk 1
-        yield self.ft_data.i.eq(0x3344)
-        yield
-        # clk 2
-        yield self.ft_data.i.eq(0x5566)
-        yield
-        # clk 3
-        yield self.ft_data.i.eq(0x7788)
-        yield
-        # clk 4
-        yield self.ft_data.i.eq(0x99AA)
-        yield
-        # clk 4
-        yield ft600.rxf_n.eq(1)
-        yield
-        yield
-        yield
-        yield ft600.txe_n.eq(0)
-        yield
-        yield
-        yield
-        yield
-        yield
-        yield ft600.txe_n.eq(1)
-        yield
-        yield
-        yield
-        yield
-        yield
-        yield
-        yield
-        yield
-        yield
-
-
-def run_applet(applet):
-    # Ignore applet for now
-    import FT600Driver
-    driver = FT600Driver.FT600Driver()
-
-    print(driver.FT_GetDriverVersion())
-    print(driver.FT_GetLibraryVersion())
-    driver.get_device_lists()
-    driver.set_channel_config(False, FT600Driver.CONFIGURATION_FIFO_CLK_100)
-
-
 
 def build_gateware(testing):
     # So ugly but I don't care
@@ -240,11 +206,8 @@ if __name__ == '__main__':
     parser.add_argument('--run', help='Runs applet')
 
     args = parser.parse_args()
-    # print(args)
     
     if args.test:
         build_gateware(True)
     elif args.build:
         build_gateware(False)
-    elif args.run:
-        run_applet(args.run)
