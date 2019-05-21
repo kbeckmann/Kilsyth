@@ -19,7 +19,40 @@ class TSTripleFake():
 # gqrx config: file=/home/konrad/dev/Kilsyth/software/ft600_test/linux-x86_64/out.raw,freq=868e6,rate=500e3,repeat=true,throttle=true
 #
 
+
 class IQSampler(Module):
+    # pmod0.pin2 => CLK_OUT
+    # pmod0.pin5 => I_OUT
+    # pmod0.pin6 => Q_OUT
+    # fifo = AsyncFifo()
+    def __init__(self, pmod0, fifo):
+        counter = Signal(3)
+        sample_i = Signal(8)
+        sample_q = Signal(8)
+
+        self.comb += [
+            fifo.din.eq(((sample_q) << 8) | sample_i),
+            If((counter == 7) & fifo.writable,
+                # if fifo.writable is false we will drop a sample
+                fifo.we.eq(1),
+            ).Else(
+                fifo.we.eq(0),
+            ),
+        ]
+
+        self.sync += [
+            # LSB first
+            # sample_i.eq((sample_i << 1) | pmod0.pin5),
+            # sample_q.eq((sample_q << 1) | pmod0.pin6),
+
+            # MSB first
+            sample_i.eq((sample_i >> 1) | (pmod0.pin5 << 7)),
+            sample_q.eq((sample_q >> 1) | (pmod0.pin6 << 7)),
+
+            counter.eq(counter + 1),
+        ]
+
+class IQSamplerBad(Module):
     # pmod0.pin2 => CLK_OUT
     # pmod0.pin5 => I_OUT
     # pmod0.pin6 => Q_OUT
