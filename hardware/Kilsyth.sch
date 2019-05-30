@@ -1,6 +1,6 @@
 EESchema Schematic File Version 4
 LIBS:Kilsyth-cache
-EELAYER 26 0
+EELAYER 29 0
 EELAYER END
 $Descr A1 33110 23386
 encoding utf-8
@@ -2432,7 +2432,7 @@ F 3 "~" H 10750 7800 50  0001 C CNN
 	0    -1   -1   0   
 $EndComp
 $Comp
-L Connector:USB_C_Receptacle J2
+L Kilsyth-rescue:USB_C_Receptacle-Connector J2
 U 1 1 5FDA1710
 P 9300 7400
 F 0 "J2" H 9405 8667 50  0000 C CNN
@@ -2714,7 +2714,7 @@ F 3 "~" H 13800 8150 50  0001 C CNN
 	0    -1   -1   0   
 $EndComp
 $Comp
-L Device:Crystal_GND24_Small Y1
+L Kilsyth-rescue:Crystal_GND24_Small-Device Y1
 U 1 1 64D1A925
 P 14200 7950
 F 0 "Y1" V 14154 8116 50  0000 L CNN
@@ -7516,6 +7516,8 @@ Text Notes 5350 16100 0    197  ~ 0
 PMODs
 Text Notes 13300 14950 0    197  ~ 0
 Wide connector
+Text Notes 2050 11700 0    50   ~ 0
+FIXME: Use ODD-EVEN in RevB.
 Wire Bus Line
 	18150 9200 21550 9200
 Wire Bus Line
@@ -7562,6 +7564,15 @@ Wire Bus Line
 	4550 16650 4550 21400
 Wire Bus Line
 	7050 16650 7050 21400
-Text Notes 2050 11700 0    50   ~ 0
-FIXME: Use ODD-EVEN in RevB.
+$Comp
+L lfe5bg381:LFE5UM-45F-6BG381C U4
+U 8 1 5CEB4B25
+P 15650 20500
+F 0 "U4" H 15650 21793 60  0000 C CNN
+F 1 "LFE5UM-45F-6BG381C" H 15650 21687 60  0000 C CNN
+F 2 "lfe5bg381:BGA-381_pitch0.8mm_dia0.4mm" H 15650 21581 60  0000 C CNN
+F 3 "" H 14600 21450 60  0000 C CNN
+	8    15650 20500
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC

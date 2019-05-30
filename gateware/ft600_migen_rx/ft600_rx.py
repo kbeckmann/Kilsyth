@@ -46,8 +46,8 @@ class IQSampler(Module):
             # sample_q.eq((sample_q << 1) | pmod0.pin6),
 
             # MSB first
-            sample_i.eq((sample_i >> 1) | (pmod0.pin5 << 7)),
-            sample_q.eq((sample_q >> 1) | (pmod0.pin6 << 7)),
+            sample_i.eq((sample_i >> 1) | (pmod0.pin3 << 7)),
+            sample_q.eq((sample_q >> 1) | (pmod0.pin4 << 7)),
 
             counter.eq(counter + 1),
         ]
@@ -113,13 +113,155 @@ class IQSamplerFake(Module):
             )
         ]
 
+class I2CMaster(Module):
+    # clkdiv:       Constant to count to for clock division
+    # slave_addr:   Slave address
+    def __init__(self, clkdiv, slave_addr, scl, sda, debug):
+
+        self.slow_counter = Signal(max=100_000_000)
+        self.clkdiv = clkdiv
+        self.clk_counter = Signal(max=clkdiv+1)
+        self.w_addr = (slave_addr << 1) | 0
+        self.r_addr = (slave_addr << 1) | 1
+
+        if TESTING:
+            self.sda = TSTripleFake(1)
+            self.scl = TSTripleFake(1)
+        else:
+            scl_triple = TSTriple(1)
+            self.scl = scl_triple.get_tristate(scl)
+            self.specials += self.scl
+
+            sda_triple = TSTriple(1)
+            self.sda = sda_triple.get_tristate(sda)
+            self.specials += self.sda
+
+        self.comb += [
+            self.scl.o.eq(0),
+            self.sda.o.eq(0),
+        ]
+
+        # data = Signal(8, reset=0xFF)
+        # 0x c0 e9 8a
+        data = Array(
+            Signal(8, reset=x) for x in [
+                self.w_addr,
+                0x01,
+                0xc0,
+
+                self.w_addr,
+                0x01,
+                0xe9,
+
+                self.w_addr,
+                0x01,
+                0x8a,
+            ]
+        )
+        byte = Signal(max=len(data))
+        bit = Signal(max=8)
+    
+        self.submodules.fsm = FSM(reset_state="INIT")
+        self.fsm.act(
+            "INIT",
+            NextValue(debug, 0),
+            NextValue(byte, 0),
+            NextValue(self.scl.oe, 0),
+            NextValue(self.sda.oe, 0),
+            NextValue(self.slow_counter, self.slow_counter + 1),
+            If (self.slow_counter == 100_000_000-1,
+                NextState("W_START"),
+                NextValue(self.clk_counter, 0),
+                NextValue(self.slow_counter, 0),
+            )
+        )
+
+        self.fsm.act(
+            "W_START",
+            NextValue(self.sda.oe, 1),
+            NextValue(self.clk_counter, self.clk_counter + 1),
+            If (self.clk_counter == self.clkdiv,
+                NextValue(self.clk_counter, 0),
+                # NextValue(data, self.w_addr),
+                NextValue(bit, 7),
+                NextState("W_ADDR"),
+            ),
+        )
+
+        self.fsm.act(
+            "W_ADDR",
+            NextValue(self.scl.oe, self.clk_counter < (self.clkdiv // 2)),
+            # NextValue(self.sda.oe, ~((data >> bit) & 1)),
+            NextValue(self.sda.oe, ~((data[byte] >> bit) & 1)),
+            NextValue(self.clk_counter, self.clk_counter + 1),
+            If(self.clk_counter == self.clkdiv,
+                NextValue(bit, bit - 1),
+                NextValue(self.clk_counter, 0),
+                If(bit == 0,
+                    NextState("W_ADDR_WAIT_ACK"),
+                    NextValue(self.sda.oe, 0),
+                )
+            ),
+        )
+
+        self.fsm.act(
+            "W_ADDR_WAIT_ACK",
+            NextValue(self.scl.oe, self.clk_counter < (self.clkdiv // 2)),
+            If(self.clk_counter == self.clkdiv,
+                If(self.sda.i == 0,
+                    NextValue(self.clk_counter, 0),
+                    NextState("W_ADDR_WAIT_SCL"),
+                )
+            ).Else(
+                NextValue(self.clk_counter, self.clk_counter + 1),
+            ),
+        )
+
+        self.fsm.act(
+            "W_ADDR_WAIT_SCL",
+            NextValue(self.scl.oe, 1),
+            NextValue(self.sda.oe, 1),
+            If(self.clk_counter == self.clkdiv,
+                NextValue(self.scl.oe, 0),
+                NextState("W_ADDR_WAIT_SCL1"),
+            ).Else(
+                NextValue(self.clk_counter, self.clk_counter + 1),
+            ),
+        )
+
+        self.fsm.act(
+            "W_ADDR_WAIT_SCL1",
+            NextValue(debug, 1),
+            If(self.scl.i == 1,
+                If(byte == len(data) - 1,
+                    NextState("HANG"),
+                ).Else(
+                    NextState("W_ADDR"),
+                    NextValue(debug, 0),
+                    NextValue(byte, byte + 1),
+                    NextValue(bit, 7),
+                    NextValue(self.clk_counter, self.clkdiv // 2),
+                ),
+            )
+        )
+
+
+        self.fsm.act(
+            "HANG",
+            NextValue(debug, ~debug),
+        )
+
+
+
 class FT600Pipe(Module):
     def __init__(self, leds, ft600, pmod0):
         self.clock_domains.cd_por = ClockDomain()
         self.clock_domains.cd_sys = ClockDomain(reset_less=False)
         self.clock_domains.cd_sx1257 = ClockDomain(reset_less=True)
         self.cd_sys.clk = ft600.clk
-        self.cd_sx1257.clk = pmod0.pin2
+        self.cd_sx1257.clk = pmod0.pin4
+
+        self.submodules += I2CMaster(100000000 // 400000, 0x28, pmod0.pin1, pmod0.pin2, leds[6])
 
         # This can probably be a lot smaller
         depth = 256
@@ -164,7 +306,7 @@ class FT600Pipe(Module):
             NextValue(self.ft_be.oe, 0),
             NextValue(self.ft_data.oe, 0),
             NextValue(leds[5], 1),
-            NextValue(leds[6], 0),
+            # NextValue(leds[6], 0),
             NextValue(leds[7], 0),
             NextState("WAIT")
         )
@@ -172,7 +314,7 @@ class FT600Pipe(Module):
         self.fsm.act(
             "WAIT",
             NextValue(leds[5], 0),
-            NextValue(leds[6], 1),
+            # NextValue(leds[6], 1),
             NextValue(leds[7], 0),
             NextValue(ft600.wr_n, 1),
 
@@ -189,7 +331,7 @@ class FT600Pipe(Module):
         self.fsm.act(
             "WRITE",
             NextValue(leds[5], 0),
-            NextValue(leds[6], 0),
+            # NextValue(leds[6], 0),
             NextValue(leds[7], 1),
             NextValue(ft600.wr_n, 0),
 
