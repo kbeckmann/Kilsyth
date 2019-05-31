@@ -113,6 +113,11 @@ class IQSamplerFake(Module):
             )
         ]
 
+def BuildCmd(values):
+    v = [len(values)] + values
+    return Array([Signal(8, reset=x) for x in v])
+
+
 class I2CMaster(Module):
     # clkdiv:       Constant to count to for clock division
     # slave_addr:   Slave address
@@ -120,7 +125,8 @@ class I2CMaster(Module):
 
         self.slow_counter = Signal(max=100_000_000)
         self.clkdiv = clkdiv
-        self.clk_counter = Signal(max=clkdiv+1)
+        self.stop_counter = clkdiv * 100
+        self.clk_counter = Signal(max=self.stop_counter+1)
         self.w_addr = (slave_addr << 1) | 0
         self.r_addr = (slave_addr << 1) | 1
 
@@ -141,31 +147,93 @@ class I2CMaster(Module):
             self.sda.o.eq(0),
         ]
 
-        # data = Signal(8, reset=0xFF)
-        # 0x c0 e9 8a
-        data = Array(
-            Signal(8, reset=x) for x in [
+        # Array of commands
+        # Commands are arrays of 8 bit Signals starting with a length 
+        data = Array([
+            # Enable GPIO SS1
+            BuildCmd([
+                self.w_addr,
+                0xF6,
+                0x02
+            ]),
+
+            # Set GPIO SS1 = 1 (reset=1)
+            BuildCmd([
+                self.w_addr,
+                0xF4,
+                0x02
+            ]),
+
+            # Configure SPI
+            # MSB is transmitted first
+            # CLK is low when idle
+            # data is clocked on leading edge
+            # SPI CLK is 1843 kHz
+            BuildCmd([
+                self.w_addr,
+                0xF0,
+                0b000_0_0_0_00,
+            ]),
+
+            # Set GPIO SS1 = 0 (reset=0)
+            BuildCmd([
+                self.w_addr,
+                0xF4,
+                0x00,
+            ]),
+
+            ##############
+
+            # Set freq=867.990 MHz
+            BuildCmd([
                 self.w_addr,
                 0x01,
+                0x80 | 0x04, # RegFrfTxMsb
                 0xc0,
-
+            ]),
+            BuildCmd([
                 self.w_addr,
                 0x01,
-                0xe9,
-
+                0x80 | 0x05, # RegFrfTxxMid
+                0xe2,
+            ]),
+            BuildCmd([
                 self.w_addr,
                 0x01,
-                0x8a,
-            ]
-        )
-        byte = Signal(max=len(data))
+                0x80 | 0x06, # RegFrfTxLsb
+                0xfc,
+            ]),
+
+            #########
+
+
+            # Set PA, TX, IDLE enabled
+            BuildCmd([
+                self.w_addr,
+                0x01,
+                0x80, # Operating mode
+                0b0000_1_1_0_1, # PA, TX, IDLE enabled
+            ]),
+
+            # Set clock out enabled
+            BuildCmd([
+                self.w_addr,
+                0x01,
+                0x80 | 0x10, # CLK select
+                0x02, # clkout enabled
+            ]),
+
+        ])
+        command = Signal(max=len(data)+1)
+        byte = Signal(max=256)
         bit = Signal(max=8)
     
         self.submodules.fsm = FSM(reset_state="INIT")
         self.fsm.act(
             "INIT",
             NextValue(debug, 0),
-            NextValue(byte, 0),
+            NextValue(command, 0),
+            NextValue(byte, 1),
             NextValue(self.scl.oe, 0),
             NextValue(self.sda.oe, 0),
             NextValue(self.slow_counter, self.slow_counter + 1),
@@ -178,11 +246,11 @@ class I2CMaster(Module):
 
         self.fsm.act(
             "W_START",
+            NextValue(debug, 0),
             NextValue(self.sda.oe, 1),
             NextValue(self.clk_counter, self.clk_counter + 1),
             If (self.clk_counter == self.clkdiv,
                 NextValue(self.clk_counter, 0),
-                # NextValue(data, self.w_addr),
                 NextValue(bit, 7),
                 NextState("W_ADDR"),
             ),
@@ -190,9 +258,9 @@ class I2CMaster(Module):
 
         self.fsm.act(
             "W_ADDR",
+            NextValue(debug, 0),
             NextValue(self.scl.oe, self.clk_counter < (self.clkdiv // 2)),
-            # NextValue(self.sda.oe, ~((data >> bit) & 1)),
-            NextValue(self.sda.oe, ~((data[byte] >> bit) & 1)),
+            NextValue(self.sda.oe, ~((data[command][byte] >> bit) & 1)),
             NextValue(self.clk_counter, self.clk_counter + 1),
             If(self.clk_counter == self.clkdiv,
                 NextValue(bit, bit - 1),
@@ -206,24 +274,46 @@ class I2CMaster(Module):
 
         self.fsm.act(
             "W_ADDR_WAIT_ACK",
+            NextValue(debug, 1),
             NextValue(self.scl.oe, self.clk_counter < (self.clkdiv // 2)),
             If(self.clk_counter == self.clkdiv,
                 If(self.sda.i == 0,
                     NextValue(self.clk_counter, 0),
                     NextState("W_ADDR_WAIT_SCL"),
                 )
-            ).Else(
+            ).Elif(byte == data[command][0] - 1,
+                # Keep the clock ticking if we're at the last byte
+                NextValue(self.clk_counter, self.clk_counter + 1),
+            )
+            .Else(
                 NextValue(self.clk_counter, self.clk_counter + 1),
             ),
         )
 
         self.fsm.act(
             "W_ADDR_WAIT_SCL",
+            NextValue(debug, 0),
             NextValue(self.scl.oe, 1),
-            NextValue(self.sda.oe, 1),
+            NextValue(self.sda.oe, 1), # ACK
             If(self.clk_counter == self.clkdiv,
                 NextValue(self.scl.oe, 0),
-                NextState("W_ADDR_WAIT_SCL1"),
+
+                If(byte == data[command][0],
+                    If(command == len(data) - 1,
+                        NextState("HANG"),
+                    ).Else(
+                        NextState("W_ADDR_SEND_STOP"),
+                        NextValue(byte, 1),
+                        NextValue(command, command + 1),
+                        NextValue(bit, 7),
+                        NextValue(self.clk_counter, 0),
+                    )
+                ).Else(
+                    NextState("W_ADDR_WAIT_SCL1"),
+                    NextValue(byte, byte + 1),
+                    NextValue(bit, 7),
+                    NextValue(self.clk_counter, self.clkdiv // 2),
+                ),
             ).Else(
                 NextValue(self.clk_counter, self.clk_counter + 1),
             ),
@@ -231,24 +321,35 @@ class I2CMaster(Module):
 
         self.fsm.act(
             "W_ADDR_WAIT_SCL1",
-            NextValue(debug, 1),
+            NextValue(debug, 0),
+            # Set sda to MSB of the next byte we're going to send
+            # Wait for slave to release clock (clock stretching)
+            NextValue(self.sda.oe, ~((data[command][byte] >> bit) & 1)),
             If(self.scl.i == 1,
-                If(byte == len(data) - 1,
-                    NextState("HANG"),
-                ).Else(
-                    NextState("W_ADDR"),
-                    NextValue(debug, 0),
-                    NextValue(byte, byte + 1),
-                    NextValue(bit, 7),
-                    NextValue(self.clk_counter, self.clkdiv // 2),
-                ),
+                NextState("W_ADDR"),
             )
         )
 
+        self.fsm.act(
+            "W_ADDR_SEND_STOP",
+            NextValue(debug, 0),
+            NextValue(self.sda.oe, 1), # Prepare stop signal
+            If(self.scl.i == 1, # Wait for slave to release clock (clock stretching)
+                # Wait 1 period with sda=1, scl=1
+                If(self.clk_counter == self.stop_counter,
+                    NextState("W_START"),
+                    NextValue(self.clk_counter, 0),
+                ).Elif(self.clk_counter > self.clkdiv // 2,
+                    NextValue(self.sda.oe, 0), # Prepare stop signal
+                ),
+                NextValue(self.clk_counter, self.clk_counter + 1),
+            )
+        )
 
         self.fsm.act(
             "HANG",
-            NextValue(debug, ~debug),
+            NextValue(debug, 0),
+            # NextState("INIT"),
         )
 
 
