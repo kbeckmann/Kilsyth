@@ -245,6 +245,7 @@ class I2CMaster(Module):
             NextValue(debug, 0b000000),
             NextValue(command, 0),
             NextValue(byte, 1),
+            NextValue(bit, 7),
             NextValue(self.scl.oe, 0),
             NextValue(self.sda.oe, 0),
             NextValue(self.slow_counter, self.slow_counter + 1),
@@ -287,22 +288,35 @@ class I2CMaster(Module):
             "W_ADDR_WAIT_ACK",
             NextValue(debug, 0b000100),
             NextValue(self.scl.oe, self.clk_counter < (self.clkdiv // 2)),
-            If(self.clk_counter == self.clkdiv,
+            NextValue(self.clk_counter, self.clk_counter + 1),
+            If(self.clk_counter >= self.clkdiv,
+                NextValue(self.clk_counter, 0),
                 If(self.sda.i == 0,
                     # ACK
-                    NextValue(self.clk_counter, 0),
                     NextState("W_ADDR_WAIT_SCL"),
                 ).Else(
                     # NACK
-                    NextValue(debug, 0b101010),
-                )
-            ).Elif(byte == data[command][0] - 1,
-                # Keep the clock ticking if we're at the last byte
-                NextValue(self.clk_counter, self.clk_counter + 1),
-            )
-            .Else(
-                NextValue(self.clk_counter, self.clk_counter + 1),
+                    NextState("W_ADDR_HANDLE_NACK"),
+                ),
             ),
+        )
+
+        self.fsm.act(
+            "W_ADDR_HANDLE_NACK",
+            NextValue(debug, 0b000111),
+            NextValue(self.sda.oe, 1),
+            # Wait for clock stretching
+            If(self.scl.i == 1,
+                NextValue(self.clk_counter, self.clk_counter + 1),
+                If(self.clk_counter == self.clkdiv,
+                    NextValue(byte, 1),
+                    NextValue(bit, 7),
+                    NextValue(self.sda.oe, 0),
+                    NextState("W_START"),
+                ).Elif(self.clk_counter >= self.clkdiv // 2,
+                    NextValue(self.sda.oe, 0),
+                )
+            )
         )
 
         self.fsm.act(
@@ -355,6 +369,7 @@ class I2CMaster(Module):
                 NextValue(self.clk_counter, self.clk_counter + 1),
                 If(self.clk_counter == self.stop_counter,
                     NextState("W_START"),
+                    NextValue(self.sda.oe, 0),
                     NextValue(self.clk_counter, 0),
                 ).Elif(self.clk_counter > self.clkdiv // 2,
                     NextValue(self.sda.oe, 0), # Prepare stop signal
@@ -397,7 +412,7 @@ class FT600Pipe(Module):
         self.cd_sys.clk = ft600.clk
         self.cd_sx1257.clk = pmod0.pin4
 
-        self.submodules += I2CMaster(100_000_000 // 100_000, 0x28, pmod0.pin1, pmod0.pin2, leds)
+        self.submodules += I2CMaster(100_000_000 // 400_000, 0x28, pmod0.pin1, pmod0.pin2, leds)
 
         # This can probably be a lot smaller
         depth = 256
