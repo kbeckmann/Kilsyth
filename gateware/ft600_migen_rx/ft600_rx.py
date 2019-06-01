@@ -294,7 +294,7 @@ class I2CMaster(Module):
                     NextState("W_ADDR_WAIT_SCL"),
                 ).Else(
                     # NACK
-                    NextValue(debug, 0b111110),
+                    NextValue(debug, 0b101010),
                 )
             ).Elif(byte == data[command][0] - 1,
                 # Keep the clock ticking if we're at the last byte
