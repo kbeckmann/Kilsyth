@@ -121,7 +121,18 @@ def BuildCmd(values):
 class I2CMaster(Module):
     # clkdiv:       Constant to count to for clock division
     # slave_addr:   Slave address
-    def __init__(self, clkdiv, slave_addr, scl, sda, debug):
+    def __init__(self, clkdiv, slave_addr, scl, sda, leds):
+
+        debug = Cat(leds[x] for x in range(2, 8))
+
+        # debug = Signal(8)
+        # debug2 = Cat(leds[x] for x in range(2, 8))
+        # self.comb += [debug2.eq(0b10_0000)]
+
+        # debug2 = Cat(leds[x] for x in range(2, 8))
+        # a = Signal(16)
+        # self.sync += [a.eq(a + 1)]
+        # self.sync += [debug2.eq(a[8:])]
 
         self.slow_counter = Signal(max=100_000_000)
         self.clkdiv = clkdiv
@@ -231,7 +242,7 @@ class I2CMaster(Module):
         self.submodules.fsm = FSM(reset_state="INIT")
         self.fsm.act(
             "INIT",
-            NextValue(debug, 0),
+            NextValue(debug, 0b000000),
             NextValue(command, 0),
             NextValue(byte, 1),
             NextValue(self.scl.oe, 0),
@@ -246,7 +257,7 @@ class I2CMaster(Module):
 
         self.fsm.act(
             "W_START",
-            NextValue(debug, 0),
+            NextValue(debug, 0b000001),
             NextValue(self.sda.oe, 1),
             NextValue(self.clk_counter, self.clk_counter + 1),
             If (self.clk_counter == self.clkdiv,
@@ -258,7 +269,7 @@ class I2CMaster(Module):
 
         self.fsm.act(
             "W_ADDR",
-            NextValue(debug, 0),
+            NextValue(debug, 0b000010),
             NextValue(self.scl.oe, self.clk_counter < (self.clkdiv // 2)),
             NextValue(self.sda.oe, ~((data[command][byte] >> bit) & 1)),
             NextValue(self.clk_counter, self.clk_counter + 1),
@@ -274,12 +285,16 @@ class I2CMaster(Module):
 
         self.fsm.act(
             "W_ADDR_WAIT_ACK",
-            NextValue(debug, 1),
+            NextValue(debug, 0b000100),
             NextValue(self.scl.oe, self.clk_counter < (self.clkdiv // 2)),
             If(self.clk_counter == self.clkdiv,
                 If(self.sda.i == 0,
+                    # ACK
                     NextValue(self.clk_counter, 0),
                     NextState("W_ADDR_WAIT_SCL"),
+                ).Else(
+                    # NACK
+                    NextValue(debug, 0b111110),
                 )
             ).Elif(byte == data[command][0] - 1,
                 # Keep the clock ticking if we're at the last byte
@@ -292,7 +307,7 @@ class I2CMaster(Module):
 
         self.fsm.act(
             "W_ADDR_WAIT_SCL",
-            NextValue(debug, 0),
+            NextValue(debug, 0b001000),
             NextValue(self.scl.oe, 1),
             NextValue(self.sda.oe, 1), # ACK
             If(self.clk_counter == self.clkdiv,
@@ -300,7 +315,8 @@ class I2CMaster(Module):
 
                 If(byte == data[command][0],
                     If(command == len(data) - 1,
-                        NextState("HANG"),
+                        NextState("W_ADDR_SEND_FINAL_STOP"),
+                        NextValue(self.clk_counter, 0),
                     ).Else(
                         NextState("W_ADDR_SEND_STOP"),
                         NextValue(byte, 1),
@@ -321,7 +337,7 @@ class I2CMaster(Module):
 
         self.fsm.act(
             "W_ADDR_WAIT_SCL1",
-            NextValue(debug, 0),
+            NextValue(debug, 0b010000),
             # Set sda to MSB of the next byte we're going to send
             # Wait for slave to release clock (clock stretching)
             NextValue(self.sda.oe, ~((data[command][byte] >> bit) & 1)),
@@ -332,24 +348,43 @@ class I2CMaster(Module):
 
         self.fsm.act(
             "W_ADDR_SEND_STOP",
-            NextValue(debug, 0),
+            NextValue(debug, 0b100000),
             NextValue(self.sda.oe, 1), # Prepare stop signal
             If(self.scl.i == 1, # Wait for slave to release clock (clock stretching)
                 # Wait 1 period with sda=1, scl=1
+                NextValue(self.clk_counter, self.clk_counter + 1),
                 If(self.clk_counter == self.stop_counter,
                     NextState("W_START"),
                     NextValue(self.clk_counter, 0),
                 ).Elif(self.clk_counter > self.clkdiv // 2,
                     NextValue(self.sda.oe, 0), # Prepare stop signal
                 ),
+            )
+        )
+
+        self.fsm.act(
+            "W_ADDR_SEND_FINAL_STOP",
+            NextValue(debug, 0b110000),
+            NextValue(self.sda.oe, 1), # Prepare stop signal
+            If(self.scl.i == 1, # Wait for slave to release clock (clock stretching)
+                # Wait 1 period with sda=1, scl=1
                 NextValue(self.clk_counter, self.clk_counter + 1),
+                If(self.clk_counter == self.stop_counter,
+                    NextState("HANG"),
+                    NextValue(self.clk_counter, 0),
+                    NextValue(self.sda.oe, 0), # Prepare stop signal
+                ).Elif(self.clk_counter > self.clkdiv // 2,
+                    NextValue(self.sda.oe, 0), # Prepare stop signal
+                ),
             )
         )
 
         self.fsm.act(
             "HANG",
-            NextValue(debug, 0),
-            # NextState("INIT"),
+            NextValue(debug, 0b111111),
+            If(self.clk_counter == 3,
+                NextState("INIT"),
+            )
         )
 
 
@@ -362,7 +397,7 @@ class FT600Pipe(Module):
         self.cd_sys.clk = ft600.clk
         self.cd_sx1257.clk = pmod0.pin4
 
-        self.submodules += I2CMaster(100000000 // 400000, 0x28, pmod0.pin1, pmod0.pin2, leds[6])
+        self.submodules += I2CMaster(100_000_000 // 100_000, 0x28, pmod0.pin1, pmod0.pin2, leds)
 
         # This can probably be a lot smaller
         depth = 256
@@ -391,7 +426,7 @@ class FT600Pipe(Module):
             self.specials += self.ft_data
 
         self.comb += [
-            leds[0].eq(counter[0]),
+            # leds[0].eq(counter[0]),
         ]
  
         self.sync += [
@@ -406,17 +441,17 @@ class FT600Pipe(Module):
             NextValue(ft600.wr_n, 1),
             NextValue(self.ft_be.oe, 0),
             NextValue(self.ft_data.oe, 0),
-            NextValue(leds[5], 1),
+            # NextValue(leds[5], 1),
             # NextValue(leds[6], 0),
-            NextValue(leds[7], 0),
+            # NextValue(leds[7], 0),
             NextState("WAIT")
         )
 
         self.fsm.act(
             "WAIT",
-            NextValue(leds[5], 0),
+            # NextValue(leds[5], 0),
             # NextValue(leds[6], 1),
-            NextValue(leds[7], 0),
+            # NextValue(leds[7], 0),
             NextValue(ft600.wr_n, 1),
 
             NextValue(self.ft_data.oe, 0),
@@ -431,9 +466,9 @@ class FT600Pipe(Module):
 
         self.fsm.act(
             "WRITE",
-            NextValue(leds[5], 0),
+            # NextValue(leds[5], 0),
             # NextValue(leds[6], 0),
-            NextValue(leds[7], 1),
+            # NextValue(leds[7], 1),
             NextValue(ft600.wr_n, 0),
 
             NextValue(self.ft_data.o, fifo.dout),
