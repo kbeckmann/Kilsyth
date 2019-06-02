@@ -136,7 +136,7 @@ class I2CMaster(Module):
 
         self.slow_counter = Signal(max=100_000_000)
         self.clkdiv = clkdiv
-        self.stop_counter = clkdiv * 10
+        self.stop_counter = clkdiv * 2
         self.clk_counter = Signal(max=self.stop_counter + 1)
         self.w_addr = (slave_addr << 1) | 0
         self.r_addr = (slave_addr << 1) | 1
@@ -312,6 +312,7 @@ class I2CMaster(Module):
                     NextValue(byte, 1),
                     NextValue(bit, 7),
                     NextValue(self.sda.oe, 0),
+                    NextValue(self.clk_counter, 0),
                     NextState("W_START"),
                 ).Elif(self.clk_counter >= self.clkdiv // 2,
                     NextValue(self.sda.oe, 0),
