@@ -16,14 +16,108 @@ class TSTripleFake():
 # make
 # LD_LIBRARY_PATH=. ./streamer 0 1 0 dump.raw
 # sox -t raw -e unsigned -b 8 -c 2 -r 48000 dump.raw  -t raw -e floating-point -b 32 -c 2 -r 48000 out.raw
-# gqrx config: file=/home/konrad/dev/Kilsyth/software/ft600_test/linux-x86_64/out.raw,freq=868e6,rate=500e3,repeat=true,throttle=true
+# gqrx config: file=/home/konrad/dev/Kilsyth/software/ft600_test/linux-x86_64/out.raw,freq=867.9e6,rate=500e3,repeat=true,throttle=true
 #
 
 
+# Stolen from the Migen example
+from scipy import signal
+from functools import reduce
+from operator import add
+class FIR(Module):
+    def __init__(self, coef, wsize=16):
+        self.coef = coef
+        self.wsize = wsize
+        self.i = Signal((self.wsize, True))
+        self.o = Signal((self.wsize, True))
+
+        muls = []
+        src = self.i
+        for c in self.coef:
+            sreg = Signal((self.wsize, True))
+            self.sync += sreg.eq(src)
+            src = sreg
+            c_fp = int(c*2**(self.wsize - 1))
+            muls.append(c_fp*sreg)
+        sum_full = Signal((2*self.wsize-1, True))
+        self.sync += sum_full.eq(reduce(add, muls))
+        self.comb += self.o.eq(sum_full >> self.wsize-1)
+
+
 class IQSampler(Module):
-    # pmod0.pin2 => CLK_OUT
-    # pmod0.pin5 => I_OUT
-    # pmod0.pin6 => Q_OUT
+    # pmod0.pin4 => CLK_OUT
+    # pmod0.pin7 => I_OUT
+    # pmod0.pin8 => Q_OUT
+    # fifo = AsyncFifo()
+    def __init__(self, pmod0, fifo, debug):
+        cmax = 72*2
+        counter = Signal(16)
+        bit_depth = 12
+        i_r = Signal((bit_depth, True))
+        q_r = Signal((bit_depth, True))
+        overflow = Signal()
+
+        coef = signal.firwin(8, 0.25/36, window=('kaiser', 8))
+
+        firI = FIR(coef, bit_depth)
+        self.submodules += firI
+        firQ = FIR(coef, bit_depth)
+        self.submodules += firQ
+
+        self.comb += [
+            debug[0].eq(overflow),
+            firI.i.eq(i_r),
+            firQ.i.eq(q_r),
+            # firI.i.eq(pmod0.pin7),
+            # firQ.i.eq(pmod0.pin8),
+            If(counter == 0,
+                fifo.din.eq(
+                    # firI.o |
+                    # (firQ.o << 8)
+
+                    (((firI.o[bit_depth-8:]) )     ) |
+                    (((firQ.o[bit_depth-8:]) ) << 8)
+
+                    # ((( i_r[:8] ) )     ) |
+                    # ((( q_r[:8] ) ) << 8)
+
+                    # ((firI.o >> 8) & 0xff) |
+                    # ((firQ.o >> 8) & 0xff)
+                ),
+                fifo.we.eq(1),
+            ).Else(
+                fifo.we.eq(0),
+            ),
+        ]
+
+        self.sync += [
+            If (~fifo.writable,
+                overflow.eq(1)
+            ),
+
+            If(pmod0.pin7,
+                i_r.eq(1),
+            ).Else(
+                i_r.eq(-1),
+            ),
+
+            If(pmod0.pin8,
+                q_r.eq(1),
+            ).Else(
+                q_r.eq(-1),
+            ),
+
+            counter.eq(counter + 1),
+            If(counter == cmax,
+                counter.eq(0)
+            ),
+
+        ]
+
+class IQSamplerRaw(Module):
+    # pmod0.pin4 => CLK_OUT
+    # pmod0.pin7 => I_OUT
+    # pmod0.pin8 => Q_OUT
     # fifo = AsyncFifo()
     def __init__(self, pmod0, fifo):
         counter = Signal(3)
@@ -42,61 +136,28 @@ class IQSampler(Module):
 
         self.sync += [
             # LSB first
-            # sample_i.eq((sample_i << 1) | pmod0.pin5),
-            # sample_q.eq((sample_q << 1) | pmod0.pin6),
+            # sample_i.eq((sample_i << 1) | pmod0.pin7),
+            # sample_q.eq((sample_q << 1) | pmod0.pin8),
 
             # MSB first
-            sample_i.eq((sample_i >> 1) | (pmod0.pin3 << 7)),
-            sample_q.eq((sample_q >> 1) | (pmod0.pin4 << 7)),
+            sample_i.eq((sample_i >> 1) | (pmod0.pin7 << 7)),
+            sample_q.eq((sample_q >> 1) | (pmod0.pin8 << 7)),
+            # sample_q.eq(counter),
 
             counter.eq(counter + 1),
         ]
 
-class IQSamplerBad(Module):
-    # pmod0.pin2 => CLK_OUT
-    # pmod0.pin5 => I_OUT
-    # pmod0.pin6 => Q_OUT
-    # fifo = AsyncFifo()
-    def __init__(self, pmod0, fifo):
-        # Sample with 150kHz bandwidth assuming a 36MHz clock
-        # 150kHz leads to a cnt_max of 240, samples are still <256
-        cnt_max = 36000000 // 150000
-
-        counter = Signal(max=cnt_max+1)
-        sample_i = Signal(8)
-        sample_q = Signal(8)
-
-        self.comb += [
-            fifo.din.eq(((sample_q) << 8) | sample_i),
-            If((counter == cnt_max) & fifo.writable,
-                # if fifo.writable is false we will drop a sample
-                fifo.we.eq(1),
-            ).Else(
-                fifo.we.eq(0),
-            ),
-        ]
-
-        self.sync += [
-            If (counter == cnt_max,
-                sample_i.eq(pmod0.pin5),
-                sample_q.eq(pmod0.pin6),
-                counter.eq(0),
-            ).Else(
-                sample_i.eq(sample_i + pmod0.pin5),
-                sample_q.eq(sample_q + pmod0.pin6),
-                counter.eq(counter + 1),
-            )
-        ]
-
 class IQSamplerFake(Module):
     # Use this to test that we can count properly and not drop samples.
-    def __init__(self, pmod0, fifo):
+    def __init__(self, pmod0, fifo, debug):
         counter = Signal(16)
         counter2 = Signal(8)
+        overflow = Signal()
 
         self.comb += [
             fifo.din.eq(((counter2+1) << 8) | counter2),
-            If((counter == 0) & fifo.writable,
+            debug[0].eq(overflow),
+            If((counter == 0),
                 fifo.we.eq(1),
             ).Else(
                 fifo.we.eq(0),
@@ -105,6 +166,9 @@ class IQSamplerFake(Module):
 
         self.sync += [
             # 72 = 500kHz bandwidth with a 36MHz clock
+            If (~fifo.writable,
+                overflow.eq(1)
+            ),
             If (counter == 72,
                 counter.eq(0),
                 counter2.eq(counter2 + 2)
@@ -123,7 +187,8 @@ class I2CMaster(Module):
     # slave_addr:   Slave address
     def __init__(self, clkdiv, slave_addr, scl, sda, leds):
 
-        debug = Cat(leds[x] for x in range(2, 8))
+        debug = Signal(8)
+        # debug = Cat(leds[x] for x in range(2, 8))
 
         # debug = Signal(8)
         # debug2 = Cat(leds[x] for x in range(2, 8))
@@ -195,7 +260,7 @@ class I2CMaster(Module):
 
             ##############
 
-            # Set freq=867.990 MHz
+            # Set TX freq=867.990 MHz
             BuildCmd([
                 self.w_addr,
                 0x01,
@@ -217,13 +282,38 @@ class I2CMaster(Module):
 
             #########
 
+            ##############
+
+            # Set RX freq=867.900 MHz
+            BuildCmd([
+                self.w_addr,
+                0x01,
+                0x80 | 0x01, # RegFrfRxMsb
+                0xc0,
+            ]),
+            BuildCmd([
+                self.w_addr,
+                0x01,
+                0x80 | 0x02, # RegFrfRxMid
+                0xdd,
+            ]),
+            BuildCmd([
+                self.w_addr,
+                0x01,
+                0x80 | 0x03, # RegFrfRxLsb
+                0xde,
+            ]),
+
+            #########
+
 
             # Set PA, TX, IDLE enabled
             BuildCmd([
                 self.w_addr,
                 0x01,
                 0x80, # Operating mode
-                0b0000_1_1_0_1, # PA, TX, IDLE enabled
+                # 0b0000_1_1_0_1, # PA, TX, IDLE enabled
+                0b0000_0_0_1_1, # RX, IDLE enabled
             ]),
 
             # Set clock out enabled
@@ -416,15 +506,15 @@ class FT600Pipe(Module):
         self.submodules += I2CMaster(100_000_000 // 400_000, 0x28, pmod0.pin1, pmod0.pin2, leds)
 
         # This can probably be a lot smaller
-        depth = 256
+        depth = 1024 * 8
         fifo = ClockDomainsRenamer({
             "write": "sx1257",
             "read":  "sys",
         })(AsyncFIFO(16, depth))
         self.submodules += fifo
 
-        rxsamples = ClockDomainsRenamer({"sys": "sx1257"})(IQSampler(pmod0, fifo))
-        # rxsamples = ClockDomainsRenamer({"sys": "sx1257"})(IQSamplerFake(pmod0, fifo))
+        rxsamples = ClockDomainsRenamer({"sys": "sx1257"})(IQSampler(pmod0, fifo, leds))
+        # rxsamples = ClockDomainsRenamer({"sys": "sx1257"})(IQSamplerFake(pmod0, fifo, leds))
         self.submodules += rxsamples
 
         counter = Signal(32)
@@ -509,7 +599,7 @@ def build_gateware(testing):
 
     import kilsyth
 
-    target_clock_mhz = 100
+    target_clock_mhz = 36
 
     target = os.environ["TARGET"] if "TARGET" in os.environ else "lfe5u45"
     plat = kilsyth.Platform(toolchain='trellis', target=target)
