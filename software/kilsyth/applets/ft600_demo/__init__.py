@@ -1,5 +1,5 @@
 from migen import *
-from migen.genlib.fifo import AsyncFIFO
+from migen.genlib.fifo import SyncFIFO, AsyncFIFO
 import os, sys
 
 from .. import KilsythApplet
@@ -19,51 +19,67 @@ class FT600Demo(KilsythApplet, name="ft600_demo"):
         self.clock_domains.cd_sys = ClockDomain(reset_less=False)
         self.cd_sys.clk = ft600_pins.clk
 
-        depth = 8
-        fifo_rx = ClockDomainsRenamer({
-            "write": "sys",
-            "read":  "sys",
-        })(AsyncFIFO(16, depth))
+        depth = 2
+        fifo_rx = SyncFIFO(16, depth)
         self.submodules += fifo_rx
 
-        fifo_tx = ClockDomainsRenamer({
-            "write": "sys",
-            "read":  "sys",
-        })(AsyncFIFO(16, depth))
+        fifo_tx = SyncFIFO(16, depth)
         self.submodules += fifo_tx
 
         debug = Signal(8)
         self.submodules.ft600 = FT600(ft600_pins, fifo_rx, fifo_tx, debug)
 
 
-        counter = Signal(16)
-        counter2 = Signal(8)
-        overflow = Signal()
-
-        self.comb += [
-            # fifo_tx.din.eq(((counter2+1)[:8] << 8) | counter2),
-            fifo_tx.din.eq((counter2 << 8) | counter2),
-            # fifo_tx.din.eq(counter2),
-            led.eq(overflow),
-            If((counter == 0),
+        if True:
+            # Write as fast as possible
+            counter = Signal(8)
+            overflow = Signal()
+            self.comb += [
+                # fifo_tx.din.eq((counter << 8) | counter),
+                # fifo_tx.din.eq(counter),
+                fifo_tx.din.eq(
+                    ((counter + 1) << 8) |
+                    ((counter    )     )
+                ),
                 fifo_tx.we.eq(1),
-            ).Else(
-                fifo_tx.we.eq(0),
-            ),
-        ]
+            ]
+            self.sync += [
+                If (~fifo_tx.writable,
+                    overflow.eq(1)
+                ),
+                counter.eq(counter + 2)
+            ]
+        else:
+            # Write every 100th clock cycle
+            # This produces garbled data. Why?
+            # Also it seems to produce a 2x faster data rate than it should...
+            counter = Signal(16)
+            counter2 = Signal(8)
+            overflow = Signal()
+            self.comb += [
+                fifo_tx.din.eq(
+                    ((counter2 + 1) << 8) |
+                    ((counter2    )     )
+                ),
+                led.eq(overflow),
+                If(counter == 1,
+                    fifo_tx.we.eq(1),
+                ).Else(
+                    fifo_tx.we.eq(0),
+                ),
+            ]
 
-        self.sync += [
-            If (~fifo_tx.writable,
-                overflow.eq(1)
-            ),
-            If (counter == 100,
-                counter.eq(0),
-                # counter2.eq(counter2 + 2)
-                counter2.eq(counter2 + 1)
-            ).Else(
-                counter.eq(counter + 1)
-            )
-        ]
+            self.sync += [
+                If (~fifo_tx.writable,
+                    overflow.eq(1)
+                ),
+                If (counter == 100,
+                    counter.eq(0),
+                    counter2.eq(counter2 + 2)
+                ).Else(
+                    counter.eq(counter + 1)
+                )
+            ]
 
     def build(self):
         self.device.build(self, toolchain_path='/usr/share/trellis')
