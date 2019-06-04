@@ -40,16 +40,27 @@ _io = [
         Subsignal("pin8", Pins("PMOD0:10")),
     ),
 
-    # ("pmod0", 0, Pins(
-    #     "PMOD0:1",
-    #     "PMOD0:2",
-    #     "PMOD0:3",
-    #     "PMOD0:4",
-    #     "PMOD0:7",
-    #     "PMOD0:8",
-    #     "PMOD0:9",
-    #     "PMOD0:10",
-    # ), IOStandard("LVCMOS33")),
+    ("pmod1", 0, 
+        Subsignal("pin1", Pins("PMOD1:1")),
+        Subsignal("pin2", Pins("PMOD1:2")),
+        Subsignal("pin3", Pins("PMOD1:3")),
+        Subsignal("pin4", Pins("PMOD1:4")),
+        Subsignal("pin5", Pins("PMOD1:7")),
+        Subsignal("pin6", Pins("PMOD1:8")),
+        Subsignal("pin7", Pins("PMOD1:9")),
+        Subsignal("pin8", Pins("PMOD1:10")),
+    ),
+
+    ("pmod2", 0, 
+        Subsignal("pin1", Pins("PMOD2:1")),
+        Subsignal("pin2", Pins("PMOD2:2")),
+        Subsignal("pin3", Pins("PMOD2:3")),
+        Subsignal("pin4", Pins("PMOD2:4")),
+        Subsignal("pin5", Pins("PMOD2:7")),
+        Subsignal("pin6", Pins("PMOD2:8")),
+        Subsignal("pin7", Pins("PMOD2:9")),
+        Subsignal("pin8", Pins("PMOD2:10")),
+    ),
 ]
 
 _connectors = [
