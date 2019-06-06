@@ -6,7 +6,7 @@ class FT600(Module):
     """
     FT600 fifo
 
-    ``sys`` clock domain is used for the state machine. Map this to the ft600 clock.
+    ``sys`` clock domain is used in this module. It should be mapped to ft60x.clk.
 
     :param ft600:
         ft600 IOs
@@ -38,11 +38,11 @@ class FT600(Module):
 
             NextValue(ft600.oe_n, 1),
             NextValue(ft600.rd_n, 1),
-            NextValue(ft600.wr_n, 1),
+            ft600.wr_n.eq(1),
             NextValue(self.ft_be.oe, 0),
             NextValue(self.ft_data.oe, 0),
 
-            NextValue(fifo_tx.re, 0),
+            fifo_tx.re.eq(0),
 
             NextState("WAIT")
         )
@@ -61,25 +61,26 @@ class FT600(Module):
             # Idle states for the control pins
             NextValue(ft600.oe_n, 1),
             NextValue(ft600.rd_n, 1),
-            NextValue(ft600.wr_n, 1),
+            ft600.wr_n.eq(1),
+
             NextValue(self.ft_data.oe, 0),
             NextValue(self.ft_be.oe, 0),
 
+            fifo_tx.re.eq(0),
+
+            # If ((cache_valid | fifo_tx.readable) & (~ft600.txe_n),
             If ((fifo_tx.readable) & (~ft600.txe_n),
 
-                # The FT60x works like this:
+                # TX to ft60x works like this:
                 # 1. When ft600.txe_n is 0, there is space available in the TX buffer.
                 # 2. The clock cycle after ft600.wr_n is asserted,
                 #    BE and DATA will be read until txe_n is released.
                 #    Data will only be read up to the clock cycle just before.
                 # This means that we need to assert ft600.wr_n only when we have data ready.
 
-                # The cache is explained below
-                If (cache_valid,
-                    NextValue(fifo_tx.re, 0),
-                ).Else(
-                    NextValue(fifo_tx.re, 1),
-                ),
+                NextValue(self.ft_be.oe, 1),
+                NextValue(self.ft_be.o, 0b11),
+                NextValue(self.ft_data.oe, 1),
 
                 NextState("WRITE")
             )
@@ -92,22 +93,23 @@ class FT600(Module):
             NextValue(debug[2], 1),
 
             # Tell FT600 that data should be read in the next cycle
-            NextValue(ft600.wr_n, 0),
+            ft600.wr_n.eq(0),
 
             # Tell FT600 that banks 1 and 2 are used
             NextValue(self.ft_be.oe, 1),
             NextValue(self.ft_be.o, 0b11),
 
             # Tell our fifo that we want to a value in the next cycle
-            NextValue(fifo_tx.re, 1),
+            # NextValue(fifo_tx.re, 1),
+            fifo_tx.re.eq(1),
 
             # Used the cached value from the previous transfer if available,
             # use the value from the FIFO otherwise.
             If (cache_valid,
-                NextValue(self.ft_data.o, cache),
+                self.ft_data.o.eq(cache),
                 NextValue(cache_valid, 0),
             ).Else(
-                NextValue(self.ft_data.o, fifo_tx.dout),
+                self.ft_data.o.eq(fifo_tx.dout),
                 NextValue(cache, fifo_tx.dout),
             ),
 
@@ -118,8 +120,9 @@ class FT600(Module):
                 # There is nothing to read
                 # or we are not allowed to write to ft600.
                 # Time to wait.
-                NextValue(fifo_tx.re, 0),
-                NextValue(ft600.wr_n, 1),
+                fifo_tx.re.eq(0),
+
+                ft600.wr_n.eq(1),
                 NextValue(self.ft_be.oe, 0),
                 NextValue(self.ft_data.oe, 0),
 
