@@ -128,7 +128,7 @@ class FT600(Module):
                 # from the FIFO. Cache it.
                 # Before the next transfer, we must use the cache
                 # and not take a value from the FIFO.
-                If (ft600.txe_n,
+                If (fifo_tx.readable & ft600.txe_n,
                     NextValue(cache_valid, 1),
                 ),
 
