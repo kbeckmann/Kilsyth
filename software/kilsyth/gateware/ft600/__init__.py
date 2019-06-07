@@ -32,13 +32,14 @@ class FT600(Module):
         self.submodules.fsm = FSM(reset_state="INIT")
         self.fsm.act(
             "INIT",
-            NextValue(debug[0], 1),
+            NextValue(debug[0], 0),
             NextValue(debug[1], 0),
             NextValue(debug[2], 0),
 
-            NextValue(ft600.oe_n, 1),
-            NextValue(ft600.rd_n, 1),
+            ft600.oe_n.eq(1),
+            ft600.rd_n.eq(1),
             ft600.wr_n.eq(1),
+
             NextValue(self.ft_be.oe, 0),
             NextValue(self.ft_data.oe, 0),
 
@@ -50,23 +51,22 @@ class FT600(Module):
         cache = Signal(16)
         cache_valid = Signal()
 
-
-
         self.fsm.act(
             "WAIT",
-            NextValue(debug[0], 0),
-            NextValue(debug[1], 1),
+            NextValue(debug[0], 1),
+            NextValue(debug[1], 0),
             NextValue(debug[2], 0),
 
             # Idle states for the control pins
-            NextValue(ft600.oe_n, 1),
-            NextValue(ft600.rd_n, 1),
+            ft600.oe_n.eq(1),
+            ft600.rd_n.eq(1),
             ft600.wr_n.eq(1),
 
             NextValue(self.ft_data.oe, 0),
             NextValue(self.ft_be.oe, 0),
 
             fifo_tx.re.eq(0),
+            NextValue(fifo_rx.we, 0),
 
             # If ((cache_valid | fifo_tx.readable) & (~ft600.txe_n),
             If ((fifo_tx.readable) & (~ft600.txe_n),
@@ -84,6 +84,56 @@ class FT600(Module):
 
                 NextState("WRITE")
             )
+            .Elif(fifo_rx.writable & (~ft600.rxf_n),
+                NextValue(self.ft_be.oe, 1),
+                NextValue(self.ft_be.o, 0b11),
+                NextValue(self.ft_data.oe, 1),
+    
+                ft600.oe_n.eq(0),
+
+                NextState("READ")
+            )
+        )
+
+
+        self.fsm.act(
+            "READ",
+            NextValue(debug[0], 0),
+            NextValue(debug[1], 1),
+            NextValue(debug[2], 0),
+
+            # Tell FT600 that data should be read in the next cycle
+            ft600.oe_n.eq(0),
+            ft600.rd_n.eq(0),
+            ft600.wr_n.eq(0),
+
+            # Tell FT600 that banks 1 and 2 are used
+            NextValue(self.ft_be.oe, 1),
+            NextValue(self.ft_be.o, 0b11),
+
+            # Tell our fifo that we want to write in the next cycle
+            NextValue(fifo_rx.we, 1),
+            NextValue(fifo_rx.din, self.ft_data.i),
+
+            fifo_tx.re.eq(0),
+
+            # Output enable for the data pins
+            NextValue(self.ft_data.oe, 0),
+
+            If ((~fifo_rx.writable) | (ft600.rxf_n),
+                # There is nothing to read
+                # or we are not allowed to write to ft600.
+                # Time to wait.
+                NextValue(fifo_rx.we, 0),
+                fifo_tx.re.eq(0),
+
+                ft600.oe_n.eq(1),
+                ft600.rd_n.eq(1),
+
+                NextValue(self.ft_be.oe, 0),
+
+                NextState("WAIT")
+            )
         )
 
         self.fsm.act(
@@ -93,6 +143,8 @@ class FT600(Module):
             NextValue(debug[2], 1),
 
             # Tell FT600 that data should be read in the next cycle
+            ft600.oe_n.eq(1),
+            ft600.rd_n.eq(1),
             ft600.wr_n.eq(0),
 
             # Tell FT600 that banks 1 and 2 are used

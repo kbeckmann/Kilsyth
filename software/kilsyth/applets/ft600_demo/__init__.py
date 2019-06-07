@@ -25,22 +25,30 @@ class FT600Demo(KilsythApplet, name="ft600_demo"):
         self.clock_domains.cd_clk16 = ClockDomain(reset_less=False)
         self.cd_clk16.clk = clk16
 
-        depth = 2
+        depth = 1024 * 2
 
-        fifo_rx = SyncFIFO(16, depth)
-        self.submodules += fifo_rx
+        if False:
+            fifo_rx = SyncFIFO(16, depth)
+            self.submodules += fifo_rx
 
-        # AsyncFIFO requires a depth of at least 8 to be able to run at max speed 
-        # fifo_tx = ClockDomainsRenamer({
-        #     "write": "sys",
-        #     "read":  "sys",
-        # })(AsyncFIFO(16, depth))
-        # self.submodules += fifo_tx
+            fifo_tx = SyncFIFO(16, depth)
+            self.submodules += fifo_tx
+        else:
+            # AsyncFIFO requires a depth of at least 8 to be able to run at max speed 
+            fifo_rx = ClockDomainsRenamer({
+                "write": "sys",
+                "read":  "sys",
+            })(AsyncFIFO(16, depth))
+            self.submodules += fifo_rx
 
-        fifo_tx = SyncFIFO(16, depth)
-        self.submodules += fifo_tx
+            fifo_tx = ClockDomainsRenamer({
+                "write": "sys",
+                "read":  "sys",
+            })(AsyncFIFO(16, depth))
+            self.submodules += fifo_tx
 
-        debug = Signal(8)
+
+        debug = led[-3:]
         self.submodules.ft600 = FT600(ft600_pins, fifo_rx, fifo_tx, debug)
 
         overflow = Signal()
@@ -49,39 +57,51 @@ class FT600Demo(KilsythApplet, name="ft600_demo"):
             led[1].eq(overflow),
         ]
 
-        # Write every nth clock cycle
-        counter = Signal(32)
-        counter2 = Signal(8)
-        self.comb += [
-            fifo_tx.din.eq(
-                ((counter2 + 1) << 8) |
-                ((counter2    )     )
-            ),
-            If((counter == 0),
-                fifo_tx.we.eq(1),
-            ).Else(
-                fifo_tx.we.eq(0),
-            ),
-        ]
 
-        # cnt_max = int(100e6 / 10000)
-        # cnt_max = 99
-        # cnt_max = 2
-        cnt_max = 0
-
-        # self.sync.clk16 += [
-        self.sync += [
-            If (~fifo_tx.writable,
-                overflow.eq(1)
-            ).Else(
-                If (counter == cnt_max,
-                    counter.eq(0),
-                    counter2.eq(counter2 + 2)
+        if False:
+            # Test TX only
+            # Write counter every nth clock cycle
+            counter = Signal(32)
+            counter2 = Signal(8)
+            self.comb += [
+                fifo_tx.din.eq(
+                    ((counter2 + 1) << 8) |
+                    ((counter2    )     )
+                ),
+                If((counter == 0),
+                    fifo_tx.we.eq(1),
                 ).Else(
-                    counter.eq(counter + 1)
+                    fifo_tx.we.eq(0),
+                ),
+            ]
+
+            # cnt_max = int(100e6 / 10000)
+            # cnt_max = 99
+            # cnt_max = 2
+            cnt_max = 0
+
+            # self.sync.clk16 += [
+            self.sync += [
+                If (~fifo_tx.writable,
+                    overflow.eq(1)
+                ).Else(
+                    If (counter == cnt_max,
+                        counter.eq(0),
+                        counter2.eq(counter2 + 2)
+                    ).Else(
+                        counter.eq(counter + 1)
+                    )
+                ),
+            ]
+        else:
+            # Loopback
+            self.comb += [
+                fifo_tx.din.eq(fifo_rx.dout),
+                If(fifo_tx.writable & fifo_rx.readable,
+                    fifo_tx.we.eq(1),
+                    fifo_rx.re.eq(1),
                 )
-            ),
-        ]
+            ]
 
     def build(self):
         self.device.build(self, toolchain_path='/usr/share/trellis')
