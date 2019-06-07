@@ -16,8 +16,8 @@ static void write_test(FT_HANDLE handle)
 	// memset(buf.get(), 0xDD, BUFFER_LEN);
 
 	for (unsigned int i = 0; i < BUFFER_LEN / 2; i++) {
-		buf[i*2    ] = (i * 2    ) & 0xff;
-		buf[i*2 + 1] = (i * 2 + 1) & 0xff;
+		buf[i*2    ] = i        & 0xff;
+		buf[i*2 + 1] = (i >> 8) & 0xff;
 	}
 
 	while (!do_exit) {
