@@ -4,6 +4,8 @@ import os
 import sys
 import logging
 import argparse
+from argparse import RawTextHelpFormatter
+
 import subprocess
 from .applets import *
 from .device import *
@@ -63,7 +65,8 @@ def main():
         p_run_applet.add_parser(
             applet.name,
             description=applet.description,
-            help=applet.help)
+            help=applet.help,
+            formatter_class=RawTextHelpFormatter)
 
     p_build = subparsers.add_parser(
         "build",

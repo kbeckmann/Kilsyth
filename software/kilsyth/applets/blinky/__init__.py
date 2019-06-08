@@ -26,11 +26,6 @@ class Blinky(KilsythApplet, name="blinky"):
         assert (yield self.div[0]) == 1
         yield
 
-    def build(self):
-        print("woop")
-        # self.device.build(self, toolchain_path='/usr/share/trellis')
-        self.device.build(self, toolchain_path='/usr/share/trellis')
-
     # def test(self, device):
     #     led = device.request('user_led')
     #     blinky = Blinky(led)

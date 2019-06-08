@@ -53,7 +53,3 @@ class SpiFlashMitm(KilsythApplet, name="spi_flash_mitm"):
         #     "FOO",
         #     NextState("INIT")
         # )
-
-
-    def build(self):
-        self.device.build(self, toolchain_path='/usr/share/trellis')

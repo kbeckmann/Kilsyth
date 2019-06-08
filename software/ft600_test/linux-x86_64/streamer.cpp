@@ -7,6 +7,8 @@ static thread measure_thread;
 static thread write_thread;
 static thread read_thread;
 static const int BUFFER_LEN = 32*1024;
+static const char *dumpfile = NULL;
+static FILE *fp = NULL;
 
 static void write_test(FT_HANDLE handle)
 {
@@ -44,7 +46,10 @@ static void read_test(FT_HANDLE handle)
 				do_exit = true;
 				break;
 			}
-#if 1
+			if (fp) {
+				fwrite(buf.get(), count, 1, fp);
+			}
+#if 0
 			for (int x = 0; x < count/2; x++) {
 				printf("%04x ", ((uint16_t*)buf.get())[x]);
 				// if (buf[x] != 0) printf("%02x ", buf[x]);
@@ -61,7 +66,7 @@ static void read_test(FT_HANDLE handle)
 
 static void show_help(const char *bin)
 {
-	printf("Usage: %s <out channel count> <in channel count> [mode]\r\n", bin);
+	printf("Usage: %s <out channel count> <in channel count> [mode] [rx dump file]\r\n", bin);
 	printf("  channel count: [0, 1] for 245 mode, [0-4] for 600 mode\r\n");
 	printf("  mode: 0 = FT245 mode (default), 1 = FT600 mode\r\n");
 }
@@ -99,7 +104,7 @@ static void get_queue_status(HANDLE handle)
 
 static bool validate_arguments(int argc, char *argv[])
 {
-	if (argc != 3 && argc != 4)
+	if (argc != 3 && argc != 4 && argc != 5)
 		return false;
 
 	if (argc == 4) {
@@ -107,6 +112,11 @@ static bool validate_arguments(int argc, char *argv[])
 		if (val != 0 && val != 1)
 			return false;
 		fifo_600mode = (bool)val;
+	}
+
+	if (argc == 5) {
+		dumpfile = argv[4];
+		fp = fopen(dumpfile, "wb");
 	}
 
 	out_ch_cnt = atoi(argv[1]);
@@ -135,6 +145,8 @@ int main(int argc, char *argv[])
 
 	if (!set_channel_config(fifo_600mode, CONFIGURATION_FIFO_CLK_100))
 	// if (!set_channel_config(fifo_600mode, CONFIGURATION_FIFO_CLK_66))
+	// if (!set_channel_config(fifo_600mode, CONFIGURATION_FIFO_CLK_50))
+	// if (!set_channel_config(fifo_600mode, CONFIGURATION_FIFO_CLK_40))
 		return 1;
 
 	/* Must be called before FT_Create is called */
