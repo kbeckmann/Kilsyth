@@ -61,6 +61,11 @@ _io = [
         Subsignal("pin7", Pins("PMOD2:9")),
         Subsignal("pin8", Pins("PMOD2:10")),
     ),
+
+    ("wide", 0, Pins(
+        " ".join(["WIDE:%d" % x for x in range(1, 30)])
+    ), IOStandard("LVCMOS33")),
+
 ]
 
 _connectors = [
