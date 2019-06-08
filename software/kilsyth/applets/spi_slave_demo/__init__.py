@@ -54,6 +54,3 @@ Sets registers over SPI
             "sys": "spi",
         })(SpiSlaveDemoImpl(mosi, miso, sck, nss, leds))
         self.submodules += slave
-
-    def build(self):
-        self.device.build(self, toolchain_path='/usr/share/trellis')

@@ -457,6 +457,3 @@ Start gqrx with the config: file=$PWD/ft600_test/linux-x86_64/out.raw,freq=867.9
         rxsamples = ClockDomainsRenamer({"sys": "sx1257"})(IQSampler(pmod0, fifo_tx, debug_iq))
         self.submodules += rxsamples
 
-    def build(self):
-        self.device.build(self, toolchain_path='/usr/share/trellis')
-

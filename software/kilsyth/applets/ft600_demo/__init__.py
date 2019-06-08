@@ -102,6 +102,3 @@ class FT600Demo(KilsythApplet, name="ft600_demo"):
                     fifo_rx.re.eq(1),
                 )
             ]
-
-    def build(self):
-        self.device.build(self, toolchain_path='/usr/share/trellis')

@@ -16,8 +16,8 @@ class KilsythApplet(Module):
     help = "applet help missing"
     description = "applet description missing"
 
-    def build(self, device):
-        raise NotImplementedError
+    def build(self):
+        self.device.build(self, toolchain_path='/usr/share/trellis')
 
 from . import blinky
 from . import spi_flash_mitm
