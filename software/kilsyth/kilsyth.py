@@ -23,7 +23,7 @@ def run(args):
     applet_cls = KilsythApplet.all[args.applet]
 
     device = device_cls()
-    applet = applet_cls(device)
+    applet = applet_cls(device, args=args)
     device.build(applet, toolchain_path='/usr/share/trellis')
 
     # TODO fix irmask. Move to device
@@ -62,11 +62,13 @@ def main():
         help="builds and loads an applet bitstream")
     p_run_applet = p_run.add_subparsers(dest="applet", metavar="APPLET")
     for applet in KilsythApplet.all.values():
-        p_run_applet.add_parser(
+        subparser = p_run_applet.add_parser(
             applet.name,
             description=applet.description,
             help=applet.help,
             formatter_class=RawTextHelpFormatter)
+        applet.add_build_arguments(subparser)
+        applet.add_run_arguments(subparser)
 
     p_build = subparsers.add_parser(
         "build",
@@ -74,10 +76,11 @@ def main():
         help="builds an applet bitstream")
     p_build_applet = p_build.add_subparsers(dest="applet", metavar="APPLET")
     for applet in KilsythApplet.all.values():
-        p_build_applet.add_parser(
+        subparser = p_build_applet.add_parser(
             applet.name,
             description=applet.description,
             help=applet.help)
+        applet.add_build_arguments(subparser)
 
     p_test = subparsers.add_parser(
         "test",
@@ -85,10 +88,11 @@ def main():
         help="tests an applet")
     p_test_applet = p_test.add_subparsers(dest="applet", metavar="APPLET")
     for applet in KilsythApplet.all.values():
-        p_test_applet.add_parser(
+        subparser = p_build_applet.add_parser(
             applet.name,
             description=applet.description,
             help=applet.help)
+        applet.add_test_arguments(subparser)
 
     args = parser.parse_args()
     print(args)

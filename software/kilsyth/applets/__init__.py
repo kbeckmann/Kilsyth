@@ -4,6 +4,19 @@ from migen import *
 class KilsythApplet(Module):
     all = {}
 
+    # Applet may override these and add arguments to the parser
+    @classmethod
+    def add_build_arguments(cls, parser):
+        pass
+
+    @classmethod
+    def add_run_arguments(cls, parser):
+        pass
+
+    @classmethod
+    def add_test_arguments(cls, parser):
+        pass
+
     def __init_subclass__(cls, name, **kwargs):
         super().__init_subclass__(**kwargs)
 

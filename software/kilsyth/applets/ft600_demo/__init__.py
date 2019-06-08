@@ -9,7 +9,19 @@ class FT600Demo(KilsythApplet, name="ft600_demo"):
     description = "FT600 TX demo"
     help = "Sends an increasing counter to the ft600 interface"
 
-    def __init__(self, device):
+    __all_modes = ["source", "sink", "loopback"]
+
+    @classmethod
+    def add_run_arguments(cls, parser):
+        parser.add_argument(
+            "-c", "--count", metavar="COUNT", type=int, default=0,
+            help="Skip COUNT cycles when reading/writing (default: 0)")
+
+        parser.add_argument(
+            dest="mode", metavar="MODE", type=str, choices=cls.__all_modes,
+            help="run benchmark mode MODE (one of {})".format(" ".join(cls.__all_modes)))
+
+    def __init__(self, device, args):
         self.device = device
 
         led = device.request('user_led')
@@ -51,14 +63,7 @@ class FT600Demo(KilsythApplet, name="ft600_demo"):
         debug = led[-3:]
         self.submodules.ft600 = FT600(ft600_pins, fifo_rx, fifo_tx, debug)
 
-        overflow = Signal()
-        self.comb += [
-            led[0].eq(~fifo_tx.writable),
-            led[1].eq(overflow),
-        ]
-
-
-        if False:
+        if args.mode == "source":
             # Test TX only
             # Write counter every nth clock cycle
             counter = Signal(32)
@@ -68,32 +73,32 @@ class FT600Demo(KilsythApplet, name="ft600_demo"):
                     ((counter2 + 1) << 8) |
                     ((counter2    )     )
                 ),
-                If((counter == 0),
-                    fifo_tx.we.eq(1),
-                ).Else(
-                    fifo_tx.we.eq(0),
-                ),
+                fifo_tx.we.eq(counter == 0),
             ]
 
-            # cnt_max = int(100e6 / 10000)
-            # cnt_max = 99
-            # cnt_max = 2
-            cnt_max = 0
-
-            # self.sync.clk16 += [
             self.sync += [
-                If (~fifo_tx.writable,
-                    overflow.eq(1)
+                If (counter == args.count,
+                    counter.eq(0),
+                    counter2.eq(counter2 + 2)
                 ).Else(
-                    If (counter == cnt_max,
-                        counter.eq(0),
-                        counter2.eq(counter2 + 2)
-                    ).Else(
-                        counter.eq(counter + 1)
-                    )
-                ),
+                    counter.eq(counter + 1)
+                )
             ]
-        else:
+        elif args.mode == "sink":
+            # Test RX only
+            counter = Signal(32)
+            self.comb += [
+                fifo_rx.re.eq(counter == 0),
+            ]
+
+            self.sync += [
+                If (counter == args.count,
+                    counter.eq(0),
+                ).Else(
+                    counter.eq(counter + 1)
+                )
+            ]
+        elif args.mode == "loopback":
             # Loopback
             self.comb += [
                 fifo_tx.din.eq(fifo_rx.dout),
