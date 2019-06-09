@@ -32,11 +32,7 @@ class FIR(Module):
 
 
 class IQSampler(Module):
-    # pmod0.pin4 => CLK_OUT
-    # pmod0.pin7 => I_OUT
-    # pmod0.pin8 => Q_OUT
-    # fifo = AsyncFifo()
-    def __init__(self, pmod0, fifo, debug):
+    def __init__(self, i_out, q_out, fifo, debug):
         cmax = 72*2
         counter = Signal(16)
         bit_depth = 12
@@ -71,13 +67,13 @@ class IQSampler(Module):
                 overflow.eq(1)
             ),
 
-            If(pmod0.pin7,
+            If(i_out,
                 i_r.eq(1),
             ).Else(
                 i_r.eq(-1),
             ),
 
-            If(pmod0.pin8,
+            If(q_out,
                 q_r.eq(1),
             ).Else(
                 q_r.eq(-1),
@@ -100,8 +96,8 @@ class I2CMaster(Module):
     # slave_addr:   Slave address
     def __init__(self, clkdiv, slave_addr, scl, sda, leds):
 
-        debug = Signal(8)
-        # debug = Cat(leds[x] for x in range(2, 8))
+        # debug = Signal(8)
+        debug = leds
 
         # debug = Signal(8)
         # debug2 = Cat(leds[x] for x in range(2, 8))
@@ -230,9 +226,27 @@ class I2CMaster(Module):
             BuildCmd([
                 self.w_addr,
                 0x01,
-                0x80 | 0x10, # CLK select
-                0x02, # clkout enabled
+                0x80 | 0x10, # RegClkSelect
+                0b0000_0_0_1_0, # Clk_out=1
             ]),
+
+            # Set 50 ohm Impedance
+            BuildCmd([
+                self.w_addr,
+                0x01,
+                0x80 | 0x0C, # RegRxAnaGain
+                0b001_1111_0, # RxLnaGain=0dB, RxBasebandGain=0b1111, LnaZin=50 Ohm
+            ]),
+
+            # Set trim to 36MHz xtal
+            BuildCmd([
+                self.w_addr,
+                0x01,
+                0x80 | 0x0D, # RegRxBw
+                0b111_101_01, # RxAdcBw = 400kHz, RxAdcTrim=36MHz, RxBasebandBw=500kHz
+            ]),
+
+
         ])
 
         command = Signal(max=len(data)+1)
@@ -242,7 +256,7 @@ class I2CMaster(Module):
         self.submodules.fsm = FSM(reset_state="INIT")
         self.fsm.act(
             "INIT",
-            NextValue(debug, 0b000000),
+            NextValue(debug, 0b010101),
             NextValue(command, 0),
             NextValue(byte, 1),
             NextValue(bit, 7),
@@ -397,7 +411,7 @@ class I2CMaster(Module):
 
         self.fsm.act(
             "HANG",
-            NextValue(debug, 0b111111),
+            NextValue(debug, 0b000000),
             If(self.clk_counter == 3,
                 NextState("INIT"),
             )
@@ -416,26 +430,47 @@ sox -t raw -e unsigned -b 8 -c 2 -r 48000 dump.raw  -t raw -e floating-point -b 
 Start gqrx with the config: file=$PWD/ft600_test/linux-x86_64/out.raw,freq=867.9e6,rate=250e3,repeat=false,throttle=true
 """
 
-    def __init__(self, device):
+    __all_revs = ["a", "b"]
+
+    @classmethod
+    def add_run_arguments(cls, parser):
+        parser.add_argument(
+            "--rev", metavar="REV", type=str, default=cls.__all_revs[0],
+            help="SX1257 PMOD revision (one of {})".format(" ".join(cls.__all_revs)))
+
+    def __init__(self, device, args):
         self.device = device
         pmod0 = device.request('pmod0')
+
+        if args.rev == "a":
+            scl = pmod0.pin1
+            sda = pmod0.pin2
+            i_out = pmod0.pin7
+            q_out = pmod0.pin8
+            iq_clk = pmod0.pin4
+        elif args.rev == "b":
+            scl = pmod0.pin5
+            sda = pmod0.pin6
+            i_out = pmod0.pin3
+            q_out = pmod0.pin4
+            iq_clk = pmod0.pin8
 
         led = device.request('user_led')
         ft600_pins = device.request('ft600')
 
         # TODO: How to support multiple clock constraints?
         # device.add_period_constraint("ft600", 1000. / 100)
-        device.add_period_constraint("pmod0_pin4", 1000. / 36)
+        device.add_period_constraint("iq_clk", 1000. / 36)
 
         self.clock_domains.cd_por = ClockDomain()
         self.clock_domains.cd_sys = ClockDomain(reset_less=False)
         self.cd_sys.clk = ft600_pins.clk
 
         self.clock_domains.cd_sx1257 = ClockDomain(reset_less=True)
-        self.cd_sx1257.clk = pmod0.pin4
+        self.cd_sx1257.clk = iq_clk
 
-        debug_i2c = led[0:3]
-        self.submodules += I2CMaster(100_000_000 // 400_000, 0x28, pmod0.pin1, pmod0.pin2, debug_i2c)
+        debug_i2c = led[0:6]
+        self.submodules += I2CMaster(100_000_000 // 400_000, 0x28, scl, sda, debug_i2c)
 
         depth = 64
         fifo_tx = ClockDomainsRenamer({
@@ -450,10 +485,10 @@ Start gqrx with the config: file=$PWD/ft600_test/linux-x86_64/out.raw,freq=867.9
         })(AsyncFIFO(16, depth))
         self.submodules += fifo_rx
 
-        debug_ft = led[3:6]
+        debug_ft = Signal(8)
         self.submodules.ft600 = FT600(ft600_pins, fifo_rx, fifo_tx, debug_ft)
 
-        debug_iq = led[6]
-        rxsamples = ClockDomainsRenamer({"sys": "sx1257"})(IQSampler(pmod0, fifo_tx, debug_iq))
+        debug_iq = Signal()
+        rxsamples = ClockDomainsRenamer({"sys": "sx1257"})(IQSampler(i_out, q_out, fifo_tx, debug_iq))
         self.submodules += rxsamples
 
