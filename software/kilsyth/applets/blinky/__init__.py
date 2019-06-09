@@ -7,7 +7,7 @@ class Blinky(KilsythApplet, name="blinky"):
     description = "blinks some LEDs"
     help = "Blinks some LEDs"
 
-    def __init__(self, device):
+    def __init__(self, device, args):
         self.device = device
 
         led = device.request('user_led')

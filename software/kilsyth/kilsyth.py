@@ -15,7 +15,7 @@ def build(args):
     applet_cls = KilsythApplet.all[args.applet]
 
     device = device_cls()
-    applet = applet_cls(device)
+    applet = applet_cls(device, args=args)
     device.build(applet, toolchain_path='/usr/share/trellis')
 
 def run(args):

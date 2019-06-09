@@ -12,7 +12,7 @@ class FT600Demo(KilsythApplet, name="ft600_demo"):
     __all_modes = ["source", "sink", "loopback"]
 
     @classmethod
-    def add_run_arguments(cls, parser):
+    def add_build_arguments(cls, parser):
         parser.add_argument(
             "-c", "--count", metavar="COUNT", type=int, default=0,
             help="Skip COUNT cycles when reading/writing (default: 0)")

@@ -433,7 +433,7 @@ Start gqrx with the config: file=$PWD/ft600_test/linux-x86_64/out.raw,freq=867.9
     __all_revs = ["a", "b"]
 
     @classmethod
-    def add_run_arguments(cls, parser):
+    def add_build_arguments(cls, parser):
         parser.add_argument(
             "--rev", metavar="REV", type=str, default=cls.__all_revs[0],
             help="SX1257 PMOD revision (one of {})".format(" ".join(cls.__all_revs)))

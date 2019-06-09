@@ -17,10 +17,9 @@ class SpiFlashMitm(KilsythApplet, name="spi_flash_mitm"):
     # 7: IO2
     # 8: IO0
 
-    def __init__(self, device):
+    def __init__(self, device, args):
         self.device = device
         pmod0 = device.request('pmod0')
-
 
         self.clock_domains.cd_por = ClockDomain()
         self.clock_domains.cd_sys = ClockDomain(reset_less=False)

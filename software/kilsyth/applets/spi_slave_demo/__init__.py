@@ -34,7 +34,7 @@ SPI Slave Demo
 Sets registers over SPI
 """
 
-    def __init__(self, device):
+    def __init__(self, device, args):
         self.device = device
 
         leds = device.request('user_led')
