@@ -28,11 +28,11 @@ class FT600Demo(KilsythApplet, name="ft600_demo"):
         ft600_pins = device.request('ft600')
         clk16 = device.request('clk16')
 
-        device.add_period_constraint("ft600", 1000. / 100)
 
         self.clock_domains.cd_por = ClockDomain()
         self.clock_domains.cd_sys = ClockDomain(reset_less=False)
         self.cd_sys.clk = ft600_pins.clk
+        device.add_period_constraint(ft600_pins.clk.backtrace[-1][0], 1000. / 100)
 
         self.clock_domains.cd_clk16 = ClockDomain(reset_less=False)
         self.cd_clk16.clk = clk16

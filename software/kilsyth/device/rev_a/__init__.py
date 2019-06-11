@@ -170,11 +170,12 @@ class KilsythRevA(KilsythDevice, name=None):
     device = None
 
     default_clk_name = "clk16"
-    default_clk_period = 62.5
+    default_clk_period = 1000. / 16
 
     def __init__(self, *args, **kwargs):
         LatticePlatform.__init__(self, self.device, _io, _connectors,
                                     toolchain='trellis', *args, **kwargs)
+        self.add_period_constraint(self.default_clk_name, self.default_clk_period)
 
     def build(self, *args, **kwargs):
         KilsythDevice.build(self, idcode=self.idcode, *args, **kwargs)
