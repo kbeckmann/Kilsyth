@@ -458,16 +458,14 @@ Start gqrx with the config: file=$PWD/ft600_test/linux-x86_64/out.raw,freq=867.9
         led = device.request('user_led')
         ft600_pins = device.request('ft600')
 
-        # TODO: How to support multiple clock constraints?
-        # device.add_period_constraint("ft600", 1000. / 100)
-        device.add_period_constraint("iq_clk", 1000. / 36)
-
         self.clock_domains.cd_por = ClockDomain()
         self.clock_domains.cd_sys = ClockDomain(reset_less=False)
         self.cd_sys.clk = ft600_pins.clk
+        device.add_period_constraint(ft600_pins.clk.backtrace[-1][0], 1000. / 100)
 
         self.clock_domains.cd_sx1257 = ClockDomain(reset_less=True)
         self.cd_sx1257.clk = iq_clk
+        device.add_period_constraint(iq_clk.backtrace[-1][0], 1000. / 36)
 
         debug_i2c = led[0:6]
         self.submodules += I2CMaster(100_000_000 // 400_000, 0x28, scl, sda, debug_i2c)
