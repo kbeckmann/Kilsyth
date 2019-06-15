@@ -32,6 +32,9 @@ class KilsythApplet(Module):
     def build(self):
         self.device.build(self, toolchain_path='/usr/share/trellis')
 
+    def run(self):
+        pass
+
 from . import blinky
 from . import spi_flash_mitm
 from . import spi_slave_demo

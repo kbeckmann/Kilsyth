@@ -1,5 +1,5 @@
 import sys
-from ftd3xx import *
+from .ftd3xx import *
 
 __all__ = [ 'call_ft',
     'listDevices',
