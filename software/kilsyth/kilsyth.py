@@ -26,8 +26,7 @@ def run(args):
     device = device_cls()
     applet = applet_cls(device, args=args)
 
-    # Don't forget me!
-    if True:
+    if not args.skip_prog:
         device.build(applet, toolchain_path='/usr/share/trellis')
 
         # TODO fix irmask. Move to device
@@ -54,10 +53,15 @@ def main():
         "-v", "--verbose", default=0, action="count",
         help="increase logging verbosity")
 
-    parser.add_argument('--device', 
+    parser.add_argument(
+        "--skip-prog", default=0, action="count",
+        help="skips the building and programming of gateware")
+
+    parser.add_argument(
+        '--device', 
         choices=KilsythDevice.all.keys(),
         help="which device to target",
-        default="rev_a_12") # todo fix this
+        default="rev_a_12")
 
     subparsers = parser.add_subparsers(dest="action", metavar="COMMAND")
     subparsers.required = True
