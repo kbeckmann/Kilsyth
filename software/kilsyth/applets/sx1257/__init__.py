@@ -487,7 +487,7 @@ Start gqrx with the config: file=$PWD/ft600_test/linux-x86_64/out.raw,freq=867.9
         self.submodules += fifo_rx
 
         debug_ft = Signal(8)
-        self.submodules.ft600 = ft600.FT600(ft600_pins, fifo_rx, fifo_tx, debug_ft)
+        self.submodules.ft600 = FT600(ft600_pins, fifo_rx, fifo_tx, debug_ft)
 
         debug_iq = Signal()
         rxsamples = ClockDomainsRenamer({"sys": "sx1257"})(IQSampler(i_out, q_out, fifo_tx, debug_iq))

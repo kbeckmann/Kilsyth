@@ -65,7 +65,7 @@ class FT600Demo(KilsythApplet, name="ft600_demo"):
 
 
         debug = led[-3:]
-        self.submodules.ft600 = ft600.FT600(ft600_pins, fifo_rx, fifo_tx, debug)
+        self.submodules.ft600 = FT600(ft600_pins, fifo_rx, fifo_tx, debug)
 
         if args.mode == "source":
             # Test TX only
