@@ -1,5 +1,6 @@
 # This is inspired by https://github.com/whitequark/Glasgow/blob/master/software/glasgow/__init__.py
 
+import asyncio
 import os
 import sys
 import logging
@@ -24,21 +25,25 @@ def run(args):
 
     device = device_cls()
     applet = applet_cls(device, args=args)
-    device.build(applet, toolchain_path='/usr/share/trellis')
 
-    # TODO fix irmask. Move to device
-    script = "; ".join([
-        "jtag newtap device tap -expected-id %s -irlen 8 -irmask 0xFF -ircapture 0x1" % (device.idcode),
-        "transport select jtag",
-        "adapter_khz 10000",
-        "init",
-        "svf -tap device.tap -quiet -progress %s" % ("build/top.svf"),
-        "exit",
-    ])
+    if not args.skip_prog:
+        device.build(applet, toolchain_path='/usr/share/trellis')
 
-    # TODO turn into an argument
-    openocd_interface = "interface/ftdi/dp_busblaster.cfg"
-    subprocess.call(["openocd", "-f", openocd_interface, "-c", script])
+        # TODO: Move to device
+        script = "; ".join([
+            "jtag newtap device tap -expected-id %s -irlen 8 -irmask 0x03 -ircapture 0x1" % (device.idcode),
+            "transport select jtag",
+            "adapter_khz 10000",
+            "init",
+            "svf -tap device.tap -quiet -progress %s" % ("build/top.svf"),
+            "exit",
+        ])
+
+        # TODO: turn into an argument
+        openocd_interface = "interface/ftdi/dp_busblaster.cfg"
+        subprocess.call(["openocd", "-f", openocd_interface, "-c", script])
+
+    asyncio.run(applet.run())
 
 def main():
     print("KILSYTH [WIP]")
@@ -48,10 +53,15 @@ def main():
         "-v", "--verbose", default=0, action="count",
         help="increase logging verbosity")
 
-    parser.add_argument('--device', 
+    parser.add_argument(
+        "--skip-prog", default=0, action="count",
+        help="skips the building and programming of gateware")
+
+    parser.add_argument(
+        '--device', 
         choices=KilsythDevice.all.keys(),
         help="which device to target",
-        default="rev_a_12") # todo fix this
+        default="rev_a_12")
 
     subparsers = parser.add_subparsers(dest="action", metavar="COMMAND")
     subparsers.required = True

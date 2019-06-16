@@ -1,6 +1,6 @@
 import sys
 from ctypes import *
-from defines import *
+from .defines import *
 
 
 STRING = c_char_p
@@ -16,7 +16,8 @@ LONG = c_long
 UINT = c_uint
 LPSTR = STRING
 
-_libname = 'libftd3xx.so'
+# TODO: Ugly way to find the library
+_libname = '../3rdparty/linux-x86_64/libftd3xx.so'
 _libraries = {}
 _libraries[_libname] = CDLL(_libname)
 

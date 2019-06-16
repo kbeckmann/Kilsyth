@@ -1,14 +1,12 @@
 import sys
 if sys.platform == 'win32':
-    import _ftd3xx_win32 as _ft
+    from ._ftd3xx_win32 import *
 elif sys.platform == 'linux':
-    import _ftd3xx_linux as _ft	
+    from ._ftd3xx_linux import *
 import ctypes as c
 import threading
 import time
-from defines import *
-
-
+from .defines import *
 
 msgs = [
 	'FT_OK',
@@ -60,7 +58,7 @@ def call_ft(function, *args):
     """Call an FTDI function and check the status. Raise exception on error"""
     status = function(*args)
     if len(bRaiseExceptionOnError) > 0:
-        if status != _ft.FT_OK:
+        if status != FT_OK:
             raise DeviceError(status)
     return status
 
@@ -79,43 +77,43 @@ def getStrError(status):
     """Return string equivalent for error status"""
     return msgs[status]
 	
-def listDevices(flags=_ft.FT_OPEN_BY_DESCRIPTION):
+def listDevices(flags=FT_OPEN_BY_DESCRIPTION):
     """Return a list of serial numbers(default), descriptions or
     locations (Windows only) of the connected FTDI devices depending on value of flags"""
-    n = _ft.DWORD()
-    call_ft(_ft.FT_ListDevices, c.byref(n), None, _ft.DWORD(FT_LIST_NUMBER_ONLY))
+    n = DWORD()
+    call_ft(FT_ListDevices, c.byref(n), None, DWORD(FT_LIST_NUMBER_ONLY))
     devcount = n.value
     if devcount:
-        if  flags == _ft.FT_OPEN_BY_INDEX:
-            flags = _ft.FT_OPEN_BY_DESCRIPTION	    
+        if  flags == FT_OPEN_BY_INDEX:
+            flags = FT_OPEN_BY_DESCRIPTION	    
         # since ctypes has no pointer arithmetic.
         bd = [c.c_buffer(FT_MAX_DESCRIPTION_SIZE) for i in range(devcount)] + [None]
         # array of pointers to those strings, initially all NULL
         ba = (c.c_char_p *(devcount + 1))()
         for i in range(devcount):
             ba[i] = c.cast(bd[i], c.c_char_p)
-        call_ft(_ft.FT_ListDevices, ba, c.byref(n), _ft.DWORD(FT_LIST_ALL|flags))
+        call_ft(FT_ListDevices, ba, c.byref(n), DWORD(FT_LIST_ALL|flags))
         return [res for res in ba[:devcount]]
     else:
         return None
 		
 def createDeviceInfoList():
     """Create the internal device info list and return number of entries"""
-    numDevices = _ft.DWORD()
-    call_ft(_ft.FT_CreateDeviceInfoList, c.byref(numDevices))
+    numDevices = DWORD()
+    call_ft(FT_CreateDeviceInfoList, c.byref(numDevices))
     return numDevices.value
 
 def getDeviceInfoList():
     """Get device info list and return number of entries"""
-    numDevices = _ft.DWORD()
-    call_ft(_ft.FT_ListDevices, c.byref(numDevices), None, _ft.DWORD(FT_LIST_NUMBER_ONLY))
+    numDevices = DWORD()
+    call_ft(FT_ListDevices, c.byref(numDevices), None, DWORD(FT_LIST_NUMBER_ONLY))
     numDevices = numDevices.value
     if numDevices == 0:
         return None
     """Use getDeviceInfoDetail instead"""
     deviceList = []
     for i in range(numDevices):
-        device = _ft.FT_DEVICE_LIST_INFO_NODE()
+        device = FT_DEVICE_LIST_INFO_NODE()
         deviceInfo = getDeviceInfoDetail(i)
         device.Flags = deviceInfo['Flags']
         device.ID = deviceInfo['ID']
@@ -127,18 +125,18 @@ def getDeviceInfoList():
 
 def getDeviceInfoDetail(devnum=0):
     """Get an entry from the internal device info list."""
-    f = _ft.DWORD()
-    t = _ft.DWORD()
-    i = _ft.DWORD()
-    l = _ft.DWORD()
-    h = _ft.FT_HANDLE()
+    f = DWORD()
+    t = DWORD()
+    i = DWORD()
+    l = DWORD()
+    h = FT_HANDLE()
     n = c.c_buffer(FT_MAX_DESCRIPTION_SIZE)
     d = c.c_buffer(FT_MAX_DESCRIPTION_SIZE)
-    call_ft(_ft.FT_GetDeviceInfoDetail, _ft.DWORD(devnum),
+    call_ft(FT_GetDeviceInfoDetail, DWORD(devnum),
         c.byref(f), c.byref(t), c.byref(i), c.byref(l), n, d, c.byref(h))
     if sys.platform == 'linux':
         """Linux creates a handle to the device so close it. D3XX Linux driver issue."""
-        call_ft(_ft.FT_Close, h)
+        call_ft(FT_Close, h)
     return {'Flags': f.value, 
         'Type': t.value,
         'ID': i.value, 
@@ -149,16 +147,16 @@ def getDeviceInfoDetail(devnum=0):
 def create(id_str, flags=FT_OPEN_BY_INDEX):
     """Open a handle to a usb device by serial number, description or
     index depending on value of flags and return an FTD3XX instance for it"""
-    h = _ft.FT_HANDLE()
-    status = call_ft(_ft.FT_Create, id_str, _ft.DWORD(flags), c.byref(h))
-    if (status != _ft.FT_OK): 
+    h = FT_HANDLE()
+    status = call_ft(FT_Create, id_str, DWORD(flags), c.byref(h))
+    if (status != FT_OK): 
         return None
     return FTD3XX(h)
 
 def setTransferParams(conf, fifo):
     """Set transfer parameters for Linux only"""
     if sys.platform == 'linux':
-        call_ft(_ft.FT_SetTransferParams, c.byref(conf), fifo)
+        call_ft(FT_SetTransferParams, c.byref(conf), fifo)
     return None	
 
 
@@ -175,7 +173,7 @@ class FTD3XX(object):
 		
     def close(self, noreset=False):
         """Close the device handle"""
-        self.status = call_ft(_ft.FT_Close, self.handle)
+        self.status = call_ft(FT_Close, self.handle)
         return None
 
     def getLastError(self):
@@ -184,16 +182,16 @@ class FTD3XX(object):
 		
     def flushPipe(self, pipe):
         """Flush pipe"""
-        self.status = call_ft(_ft.FT_FlushPipe, self.handle, _ft.UCHAR(pipe))
+        self.status = call_ft(FT_FlushPipe, self.handle, UCHAR(pipe))
         return None
 
     def getDeviceInfo(self):
         """Returns a dictionary describing the device. """
-        deviceType = _ft.DWORD()
-        deviceId = _ft.DWORD()
+        deviceType = DWORD()
+        deviceId = DWORD()
         desc = c.c_buffer(FT_MAX_DESCRIPTION_SIZE)
         serial = c.c_buffer(FT_MAX_DESCRIPTION_SIZE)
-        self.status = call_ft(_ft.FT_GetDeviceInfo, self.handle, c.byref(deviceType), c.byref(deviceId), serial, desc, None)
+        self.status = call_ft(FT_GetDeviceInfo, self.handle, c.byref(deviceType), c.byref(deviceId), serial, desc, None)
         return {'Type': deviceType.value, 
             'ID': deviceId.value,
             'Description': desc.value, 
@@ -201,95 +199,95 @@ class FTD3XX(object):
 
     def getDeviceDescriptor(self):
         """Returns a dictionary describing the device descriptor. """
-        devDesc = _ft.FT_DEVICE_DESCRIPTOR()
-        self.status = call_ft(_ft.FT_GetDeviceDescriptor, self.handle, c.byref(devDesc))
+        devDesc = FT_DEVICE_DESCRIPTOR()
+        self.status = call_ft(FT_GetDeviceDescriptor, self.handle, c.byref(devDesc))
         return devDesc
 
     def getStringDescriptor(self, index):
         """Returns a string descriptor. """
-        strDesc = _ft.FT_STRING_DESCRIPTOR()
-        lenTransferred = _ft.ULONG()
-        self.status = call_ft(_ft.FT_GetDescriptor, self.handle, _ft.UCHAR(FT_STRING_DESCRIPTOR_TYPE), _ft.UCHAR(index), c.pointer(strDesc), c.sizeof(strDesc), c.byref(lenTransferred))
+        strDesc = FT_STRING_DESCRIPTOR()
+        lenTransferred = ULONG()
+        self.status = call_ft(FT_GetDescriptor, self.handle, UCHAR(FT_STRING_DESCRIPTOR_TYPE), UCHAR(index), c.pointer(strDesc), c.sizeof(strDesc), c.byref(lenTransferred))
         return strDesc
 
     def getConfigurationDescriptor(self):
         """Returns a dictionary describing the configuration descriptor. """
-        cfgDesc = _ft.FT_CONFIGURATION_DESCRIPTOR()
-        self.status = call_ft(_ft.FT_GetConfigurationDescriptor, self.handle, c.byref(cfgDesc))
+        cfgDesc = FT_CONFIGURATION_DESCRIPTOR()
+        self.status = call_ft(FT_GetConfigurationDescriptor, self.handle, c.byref(cfgDesc))
         return cfgDesc
 	
     def getInterfaceDescriptor(self, interfaceIndex):
         """Returns a dictionary describing the interface descriptor for the specified index. """
-        ifDesc = _ft.FT_INTERFACE_DESCRIPTOR()
-        self.status = call_ft(_ft.FT_GetInterfaceDescriptor, self.handle, _ft.UCHAR(interfaceIndex), c.byref(ifDesc))
+        ifDesc = FT_INTERFACE_DESCRIPTOR()
+        self.status = call_ft(FT_GetInterfaceDescriptor, self.handle, UCHAR(interfaceIndex), c.byref(ifDesc))
         return ifDesc				
 		
     def getPipeInformation(self, interfaceIndex, pipeIndex):
         """Returns a dictionary describing the pipe infromationfor the specified indexes. """
-        pipeDesc = _ft.FT_PIPE_INFORMATION()
-        self.status = call_ft(_ft.FT_GetPipeInformation, self.handle, _ft.UCHAR(interfaceIndex), _ft.UCHAR(pipeIndex), c.byref(pipeDesc))
+        pipeDesc = FT_PIPE_INFORMATION()
+        self.status = call_ft(FT_GetPipeInformation, self.handle, UCHAR(interfaceIndex), UCHAR(pipeIndex), c.byref(pipeDesc))
         return pipeDesc
 	
     def getChipConfiguration(self):
         """Returns a dictionary describing the chip configuration. """
-        chipCfg = _ft.FT_60XCONFIGURATION()
-        self.status = call_ft(_ft.FT_GetChipConfiguration, self.handle, c.byref(chipCfg))
+        chipCfg = FT_60XCONFIGURATION()
+        self.status = call_ft(FT_GetChipConfiguration, self.handle, c.byref(chipCfg))
         return chipCfg
 	
     def setChipConfiguration(self, chipCfg):
         """Sets a chip configuration. """
-        self.status = call_ft(_ft.FT_SetChipConfiguration, self.handle, c.byref(chipCfg))
+        self.status = call_ft(FT_SetChipConfiguration, self.handle, c.byref(chipCfg))
         return None
 	
     def getVIDPID(self):
         """Get the VID and PID of the device"""
-        vid = _ft.USHORT()
-        pid = _ft.USHORT()
-        self.status = call_ft(_ft.FT_GetVIDPID, self.handle, c.byref(vid), c.byref(pid))
+        vid = USHORT()
+        pid = USHORT()
+        self.status = call_ft(FT_GetVIDPID, self.handle, c.byref(vid), c.byref(pid))
         return (vid.value, pid.value)
 	
     def getLibraryVersion(self):
         """Get the version of the user driver library"""
-        libraryVer = _ft.DWORD()
-        self.status = call_ft(_ft.FT_GetLibraryVersion, c.byref(libraryVer))
+        libraryVer = DWORD()
+        self.status = call_ft(FT_GetLibraryVersion, c.byref(libraryVer))
         return libraryVer.value
 		
     def getDriverVersion(self):
         """Get the version of the kernel driver"""
-        driverVer = _ft.DWORD()
-        self.status = call_ft(_ft.FT_GetDriverVersion, self.handle, c.byref(driverVer))
+        driverVer = DWORD()
+        self.status = call_ft(FT_GetDriverVersion, self.handle, c.byref(driverVer))
         return driverVer.value
 	
     def getFirmwareVersion(self):
         """Get the version of the firmware"""
-        firmwareVer = _ft.DWORD()
-        self.status = call_ft(_ft.FT_GetFirmwareVersion, self.handle, c.byref(firmwareVer))
+        firmwareVer = DWORD()
+        self.status = call_ft(FT_GetFirmwareVersion, self.handle, c.byref(firmwareVer))
         return firmwareVer.value
 	
     def resetDevicePort(self):
         """Reset port where device is connected"""
-        self.status = call_ft(_ft.FT_ResetDevicePort, self.handle)
+        self.status = call_ft(FT_ResetDevicePort, self.handle)
         return None
 			
     def enableGPIO(self, mask, direction):
         """Enable GPIO"""
-        self.status = call_ft(_ft.FT_EnableGPIO, self.handle, _ft.ULONG(mask), _ft.ULONG(direction))
+        self.status = call_ft(FT_EnableGPIO, self.handle, ULONG(mask), ULONG(direction))
         return None
 		
     def writeGPIO(self, mask, data):
         """Write GPIO"""
-        self.status = call_ft(_ft.FT_WriteGPIO, self.handle, _ft.ULONG(mask), _ft.ULONG(data))
+        self.status = call_ft(FT_WriteGPIO, self.handle, ULONG(mask), ULONG(data))
         return None
 		
     def readGPIO(self):
         """Read GPIO"""
-        gpio = _ft.ULONG()
-        self.status = call_ft(_ft.FT_ReadGPIO, self.handle, c.byref(gpio))
+        gpio = ULONG()
+        self.status = call_ft(FT_ReadGPIO, self.handle, c.byref(gpio))
         return gpio.value
 
     def setGPIOPull(self, mask, pull):
         """Set GPIO pull"""
-        self.status = call_ft(_ft.FT_SetGPIOPull, self.handle, _ft.ULONG(mask), _ft.ULONG(pull))
+        self.status = call_ft(FT_SetGPIOPull, self.handle, ULONG(mask), ULONG(pull))
         return None
 
     # OS-dependent functions
@@ -298,64 +296,64 @@ class FTD3XX(object):
 
         def writePipe(self, pipe, data, datalen):
             """Send the data to the device."""
-            bytesTransferred = _ft.ULONG()
-            self.status = call_ft(_ft.FT_WritePipe, self.handle, _ft.UCHAR(pipe), data, _ft.ULONG(datalen), c.byref(bytesTransferred), None)
+            bytesTransferred = ULONG()
+            self.status = call_ft(FT_WritePipe, self.handle, UCHAR(pipe), data, ULONG(datalen), c.byref(bytesTransferred), None)
             return bytesTransferred.value
 
         def readPipe(self, pipe, data, datalen):
             """Recv the data to the device."""
-            bytesTransferred = _ft.ULONG()
-            self.status = call_ft(_ft.FT_ReadPipe, self.handle, _ft.UCHAR(pipe), data, _ft.ULONG(datalen), c.byref(bytesTransferred), None)
+            bytesTransferred = ULONG()
+            self.status = call_ft(FT_ReadPipe, self.handle, UCHAR(pipe), data, ULONG(datalen), c.byref(bytesTransferred), None)
             return bytesTransferred.value
 
         def readPipeEx(self, pipe, datalen, raw=True):
             """Recv the data to the device."""
-            bytesTransferred = _ft.ULONG()
+            bytesTransferred = ULONG()
             data = c.c_buffer(datalen)
-            self.status = call_ft(_ft.FT_ReadPipe, self.handle, _ft.UCHAR(pipe), data, _ft.ULONG(datalen), c.byref(bytesTransferred), None)
+            self.status = call_ft(FT_ReadPipe, self.handle, UCHAR(pipe), data, ULONG(datalen), c.byref(bytesTransferred), None)
             return {'bytesTransferred' : bytesTransferred.value,
                 'bytes' : data.raw[:bytesTransferred.value] if raw==True else data.value[:bytesTransferred.value]}
 			
         def setPipeTimeout(self, pipeid, timeoutMS):
             """Set pipe timeout"""
-            self.status = call_ft(_ft.FT_SetPipeTimeout, self.handle, _ft.UCHAR(pipeid), _ft.ULONG(timeoutMS))
+            self.status = call_ft(FT_SetPipeTimeout, self.handle, UCHAR(pipeid), ULONG(timeoutMS))
             return None		
 	
         def getPipeTimeout(self, pipeid):
             """Get pipe timeout"""
-            timeoutMS = _ft.ULONG()
-            self.status = call_ft(_ft.FT_GetPipeTimeout, self.handle, _ft.UCHAR(pipeid), c.byref(timeoutMS))
+            timeoutMS = ULONG()
+            self.status = call_ft(FT_GetPipeTimeout, self.handle, UCHAR(pipeid), c.byref(timeoutMS))
             return timeoutMS.value
 			
         def setStreamPipe(self, pipe, size):
             """Set stream pipe for continous transfer of fixed size"""
-            self.status = call_ft(_ft.FT_SetStreamPipe, self.handle, _ft.BOOLEAN(0), _ft.BOOLEAN(0), _ft.UCHAR(pipe), _ft.ULONG(size))
+            self.status = call_ft(FT_SetStreamPipe, self.handle, BOOLEAN(0), BOOLEAN(0), UCHAR(pipe), ULONG(size))
             return None
 
         def clearStreamPipe(self, pipe):
             """Clear stream pipe for continous transfer of fixed size"""
-            self.status = call_ft(_ft.FT_ClearStreamPipe, self.handle, _ft.BOOLEAN(0), _ft.BOOLEAN(0), _ft.UCHAR(pipe))
+            self.status = call_ft(FT_ClearStreamPipe, self.handle, BOOLEAN(0), BOOLEAN(0), UCHAR(pipe))
             return None
 		
         def abortPipe(self, pipe):
             """Abort ongoing transfers for the specifed pipe"""
-            self.status = call_ft(_ft.FT_AbortPipe, self.handle, _ft.UCHAR(pipe))
+            self.status = call_ft(FT_AbortPipe, self.handle, UCHAR(pipe))
             return None
 
         def cycleDevicePort(self):
             """Cycle port where device is connected"""
-            self.status = call_ft(_ft.FT_CycleDevicePort, self.handle)
+            self.status = call_ft(FT_CycleDevicePort, self.handle)
             return None	
 
         def setSuspendTimeout(self, timeout):
             """Set suspend timeout"""
-            self.status = call_ft(_ft.FT_SetSuspendTimeout, self.handle, _ft.ULONG(timeout))
+            self.status = call_ft(FT_SetSuspendTimeout, self.handle, ULONG(timeout))
             return None		
 	
         def getSuspendTimeout(self):
             """Get suspend timeout"""
-            timeout = _ft.ULONG()
-            self.status = call_ft(_ft.FT_GetSuspendTimeout, self.handle, c.byref(timeout))
+            timeout = ULONG()
+            self.status = call_ft(FT_GetSuspendTimeout, self.handle, c.byref(timeout))
             return timeout.value
 		
     # OS-dependent functions
@@ -364,41 +362,41 @@ class FTD3XX(object):
 	
         def writePipe(self, channel, data, datalen, timeout=1000):
             """Send the data to the device."""
-            bytesTransferred = _ft.ULONG()
-            self.status = call_ft(_ft.FT_WritePipeEx, self.handle, _ft.UCHAR(channel), data, _ft.ULONG(datalen), c.byref(bytesTransferred), timeout)
+            bytesTransferred = ULONG()
+            self.status = call_ft(FT_WritePipeEx, self.handle, UCHAR(channel), data, ULONG(datalen), c.byref(bytesTransferred), timeout)
             return bytesTransferred.value
 
         def readPipe(self, channel, data, datalen, timeout=1000):
             """Recv the data to the device."""
-            bytesTransferred = _ft.ULONG()
-            self.status = call_ft(_ft.FT_ReadPipeEx, self.handle, _ft.UCHAR(channel), data, _ft.ULONG(datalen), c.byref(bytesTransferred), timeout)
+            bytesTransferred = ULONG()
+            self.status = call_ft(FT_ReadPipeEx, self.handle, UCHAR(channel), data, ULONG(datalen), c.byref(bytesTransferred), timeout)
             return bytesTransferred.value
 
         def readPipeEx(self, channel, datalen, timeout=1000, raw=False):
             """Recv the data to the device."""
-            bytesTransferred = _ft.ULONG()
+            bytesTransferred = ULONG()
             data = c.c_buffer(datalen)
-            self.status = call_ft(_ft.FT_ReadPipeEx, self.handle, _ft.UCHAR(channel), data, _ft.ULONG(datalen), c.byref(bytesTransferred), timeout)
+            self.status = call_ft(FT_ReadPipeEx, self.handle, UCHAR(channel), data, ULONG(datalen), c.byref(bytesTransferred), timeout)
             return {'bytesTransferred' : bytesTransferred.value,
                 'bytes' : data.value[:bytesTransferred.value] if raw==False else data.raw[:bytesTransferred.value]}
 				
         def getReadQueueStatus(self, channel):
             """Get the current bytes in the read queue."""		
-            bytesInQueue = _ft.ULONG()
-            self.status = call_ft(_ft.FT_GetReadQueueStatus, self.handle, channel, c.byref(bytesInQueue))
+            bytesInQueue = ULONG()
+            self.status = call_ft(FT_GetReadQueueStatus, self.handle, channel, c.byref(bytesInQueue))
             return bytesInQueue	
 
         def getWriteQueueStatus(self, channel):
             """Get the current bytes in the write queue."""		
-            bytesInQueue = _ft.ULONG()
-            self.status = call_ft(_ft.FT_GetWriteQueueStatus, self.handle, channel, c.byref(bytesInQueue))
+            bytesInQueue = ULONG()
+            self.status = call_ft(FT_GetWriteQueueStatus, self.handle, channel, c.byref(bytesInQueue))
             return bytesInQueue	
 
         def getUnsentBuffer(self, channel):
             """Get the current bytes not yet sent to device."""
             # get size only	
-            bytesTransferred = _ft.ULONG()
-            self.status = call_ft(_ft.FT_GetUnsentBuffer, self.handle, None, c.byref(bytesTransferred))
+            bytesTransferred = ULONG()
+            self.status = call_ft(FT_GetUnsentBuffer, self.handle, None, c.byref(bytesTransferred))
             if (bytesTransferred == 0):
                 return {'bytesTransferred' : 0,
                     'bytes' : None}
@@ -406,7 +404,7 @@ class FTD3XX(object):
             # get and buffer
             data = c.c_buffer(bytesTransferred)
             bytesTransferred = 0
-            self.status = call_ft(_ft.FT_GetUnsentBuffer, self.handle, data, c.byref(bytesTransferred))			
+            self.status = call_ft(FT_GetUnsentBuffer, self.handle, data, c.byref(bytesTransferred))			
             return {'bytesTransferred' : bytesTransferred.value,
                 'bytes' : data.raw[:bytesTransferred.value] if raw==True else data.value[:bytesTransferred.value]}
 

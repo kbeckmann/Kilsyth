@@ -1,5 +1,0 @@
-#Start recording tcl command: 12/11/2018 20:38:35
-#Project Location: /home/konrad/dev/Kilsyth/gateware; Project name: kilsyth
-prj_project new -name "kilsyth" -impl "bootloader" -dev LFE5U-12F-6BG381C -synthesis "lse"
-prj_project save
-#Stop recording: 12/11/2018 20:39:06

@@ -1,454 +1,0 @@
-<HTML>
-<HEAD><TITLE>Lattice Map TRACE Report</TITLE>
-<STYLE TYPE="text/css">
-<!--
- body,pre{    font-family:'Courier New', monospace;    color: #000000;    font-size:88%;    background-color: #ffffff;}h1 {    font-weight: bold;    margin-top: 24px;    margin-bottom: 10px;    border-bottom: 3px solid #000;    font-size: 1em;}h2 {    font-weight: bold;    margin-top: 18px;    margin-bottom: 5px;    font-size: 0.90em;}h3 {    font-weight: bold;    margin-top: 12px;    margin-bottom: 5px;    font-size: 0.80em;}p {    font-size:78%;}P.Table {    margin-top: 4px;    margin-bottom: 4px;    margin-right: 4px;    margin-left: 4px;}table{    border-width: 1px 1px 1px 1px;    border-style: solid solid solid solid;    border-color: black black black black;    border-collapse: collapse;}th {    font-weight:bold;    padding: 4px;    border-width: 1px 1px 1px 1px;    border-style: solid solid solid solid;    border-color: black black black black;    vertical-align:top;    text-align:left;    font-size:78%;}td {    padding: 4px;    border-width: 1px 1px 1px 1px;    border-style: solid solid solid solid;    border-color: black black black black;    vertical-align:top;    font-size:78%;}a {    color:#013C9A;    text-decoration:none;}a:visited {    color:#013C9A;}a:hover, a:active {    text-decoration:underline;    color:#5BAFD4;}.pass{background-color: #00ff00;}.fail{background-color: #ff0000;}.comment{    font-size: 90%;    font-style: italic;}
--->
-</STYLE>
-</HEAD>
-<PRE><A name="Map_Twr"></A><B><U><big>Map TRACE Report</big></U></B>
-
-Loading design for application trce from file kilsyth_bootloader_map.ncd.
-Design name: kilsyth_top
-NCD version: 3.3
-Vendor:      LATTICE
-Device:      LFE5U-12F
-Package:     CABGA381
-Performance: 6
-Loading device for application trce from file 'sa5p25.nph' in environment: /usr/local/diamond/3.10_x64/ispfpga.
-Package Status:                     Final          Version 1.33.
-Performance Hardware Data Status:   Final          Version 55.1.
-Setup and Hold Report
-
---------------------------------------------------------------------------------
-<A name="Map_Twr_setup"></A><B><U><big>Lattice TRACE Report - Setup, Version Diamond (64-bit) 3.10.3.144.3</big></U></B>
-Thu Dec 20 22:41:17 2018
-
-Copyright (c) 1991-1994 by NeoCAD Inc. All rights reserved.
-Copyright (c) 1995 AT&T Corp.   All rights reserved.
-Copyright (c) 1995-2001 Lucent Technologies Inc.  All rights reserved.
-Copyright (c) 2001 Agere Systems   All rights reserved.
-Copyright (c) 2002-2017 Lattice Semiconductor Corporation,  All rights reserved.
-
-<A name="mtw1_set_ri"></A><B><U><big>Report Information</big></U></B>
-------------------
-Command line:    trce -v 1 -gt -mapchkpnt 0 -sethld -o kilsyth_bootloader.tw1 -gui -msgset /home/konrad/dev/Kilsyth/gateware/bootloader/promote.xml kilsyth_bootloader_map.ncd kilsyth_bootloader.prf 
-Design file:     kilsyth_bootloader_map.ncd
-Preference file: kilsyth_bootloader.prf
-Device,speed:    LFE5U-12F,6
-Report level:    verbose report, limited to 1 item per preference
---------------------------------------------------------------------------------
-
-<A name="mtw1_set_ps"></A><B><U><big>Preference Summary</big></U></B>
-
-<LI><A href='#map_twr_pref_0_0' Target='right'>FREQUENCY PORT "i_ft_clk" 100.000000 MHz (0 errors)</A></LI>            1 item scored, 0 timing errors detected.
-Report:  200.000MHz is the maximum frequency for this preference.
-
-<LI><A href='#map_twr_pref_0_1' Target='right'>FREQUENCY PORT "i_clk16" 16.000000 MHz (0 errors)</A></LI>            301 items scored, 0 timing errors detected.
-Report:  200.000MHz is the maximum frequency for this preference.
-
-BLOCK ASYNCPATHS
-BLOCK RESETPATHS
---------------------------------------------------------------------------------
-
-
-Derating parameters
--------------------
-Voltage:    1.100 V
-
-VCCIO Voltage:
-                   3.300 V (Bank 0, defined by PAR)
-                   3.300 V (Bank 1)
-                   3.300 V (Bank 2)
-                   3.300 V (Bank 3)
-                   1.500 V (Bank 4)
-                   1.500 V (Bank 5)
-                   3.300 V (Bank 6, defined by PAR)
-                   3.300 V (Bank 7, defined by PAR)
-
-
-
-================================================================================
-<A name="map_twr_pref_0_0"></A>Preference: FREQUENCY PORT "i_ft_clk" 100.000000 MHz ;
-            1 item scored, 0 timing errors detected.
---------------------------------------------------------------------------------
-
-
-Passed:  The following path meets requirements by 5.000ns
-         The internal maximum frequency of the following component is 200.000 MHz
-
- Logical Details:  Cell type  Pin name       Component name
-
-   Destination:    PIO        PAD            i_ft_clk
-
-   Delay:               5.000ns -- based on Minimum Pulse Width
-
-
-Passed: The following path meets requirements by 9.394ns
-
- Logical Details:  Cell type  Pin type       Cell/ASIC name  (clock net +/-)
-
-   Source:         FF         Q              leds_6__27  (from i_ft_clk_c +)
-   Destination:    FF         Data in        leds_6__27  (to i_ft_clk_c +)
-
-   Delay:               0.812ns  (74.3% logic, 25.7% route), 2 logic levels.
-
- Constraint Details:
-
-      0.812ns physical path delay SLICE_17 to SLICE_17 meets
-     10.000ns delay constraint less
-     -0.206ns DIN_SET requirement (totaling 10.206ns) by 9.394ns
-
- Physical Path Details:
-
-      Data path SLICE_17 to SLICE_17:
-
-   Name    Fanout   Delay (ns)          Site               Resource
-REG_DEL     ---     0.416   SLICE_17.CLK to    SLICE_17.Q0 SLICE_17 (from i_ft_clk_c)
-ROUTE         2   e 0.208    SLICE_17.Q0 to    SLICE_17.A0 o_leds_c_6
-CTOF_DEL    ---     0.187    SLICE_17.A0 to    SLICE_17.F0 SLICE_17
-ROUTE         1   e 0.001    SLICE_17.F0 to   SLICE_17.DI0 o_leds_6__N_3 (to i_ft_clk_c)
-                  --------
-                    0.812   (74.3% logic, 25.7% route), 2 logic levels.
-
-Report:  200.000MHz is the maximum frequency for this preference.
-
-
-================================================================================
-<A name="map_twr_pref_0_1"></A>Preference: FREQUENCY PORT "i_clk16" 16.000000 MHz ;
-            301 items scored, 0 timing errors detected.
---------------------------------------------------------------------------------
-
-
-Passed:  The following path meets requirements by 57.500ns
-         The internal maximum frequency of the following component is 200.000 MHz
-
- Logical Details:  Cell type  Pin name       Component name
-
-   Destination:    PIO        PAD            i_clk16
-
-   Delay:               5.000ns -- based on Minimum Pulse Width
-
-
-Passed: The following path meets requirements by 60.750ns
-
- Logical Details:  Cell type  Pin type       Cell/ASIC name  (clock net +/-)
-
-   Source:         FF         Q              counter_32_33__i0  (from i_clk16_c +)
-   Destination:    FF         Data in        counter_32_33__i23  (to i_clk16_c +)
-
-   Delay:               1.956ns  (88.7% logic, 11.3% route), 14 logic levels.
-
- Constraint Details:
-
-      1.956ns physical path delay SLICE_12 to SLICE_0 meets
-     62.500ns delay constraint less
-     -0.206ns DIN_SET requirement (totaling 62.706ns) by 60.750ns
-
- Physical Path Details:
-
-      Data path SLICE_12 to SLICE_0:
-
-   Name    Fanout   Delay (ns)          Site               Resource
-REG_DEL     ---     0.414   SLICE_12.CLK to    SLICE_12.Q1 SLICE_12 (from i_clk16_c)
-ROUTE         1   e 0.208    SLICE_12.Q1 to    SLICE_12.A1 n24
-C1TOFCO_DE  ---     0.354    SLICE_12.A1 to   SLICE_12.FCO SLICE_12
-ROUTE         1   e 0.001   SLICE_12.FCO to   SLICE_11.FCI n192
-FCITOFCO_D  ---     0.056   SLICE_11.FCI to   SLICE_11.FCO SLICE_11
-ROUTE         1   e 0.001   SLICE_11.FCO to   SLICE_10.FCI n193
-FCITOFCO_D  ---     0.056   SLICE_10.FCI to   SLICE_10.FCO SLICE_10
-ROUTE         1   e 0.001   SLICE_10.FCO to    SLICE_9.FCI n194
-FCITOFCO_D  ---     0.056    SLICE_9.FCI to    SLICE_9.FCO SLICE_9
-ROUTE         1   e 0.001    SLICE_9.FCO to    SLICE_8.FCI n195
-FCITOFCO_D  ---     0.056    SLICE_8.FCI to    SLICE_8.FCO SLICE_8
-ROUTE         1   e 0.001    SLICE_8.FCO to    SLICE_7.FCI n196
-FCITOFCO_D  ---     0.056    SLICE_7.FCI to    SLICE_7.FCO SLICE_7
-ROUTE         1   e 0.001    SLICE_7.FCO to    SLICE_6.FCI n197
-FCITOFCO_D  ---     0.056    SLICE_6.FCI to    SLICE_6.FCO SLICE_6
-ROUTE         1   e 0.001    SLICE_6.FCO to    SLICE_5.FCI n198
-FCITOFCO_D  ---     0.056    SLICE_5.FCI to    SLICE_5.FCO SLICE_5
-ROUTE         1   e 0.001    SLICE_5.FCO to    SLICE_4.FCI n199
-FCITOFCO_D  ---     0.056    SLICE_4.FCI to    SLICE_4.FCO SLICE_4
-ROUTE         1   e 0.001    SLICE_4.FCO to    SLICE_3.FCI n200
-FCITOFCO_D  ---     0.056    SLICE_3.FCI to    SLICE_3.FCO SLICE_3
-ROUTE         1   e 0.001    SLICE_3.FCO to    SLICE_2.FCI n201
-FCITOFCO_D  ---     0.056    SLICE_2.FCI to    SLICE_2.FCO SLICE_2
-ROUTE         1   e 0.001    SLICE_2.FCO to    SLICE_1.FCI n202
-FCITOFCO_D  ---     0.056    SLICE_1.FCI to    SLICE_1.FCO SLICE_1
-ROUTE         1   e 0.001    SLICE_1.FCO to    SLICE_0.FCI n203
-FCITOF0_DE  ---     0.351    SLICE_0.FCI to     SLICE_0.F0 SLICE_0
-ROUTE         1   e 0.001     SLICE_0.F0 to    SLICE_0.DI0 n102 (to i_clk16_c)
-                  --------
-                    1.956   (88.7% logic, 11.3% route), 14 logic levels.
-
-Report:  200.000MHz is the maximum frequency for this preference.
-
-<A name="mtw1_set_rs"></A><B><U><big>Report Summary</big></U></B>
---------------
-----------------------------------------------------------------------------
-Preference                              |   Constraint|       Actual|Levels
-----------------------------------------------------------------------------
-                                        |             |             |
-FREQUENCY PORT "i_ft_clk" 100.000000    |             |             |
-MHz ;                                   |  100.000 MHz|  200.000 MHz|   0  
-                                        |             |             |
-FREQUENCY PORT "i_clk16" 16.000000 MHz  |             |             |
-;                                       |   16.000 MHz|  200.000 MHz|   0  
-                                        |             |             |
-----------------------------------------------------------------------------
-
-
-All preferences were met.
-
-
-<A name="mtw1_set_clkda"></A><B><U><big>Clock Domains Analysis</big></U></B>
-------------------------
-
-Found 2 clocks:
-
-Clock Domain: i_ft_clk_c   Source: i_ft_clk.PAD   Loads: 2
-   Covered under: FREQUENCY PORT "i_ft_clk" 100.000000 MHz ;
-
-Clock Domain: i_clk16_c   Source: i_clk16.PAD   Loads: 16
-   Covered under: FREQUENCY PORT "i_clk16" 16.000000 MHz ;
-
-   Data transfers from:
-   Clock Domain: i_ft_clk_c   Source: i_ft_clk.PAD
-      Not reported because source and destination domains are unrelated.
-      To report these transfers please refer to preference CLKSKEWDIFF to define
-      external clock skew between clock ports.
-
-
-<A name="mtw1_set_ts"></A><B><U><big>Timing summary (Setup):</big></U></B>
----------------
-
-Timing errors: 0  Score: 0
-Cumulative negative slack: 0
-
-Constraints cover 302 paths, 2 nets, and 78 connections (65.00% coverage)
-
---------------------------------------------------------------------------------
-<A name="Map_Twr_hold"></A><B><U><big>Lattice TRACE Report - Hold, Version Diamond (64-bit) 3.10.3.144.3</big></U></B>
-Thu Dec 20 22:41:17 2018
-
-Copyright (c) 1991-1994 by NeoCAD Inc. All rights reserved.
-Copyright (c) 1995 AT&T Corp.   All rights reserved.
-Copyright (c) 1995-2001 Lucent Technologies Inc.  All rights reserved.
-Copyright (c) 2001 Agere Systems   All rights reserved.
-Copyright (c) 2002-2017 Lattice Semiconductor Corporation,  All rights reserved.
-
-<A name="mtw1_hold_ri"></A><B><U><big>Report Information</big></U></B>
-------------------
-Command line:    trce -v 1 -gt -mapchkpnt 0 -sethld -o kilsyth_bootloader.tw1 -gui -msgset /home/konrad/dev/Kilsyth/gateware/bootloader/promote.xml kilsyth_bootloader_map.ncd kilsyth_bootloader.prf 
-Design file:     kilsyth_bootloader_map.ncd
-Preference file: kilsyth_bootloader.prf
-Device,speed:    LFE5U-12F,M
-Report level:    verbose report, limited to 1 item per preference
---------------------------------------------------------------------------------
-
-<A name="mtw1_hold_ps"></A><B><U><big>Preference Summary</big></U></B>
-
-<LI><A href='#map_twr_pref_1_0' Target='right'>FREQUENCY PORT "i_ft_clk" 100.000000 MHz (0 errors)</A></LI>            1 item scored, 0 timing errors detected.
-
-<LI><A href='#map_twr_pref_1_1' Target='right'>FREQUENCY PORT "i_clk16" 16.000000 MHz (0 errors)</A></LI>            301 items scored, 0 timing errors detected.
-
-BLOCK ASYNCPATHS
-BLOCK RESETPATHS
---------------------------------------------------------------------------------
-
-
-Derating parameters
--------------------
-Voltage:    1.100 V
-
-VCCIO Voltage:
-                   3.300 V (Bank 0, defined by PAR)
-                   3.300 V (Bank 1)
-                   3.300 V (Bank 2)
-                   3.300 V (Bank 3)
-                   2.500 V (Bank 4)
-                   2.500 V (Bank 5)
-                   3.300 V (Bank 6, defined by PAR)
-                   3.300 V (Bank 7, defined by PAR)
-
-
-
-================================================================================
-<A name="map_twr_pref_1_0"></A>Preference: FREQUENCY PORT "i_ft_clk" 100.000000 MHz ;
-            1 item scored, 0 timing errors detected.
---------------------------------------------------------------------------------
-
-
-Passed: The following path meets requirements by 0.187ns
-
- Logical Details:  Cell type  Pin type       Cell/ASIC name  (clock net +/-)
-
-   Source:         FF         Q              leds_6__27  (from i_ft_clk_c +)
-   Destination:    FF         Data in        leds_6__27  (to i_ft_clk_c +)
-
-   Delay:               0.315ns  (81.3% logic, 18.7% route), 2 logic levels.
-
- Constraint Details:
-
-      0.315ns physical path delay SLICE_17 to SLICE_17 meets
-      0.128ns DIN_HLD and
-      0.000ns delay constraint requirement (totaling 0.128ns) by 0.187ns
-
- Physical Path Details:
-
-      Data path SLICE_17 to SLICE_17:
-
-   Name    Fanout   Delay (ns)          Site               Resource
-REG_DEL     ---     0.175   SLICE_17.CLK to    SLICE_17.Q0 SLICE_17 (from i_ft_clk_c)
-ROUTE         2   e 0.058    SLICE_17.Q0 to    SLICE_17.A0 o_leds_c_6
-CTOF_DEL    ---     0.081    SLICE_17.A0 to    SLICE_17.F0 SLICE_17
-ROUTE         1   e 0.001    SLICE_17.F0 to   SLICE_17.DI0 o_leds_6__N_3 (to i_ft_clk_c)
-                  --------
-                    0.315   (81.3% logic, 18.7% route), 2 logic levels.
-
-
-================================================================================
-<A name="map_twr_pref_1_1"></A>Preference: FREQUENCY PORT "i_clk16" 16.000000 MHz ;
-            301 items scored, 0 timing errors detected.
---------------------------------------------------------------------------------
-
-
-Passed: The following path meets requirements by 0.186ns
-
- Logical Details:  Cell type  Pin type       Cell/ASIC name  (clock net +/-)
-
-   Source:         FF         Q              counter_32_33__i22  (from i_clk16_c +)
-   Destination:    FF         Data in        counter_32_33__i22  (to i_clk16_c +)
-
-   Delay:               0.314ns  (81.2% logic, 18.8% route), 2 logic levels.
-
- Constraint Details:
-
-      0.314ns physical path delay SLICE_1 to SLICE_1 meets
-      0.128ns DIN_HLD and
-      0.000ns delay constraint requirement (totaling 0.128ns) by 0.186ns
-
- Physical Path Details:
-
-      Data path SLICE_1 to SLICE_1:
-
-   Name    Fanout   Delay (ns)          Site               Resource
-REG_DEL     ---     0.174    SLICE_1.CLK to     SLICE_1.Q1 SLICE_1 (from i_clk16_c)
-ROUTE         1   e 0.058     SLICE_1.Q1 to     SLICE_1.A1 n2
-CTOF_DEL    ---     0.081     SLICE_1.A1 to     SLICE_1.F1 SLICE_1
-ROUTE         1   e 0.001     SLICE_1.F1 to    SLICE_1.DI1 n103 (to i_clk16_c)
-                  --------
-                    0.314   (81.2% logic, 18.8% route), 2 logic levels.
-
-<A name="mtw1_hold_rs"></A><B><U><big>Report Summary</big></U></B>
---------------
-----------------------------------------------------------------------------
-Preference(MIN Delays)                  |   Constraint|       Actual|Levels
-----------------------------------------------------------------------------
-                                        |             |             |
-FREQUENCY PORT "i_ft_clk" 100.000000    |             |             |
-MHz ;                                   |            -|            -|   2  
-                                        |             |             |
-FREQUENCY PORT "i_clk16" 16.000000 MHz  |             |             |
-;                                       |            -|            -|   2  
-                                        |             |             |
-----------------------------------------------------------------------------
-
-
-All preferences were met.
-
-
-<A name="mtw1_hold_clkda"></A><B><U><big>Clock Domains Analysis</big></U></B>
-------------------------
-
-Found 2 clocks:
-
-Clock Domain: i_ft_clk_c   Source: i_ft_clk.PAD   Loads: 2
-   Covered under: FREQUENCY PORT "i_ft_clk" 100.000000 MHz ;
-
-Clock Domain: i_clk16_c   Source: i_clk16.PAD   Loads: 16
-   Covered under: FREQUENCY PORT "i_clk16" 16.000000 MHz ;
-
-   Data transfers from:
-   Clock Domain: i_ft_clk_c   Source: i_ft_clk.PAD
-      Not reported because source and destination domains are unrelated.
-      To report these transfers please refer to preference CLKSKEWDIFF to define
-      external clock skew between clock ports.
-
-
-<A name="mtw1_hold_ts"></A><B><U><big>Timing summary (Hold):</big></U></B>
----------------
-
-Timing errors: 0  Score: 0
-Cumulative negative slack: 0
-
-Constraints cover 302 paths, 2 nets, and 78 connections (65.00% coverage)
-
-
-
-<A name="mtw1_ts"></A><B><U><big>Timing summary (Setup and Hold):</big></U></B>
----------------
-
-Timing errors: 0 (setup), 0 (hold)
-Score: 0 (setup), 0 (hold)
-Cumulative negative slack: 0 (0+0)
---------------------------------------------------------------------------------
-
---------------------------------------------------------------------------------
-
-
-
-
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-</PRE></FONT>
-</BODY>
-</HTML>
