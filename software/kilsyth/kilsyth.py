@@ -27,7 +27,7 @@ def run(args):
     applet = applet_cls(device, args=args)
 
     # Don't forget me!
-    if False:
+    if True:
         device.build(applet, toolchain_path='/usr/share/trellis')
 
         # TODO fix irmask. Move to device

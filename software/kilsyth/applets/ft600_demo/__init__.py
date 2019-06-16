@@ -166,7 +166,7 @@ class FT600Demo(KilsythApplet, name="ft600_demo"):
 
     async def run(self):
         print("Init ft60x driver")
-        self.ft60x = ft60x_wrapper.FT60xWrapper()
+        self.ftd3xx = FTD3xxWrapper()
 
         print("Generate random data")
         size = 4096 * 1024
@@ -174,10 +174,10 @@ class FT600Demo(KilsythApplet, name="ft600_demo"):
         data = ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(size)).encode('latin1')
 
         print("Start loopback")
-        producer = Thread(target=self.producer_fn, args=(self.ft60x, data, total_size))
+        producer = Thread(target=self.producer_fn, args=(self.ftd3xx, data, total_size))
         producer.start()
         
-        read_bytes = self.consumer_fn(self.ft60x, data)
+        read_bytes = self.consumer_fn(self.ftd3xx, data)
         if read_bytes != total_size:
             raise Exception("Test failed..")
 

@@ -494,8 +494,8 @@ Start gqrx with the config: file=$PWD/ft600_test/linux-x86_64/out.raw,freq=867.9
         self.submodules += rxsamples
 
     async def run(self):
-        print("Init ft60x driver")
-        self.ft60x = ft60x_wrapper.FT60xWrapper()
+        print("Init driver")
+        self.ftd3xx = FTD3xxWrapper()
 
         print("Starting RX stream (press ctrl-c to quit)")
         bytesRead = 0
@@ -504,7 +504,7 @@ Start gqrx with the config: file=$PWD/ft600_test/linux-x86_64/out.raw,freq=867.9
         t0 = time.time()
         f = open("dump.raw", "wb")
         while True:
-            output = self.ft60x.read(size)
+            output = self.ftd3xx.read(size)
             bytesRead += len(output)
             bytesReadTotal += len(output)
             f.write(output)

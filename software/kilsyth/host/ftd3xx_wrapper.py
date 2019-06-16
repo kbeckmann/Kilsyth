@@ -1,15 +1,10 @@
-import asyncio
-import os
-import random
-import string
 import sys
 import time
-from threading import Thread
 
 from ..ftd3xx import ftd3xx
 from ..ftd3xx.defines import *
 
-class FT60xWrapper():
+class FTD3xxWrapper():
     def __init__(self):
         self.ResetChipConfiguration()
 
