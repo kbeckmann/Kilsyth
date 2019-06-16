@@ -29,9 +29,9 @@ def run(args):
     if not args.skip_prog:
         device.build(applet, toolchain_path='/usr/share/trellis')
 
-        # TODO fix irmask. Move to device
+        # TODO: Move to device
         script = "; ".join([
-            "jtag newtap device tap -expected-id %s -irlen 8 -irmask 0xFF -ircapture 0x1" % (device.idcode),
+            "jtag newtap device tap -expected-id %s -irlen 8 -irmask 0x03 -ircapture 0x1" % (device.idcode),
             "transport select jtag",
             "adapter_khz 10000",
             "init",
@@ -39,7 +39,7 @@ def run(args):
             "exit",
         ])
 
-        # TODO turn into an argument
+        # TODO: turn into an argument
         openocd_interface = "interface/ftdi/dp_busblaster.cfg"
         subprocess.call(["openocd", "-f", openocd_interface, "-c", script])
 
