@@ -16,6 +16,7 @@ LONG = c_long
 UINT = c_uint
 LPSTR = STRING
 
+# TODO: Ugly way to find the library
 _libname = '../3rdparty/linux-x86_64/libftd3xx.so'
 _libraries = {}
 _libraries[_libname] = CDLL(_libname)
