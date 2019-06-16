@@ -36,7 +36,7 @@ class KilsythApplet(Module):
         pass
 
 from . import blinky
-from . import spi_flash_mitm
+from . import spi_flash
 from . import spi_slave_demo
 from . import sx1257
 from . import ft600_demo

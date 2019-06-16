@@ -66,6 +66,14 @@ _io = [
         " ".join(["WIDE:%d" % x for x in range(1, 30)])
     ), IOStandard("LVCMOS33")),
 
+    ("spiflash", 0,
+        Subsignal("cs_n", Pins("R2")),
+        # Subsignal("sck", Pins("U3")), # ** This is not accessible for some reason? **
+        Subsignal("mosi", Pins("W2")),
+        Subsignal("miso", Pins("V2")),
+        Subsignal("hold_n", Pins("W1")),
+        Subsignal("wp_n", Pins("Y2")),
+    ),
 ]
 
 _connectors = [

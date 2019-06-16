@@ -179,6 +179,6 @@ class FT600Demo(KilsythApplet, name="ft600_demo"):
         
         read_bytes = self.consumer_fn(self.ftd3xx, data)
         if read_bytes != total_size:
-            raise Exception("Test failed..")
+            raise Exception("Test failed.. read %d bytes" % read_bytes)
 
         print("Test ok.")
