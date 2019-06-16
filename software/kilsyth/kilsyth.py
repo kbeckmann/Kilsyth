@@ -26,6 +26,7 @@ def run(args):
     device = device_cls()
     applet = applet_cls(device, args=args)
 
+    # Don't forget me!
     if False:
         device.build(applet, toolchain_path='/usr/share/trellis')
 

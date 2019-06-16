@@ -1,9 +1,12 @@
 from migen import *
 from migen.genlib.fifo import SyncFIFO, AsyncFIFO, AsyncFIFOBuffered
-import os, sys
+import os, sys, time
+import asyncio
 
 from .. import KilsythApplet
-from ...gateware.ft600 import *
+from ...gateware import *
+
+from ...host import *
 
 # Borrowed from the Migen example
 # https://github.com/m-labs/migen/blob/master/examples/sim/fir.py
@@ -484,9 +487,29 @@ Start gqrx with the config: file=$PWD/ft600_test/linux-x86_64/out.raw,freq=867.9
         self.submodules += fifo_rx
 
         debug_ft = Signal(8)
-        self.submodules.ft600 = FT600(ft600_pins, fifo_rx, fifo_tx, debug_ft)
+        self.submodules.ft600 = ft600.FT600(ft600_pins, fifo_rx, fifo_tx, debug_ft)
 
         debug_iq = Signal()
         rxsamples = ClockDomainsRenamer({"sys": "sx1257"})(IQSampler(i_out, q_out, fifo_tx, debug_iq))
         self.submodules += rxsamples
 
+    async def run(self):
+        print("Init ft60x driver")
+        self.ft60x = ft60x_wrapper.FT60xWrapper()
+
+        print("Starting RX stream (press ctrl-c to quit)")
+        bytesRead = 0
+        bytesReadTotal = 0
+        size = 4096
+        t0 = time.time()
+        f = open("dump.raw", "wb")
+        while True:
+            output = self.ft60x.read(size)
+            bytesRead += len(output)
+            bytesReadTotal += len(output)
+            f.write(output)
+            if bytesRead % 1000000 < 4096:
+                diff = time.time() - t0
+                t0 = time.time()
+                print("read %d bytes (%.2f MB/s)" % (bytesRead, bytesRead/1024./1024./diff))
+                bytesRead = 0

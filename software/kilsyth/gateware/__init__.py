@@ -1,2 +1,1 @@
-from . import ft600
-
+__all__ = ["ft600"]
