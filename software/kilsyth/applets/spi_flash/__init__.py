@@ -102,7 +102,13 @@ class FlashController(Module):
 
             If (bit == 15,
                 NextValue(fifo.we, 1),
-                NextValue(fifo.din, (word_rd << 1) | miso),
+
+                # Byte swap
+                NextValue(fifo.din,
+                    (((word_rd << 9) | (miso << 8)) & 0xff00) | 
+                    (((word_rd >> 7)              ) & 0x00ff)
+                ),
+
                 NextValue(word_rd, 0),
                 NextValue(bit, 0),
             ),
