@@ -41,7 +41,6 @@ class FlashController(Module):
 
         clk_en = Signal()
         self.comb += [
-            # fifo.din.eq(word_rd),
             If(clk_en,
                 sck.eq(clk),
             ).Else(
@@ -98,7 +97,7 @@ class FlashController(Module):
             NextValue(clk_en, 1),
             NextValue(fifo.we, 0),
 
-            NextValue(word_rd, (word_rd << 1) | miso), # todo: msb first, big endian
+            NextValue(word_rd, (word_rd << 1) | miso),
             NextValue(bit, bit + 1),
 
             If (bit == 15,
@@ -108,7 +107,7 @@ class FlashController(Module):
                 NextValue(bit, 0),
             ),
 
-            # infinite loop
+            # Dummy, stay in this state forever
             If(byte == 1,
                 NextState("INIT"),
             ),
@@ -205,9 +204,12 @@ class SpiFlash(KilsythApplet, name="spi_flash"):
 
             bytesRead += len(output)
             bytesReadTotal += len(output)
-            f.write(output)
             if bytesReadTotal >= self.args.bytes:
+                f.write(output[:-(bytesReadTotal - self.args.bytes)])
+                bytesReadTotal = self.args.bytes
                 break
+            else:
+                f.write(output)
             if bytesRead % (1000000 * self.args.flash_clock / 8) < size:
                 diff = time.time() - t0
                 t0 = time.time()
