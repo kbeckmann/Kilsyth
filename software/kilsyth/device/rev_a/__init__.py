@@ -68,7 +68,7 @@ _io = [
 
     ("spiflash", 0,
         Subsignal("cs_n", Pins("R2")),
-        # Subsignal("sck", Pins("U3")), # ** This is not accessible for some reason? **
+        # Subsignal("sck", Pins("U3")), # ** This pin is not accessible! **
         Subsignal("mosi", Pins("W2")),
         Subsignal("miso", Pins("V2")),
         Subsignal("hold_n", Pins("W1")),
