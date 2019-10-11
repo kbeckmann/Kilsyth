@@ -1,6 +1,6 @@
 EESchema Schematic File Version 4
 LIBS:Kilsyth-cache
-EELAYER 26 0
+EELAYER 30 0
 EELAYER END
 $Descr A1 33110 23386
 encoding utf-8
@@ -2726,8 +2726,6 @@ F 5 "XRCPB30M000F2P00R0" V 14200 7950 50  0001 C CNN "Part number"
 	1    14200 7950
 	0    1    1    0   
 $EndComp
-NoConn ~ 14075 7950
-NoConn ~ 14325 7950
 Wire Wire Line
 	13600 7750 13600 7950
 Wire Wire Line
@@ -7516,6 +7514,10 @@ Text Notes 5350 16100 0    197  ~ 0
 PMODs
 Text Notes 13300 14950 0    197  ~ 0
 Wide connector
+Text Notes 2050 11700 0    50   ~ 0
+FIXME: Use ODD-EVEN in RevB.
+NoConn ~ 14300 7950
+NoConn ~ 14100 7950
 Wire Bus Line
 	18150 9200 21550 9200
 Wire Bus Line
@@ -7562,6 +7564,4 @@ Wire Bus Line
 	4550 16650 4550 21400
 Wire Bus Line
 	7050 16650 7050 21400
-Text Notes 2050 11700 0    50   ~ 0
-FIXME: Use ODD-EVEN in RevB.
 $EndSCHEMATC

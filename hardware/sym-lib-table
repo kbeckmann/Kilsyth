@@ -1,8 +1,0 @@
-(sym_lib_table
-  (lib (name lfe5bg381)(type Legacy)(uri ${KIPRJMOD}/lfe5bg381.lib)(options "")(descr ""))
-  (lib (name TPS65261)(type Legacy)(uri ${KIPRJMOD}/TPS65261.lib)(options "")(descr ""))
-  (lib (name FT600Q)(type Legacy)(uri ${KIPRJMOD}/FT600Q.lib)(options "")(descr ""))
-  (lib (name dsc6001ci2a-016.0000t)(type Legacy)(uri ${KIPRJMOD}/dsc6001ci2a-016.0000t.lib)(options "")(descr ""))
-  (lib (name AS4C32M16SB)(type Legacy)(uri ${KIPRJMOD}/AS4C32M16SB.lib)(options "")(descr ""))
-  (lib (name Kilsyth-rescue)(type Legacy)(uri ${KIPRJMOD}/Kilsyth-rescue.lib)(options "")(descr ""))
-)
