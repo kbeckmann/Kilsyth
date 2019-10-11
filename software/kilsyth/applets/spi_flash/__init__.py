@@ -8,13 +8,25 @@ from ...gateware import *
 
 from ...host import *
 
-def BuildReg(values):
-    return Array([Signal(8, reset=x) for x in values])
+CMD_DEBUG = 0
+CMD_SPI_CS = 0x1337
+CMD_SPI_WRITE = 0xb00b
+
+def build_packet(cmd, data):
+    if type(data) == int:
+        payload = struct.pack("<H", data)
+    if cmd == CMD_SPI_WRITE:
+        if len(data) % 2 != 0:
+            raise Exception("Data must be 16-bit aligned")
+        payload = struct.pack("<H", len(data) >> 1) + data
+    return struct.pack("<HHH", 0xdead, 0xbeef, cmd & 0xffff) + payload
+
+
 
 class FlashController(Module):
     # fifo_rx: Data that is received from the SPI slave
     # fifo_tx: Data to be sent to the SPI slave
-    def __init__(self, clk, clk_period, spi_fifo_rx, spi_fifo_tx, cs_n, sck, mosi, miso, wp_n, hold_n, debug):
+    def __init__(self, clk, clk_period, spi_fifo_rx, spi_fifo_tx, sck, mosi, miso, wp_n, hold_n, debug):
         # io0 = mosi
         # io1 = miso
         # io2 = wp_n
@@ -24,7 +36,6 @@ class FlashController(Module):
         self.clk_period = clk_period
         self.spi_fifo_rx = spi_fifo_rx
         self.spi_fifo_tx = spi_fifo_tx
-        self.cs_n = cs_n
 
         word_in = Signal(16)
         word_out = Signal(16)
@@ -44,7 +55,6 @@ class FlashController(Module):
         self.fsm.act(
             "INIT",
             NextValue(clk_en, 0),
-            NextValue(cs_n, ~spi_fifo_tx.readable),
             NextValue(wp_n, 1),
             NextValue(hold_n, 1),
             NextValue(mosi, 0),
@@ -131,11 +141,18 @@ class FlashController(Module):
 
 
 class CommandParser(Module):
-    def __init__(self, fifo_rx, fifo_tx, spi_fifo_rx, spi_fifo_tx, debug):
+    def __init__(self, fifo_rx, fifo_tx, spi_fifo_rx, spi_fifo_tx, cs_n, debug):
 
-        self.submodules.fsm = FSM(reset_state="INIT")
+        self.submodules.fsm = FSM(reset_state="RESET")
         self.fsm.act(
-            "INIT",
+            "RESET",
+            fifo_rx.re.eq(0),
+            NextValue(cs_n, 1),
+            NextState("IDLE"),
+        )
+
+        self.fsm.act(
+            "IDLE",
             fifo_rx.re.eq(1),
             NextValue(spi_fifo_tx.we, 0),
             If(fifo_rx.readable,
@@ -148,12 +165,11 @@ class CommandParser(Module):
         self.fsm.act(
             "RX1",
             fifo_rx.re.eq(1),
-            NextValue(spi_fifo_tx.we, 0),
             If(fifo_rx.readable,
                 If(fifo_rx.dout == 0xbeef,
                     NextState("RX2"),
                 ).Else(
-                    NextState("INIT"),
+                    NextState("IDLE"),
                 )
             )
         )
@@ -161,12 +177,12 @@ class CommandParser(Module):
         self.fsm.act(
             "RX2",
             fifo_rx.re.eq(1),
-            NextValue(spi_fifo_tx.we, 0),
             If(fifo_rx.readable,
                 Case(fifo_rx.dout, {
-                    0:         NextState("CMD_DEBUG"),
-                    1:         NextState("CMD_SPI_WRITE1"),
-                    "default": NextState("INIT"),
+                    CMD_DEBUG:     NextState("CMD_DEBUG"),
+                    CMD_SPI_CS:    NextState("CMD_SPI_CS"),
+                    CMD_SPI_WRITE: NextState("CMD_SPI_WRITE"),
+                    "default":     NextState("IDLE"),
                 }),
             )
         )
@@ -174,19 +190,26 @@ class CommandParser(Module):
         self.fsm.act(
             "CMD_DEBUG",
             fifo_rx.re.eq(1),
-            NextValue(spi_fifo_tx.we, 0),
             If(fifo_rx.readable,
                 NextValue(debug, fifo_rx.dout[:8]),
-                NextState("INIT"),
+                NextState("IDLE"),
+            ),
+        )
+
+        self.fsm.act(
+            "CMD_SPI_CS",
+            fifo_rx.re.eq(1),
+            If(fifo_rx.readable,
+                NextValue(cs_n, fifo_rx.dout[0]),
+                NextState("IDLE"),
             ),
         )
 
         packet_length = Signal(max=4096)
         self.fsm.act(
-            "CMD_SPI_WRITE1",
+            "CMD_SPI_WRITE",
             NextValue(debug, 0b0000_0010),
             fifo_rx.re.eq(1),
-            NextValue(spi_fifo_tx.we, 0),
             If(fifo_rx.readable,
                 NextValue(packet_length, fifo_rx.dout),
                 NextState("CMD_SPI_WRITE2"),
@@ -204,19 +227,17 @@ class CommandParser(Module):
 
         self.fsm.act(
             "CMD_SPI_WRITE2",
-            # NextValue(debug, 0b0000_0100),
             NextValue(debug, packet_length),
-            # NextValue(debug, spi_fifo_tx.writable),
-            # NextValue(debug, 0b1111),
             fifo_rx.re.eq(0),
             NextValue(spi_fifo_tx.we, 0),
+
             If(fifo_rx.readable & spi_fifo_tx.writable,
                 fifo_rx.re.eq(1),
                 NextValue(spi_fifo_tx.we, 1),
                 NextValue(spi_fifo_tx.din, fifo_rx.dout),
                 NextValue(packet_length, packet_length - 1),
-                If(packet_length == 1,
-                    NextState("INIT"),
+                If(packet_length == 0,
+                    NextState("IDLE"),
                 ),
             ),
         )
@@ -291,13 +312,13 @@ class SpiFlash(KilsythApplet, name="spi_flash"):
         spi_fifo_rx = ClockDomainsRenamer({
             "write": "flash",
             "read":  "sys",
-        })(AsyncFIFO(16, depth))
+        })(AsyncFIFOBuffered(16, depth))
         self.submodules += spi_fifo_rx
 
         spi_fifo_tx = ClockDomainsRenamer({
             "write": "sys",
             "read":  "flash",
-        })(AsyncFIFO(16, depth))
+        })(AsyncFIFOBuffered(16, depth))
         self.submodules += spi_fifo_tx
 
 
@@ -305,14 +326,13 @@ class SpiFlash(KilsythApplet, name="spi_flash"):
         debug1 = Signal(4)
         debug2 = Signal(4)
 
-        self.submodules.flash = flash_controller = ClockDomainsRenamer({
+        self.submodules.flash = ClockDomainsRenamer({
             "sys": "flash",
         })(FlashController(
             clk=flash_clk.clk,
             clk_period=flash_clk_f,
             spi_fifo_rx=spi_fifo_rx,
             spi_fifo_tx=spi_fifo_tx,
-            cs_n=flash_pins.cs_n,
             sck=wide[0],              # flash_pins.sck,
             mosi=flash_pins.mosi,     # 0
             miso=flash_pins.miso,     # 1
@@ -328,6 +348,7 @@ class SpiFlash(KilsythApplet, name="spi_flash"):
             fifo_tx=fifo_tx,
             spi_fifo_rx=spi_fifo_rx,
             spi_fifo_tx=spi_fifo_tx,
+            cs_n=flash_pins.cs_n,
             debug=debug2,
         )
 
@@ -335,22 +356,30 @@ class SpiFlash(KilsythApplet, name="spi_flash"):
             leds.eq(debug1 | (debug2 << 4)),
         ]
 
+
     async def run(self):
         print("Init driver")
         self.ftd3xx = FTD3xxWrapper()
 
-        time.sleep(2)
-
         print("Go!")
         i = 0
+
+        self.ftd3xx.write(build_packet(CMD_SPI_CS, 0))
+        print(self.ftd3xx.read(512 * 2, timeout=100))
+
+        self.ftd3xx.write(build_packet(CMD_SPI_WRITE, b'\x03\x00'))
+        print(self.ftd3xx.read(512 * 2, timeout=100))
+
         while True:
-            # b = struct.pack("<HHHH", 0xdead, 0xbeef, 0x0000, i & 0xffff)
-            # b = struct.pack("<HHHH", 0xdead, 0xbeef, 0x0001, 0x0010) + b'\x03\x00' + b'\x00\x00' * 15
-            b = struct.pack("<HHHH", 0xdead, 0xbeef, 0x0001, 512-5) + b'\x03\x00' + b'\x00\x00' * (512 - 5)
-            print(len(b))
-            # b = struct.pack("<HHHHH", 0xdead, 0xbeef, 0x0001, 0x0001, 0b11110000_10101010)
-            self.ftd3xx.write(b)
-            print(self.ftd3xx.read(512-5))
+            # b = build_packet(CMD_DEBUG, i)
+            # b = build_packet(CMD_SPI_CS, 0xffff if i & 1 else 0)
+            #build_packet(CMD_SPI_WRITE, b'\x03\x00' + b'\x00\x00' * (4)) + \
+
+            self.ftd3xx.write(build_packet(CMD_SPI_WRITE, b'\x00\x00' * (512)))
+            print(self.ftd3xx.read(512 * 2, timeout=100))
+
+
             i += 1
-            time.sleep(0.1)
-            print("loop..")
+            # time.sleep(0.1)
+            # print("loop..")
+        self.ftd3xx.write(build_packet(CMD_SPI_CS, 1))
