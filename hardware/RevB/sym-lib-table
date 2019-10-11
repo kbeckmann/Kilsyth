@@ -1,0 +1,8 @@
+(sym_lib_table
+  (lib (name lfe5bg381)(type Legacy)(uri ${KIPRJMOD}/../symbols/lfe5bg381.lib)(options "")(descr ""))
+  (lib (name TPS65261)(type Legacy)(uri ${KIPRJMOD}/../symbols/TPS65261.lib)(options "")(descr ""))
+  (lib (name FT60x)(type Legacy)(uri ${KIPRJMOD}/../symbols/FT60x.lib)(options "")(descr ""))
+  (lib (name dsc6001ci2a-016.0000t)(type Legacy)(uri ${KIPRJMOD}/../symbols/dsc6001ci2a-016.0000t.lib)(options "")(descr ""))
+  (lib (name AS4C32M16SB)(type Legacy)(uri ${KIPRJMOD}/../symbols/AS4C32M16SB.lib)(options "")(descr ""))
+  (lib (name PI5USB30213A)(type Legacy)(uri ${KIPRJMOD}/../symbols/PI5USB30213A.lib)(options "")(descr ""))
+)
