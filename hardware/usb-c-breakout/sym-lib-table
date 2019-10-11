@@ -1,0 +1,3 @@
+(sym_lib_table
+  (lib (name PI5USB30213A)(type Legacy)(uri ${KIPRJMOD}/../symbols/PI5USB30213A.lib)(options "")(descr ""))
+)

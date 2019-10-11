@@ -1,0 +1,5 @@
+(fp_lib_table
+  (lib (name kilsyth_extra)(type KiCad)(uri ${KIPRJMOD}/../footprints/kilsyth_extra.pretty)(options "")(descr ""))
+  (lib (name PUSB3FR4Z)(type KiCad)(uri ${KIPRJMOD}/../footprints/tinyfpga/PUSB3FR4Z.pretty)(options "")(descr ""))
+  (lib (name USB3_A_Female_Vertical)(type KiCad)(uri ${KIPRJMOD}/../footprints/usb-a-3.0/USB3_A_Female_Vertical.pretty)(options "")(descr ""))
+)

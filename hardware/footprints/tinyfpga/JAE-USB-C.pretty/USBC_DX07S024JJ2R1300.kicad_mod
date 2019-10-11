@@ -1,4 +1,4 @@
-(module USBC_DX07S024JJ2R1300 (layer F.Cu) (tedit 5C083E9E)
+(module USBC_DX07S024JJ2R1300 (layer F.Cu) (tedit 5DA0B846)
   (attr smd)
   (fp_text reference J2 (at 0 1.8) (layer F.Fab)
     (effects (font (size 0.3 0.3) (thickness 0.075)))
@@ -44,7 +44,7 @@
   (pad A6 smd rect (at -0.135 -2.7) (size 0.27 0.9) (layers F.Cu F.Paste F.Mask))
   (pad S1 thru_hole oval (at -4.32 3.05) (size 1.3 2.6) (drill oval 0.7 2) (layers *.Cu *.Mask F.Paste))
   (pad S1 thru_hole oval (at 4.32 3.05) (size 1.3 2.6) (drill oval 0.7 2) (layers *.Cu *.Mask F.Paste))
-  (model ${KIPRJMOD}/Footprints.pretty/K3D-DX07S024JJ2-V1_JAE_Proprietary.wrl
+  (model ${KIPRJMOD}/../footprints/tinyfpga/JAE-USB-C.pretty/K3D-DX07S024JJ2-V1_JAE_Proprietary.wrl
     (offset (xyz 0 -0.6 1.53))
     (scale (xyz 1 1 1))
     (rotate (xyz -90 0 0))
