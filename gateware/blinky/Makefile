@@ -1,5 +1,9 @@
 PROJ=blinky
 OPENOCD_INTERFACE:=interface/ftdi/dp_busblaster.cfg
+OPENOCD_CONFIG:=../../openocd/kilsyth_lfe5u12.cfg
+ECP5_VARIANT:=25k
+TAP:=lfe5u12.tap
+IDCODE:=--idcode 0x21111043
 
 ifndef TRELLIS
 $(error Set TRELLIS to Trellis git root)
@@ -11,16 +15,16 @@ all: ${PROJ}.bit
 	yosys -p "synth_ecp5 -noccu2 -nobram -nomux -json $@" $<
 
 %_out.config: %.json
-	nextpnr-ecp5 --json $< --basecfg $(TRELLIS)/misc/basecfgs/empty_lfe5u-25f.config --textcfg $@ --25k --package CABGA381 --lpf kilsyth.lpf
+	nextpnr-ecp5 --json $< --textcfg $@ --$(ECP5_VARIANT) --package CABGA381 --lpf kilsyth.lpf
 
 %.bit: %_out.config
 	# lfe5u12f: 0x21111043 = 554766403
-	ecppack --idcode 554766403 --svf ${PROJ}.svf $< $@
+	ecppack $(IDCODE) --svf ${PROJ}.svf $< $@
 
 ${PROJ}.svf : ${PROJ}.bit
 
 prog: ${PROJ}.svf
-	openocd -f $(OPENOCD_INTERFACE) -f ../../openocd/kilsyth_lfe5u12.cfg -c "transport select jtag; adapter_khz 10000; init; svf  -tap lfe5u12.tap -quiet -progress $<; exit"
+	openocd -f $(OPENOCD_INTERFACE) -f $(OPENOCD_CONFIG) -c "transport select jtag; adapter_khz 10000; init; svf  -tap $(TAP) -quiet -progress $<; exit"
 
 clean:
 	rm -f *.svf *.bit *.config *.json
