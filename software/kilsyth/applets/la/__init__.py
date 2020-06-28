@@ -39,37 +39,48 @@ class LogicAnalyzerApplet(KilsythApplet, name="la"):
         self.clock_domains.cd_clk16 = ClockDomain(reset_less=False)
         self.cd_clk16.clk = clk16
 
-        depth = 1024 * 2
-
-        if False:
-            fifo_rx = SyncFIFO(16, depth)
-            self.submodules += fifo_rx
-
-            fifo_tx = SyncFIFO(16, depth)
-            self.submodules += fifo_tx
-        else:
-            # AsyncFIFO requires a depth of at least 8 to be able to run at max speed 
-            fifo_rx = ClockDomainsRenamer({
-                "write": "sys",
-                "read":  "sys",
-            })(AsyncFIFO(16, depth))
-            self.submodules += fifo_rx
-
-            fifo_tx = ClockDomainsRenamer({
-                "write": "sys",
-                "read":  "sys",
-            })(AsyncFIFO(16, depth))
-            self.submodules += fifo_tx
+        depth = 1024 * 8
 
 
-        debug = led[-3:]
+        fifo_rx = ClockDomainsRenamer({
+            "write": "sys",
+            "read":  "sys",
+        })(AsyncFIFOBuffered(16, depth))
+        self.submodules += fifo_rx
+
+        fifo_tx = ClockDomainsRenamer({
+            "write": "sys",
+            "read":  "sys",
+        })(AsyncFIFOBuffered(16, depth))
+        self.submodules += fifo_tx
+
+
+        # debug = led[-3:]
+        debug = Signal(3)
         self.submodules.ft600 = FT600(ft600_pins, fifo_rx, fifo_tx, debug)
 
         wide = device.request("wide")
 
+        gearbox = Signal(16)
+        self.sync += gearbox.eq(Cat(gearbox[8:], wide[:8]))
+
+        gearbox_tick = Signal()
+        self.sync += gearbox_tick.eq(~gearbox_tick)
+
+        # Light up an LED for 1 second every time we overflow the fifo
+        overflow_cnt = Signal(32, reset=100000000)
+        self.sync += If(overflow_cnt != 0,
+            overflow_cnt.eq(overflow_cnt - 1)
+        )
+        self.comb += led.eq(overflow_cnt != 0)
+        self.sync += If(~fifo_tx.writable,
+            overflow_cnt.eq(100000000)
+        )
+
+
         self.comb += [
-            fifo_tx.din.eq(wide[0:16]),
-            fifo_tx.we.eq(1),
+            fifo_tx.din.eq(gearbox),
+            fifo_tx.we.eq(gearbox_tick == 0),
         ]
 
 
