@@ -178,7 +178,7 @@ class KilsythRevA(KilsythDevice, name=None):
         self.add_period_constraint(self.default_clk_name, self.default_clk_period)
 
     def build(self, *args, **kwargs):
-        KilsythDevice.build(self, idcode=self.idcode, *args, **kwargs)
+        KilsythDevice.build(self, *args, **kwargs)
 
 class KilsythRevA12(KilsythRevA, name="rev_a_12"):
     help = "Kilsyth RevA LFE5U-12F"
