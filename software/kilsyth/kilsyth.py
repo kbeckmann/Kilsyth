@@ -29,19 +29,34 @@ def run(args):
     if not args.skip_prog:
         device.build(applet, toolchain_path='/usr/share/trellis')
 
-        # TODO: Move to device
-        script = "; ".join([
-            "jtag newtap device tap -expected-id %s -irlen 8 -irmask 0x03 -ircapture 0x1" % (device.idcode),
-            "transport select jtag",
-            "adapter_khz 10000",
-            "init",
-            "svf -tap device.tap -quiet -progress %s" % ("build/top.svf"),
-            "exit",
-        ])
+        # TODO: Clean up this mess
 
-        # TODO: turn into an argument
-        openocd_interface = "interface/ftdi/dp_busblaster.cfg"
-        subprocess.call(["openocd", "-f", openocd_interface, "-c", script])
+        openocd = os.environ.get("OPENOCD", "openocd")
+        debugger = os.environ.get("DEBUGGER", "SiPEED")
+        if debugger == "SiPEED" or debugger == "busblaster":
+            if debugger == "SiPEED":
+                args = ["-c", """
+                        interface ftdi
+                        ftdi_vid_pid 0x0403 0x6010
+                        ftdi_layout_init 0x0018 0x05fb
+                        ftdi_layout_signal nSRST -data 0x0010
+                    """]
+            elif debugger == "busblaster":
+                args = [
+                     "-f",
+                     "interface/ftdi/dp_busblaster.cfg",
+                ]
+
+            script = "; ".join([
+                "jtag newtap device tap -expected-id %s -irlen 8 -irmask 0x03 -ircapture 0x1" % (device.idcode),
+                "transport select jtag",
+                "adapter_khz 10000",
+                "init",
+                "svf -tap device.tap -quiet -progress %s" % ("build/top.svf"),
+                "exit",
+            ])
+
+            subprocess.call([openocd, *args, "-c", script])
 
     asyncio.run(applet.run())
 
