@@ -164,7 +164,7 @@ class FT600Demo(KilsythApplet, name="ft600_demo"):
         return bytesReadTotal
 
 
-    async def run(self):
+    async def run(self, args):
         print("Init ft60x driver")
         self.ftd3xx = FTD3xxWrapper()
 

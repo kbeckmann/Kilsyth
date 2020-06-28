@@ -35,14 +35,14 @@ def run(args):
         debugger = os.environ.get("DEBUGGER", "SiPEED")
         if debugger == "SiPEED" or debugger == "busblaster":
             if debugger == "SiPEED":
-                args = ["-c", """
+                openocd_args = ["-c", """
                         interface ftdi
                         ftdi_vid_pid 0x0403 0x6010
                         ftdi_layout_init 0x0018 0x05fb
                         ftdi_layout_signal nSRST -data 0x0010
                     """]
             elif debugger == "busblaster":
-                args = [
+                openocd_args = [
                      "-f",
                      "interface/ftdi/dp_busblaster.cfg",
                 ]
@@ -56,9 +56,9 @@ def run(args):
                 "exit",
             ])
 
-            subprocess.call([openocd, *args, "-c", script])
+            subprocess.call([openocd, *openocd_args, "-c", script])
 
-    asyncio.run(applet.run())
+    asyncio.run(applet.run(args))
 
 def main():
     print("KILSYTH [WIP]")
