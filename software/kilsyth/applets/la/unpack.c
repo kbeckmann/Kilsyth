@@ -4,6 +4,12 @@
 
 int main(int argc, char *argv[])
 {
+    if (argc != 3) {
+        printf("Unpacks packed data into bytes with two bits\n"
+               "Usage: %s <packed.bin> <unpacked.bin>\n", argv[0]);
+        return 1;
+    }
+
     FILE *f_in = fopen(argv[1], "rb");
     FILE *f_out = fopen(argv[2], "wb");
     char buf_in[1024*1024];
