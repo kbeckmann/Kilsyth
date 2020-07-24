@@ -34,3 +34,4 @@ class Applet(Elaboratable):
 
 from . import blinky
 from . import ft600_demo
+from . import la

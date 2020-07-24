@@ -1,8 +1,6 @@
 from nmigen import *
 from nmigen.build import *
 
-__all__ = ["FT600Resource", "FT600"]
-
 def FT600Resource(*args, clk, data, be, rd_n, wr_n, gpio1, txe_n, rxf_n, oe_n,
                  conn=None, attrs=None):
     io = []
