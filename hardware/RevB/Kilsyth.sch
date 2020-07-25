@@ -1,5 +1,4 @@
 EESchema Schematic File Version 4
-LIBS:Kilsyth-cache
 EELAYER 30 0
 EELAYER END
 $Descr A1 33110 23386
@@ -4299,7 +4298,7 @@ Wire Wire Line
 Text Notes 23750 4700 0    394  ~ 79
 Notes to self
 Text Notes 23900 5350 0    50   ~ 0
-- FT_CLK must be routed to a clock input.\n\n- Route HDMI traces properly...\n\n- Need extra oscillator?
+- FT_CLK must be routed to a clock input.\n\n- Route HDMI traces properly...\n\n- Need extra oscillator?\n\n- Use USB2422 + SAMD11 or similar for jtag!\n    Connect the FT's HS pins and SAMD11 on the hub.
 Wire Notes Line
 	7750 14550 23200 14550
 Wire Notes Line
@@ -6167,6 +6166,17 @@ F 4 "https://www.mouser.se/ProductDetail/Murata-Electronics/XRCPB30M000F2P00R0?q
 $EndComp
 Text Notes 28750 1050 0    394  ~ 79
 Kilsyth RevB
+$Comp
+L PI5USB30213A:PI5USB30213A U6
+U 1 1 5DBFCED5
+P 11800 5450
+F 0 "U6" H 12250 4400 50  0000 C CNN
+F 1 "PI5USB30213A" H 12300 6400 50  0000 C CNN
+F 2 "kilsyth_extra:PI5USB30213A" H 11800 5450 50  0001 C CNN
+F 3 "" H 11800 5450 50  0001 C CNN
+	1    11800 5450
+	1    0    0    -1  
+$EndComp
 Wire Bus Line
 	19450 9350 22850 9350
 Wire Bus Line
@@ -6179,15 +6189,4 @@ Wire Bus Line
 	22950 4850 22950 9250
 Wire Bus Line
 	19350 4850 19350 9250
-$Comp
-L PI5USB30213A:PI5USB30213A U6
-U 1 1 5DBFCED5
-P 11800 5450
-F 0 "U6" H 12250 4400 50  0000 C CNN
-F 1 "PI5USB30213A" H 12300 6400 50  0000 C CNN
-F 2 "kilsyth_extra:PI5USB30213A" H 11800 5450 50  0001 C CNN
-F 3 "" H 11800 5450 50  0001 C CNN
-	1    11800 5450
-	1    0    0    -1  
-$EndComp
 $EndSCHEMATC
