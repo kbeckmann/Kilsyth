@@ -2,6 +2,8 @@ from nmigen import *
 from nmigen.build import *
 from nmigen.lib.fifo import *
 
+from pergola.util.ecp5pll import *
+
 import os, sys, time, random, string
 import asyncio
 from threading import Thread
