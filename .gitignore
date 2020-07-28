@@ -1,4 +1,5 @@
 build
+software/build
 __pycache__
 *.pyc
 *.sch-bak
