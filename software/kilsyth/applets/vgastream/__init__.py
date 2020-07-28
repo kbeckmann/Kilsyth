@@ -12,6 +12,9 @@ import os, sys, time, random, string, struct, random
 import asyncio
 from threading import Thread
 
+import v4l2
+import fcntl
+
 from .. import Applet
 from ...gateware import *
 
@@ -302,7 +305,7 @@ class VGAStreamApplet(Applet, applet_name="vgastream"):
 
 
 
-    def consumer_fn(self, ft60x, filename):
+    def consumer_fn(self, ft60x, f):
         print("consumer")
         size = 4096
         bytesRead = 0
@@ -313,9 +316,10 @@ class VGAStreamApplet(Applet, applet_name="vgastream"):
         frame = 0
 
         vsync = struct.pack("<Q", self.VSYNC_MAGIC)
-        # print("Magic: {:016x}".format(self.VSYNC_MAGIC))
 
-        f = open(filename, "wb")
+        # TODO: Keep a static framebuffer and write to it instead
+        framebuffer = bytes()
+
         while (True):
             output = ft60x.read(size)
             if len(output) == 0:
@@ -327,12 +331,14 @@ class VGAStreamApplet(Applet, applet_name="vgastream"):
             if offset >= 0:
                 frame += 1
 
-                f.write(output[:offset])
-                f.close()
-                f = open(filename + "{:04}".format(frame), "wb")
-                f.write(output[offset + self.VSYNC_BITS // 8:])
+                framebuffer += output[:offset]
+                f.write(framebuffer)
+                
+                # Frame boundary
+
+                framebuffer = output[offset + self.VSYNC_BITS // 8:]
             else:
-                f.write(output)
+                framebuffer += output
 
             bytesRead += len(output)
             bytesReadTotal += len(output)
@@ -347,16 +353,37 @@ class VGAStreamApplet(Applet, applet_name="vgastream"):
 
 
     async def run(self, args):
+        # Open camera driver
+        fd = open('/dev/video0', 'wb')
+
+        BUFTYPE = v4l2.V4L2_BUF_TYPE_VIDEO_OUTPUT
+        MEMTYPE = v4l2.V4L2_MEMORY_MMAP
+        FRAME_FORMAT = v4l2.V4L2_PIX_FMT_RGB565
+
+        # Set format
+        width = 640
+        height = 480
+        sizeimage = width * height * 2
+        linewidth = 640
+
+        fmt = v4l2.v4l2_format()
+        fmt.type = BUFTYPE
+        fmt.fmt.pix.width        = width
+        fmt.fmt.pix.height       = height
+        fmt.fmt.pix.pixelformat  = FRAME_FORMAT
+        fmt.fmt.pix.sizeimage    = sizeimage
+        fmt.fmt.pix.field        = v4l2.V4L2_FIELD_NONE
+        fmt.fmt.pix.bytesperline = linewidth
+        fmt.fmt.pix.colorspace   = v4l2.V4L2_COLORSPACE_SRGB
+
+        ret = fcntl.ioctl(fd, v4l2.VIDIOC_S_FMT, fmt)
+        print("fcntl.ioctl(fd, v4l2.VIDIOC_S_FMT, fmt) = %d" % ret)
+
+        buffer_size = fmt.fmt.pix.sizeimage
+        print("buffer_size = " + str(buffer_size))
+
+
         print("Init ft60x driver")
         self.ftd3xx = FTD3xxWrapper()
+        read_bytes = self.consumer_fn(self.ftd3xx, fd)
 
-        read_bytes = self.consumer_fn(self.ftd3xx, args.output_file)
-
-        print("""
-
-        Post process with:
-        gcc software/kilsyth/applets/la/unpack.c -o software/kilsyth/applets/la/unpack.elf;
-        software/kilsyth/applets/la/unpack.elf out.bin out2.bin
-        sigrok-cli -I binary:numchannels=2:samplerate=400000000 -i out2.bin -o out.sr
-
-        """)
