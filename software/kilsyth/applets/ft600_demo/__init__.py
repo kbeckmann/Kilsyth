@@ -1,7 +1,7 @@
 from nmigen import *
 from nmigen.lib.fifo import AsyncFIFOBuffered
 
-import os, sys, time, random, string
+import os, sys, time, random, string, struct
 import asyncio
 from threading import Thread
 
@@ -16,6 +16,7 @@ SINK = "sink"
 LOOPBACK = "loopback"
 _all_modes = [SOURCE, SINK, LOOPBACK]
 
+SOURCE_COUNTER_BITS = 16
 
 class FT600Demo(Elaboratable):
     def __init__(self, leds, pins, mode, count=0):
@@ -62,21 +63,12 @@ class FT600Demo(Elaboratable):
 
         if mode == SOURCE:
             # Test TX only
-            # Write counter every nth clock cycle
-            counter = Signal(32)
-            counter2 = Signal(8)
-            m.d.comb += [
-                fifo_tx.w_data.eq(Cat(
-                    ((counter2 + 1) << 8) |
-                    ((counter2    )     )
-                )),
-                fifo_tx.w_en.eq(counter == 0),
-            ]
-
-            with m.If(counter == count):
-                m.d.clk100 += counter.eq(0)
-                m.d.clk100 += counter2.eq(counter2 + 2)
-            with m.Else():
+            counter = Signal(SOURCE_COUNTER_BITS)
+            with m.If(fifo_tx.w_rdy):
+                m.d.comb += [
+                    fifo_tx.w_data.eq(Cat(counter[8:], counter[:8])),
+                    fifo_tx.w_en.eq(1),
+                ]
                 m.d.clk100 += counter.eq(counter + 1)
         elif mode == SINK:
             # Test RX only
@@ -128,6 +120,8 @@ class FT600DemoApplet(Applet, applet_name="ft600_demo"):
         print("producer")
         size = 4096
         totalBytesWritten = 0
+        bytesWrittenTemp = 0
+        tstart = t0 = time.time()
 
         for x in range(0, total_size // size):
             start = (x * size) % len(data)
@@ -138,10 +132,19 @@ class FT600DemoApplet(Applet, applet_name="ft600_demo"):
             if bytesWritten == 0:
                 break
             totalBytesWritten += bytesWritten
-        print("wrote %d bytes" % totalBytesWritten)
+            bytesWrittenTemp += bytesWritten
+
+            if bytesWrittenTemp > 1024*1024*100:
+                diff = time.time() - t0
+                t0 = time.time()
+                print("wrote %d bytes (%.2f MB/s)" % (bytesWrittenTemp, bytesWrittenTemp / 1024. / 1024. / diff))
+                bytesWrittenTemp = 0
+
+        diff = time.time() - tstart
+        print("wrote %d bytes in %d seconds (%.2f MB/s)" % (totalBytesWritten, diff, totalBytesWritten / 1024. / 1024. / diff))
 
 
-    def consumer_fn(self, ft60x, data):
+    def consumer_fn(self, ft60x, data, mode):
         print("consumer")
 
         size = 4096
@@ -160,9 +163,11 @@ class FT600DemoApplet(Applet, applet_name="ft600_demo"):
             end = len(data) if end == 0 else end
 
             if output != data[start:end]:
-                print("Mismatch in loopback")
-                print(output)
+                print("Mismatch")
+                print("Expected:")
                 print(data[start:end])
+                print("Actual:")
+                print(output)
                 return 0
 
             packet += 1
@@ -174,7 +179,7 @@ class FT600DemoApplet(Applet, applet_name="ft600_demo"):
                 t0 = time.time()
                 print("read %d bytes (%.2f MB/s)" % (bytesRead, bytesRead/1024./1024./diff))
                 bytesRead = 0
-        print("read  %d bytes" % bytesReadTotal)
+        print("read %d bytes" % bytesReadTotal)
         return bytesReadTotal
 
 
@@ -182,22 +187,35 @@ class FT600DemoApplet(Applet, applet_name="ft600_demo"):
         print("Init ft60x driver")
         self.ftd3xx = FTD3xxWrapper()
 
-        print("Generate random data")
-        size = 4096 * 1024
-        total_size = size * 100
-        data = ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(size)).encode('latin1')
 
         if args.mode == LOOPBACK:
+            print("Generate random data")
+            size = 4096 * 1024
+            total_size = size * 100
+            data = ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(size)).encode('latin1')
+
             print("Start loopback")
             producer = Thread(target=self.producer_fn, args=(self.ftd3xx, data, total_size))
             producer.start()
 
-            read_bytes = self.consumer_fn(self.ftd3xx, data)
+            read_bytes = self.consumer_fn(self.ftd3xx, data, args.mode)
             if read_bytes != total_size:
                 raise Exception("Test failed..")
         elif args.mode == SINK:
-            raise Exception("TODO")
+            print("Generate sequence data")
+            counter_n = 2 ** SOURCE_COUNTER_BITS
+            data = struct.pack(">%dH" % counter_n, *range(0, counter_n))
+
+            print("Start sink mode (pc -> fpga)")
+            total_size = 1024 * 1024 * 1024
+            producer = Thread(target=self.producer_fn, args=(self.ftd3xx, data, total_size))
+            producer.start()
         elif args.mode == SOURCE:
-            raise Exception("TODO")
+            print("Generate sequence data")
+            counter_n = 2 ** SOURCE_COUNTER_BITS
+            data = struct.pack(">%dH" % counter_n, *range(0, counter_n))
+
+            print("Start source mode (fpga -> pc)")
+            read_bytes = self.consumer_fn(self.ftd3xx, data, args.mode)
 
         print("Test ok.")
